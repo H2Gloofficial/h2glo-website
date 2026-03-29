@@ -5,7 +5,8 @@ const CORAL = '#E8553C';
 const FONT = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif";
 const sp = (frame, fps, cfg = {}) =>
   spring({ frame: Math.max(0, frame), fps, config: { damping: 12, mass: 0.8, stiffness: 100, ...cfg } });
-const cl = (v) => ({ extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+const cl = () => ({ extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
 
 /* ═══════════════════════════════════
    SVG COMPONENTS
@@ -156,7 +157,8 @@ function Chart({ color, drawStart, frame, data, label, sub, fill }) {
 function FadeUp({ text, inF, outF, frame, style: s }) {
   const o = interpolate(frame, [inF, inF + 20, outF - 20, outF], [0, 1, 1, 0], cl());
   const y = sp(frame - inF, 30, { damping: 14, stiffness: 80 });
-  const ty = interpolate(y, [0, 1], [20, 0]);
+  // Spring can overshoot, so use it directly: 0->20px offset, 1->0px
+  const ty = 20 * (1 - clamp01(y));
   return <div style={{ opacity: o, transform: `translateY(${ty}px)`, fontFamily: FONT, ...s }}>{text}</div>;
 }
 
@@ -183,11 +185,12 @@ export function DashboardAd() {
   const click1a = interpolate(frame, [150, 154, 158], [1, 0.82, 1], cl());
   const click1b = interpolate(frame, [160, 164, 168], [1, 0.82, 1], cl());
   const iconBounce = sp(frame - 155, fps, { damping: 8, stiffness: 200 });
-  const iconScale1 = interpolate(iconBounce, [0, 0.5, 0.8, 1], [1, 1.12, 0.95, 1]);
+  // Spring overshoots past 1, so map it: 0->1, overshoot->1.1, settles at 1
+  const iconScale1 = frame >= 150 ? 1 + (iconBounce - 1) * 0.12 : 1;
 
   /* ─── SCENE 2: Window opens (180-300) ─── */
   const winSpr = sp(frame - 190, fps, { damping: 14, mass: 1, stiffness: 90 });
-  const winScale = interpolate(winSpr, [0, 1], [0.06, 1]);
+  const winScale = 0.06 + clamp01(winSpr) * 0.94;
   const winOp = interpolate(frame, [190, 210], [0, 1], cl());
   const dashFade = interpolate(frame, [215, 245], [0, 1], cl());
   const desktopBlur = interpolate(frame, [190, 220], [0, 12], cl());
