@@ -307,6 +307,12 @@ a:not(.btn):hover, button:not(.btn):hover { transform: translateY(-1px); }
 .worked-with-logo:hover {
   filter: brightness(0) invert(1) opacity(0.7);
 }
+.worked-with-logo--color {
+  filter: grayscale(0.3) opacity(0.7);
+}
+.worked-with-logo--color:hover {
+  filter: grayscale(0) opacity(1);
+}
 
 /* ===== C. STATS BAR ===== */
 .stats-bar {
