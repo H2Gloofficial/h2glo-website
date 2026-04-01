@@ -7,17 +7,37 @@
   <meta name="description" content="Get a free 20-minute social media audit for your Newcastle restaurant, pub, bar or cafe. Honest answers about what is costing you views and customers." />
   <meta property="og:title" content="Free Social Media Audit | Fusion Creative" />
   <meta property="og:description" content="Free 20-minute social media audit for Newcastle hospitality businesses. No obligation." />
-  <meta property="og:url" content="https://fusioncreative.uk/audit" />
+  <meta property="og:url" content="https://fusioncreative.uk/audit/" />
+  <meta property="og:image" content="https://fusioncreative.uk/assets/logos/fc-og.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Social Media Audit | Fusion Creative" />
+  <meta name="twitter:description" content="Free 20-minute social media audit for Newcastle hospitality businesses. No obligation." />
+  <meta name="twitter:image" content="https://fusioncreative.uk/assets/logos/fc-og.png" />
+  <link rel="canonical" href="https://fusioncreative.uk/audit/" />
+  <link rel="icon" type="image/png" href="https://fusioncreative.uk/assets/logos/favicon.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Fusion Creative","description":"Short-form video agency and digital growth partner for Newcastle hospitality businesses","url":"https://fusioncreative.uk","telephone":"07437571250","email":"jay@fusioncreative.uk","address":{"@type":"PostalAddress","addressLocality":"Newcastle upon Tyne","addressCountry":"GB"},"areaServed":"North East England"}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-  <!-- Facebook Pixel -->
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+  <!-- Facebook Pixel (deferred until consent) -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1631577007728254');fbq('track','PageView');
+    window._fbPixelLoaded=false;
+    function loadFBPixel(){
+      if(window._fbPixelLoaded)return;window._fbPixelLoaded=true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','1631577007728254');fbq('track','PageView');
+    }
+    // Auto-load if consent already given
+    if(localStorage.getItem('fc_cookie_consent')==='accepted')loadFBPixel();
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 /* ===== TOKENS ===== */
 :root {
@@ -173,6 +193,20 @@ h2{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:7
   .features-grid{grid-template-columns:repeat(2,1fr)!important}
 }
 
+/* Screen reader only */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Cookie consent */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:10000;background:var(--black);border-top:1px solid var(--border-dark);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-size:0.85rem;color:var(--mid);transform:translateY(100%);transition:transform 0.4s ease}
+.cookie-banner.visible{transform:translateY(0)}
+.cookie-banner a{color:var(--signal);text-decoration:underline}
+.cookie-btns{display:flex;gap:0.5rem;flex-shrink:0}
+.cookie-btns button{padding:0.5rem 1.2rem;border-radius:999px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s}
+.cookie-accept{background:var(--signal);color:white;border:none}
+.cookie-accept:hover{background:#c4302a}
+.cookie-decline{background:transparent;color:var(--mid);border:1px solid var(--border-dark)}
+.cookie-decline:hover{color:var(--off-white)}
+
 @media(prefers-reduced-motion:reduce){
   .stagger{opacity:1!important;transform:none!important}
   .reveal-el{opacity:1!important;transform:none!important}
@@ -324,50 +358,56 @@ h2{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:7
         <div class="form-step active" id="step-1">
           <p style="font-weight:600;margin-bottom:1rem;">What type of business do you run?</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="form-options-grid">
-            <button class="opt-btn" data-field="business_type" data-value="restaurant"><span style="font-size:1.3rem">&#127869;</span> Restaurant</button>
-            <button class="opt-btn" data-field="business_type" data-value="pub_bar"><span style="font-size:1.3rem">&#127866;</span> Pub or Bar</button>
-            <button class="opt-btn" data-field="business_type" data-value="cafe_takeaway"><span style="font-size:1.3rem">&#9749;</span> Cafe or Takeaway</button>
-            <button class="opt-btn" data-field="business_type" data-value="other"><span style="font-size:1.3rem">&#127978;</span> Other</button>
+            <button type="button" class="opt-btn" data-field="business_type" data-value="restaurant"><span style="font-size:1.3rem">&#127869;</span> Restaurant</button>
+            <button type="button" class="opt-btn" data-field="business_type" data-value="pub_bar"><span style="font-size:1.3rem">&#127866;</span> Pub or Bar</button>
+            <button type="button" class="opt-btn" data-field="business_type" data-value="cafe_takeaway"><span style="font-size:1.3rem">&#9749;</span> Cafe or Takeaway</button>
+            <button type="button" class="opt-btn" data-field="business_type" data-value="other"><span style="font-size:1.3rem">&#127978;</span> Other</button>
           </div>
         </div>
         <div class="form-step" id="step-2">
           <p style="font-weight:600;margin-bottom:1rem;">What is your biggest goal right now?</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="form-options-grid">
-            <button class="opt-btn" data-field="goal" data-value="more_customers"><span style="font-size:1.3rem">&#128101;</span> More customers</button>
-            <button class="opt-btn" data-field="goal" data-value="brand_awareness"><span style="font-size:1.3rem">&#128227;</span> Brand awareness</button>
-            <button class="opt-btn" data-field="goal" data-value="go_viral"><span style="font-size:1.3rem">&#128640;</span> Go viral on TikTok</button>
-            <button class="opt-btn" data-field="goal" data-value="full_management"><span style="font-size:1.3rem">&#128241;</span> Full social management</button>
+            <button type="button" class="opt-btn" data-field="goal" data-value="more_customers"><span style="font-size:1.3rem">&#128101;</span> More customers</button>
+            <button type="button" class="opt-btn" data-field="goal" data-value="brand_awareness"><span style="font-size:1.3rem">&#128227;</span> Brand awareness</button>
+            <button type="button" class="opt-btn" data-field="goal" data-value="go_viral"><span style="font-size:1.3rem">&#128640;</span> Go viral on TikTok</button>
+            <button type="button" class="opt-btn" data-field="goal" data-value="full_management"><span style="font-size:1.3rem">&#128241;</span> Full social management</button>
           </div>
         </div>
         <div class="form-step" id="step-3">
           <p style="font-weight:600;margin-bottom:1rem;">How is your social media currently?</p>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <button class="opt-btn" data-field="social_status" data-value="not_posting">Not really posting at all</button>
-            <button class="opt-btn" data-field="social_status" data-value="no_results">Posting but getting no results</button>
-            <button class="opt-btn" data-field="social_status" data-value="inconsistent">Inconsistent, no real strategy</button>
-            <button class="opt-btn" data-field="social_status" data-value="okay_want_more">Okay but want much more</button>
+            <button type="button" class="opt-btn" data-field="social_status" data-value="not_posting">Not really posting at all</button>
+            <button type="button" class="opt-btn" data-field="social_status" data-value="no_results">Posting but getting no results</button>
+            <button type="button" class="opt-btn" data-field="social_status" data-value="inconsistent">Inconsistent, no real strategy</button>
+            <button type="button" class="opt-btn" data-field="social_status" data-value="okay_want_more">Okay but want much more</button>
           </div>
         </div>
         <div class="form-step" id="step-4">
           <p style="font-weight:600;margin-bottom:1rem;">Tell us about your business.</p>
           <div style="display:flex;flex-direction:column;gap:14px;">
-            <input class="form-input" id="f-business_name" placeholder="Business Name" />
-            <input class="form-input" id="f-social_handle" placeholder="Instagram or TikTok handle" />
-            <input class="form-input" id="f-website" placeholder="Website (optional)" />
+            <label for="f-business_name" class="sr-only">Business Name</label>
+            <input class="form-input" id="f-business_name" name="business_name" placeholder="Business Name" autocomplete="organization" />
+            <label for="f-social_handle" class="sr-only">Instagram or TikTok handle</label>
+            <input class="form-input" id="f-social_handle" name="social_handle" placeholder="Instagram or TikTok handle" />
+            <label for="f-website" class="sr-only">Website</label>
+            <input class="form-input" id="f-website" name="website" placeholder="Website (optional)" autocomplete="url" />
           </div>
         </div>
         <div class="form-step" id="step-5">
           <p style="font-weight:600;margin-bottom:1rem;">How do we send your audit?</p>
           <div style="display:flex;flex-direction:column;gap:14px;">
-            <input class="form-input" id="f-name" placeholder="Your Name" />
-            <input class="form-input" id="f-email" type="email" placeholder="Email Address" />
-            <input class="form-input" id="f-phone" type="tel" placeholder="Phone Number (optional)" />
+            <label for="f-name" class="sr-only">Your Name</label>
+            <input class="form-input" id="f-name" name="name" placeholder="Your Name" autocomplete="name" />
+            <label for="f-email" class="sr-only">Email Address</label>
+            <input class="form-input" id="f-email" name="email" type="email" placeholder="Email Address" autocomplete="email" />
+            <label for="f-phone" class="sr-only">Phone Number</label>
+            <input class="form-input" id="f-phone" name="phone" type="tel" placeholder="Phone Number (optional)" autocomplete="tel" />
           </div>
         </div>
         <div class="form-nav">
-          <button class="btn-back" id="btn-back" style="display:none;" onclick="prevStep()">&#8592; Back</button>
+          <button type="button" class="btn-back" id="btn-back" style="display:none;" onclick="prevStep()">&#8592; Back</button>
           <div id="btn-back-spacer"></div>
-          <button class="btn btn-signal btn-sm" id="btn-next" onclick="nextStep()"><span id="btn-next-text">Next &rarr;</span></button>
+          <button type="button" class="btn btn-signal btn-sm" id="btn-next" onclick="nextStep()"><span id="btn-next-text">Next &rarr;</span></button>
         </div>
       </div>
       <div class="form-success" id="form-success">
@@ -386,11 +426,20 @@ h2{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:7
     <div style="display:flex;gap:2rem;align-items:center;">
       <a href="mailto:jay@fusioncreative.uk" style="color:var(--mid)">jay@fusioncreative.uk</a>
       <span>07437 571250</span>
-      <a href="#" style="color:var(--mid)">Privacy Policy</a>
+      <a href="https://fusioncreative.uk/privacy.html" style="color:var(--mid)">Privacy Policy</a>
     </div>
     <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--mid);">&copy; 2026 Fusion Creative, Newcastle upon Tyne</span>
   </div>
 </footer>
+
+<!-- Cookie consent -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>We use cookies to measure ad performance and improve your experience. <a href="https://fusioncreative.uk/privacy.html">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button type="button" class="cookie-decline" onclick="declineCookies()">Decline</button>
+    <button type="button" class="cookie-accept" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
 
 <!-- Mobile sticky -->
 <div class="mobile-sticky">
@@ -401,7 +450,13 @@ h2{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:7
 // NAV scroll
 window.addEventListener('scroll',function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
 
-// GSAP animations
+// Cookie consent
+function acceptCookies(){localStorage.setItem('fc_cookie_consent','accepted');document.getElementById('cookieBanner').classList.remove('visible');loadFBPixel()}
+function declineCookies(){localStorage.setItem('fc_cookie_consent','declined');document.getElementById('cookieBanner').classList.remove('visible')}
+(function(){var c=localStorage.getItem('fc_cookie_consent');if(!c)setTimeout(function(){document.getElementById('cookieBanner').classList.add('visible')},2000)})();
+
+// GSAP animations (wait for deferred scripts)
+function initGSAP(){if(typeof gsap==='undefined'){setTimeout(initGSAP,100);return}
 gsap.registerPlugin(ScrollTrigger);
 // Hero stagger
 gsap.utils.toArray('.stagger').forEach(function(el,i){
@@ -411,6 +466,8 @@ gsap.utils.toArray('.stagger').forEach(function(el,i){
 gsap.utils.toArray('.reveal-el').forEach(function(el){
   gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:0.7,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 85%',once:true}});
 });
+} // end initGSAP
+initGSAP();
 
 // FORM LOGIC
 var formData={business_type:'',goal:'',social_status:'',business_name:'',social_handle:'',website:'',name:'',email:'',phone:''};
@@ -470,7 +527,7 @@ function submitForm(){
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify(formData)
   }).catch(function(err){console.error('Submit error:',err)});
-  if(typeof fbq==='function')fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:formData.business_type});
+  if(typeof fbq==='function'&&window._fbPixelLoaded)fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:formData.business_type});
   document.getElementById('form-content').classList.add('hidden');
   document.getElementById('form-success').classList.add('active');
 }
