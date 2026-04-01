@@ -361,7 +361,7 @@ h2{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:7
           <div style="display:flex;flex-direction:column;gap:14px;">
             <input class="form-input" id="f-name" placeholder="Your Name" />
             <input class="form-input" id="f-email" type="email" placeholder="Email Address" />
-            <input class="form-input" id="f-phone" type="tel" placeholder="Phone Number" />
+            <input class="form-input" id="f-phone" type="tel" placeholder="Phone Number (optional)" />
           </div>
         </div>
         <div class="form-nav">
@@ -432,7 +432,7 @@ function canNext(){
   if(currentStep===2)return!!formData.goal;
   if(currentStep===3)return!!formData.social_status;
   if(currentStep===4)return!!document.getElementById('f-business_name').value.trim();
-  if(currentStep===5)return!!document.getElementById('f-name').value.trim()&&!!document.getElementById('f-email').value.trim()&&!!document.getElementById('f-phone').value.trim();
+  if(currentStep===5)return!!document.getElementById('f-name').value.trim()&&!!document.getElementById('f-email').value.trim();
   return false;
 }
 
@@ -464,7 +464,12 @@ function prevStep(){if(currentStep<=1)return;currentStep--;showStep(currentStep)
 
 function submitForm(){
   console.log('Form submitted:',formData);
-  // fetch('https://your-webhook-url.com/audit-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(formData)});
+  // POST to Supabase via API + trigger n8n webhook
+  fetch('https://fusion-dashboard-sigma.vercel.app/api/audit-lead',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(formData)
+  }).catch(function(err){console.error('Submit error:',err)});
   if(typeof fbq==='function')fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:formData.business_type});
   document.getElementById('form-content').classList.add('hidden');
   document.getElementById('form-success').classList.add('active');
