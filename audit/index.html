@@ -215,7 +215,7 @@ h2{font-family:var(--font-head);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:7
 }
 
 /* Cursor glow — behind everything */
-.cursor-glow{position:fixed;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:0;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(230,59,46,0.12) 0%,rgba(230,59,46,0.04) 40%,transparent 70%);mix-blend-mode:screen;will-change:transform;transition:opacity 0.3s}
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:0;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(230,59,46,0.10) 0%,rgba(230,59,46,0.06) 20%,rgba(230,59,46,0.03) 40%,rgba(230,59,46,0.01) 60%,transparent 80%);mix-blend-mode:screen;will-change:transform;transition:opacity 0.3s}
 .cursor-trail-canvas{position:fixed;inset:0;pointer-events:none;z-index:0}
 @media(max-width:767px){.cursor-glow,.cursor-trail-canvas{display:none}}
 </style>
@@ -570,55 +570,66 @@ updateButtons();
   function tick(){
     glowX += (mx - glowX) * 0.15;
     glowY += (my - glowY) * 0.15;
-    glow.style.transform = 'translate(' + (glowX - 160) + 'px,' + (glowY - 160) + 'px)';
+    glow.style.transform = 'translate(' + (glowX - 250) + 'px,' + (glowY - 250) + 'px)';
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Age out old points
     for(var i = points.length - 1; i >= 0; i--){
       points[i].age++;
-      if(points[i].age > 60){ points.splice(i, 1); }
+      if(points[i].age > 80){ points.splice(i, 1); }
     }
 
     if(points.length < 2){ requestAnimationFrame(tick); return; }
 
-    // Draw continuous glowing trail as tapered segments
+    // Draw soft glowing trail as feathered segments
     for(var i = 1; i < points.length; i++){
       var p0 = points[i - 1];
       var p1 = points[i];
-      var life0 = 1 - (p0.age / 60);
-      var life1 = 1 - (p1.age / 60);
+      var life0 = 1 - (p0.age / 80);
+      var life1 = 1 - (p1.age / 80);
       if(life0 <= 0 || life1 <= 0) continue;
 
       var progress = i / points.length;
-      var width = progress * 14 + 2;
-      var alpha = life1 * progress * 0.5;
+      var ease = progress * progress;
+      var width = ease * 10 + 1;
+      var alpha = life1 * ease * 0.3;
 
-      // Outer glow layer
+      // Wide feathered outer glow
       ctx.beginPath();
       ctx.moveTo(p0.x, p0.y);
       ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.3) + ')';
-      ctx.lineWidth = width + 12;
+      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.12) + ')';
+      ctx.lineWidth = width + 30;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.stroke();
 
-      // Mid glow layer
+      // Mid feather
       ctx.beginPath();
       ctx.moveTo(p0.x, p0.y);
       ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.6) + ')';
+      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.25) + ')';
+      ctx.lineWidth = width + 14;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Inner soft glow
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.strokeStyle = 'rgba(240,90,70,' + (alpha * 0.5) + ')';
       ctx.lineWidth = width + 4;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.stroke();
 
-      // Core bright line
+      // Soft core
       ctx.beginPath();
       ctx.moveTo(p0.x, p0.y);
       ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(255,120,100,' + alpha + ')';
+      ctx.strokeStyle = 'rgba(255,140,120,' + (alpha * 0.7) + ')';
       ctx.lineWidth = width;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
