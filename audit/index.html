@@ -547,7 +547,7 @@ updateButtons();
   var glowX = -500, glowY = -500;
   // Smooth trail stored as interpolated positions
   var trail = [];
-  var maxLen = 120;
+  var maxLen = 200;
   var lastX = -1, lastY = -1;
 
   function resize(){
@@ -588,19 +588,21 @@ updateButtons();
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Fade trail by removing oldest point each frame when idle
-    if(trail.length > 2){
+    // Fade trail by removing oldest points each frame
+    var removeCount = Math.max(2, Math.floor(trail.length / 30));
+    for(var r = 0; r < removeCount && trail.length > 2; r++){
       trail.shift();
     }
 
     if(trail.length < 3){ requestAnimationFrame(tick); return; }
 
     // Draw multiple passes at different widths for a soft glow
+    // Width stays consistent, only opacity fades along the trail
     var passes = [
-      { width: 28, r: 230, g: 59, b: 46, alphaScale: 0.06 },
-      { width: 14, r: 230, g: 59, b: 46, alphaScale: 0.12 },
-      { width: 6,  r: 240, g: 100, b: 80, alphaScale: 0.25 },
-      { width: 2,  r: 255, g: 150, b: 130, alphaScale: 0.4 }
+      { width: 26, r: 230, g: 59, b: 46, alphaScale: 0.06 },
+      { width: 12, r: 230, g: 59, b: 46, alphaScale: 0.14 },
+      { width: 5,  r: 240, g: 100, b: 80, alphaScale: 0.3 },
+      { width: 2,  r: 255, g: 150, b: 130, alphaScale: 0.45 }
     ];
 
     for(var p = 0; p < passes.length; p++){
@@ -608,16 +610,13 @@ updateButtons();
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
-      // Draw the trail as many small segments, each with its own alpha
-      // based on position along the trail (0 = tail, 1 = head)
       for(var i = 1; i < trail.length; i++){
         var progress = i / (trail.length - 1);
-        // Cubic ease for a smooth fade: tail dies gently
-        var alpha = progress * progress * progress * pass.alphaScale;
+        // Opacity fades to zero at the tail, full at the head
+        var alpha = progress * progress * pass.alphaScale;
         if(alpha < 0.002) continue;
 
-        var w = pass.width * progress;
-        if(w < 0.5) continue;
+        var w = pass.width;
 
         ctx.beginPath();
         ctx.moveTo(trail[i-1].x, trail[i-1].y);
