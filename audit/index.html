@@ -596,32 +596,34 @@ updateButtons();
 
     if(trail.length < 3){ requestAnimationFrame(tick); return; }
 
-    // Draw multiple passes at different widths for a soft glow
-    // Width stays consistent, only opacity fades along the trail
+    // Soft feathered passes: wide blurry outer layers, narrow bright core
+    // Each pass uses canvas shadowBlur for true soft edges
     var passes = [
-      { width: 26, r: 230, g: 59, b: 46, alphaScale: 0.06 },
-      { width: 12, r: 230, g: 59, b: 46, alphaScale: 0.14 },
-      { width: 5,  r: 240, g: 100, b: 80, alphaScale: 0.3 },
-      { width: 2,  r: 255, g: 150, b: 130, alphaScale: 0.45 }
+      { width: 50, blur: 40, r: 230, g: 59, b: 46, alphaScale: 0.02 },
+      { width: 34, blur: 25, r: 230, g: 59, b: 46, alphaScale: 0.035 },
+      { width: 20, blur: 16, r: 230, g: 59, b: 46, alphaScale: 0.06 },
+      { width: 10, blur: 10, r: 235, g: 80, b: 65, alphaScale: 0.1 },
+      { width: 4,  blur: 6,  r: 245, g: 120, b: 100, alphaScale: 0.18 },
+      { width: 1.5,blur: 3,  r: 255, g: 160, b: 140, alphaScale: 0.25 }
     ];
 
     for(var p = 0; p < passes.length; p++){
       var pass = passes[p];
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
+      ctx.shadowColor = 'rgba(' + pass.r + ',' + pass.g + ',' + pass.b + ',0.5)';
+      ctx.shadowBlur = pass.blur;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
 
       for(var i = 1; i < trail.length; i++){
         var progress = i / (trail.length - 1);
-        // Opacity fades to zero at the tail, full at the head
         var alpha = progress * progress * pass.alphaScale;
-        if(alpha < 0.002) continue;
-
-        var w = pass.width;
+        if(alpha < 0.001) continue;
 
         ctx.beginPath();
         ctx.moveTo(trail[i-1].x, trail[i-1].y);
 
-        // Use quadratic curve through midpoints for smoothness
         if(i < trail.length - 1){
           var cpx = (trail[i].x + trail[i+1].x) * 0.5;
           var cpy = (trail[i].y + trail[i+1].y) * 0.5;
@@ -631,10 +633,13 @@ updateButtons();
         }
 
         ctx.strokeStyle = 'rgba(' + pass.r + ',' + pass.g + ',' + pass.b + ',' + alpha + ')';
-        ctx.lineWidth = w;
+        ctx.lineWidth = pass.width;
         ctx.stroke();
       }
     }
+    // Reset shadow
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
 
     requestAnimationFrame(tick);
   }
