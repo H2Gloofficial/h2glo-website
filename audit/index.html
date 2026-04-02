@@ -545,8 +545,10 @@ updateButtons();
   var ctx = canvas.getContext('2d');
   var mx = -500, my = -500;
   var glowX = -500, glowY = -500;
-  var points = [];
-  var maxPoints = 80;
+  // Smooth trail stored as interpolated positions
+  var trail = [];
+  var maxLen = 120;
+  var lastX = -1, lastY = -1;
 
   function resize(){
     canvas.width = window.innerWidth;
@@ -558,8 +560,20 @@ updateButtons();
   document.addEventListener('mousemove', function(e){
     mx = e.clientX;
     my = e.clientY;
-    points.push({ x: mx, y: my, age: 0 });
-    if(points.length > maxPoints) points.shift();
+    // Interpolate between last position and current to keep trail dense
+    if(lastX >= 0){
+      var dx = mx - lastX, dy = my - lastY;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      var steps = Math.max(1, Math.floor(dist / 3));
+      for(var s = 1; s <= steps; s++){
+        var t = s / steps;
+        trail.push({ x: lastX + dx * t, y: lastY + dy * t });
+      }
+    } else {
+      trail.push({ x: mx, y: my });
+    }
+    lastX = mx; lastY = my;
+    while(trail.length > maxLen) trail.shift();
     glow.style.opacity = '1';
   });
 
@@ -574,66 +588,53 @@ updateButtons();
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Age out old points
-    for(var i = points.length - 1; i >= 0; i--){
-      points[i].age++;
-      if(points[i].age > 80){ points.splice(i, 1); }
+    // Fade trail by removing oldest point each frame when idle
+    if(trail.length > 2){
+      trail.shift();
     }
 
-    if(points.length < 2){ requestAnimationFrame(tick); return; }
+    if(trail.length < 3){ requestAnimationFrame(tick); return; }
 
-    // Draw soft glowing trail as feathered segments
-    for(var i = 1; i < points.length; i++){
-      var p0 = points[i - 1];
-      var p1 = points[i];
-      var life0 = 1 - (p0.age / 80);
-      var life1 = 1 - (p1.age / 80);
-      if(life0 <= 0 || life1 <= 0) continue;
+    // Draw multiple passes at different widths for a soft glow
+    var passes = [
+      { width: 28, r: 230, g: 59, b: 46, alphaScale: 0.06 },
+      { width: 14, r: 230, g: 59, b: 46, alphaScale: 0.12 },
+      { width: 6,  r: 240, g: 100, b: 80, alphaScale: 0.25 },
+      { width: 2,  r: 255, g: 150, b: 130, alphaScale: 0.4 }
+    ];
 
-      var progress = i / points.length;
-      var ease = progress * progress;
-      var width = ease * 10 + 1;
-      var alpha = life1 * ease * 0.3;
-
-      // Wide feathered outer glow
-      ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.12) + ')';
-      ctx.lineWidth = width + 30;
+    for(var p = 0; p < passes.length; p++){
+      var pass = passes[p];
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.stroke();
 
-      // Mid feather
-      ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.25) + ')';
-      ctx.lineWidth = width + 14;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.stroke();
+      // Draw the trail as many small segments, each with its own alpha
+      // based on position along the trail (0 = tail, 1 = head)
+      for(var i = 1; i < trail.length; i++){
+        var progress = i / (trail.length - 1);
+        // Cubic ease for a smooth fade: tail dies gently
+        var alpha = progress * progress * progress * pass.alphaScale;
+        if(alpha < 0.002) continue;
 
-      // Inner soft glow
-      ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(240,90,70,' + (alpha * 0.5) + ')';
-      ctx.lineWidth = width + 4;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.stroke();
+        var w = pass.width * progress;
+        if(w < 0.5) continue;
 
-      // Soft core
-      ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.lineTo(p1.x, p1.y);
-      ctx.strokeStyle = 'rgba(255,140,120,' + (alpha * 0.7) + ')';
-      ctx.lineWidth = width;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(trail[i-1].x, trail[i-1].y);
+
+        // Use quadratic curve through midpoints for smoothness
+        if(i < trail.length - 1){
+          var cpx = (trail[i].x + trail[i+1].x) * 0.5;
+          var cpy = (trail[i].y + trail[i+1].y) * 0.5;
+          ctx.quadraticCurveTo(trail[i].x, trail[i].y, cpx, cpy);
+        } else {
+          ctx.lineTo(trail[i].x, trail[i].y);
+        }
+
+        ctx.strokeStyle = 'rgba(' + pass.r + ',' + pass.g + ',' + pass.b + ',' + alpha + ')';
+        ctx.lineWidth = w;
+        ctx.stroke();
+      }
     }
 
     requestAnimationFrame(tick);
