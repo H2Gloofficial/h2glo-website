@@ -545,9 +545,8 @@ updateButtons();
   var ctx = canvas.getContext('2d');
   var mx = -500, my = -500;
   var glowX = -500, glowY = -500;
-  var trail = [];
-  var maxTrail = 35;
-  var raf;
+  var points = [];
+  var maxPoints = 80;
 
   function resize(){
     canvas.width = window.innerWidth;
@@ -559,8 +558,8 @@ updateButtons();
   document.addEventListener('mousemove', function(e){
     mx = e.clientX;
     my = e.clientY;
-    trail.push({ x: mx, y: my, age: 0 });
-    if(trail.length > maxTrail) trail.shift();
+    points.push({ x: mx, y: my, age: 0 });
+    if(points.length > maxPoints) points.shift();
     glow.style.opacity = '1';
   });
 
@@ -569,26 +568,64 @@ updateButtons();
   });
 
   function tick(){
-    // Smooth glow follow
     glowX += (mx - glowX) * 0.15;
     glowY += (my - glowY) * 0.15;
     glow.style.transform = 'translate(' + (glowX - 160) + 'px,' + (glowY - 160) + 'px)';
 
-    // Draw trail
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for(var i = 0; i < trail.length; i++){
-      trail[i].age++;
-      var life = 1 - (trail[i].age / 50);
-      if(life <= 0){ trail.splice(i, 1); i--; continue; }
-      var r = life * 18;
-      var alpha = life * 0.25;
-      ctx.beginPath();
-      ctx.arc(trail[i].x, trail[i].y, r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(230,59,46,' + alpha + ')';
-      ctx.fill();
+
+    // Age out old points
+    for(var i = points.length - 1; i >= 0; i--){
+      points[i].age++;
+      if(points[i].age > 60){ points.splice(i, 1); }
     }
 
-    raf = requestAnimationFrame(tick);
+    if(points.length < 2){ requestAnimationFrame(tick); return; }
+
+    // Draw continuous glowing trail as tapered segments
+    for(var i = 1; i < points.length; i++){
+      var p0 = points[i - 1];
+      var p1 = points[i];
+      var life0 = 1 - (p0.age / 60);
+      var life1 = 1 - (p1.age / 60);
+      if(life0 <= 0 || life1 <= 0) continue;
+
+      var progress = i / points.length;
+      var width = progress * 14 + 2;
+      var alpha = life1 * progress * 0.5;
+
+      // Outer glow layer
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.3) + ')';
+      ctx.lineWidth = width + 12;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Mid glow layer
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.strokeStyle = 'rgba(230,59,46,' + (alpha * 0.6) + ')';
+      ctx.lineWidth = width + 4;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Core bright line
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.strokeStyle = 'rgba(255,120,100,' + alpha + ')';
+      ctx.lineWidth = width;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(tick);
   }
   tick();
 })();
