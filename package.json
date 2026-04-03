@@ -1,0 +1,12 @@
+{
+  "name": "fusion-creative-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:blog": "node scripts/build-blog.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.0"
+  }
+}

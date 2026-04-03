@@ -11,10 +11,9 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog  -  Fusion Creative | Restaurant Social Media Marketing Newcastle</title>
+  <title>Blog - Fusion Creative | Restaurant Social Media Marketing Newcastle</title>
   <meta name="description" content="Expert insights on restaurant social media marketing in Newcastle upon Tyne. Tips on TikTok, Instagram Reels, and short-form video content for restaurants." />
-  <meta name="keywords" content="restaurant marketing Newcastle, TikTok restaurant, social media agency Newcastle upon Tyne, short-form video, restaurant content" />
-  <meta property="og:title" content="Blog  -  Fusion Creative | Restaurant Marketing Newcastle" />
+  <meta property="og:title" content="Blog - Fusion Creative | Restaurant Marketing Newcastle" />
   <meta property="og:description" content="Expert insights on restaurant social media marketing in Newcastle upon Tyne." />
   <meta property="og:url" content="https://fusioncreative.uk/blog" />
   <link rel="canonical" href="https://fusioncreative.uk/blog" />
@@ -78,7 +77,7 @@
   <section class="container">
     <div class="blog-grid">
 
-      <!-- Post: Agency vs In-House -->
+      <!-- Post: why-hiring-content-agency-beats-in-house -->
       <a href="/blog/why-hiring-content-agency-beats-in-house" class="blog-card">
         <div class="blog-card-img">
           <span class="card-icon">🏢</span>
@@ -94,7 +93,7 @@
         </div>
       </a>
 
-      <!-- Post 1 -->
+      <!-- Post: short-form-video-restaurants-newcastle -->
       <a href="/blog/short-form-video-restaurants-newcastle" class="blog-card">
         <div class="blog-card-img">
           <span class="card-icon">📱</span>
@@ -110,7 +109,7 @@
         </div>
       </a>
 
-      <!-- Post 2 -->
+      <!-- Post: newcastle-restaurant-2-million-views-case-study -->
       <a href="/blog/newcastle-restaurant-2-million-views-case-study" class="blog-card">
         <div class="blog-card-img">
           <span class="card-icon">📈</span>
@@ -126,7 +125,7 @@
         </div>
       </a>
 
-      <!-- Post 3 -->
+      <!-- Post: tiktok-content-ideas-restaurants-newcastle -->
       <a href="/blog/tiktok-content-ideas-restaurants-newcastle" class="blog-card">
         <div class="blog-card-img">
           <span class="card-icon">🎬</span>
@@ -178,8 +177,6 @@
             <li><a href="/contact">Contact Us</a></li>
             <li><a href="/#contact">Book a Call</a></li>
             <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="https://www.instagram.com/fusioncreative.uk" target="_blank">Instagram</a></li>
-            <li><a href="https://www.facebook.com/fusioncreative.uk" target="_blank">Facebook</a></li>
           </ul>
         </div>
       </div>
@@ -194,29 +191,25 @@
   </footer>
 
   <script>
-    // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 100);
-    });
-    // Mobile toggle
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 100); });
     const toggle = document.getElementById('navToggle');
     const links = document.querySelector('.nav-links');
     if (toggle) toggle.addEventListener('click', () => links.classList.toggle('open'));
   </script>
 
-<!-- Cookie consent -->
-<div class="cookie-banner" id="cookieBanner">
-  <p>We use cookies to measure ad performance and improve your experience. <a href="/privacy">Privacy Policy</a></p>
-  <div class="cookie-btns">
-    <button type="button" class="cookie-decline" onclick="declineCookies()">Decline</button>
-    <button type="button" class="cookie-accept" onclick="acceptCookies()">Accept</button>
+  <!-- Cookie consent -->
+  <div class="cookie-banner" id="cookieBanner">
+    <p>We use cookies to measure ad performance and improve your experience. <a href="/privacy">Privacy Policy</a></p>
+    <div class="cookie-btns">
+      <button type="button" class="cookie-decline" onclick="declineCookies()">Decline</button>
+      <button type="button" class="cookie-accept" onclick="acceptCookies()">Accept</button>
+    </div>
   </div>
-</div>
-<script>
-function acceptCookies(){localStorage.setItem('fc_cookie_consent','accepted');document.getElementById('cookieBanner').classList.remove('visible');loadFBPixel()}
-function declineCookies(){localStorage.setItem('fc_cookie_consent','declined');document.getElementById('cookieBanner').classList.remove('visible')}
-(function(){var c=localStorage.getItem('fc_cookie_consent');if(!c)setTimeout(function(){document.getElementById('cookieBanner').classList.add('visible')},2000)})();
-</script>
+  <script>
+  function acceptCookies(){localStorage.setItem('fc_cookie_consent','accepted');document.getElementById('cookieBanner').classList.remove('visible');loadFBPixel()}
+  function declineCookies(){localStorage.setItem('fc_cookie_consent','declined');document.getElementById('cookieBanner').classList.remove('visible')}
+  (function(){var c=localStorage.getItem('fc_cookie_consent');if(!c)setTimeout(function(){document.getElementById('cookieBanner').classList.add('visible')},2000)})();
+  </script>
 </body>
 </html>
