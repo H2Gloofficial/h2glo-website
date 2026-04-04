@@ -554,7 +554,7 @@ function submitForm(){
     if(!res.ok)throw new Error('Server error');
     return res.json();
   }).then(function(){
-    if(typeof fbq==='function'&&window._fbPixelLoaded)fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:formData.business_type});
+    if(typeof fbq==='function')fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:'Hospitality',status:'submitted'});
     document.getElementById('form-content').classList.add('hidden');
     document.getElementById('form-success').classList.add('active');
   }).catch(function(err){

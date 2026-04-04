@@ -295,7 +295,7 @@
             form.style.display = 'none';
             success.classList.add('show');
             // Track conversion in FB Pixel
-            if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+            if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'Free Social Media Audit', content_category: 'Hospitality', status: 'submitted'});
           } else {
             btn.textContent = 'Error - Try Again';
             btn.disabled = false;
