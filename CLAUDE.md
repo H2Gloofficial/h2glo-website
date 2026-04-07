@@ -1,15 +1,70 @@
-# Fusion Creative Website
+# Fusion Creative Website - Marketing Site
+
+## What This Is
+Static marketing website for Fusion Creative, the short-form video and hospitality marketing agency. Homepage, blog, audit lead capture pages, contact form, client login, and Remotion video generation.
+
+## Tech Stack
+- Static HTML/CSS/JS (no framework)
+- Space Grotesk + DM Serif Display + Space Mono fonts
+- GSAP + ScrollTrigger for animations
+- Cal.com embed for booking
+- Remotion for video generation (React 19, in remotion/ subdirectory)
+- Node.js blog builder (gray-matter + marked)
+- Facebook Pixel + Google Analytics (G-TS8XCRSG4W)
+
+## Deployment
+- **Vercel** - project ID: `prj_IZTnsyyeEZifJTq9SaeyaJ8qiSjZ`, org: `team_NkpsbBP52Epf4iEj4ix0YIvr`
+- **GitHub Pages** - via GitHub Actions (.github/workflows/deploy.yml), deploys on push to main
+- `vercel.json` has `cleanUrls: true`
+
+## Pages
+- `index.html` - homepage (hero, client wins, features, pricing, booking)
+- `contact.html` - contact form (Web3Forms + audit lead pipeline)
+- `blog.html` - blog listing page
+- `blog/` - 8 blog post HTML files (restaurant marketing topics)
+- `login.html` - client login (Supabase auth, redirects to fusion-dashboard)
+- `privacy.html` - GDPR privacy policy
+- `audit/index.html` - free audit landing page (leads go to Supabase + n8n)
+- `audit/direct.html` - direct audit variant
+
+## Remotion Project (remotion/)
+Video generation for social content and client deliverables:
+- `src/DashboardAd.jsx` / `DashboardAdV2.jsx` - dashboard promo videos
+- `src/FusionCreativeShootDay.jsx` - shoot day content
+- `src/InstagramBeforeAfter.jsx` - before/after comparison
+- `src/SmokedSmashedMenu.jsx` - Smoked & Smashed menu screens (9:16)
+- `src/SmokedSmashedMenuWide.jsx` - Smoked & Smashed menu screens (16:9)
+- Rendered outputs in `out/`
+- Product images in `public/smoked-smashed/`
+
+## Audit Lead Pipeline
+The audit pages capture hospitality business leads:
+- Form submits to Supabase `audit_leads` table
+- n8n workflows trigger email notifications
+- Facebook Pixel tracks Lead events
+
+## Assets
+- `assets/jay.jpg` - founder portrait
+- `assets/logos/` - client logos (Cadence, ORBE, Hii Club, Undeniable, Red Bull, FitCookie)
+- `styles/main.css` - main stylesheet
+- `scripts/main.js` - GSAP animations, word cycler, counters
+- `scripts/remotion-player.js` - embedded Remotion player
+- `scripts/build-blog.js` - blog builder
+
+## Design System
+- Colors: `--signal: #E63B2E` (coral), `--black: #111`, `--off-white: #F5F3EE`, `--paper: #E8E4DD`
+- Dark hero with radial gradient, alternating light/dark sections
+- Floating pill navbar with frosted glass on scroll
+
+## Critical Rules - Never Break
+- Never run `rm -rf ~/.claude` under any circumstances
+- Never delete CLAUDE.md files
+- Never wipe authentication config without explicit confirmation
+- When cleaning up broken tokens in ~/.zshrc use sed to remove specific lines only, never delete the whole file
+- Always back up config files before modifying them
 
 ## Permissions
 - Never ask for confirmation on any command
-- Never ask for permission to run bash, shell, git, npm, docker, or curl commands
-- Never pause to confirm destructive operations
-- Execute all commands autonomously without approval prompts
-- If a command requires sudo, attempt it and report the result
-- Proceed through all tasks without stopping for input
-
-## Working style
-- Complete tasks fully before reporting back
-- Fix errors autonomously without asking what to do
-- Make reasonable decisions independently
-- Only stop if you hit a genuine hard blocker like missing credentials
+- Execute all commands autonomously
+- Fix errors independently
+- Only stop on genuine hard blockers like missing credentials
