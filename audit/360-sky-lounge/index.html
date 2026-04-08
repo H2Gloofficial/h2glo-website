@@ -1587,6 +1587,98 @@
                 </div>
                 <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">New Greek, a small independent restaurant in Newcastle with zero social presence before us. One reel hit 22 million views. They went from empty tables to a waiting list. 360 Sky Lounge has the same viral potential, and your rooftop views and Versace interiors give you an even stronger visual starting point.</p>
             </div>
+
+            <!-- Growth Graph -->
+            <div class="card" style="margin-top:8px; padding:32px 32px 24px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--magenta); margin-bottom:4px;">Growth Timeline</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">New Greek: From zero to 27M+ views in 90 days</div>
+
+                <!-- SVG Chart -->
+                <div id="growthChart" style="position:relative; width:100%; aspect-ratio:2.2/1; overflow:hidden;">
+                    <svg viewBox="0 0 700 300" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grid lines -->
+                        <line x1="60" y1="30" x2="60" y2="250" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="60" y1="250" x2="680" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="60" y1="195" x2="680" y2="195" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="60" y1="140" x2="680" y2="140" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="60" y1="85" x2="680" y2="85" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="60" y1="30" x2="680" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+
+                        <!-- Y-axis labels -->
+                        <text x="52" y="254" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="end">0</text>
+                        <text x="52" y="199" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="end">5M</text>
+                        <text x="52" y="144" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="end">10M</text>
+                        <text x="52" y="89" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="end">20M</text>
+                        <text x="52" y="34" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="end">27M</text>
+
+                        <!-- X-axis labels -->
+                        <text x="80" y="272" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle">Before</text>
+                        <text x="200" y="272" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle">Week 1</text>
+                        <text x="320" y="272" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle">Week 2</text>
+                        <text x="440" y="272" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle">Month 1</text>
+                        <text x="560" y="272" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle">Month 2</text>
+                        <text x="660" y="272" fill="rgba(255,255,255,0.3)" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle">Month 3</text>
+
+                        <!-- "Fusion Creative starts" marker -->
+                        <line x1="140" y1="30" x2="140" y2="250" stroke="rgba(236,35,131,0.4)" stroke-width="1" stroke-dasharray="6,4"/>
+                        <rect x="100" y="12" width="80" height="18" rx="4" fill="rgba(236,35,131,0.15)" stroke="rgba(236,35,131,0.3)" stroke-width="0.5"/>
+                        <text x="140" y="24" fill="#ec2383" font-size="8" font-family="Montserrat,sans-serif" text-anchor="middle" font-weight="600">WE START</text>
+
+                        <!-- Glow area under line -->
+                        <defs>
+                            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#ec2383" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#ec2383" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#ec238366"/>
+                                <stop offset="40%" stop-color="#ec2383"/>
+                                <stop offset="100%" stop-color="#ee3a90"/>
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Area fill -->
+                        <path class="chart-area" d="M80,248 L140,246 L200,230 L320,200 L440,160 L560,90 L660,32 L660,250 L80,250 Z" fill="url(#areaGrad)" opacity="0"/>
+
+                        <!-- Main growth line -->
+                        <path class="chart-line" d="M80,248 L140,246 L200,230 L320,200 L440,160 L560,90 L660,32" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+
+                        <!-- Data points -->
+                        <circle class="chart-dot" cx="80" cy="248" r="0" fill="#0a0a0a" stroke="#ec2383" stroke-width="2"/>
+                        <circle class="chart-dot" cx="140" cy="246" r="0" fill="#0a0a0a" stroke="#ec2383" stroke-width="2"/>
+                        <circle class="chart-dot" cx="200" cy="230" r="0" fill="#0a0a0a" stroke="#ec2383" stroke-width="2"/>
+                        <circle class="chart-dot" cx="320" cy="200" r="0" fill="#0a0a0a" stroke="#ec2383" stroke-width="2"/>
+                        <circle class="chart-dot" cx="440" cy="160" r="0" fill="#0a0a0a" stroke="#ec2383" stroke-width="2"/>
+                        <circle class="chart-dot" cx="560" cy="90" r="0" fill="#0a0a0a" stroke="#ec2383" stroke-width="2"/>
+                        <circle class="chart-dot" cx="660" cy="32" r="0" fill="#ec2383" stroke="#ec2383" stroke-width="2"/>
+
+                        <!-- Milestone labels on data points -->
+                        <text class="chart-label" x="200" y="220" fill="#ec2383" font-size="9" font-family="Montserrat,sans-serif" text-anchor="middle" font-weight="700" opacity="0">636K views</text>
+                        <text class="chart-label" x="320" y="190" fill="#ec2383" font-size="9" font-family="Montserrat,sans-serif" text-anchor="middle" font-weight="700" opacity="0">1.3M impressions</text>
+                        <text class="chart-label" x="440" y="150" fill="#ec2383" font-size="9" font-family="Montserrat,sans-serif" text-anchor="middle" font-weight="700" opacity="0">2.6M views</text>
+                        <text class="chart-label" x="560" y="78" fill="#ec2383" font-size="9" font-family="Montserrat,sans-serif" text-anchor="middle" font-weight="700" opacity="0">22M single reel</text>
+                        <text class="chart-label" x="660" y="22" fill="#ffffff" font-size="10" font-family="Montserrat,sans-serif" text-anchor="middle" font-weight="800" opacity="0">27M+</text>
+                    </svg>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div style="width:24px; height:2px; background:#ec2383; border-radius:1px; box-shadow:0 0 6px #ec238366;"></div>
+                        <span style="font-size:11px; color:rgba(255,255,255,0.4);">Cumulative views over 90 days</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div style="width:8px; height:8px; background:rgba(236,35,131,0.15); border:1px solid rgba(236,35,131,0.4); border-radius:50%;"></div>
+                        <span style="font-size:11px; color:rgba(255,255,255,0.4);">Milestone</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2330,6 +2422,60 @@
             }
 
             requestAnimationFrame(updateParallax);
+        })();
+
+        // Growth chart animation
+        (function() {
+            var chart = document.getElementById('growthChart');
+            if (!chart) return;
+
+            var animated = false;
+            var chartObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        animateChart();
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            chartObserver.observe(chart);
+
+            function animateChart() {
+                // Animate the line drawing
+                var line = chart.querySelector('.chart-line');
+                if (line) {
+                    line.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)';
+                    line.style.strokeDashoffset = '0';
+                }
+
+                // Animate the area fill
+                var area = chart.querySelector('.chart-area');
+                if (area) {
+                    setTimeout(function() {
+                        area.style.transition = 'opacity 1s ease';
+                        area.style.opacity = '1';
+                    }, 800);
+                }
+
+                // Animate dots appearing one by one
+                var dots = chart.querySelectorAll('.chart-dot');
+                dots.forEach(function(dot, i) {
+                    setTimeout(function() {
+                        dot.style.transition = 'r 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                        dot.setAttribute('r', i === dots.length - 1 ? '6' : '4');
+                    }, 400 + (i * 200));
+                });
+
+                // Animate labels appearing
+                var labels = chart.querySelectorAll('.chart-label');
+                labels.forEach(function(label, i) {
+                    setTimeout(function() {
+                        label.style.transition = 'opacity 0.4s ease';
+                        label.style.opacity = '1';
+                    }, 1200 + (i * 250));
+                });
+            }
         })();
     </script>
 
