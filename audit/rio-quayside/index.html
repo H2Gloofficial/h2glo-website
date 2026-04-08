@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Rio Brazilian Steakhouse Quayside | Fusion Creative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --card-border: rgba(0,0,0,0.06);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .intro-card .greeting {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.1);
+            color: var(--coral);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #34c759;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat:nth-child(1) { animation-delay: 0.1s; }
+        .case-study-stat:nth-child(2) { animation-delay: 0.2s; }
+        .case-study-stat:nth-child(3) { animation-delay: 0.3s; }
+        .case-study-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .case-study-stat .number {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .package-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+        }
+
+        .package-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .package-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .package-item strong {
+            color: var(--text);
+        }
+
+        .strategy-list {
+            list-style: none;
+        }
+
+        .strategy-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+
+        .strategy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-list li::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.04);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 80%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.04);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat:nth-child(1) { animation-delay: 0.1s; }
+        .about-fc-stat:nth-child(2) { animation-delay: 0.2s; }
+        .about-fc-stat:nth-child(3) { animation-delay: 0.3s; }
+        .about-fc-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .about-fc-stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.4);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+            background: #edeef2;
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff;
+                --card: #f8f8f8;
+                --card-border: #e0e0e0;
+                --text: #111111;
+                --text-secondary: #444444;
+                --text-muted: #888888;
+            }
+
+            body {
+                background: white;
+                color: #111;
+                font-size: 11pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 28pt;
+            }
+
+            .hero h1 span {
+                -webkit-text-fill-color: var(--coral);
+                background: none;
+                animation: none;
+            }
+
+            .card, .video-idea-card, .enhancement-card, .case-study-card, .intro-card, .next-steps-card {
+                background: #f8f8f8 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border-color: #e0e0e0;
+                box-shadow: none !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .section {
+                animation: none !important;
+            }
+
+            .case-study-card::before {
+                background: var(--coral);
+            }
+
+            .video-idea-card::before {
+                background: var(--coral);
+            }
+
+            .case-study-stat {
+                background: rgba(232, 85, 60, 0.06) !important;
+                animation: none !important;
+            }
+
+            .viral-callout {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .highlight-box {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .cta-btn {
+                animation: none !important;
+                box-shadow: none !important;
+            }
+
+            a {
+                color: var(--coral) !important;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .hero {
+                padding: 40px 0 32px;
+                animation: none !important;
+            }
+
+            .footer {
+                background: #f0f0f0 !important;
+            }
+
+            .stat-badge, .about-fc-stat {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .video-idea-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .video-idea-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .enhancement-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .enhancement-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">8 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1>Rio Brazilian Steakhouse <span>Quayside</span></h1>
+            <p class="hero-subtitle">Prepared by Fusion Creative | 8 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey there,</div>
+                <p class="section-text">This is not a sales pitch. We are Fusion Creative, a UK content and marketing agency that specialises in hospitality. We took a deep look at Rio Quayside's online presence and put together our honest findings.</p>
+                <p class="section-text">You have built an incredible restaurant. A Brazilian churrascaria on the Newcastle Quayside with Tyne views, a loyal customer base, and a dining concept that is genuinely made for social media. But your social media is not keeping up with what you have built. We found <strong>five areas where there is real room to grow</strong>, and some of them are leaving covers on the table right now.</p>
+                <p class="section-text">Inside you will find a full snapshot of where you are now, what is working well, key opportunities you are missing, video ideas you can use immediately, and recommendations for quick wins. Even if we never speak, this is yours to keep.</p>
+            </div>
+
+            <!-- Fusion Creative metrics card -->
+            <div class="card" style="margin-top:8px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--coral); margin-bottom:6px;">Client Results</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Generated for a single restaurant client within 90 days</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">27M+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">394K+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Engagements</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">6,657</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">22M</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
+                    </div>
+                </div>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">New Greek, a small independent restaurant in Newcastle with zero social presence before us. One reel hit 22 million views. Rio Quayside has a far more visual dining concept, a stunning location, and an established customer base. Imagine what is possible with the right content strategy behind it.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Instagram Followers</td>
+                        <td>3,251</td>
+                    </tr>
+                    <tr>
+                        <td>Instagram Posts</td>
+                        <td>1,341</td>
+                    </tr>
+                    <tr>
+                        <td>Instagram Engagement Rate</td>
+                        <td class="stat-highlight">~0.35% <span class="stat-badge">Underperforming</span></td>
+                    </tr>
+                    <tr>
+                        <td>Avg Likes per Post</td>
+                        <td class="stat-highlight">~11 <span class="stat-badge">Low</span></td>
+                    </tr>
+                    <tr>
+                        <td>Avg Comments per Post</td>
+                        <td class="stat-highlight">~1 <span class="stat-badge">Low</span></td>
+                    </tr>
+                    <tr>
+                        <td>Posting Frequency</td>
+                        <td>4-5x per week <span class="stat-badge-green">Consistent</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Page Likes</td>
+                        <td>10,182 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Check-ins</td>
+                        <td>14,491 <span class="stat-badge-green">Excellent</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Recommendations</td>
+                        <td>96% (124 reviews) <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor</td>
+                        <td>Listed with positive reviews <span class="stat-badge-green">Good</span></td>
+                    </tr>
+                    <tr>
+                        <td>Website</td>
+                        <td>Webflow (rio-steakhouse.co.uk)</td>
+                    </tr>
+                    <tr>
+                        <td>Video Content (Reels)</td>
+                        <td class="stat-highlight">Minimal <span class="stat-badge">Missing</span></td>
+                    </tr>
+                    <tr>
+                        <td>Paid Ads Running</td>
+                        <td style="color: var(--text-muted);">None visible</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Posting consistency is strong</h4>
+                    <p>You are showing up 4-5 times per week on Instagram. That discipline is there and it puts you ahead of most restaurants in Newcastle who post sporadically or go weeks without anything. The habit is built. The foundation is solid.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Caption style is conversational and engaging</h4>
+                    <p>Your captions read naturally. Good use of calls to action like "Who's joining you?" and "Book via link in bio." You are speaking directly to your audience, not at them. The tone is warm, inviting, and matches the brand personality well. Hashtags in first comments keep captions clean.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Seasonal hooks and event tie-ins</h4>
+                    <p>Easter, Mother's Day, Newcastle Cocktail Week, bank holidays. You are tapping into moments that drive dining decisions, which is smart. These are the posts that convert to bookings because they give people a reason to come in this weekend, not just "someday."</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Facebook presence is genuinely strong</h4>
+                    <p>10,182 likes, 14,491 check-ins, and a 96% recommendation rate from 124 reviews. Your Facebook audience is over 3x your Instagram following. People are checking in, recommending you, and leaving reviews. That is real social proof that most competitors would love to have.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The dining concept is made for content</h4>
+                    <p>Meat carved tableside. The green and red card system. The salad bar. The Quayside views. The cocktails. The complimentary cheese bread. Every single element of the Rio experience is inherently visual and shareable. You have a content goldmine in your restaurant every single service. Very few restaurants have this advantage.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Staff investment is visible</h4>
+                    <p>Your chefs attending the Gordon Ramsay Academy, the APEX networking event hosting, the team content. These show a business that invests in its people and its positioning. That Gordon Ramsay Academy post got 26 likes, your second highest performer, which tells you people respond to the human side of the brand.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Things Holding You Back</div>
+            <p class="section-text" style="margin-bottom: 32px;">The restaurant, the reputation, and the consistency are all there. But the content is not converting attention into engagement, and that is limiting your reach. Here is where the biggest gaps are.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>Almost Zero Video Content</h3>
+                </div>
+                <p class="section-text">Your feed is dominated by static images. In 2026, Instagram's algorithm overwhelmingly favours Reels and video content. A static photo of a steak gets shown to a fraction of the people who would see a 15-second video of that same steak being carved tableside with the sizzle and the steam.</p>
+                <p class="section-text">Your dining concept is essentially a live performance. Gaucho chefs carving at the table, the theatre of the green and red card, cocktails being mixed, the Quayside views at sunset. All of this is video content waiting to happen. You are sitting on some of the most visually compelling restaurant footage possible and posting still photos instead.</p>
+                <p class="section-text">Restaurants that switched from static to Reels-first content strategies typically see 3-5x increases in reach within the first month. For a concept as visual as yours, it could be significantly more.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>Engagement Rate Is Well Below Industry Average</h3>
+                </div>
+                <p class="section-text">With 3,251 followers, your average post gets around 11 likes and 1 comment. That is an engagement rate of roughly 0.35%. The industry benchmark for restaurants on Instagram is 1-3%. You should be pulling 30-90 likes per post, not 5-15.</p>
+                <p class="section-text">Low engagement tells the algorithm your content is not resonating, which means it shows your posts to fewer people, which drives engagement even lower. It is a downward spiral. The fix is content that triggers saves, shares, and comments, not just passive scrolling.</p>
+                <p class="section-text">Your single best-performing post proves this. The UGC repost from @north_east_kids_ got 66 likes and 10 comments, outperforming your average post by 6x. That one post tells you exactly what your audience responds to: real people, real experiences, real stories. Not product shots.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>No UGC or Influencer Strategy</h3>
+                </div>
+                <p class="section-text">Your best post by a massive margin was an influencer repost. 66 likes and 10 comments versus your average of 11 likes and 1 comment. That is not a coincidence. User-generated content and influencer partnerships consistently outperform brand-created content in hospitality because people trust other people more than they trust businesses.</p>
+                <p class="section-text">Newcastle has a thriving food blogger and family influencer scene. A structured programme of inviting local creators for a complimentary Rio experience in exchange for content would generate a steady stream of authentic, high-performing posts that reach audiences you currently have no access to.</p>
+                <p class="section-text">You are already getting tagged in customer posts. The gap is that you are not systematically amplifying, repurposing, or encouraging that content. Every happy table is a potential piece of content. Right now, those moments walk out the door.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>Instagram Audience Is 3x Smaller Than Facebook</h3>
+                </div>
+                <p class="section-text">10,182 Facebook likes versus 3,251 Instagram followers. That gap is unusual for a restaurant in 2026. It suggests your Instagram growth has stalled or never had the right strategy behind it, while Facebook grew organically through check-ins and reviews.</p>
+                <p class="section-text">There are thousands of people who follow you on Facebook but have never found you on Instagram. A cross-platform strategy that directs Facebook fans to your Instagram, combined with content that actually gives them a reason to follow, would close that gap quickly.</p>
+                <p class="section-text">Instagram is where younger diners discover restaurants, plan nights out, and share their experiences. If someone searches "Newcastle restaurant" on Instagram and finds your competitors with more followers and more engaging content, that is a booking you have lost before they even saw your menu.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>No Paid Social Strategy</h3>
+                </div>
+                <p class="section-text">We checked the Facebook and Instagram Ad Library. No ads running. For a restaurant with a unique concept, a strong review profile, and a "kids eat free" offer, paid social is the accelerant you are missing.</p>
+                <p class="section-text">Even a modest budget targeting Newcastle locals with a 15-second Reel of meat being carved tableside and a "Kids under 10 eat free" overlay would drive bookings directly. Retargeting people who visited your website but did not book, promoting seasonal events, and reaching new audiences through lookalike targeting based on your Facebook fans would all deliver measurable ROI.</p>
+                <p class="section-text">Your competitors in the Newcastle dining scene are running ads. Every impression they get is one you do not. With the right creative, your dining concept sells itself. It just needs to be seen by more people.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- The Opportunity -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">The Opportunity</div>
+            <div class="section-title">A Restaurant Made for Social Media. Content That Has Not Caught Up Yet.</div>
+            <div class="card case-study-card">
+                <p class="section-text">Rio Quayside has everything a content team dreams of. A visually stunning venue on the Tyne. A theatrical dining concept with tableside carving. A killer family offer. Great reviews. A growing multi-venue brand. The ingredients are all there. The content just has not caught up to the experience yet.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">0.35%</div>
+                        <div class="label">Current Engagement</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">1-3%</div>
+                        <div class="label">Industry Benchmark</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">6x</div>
+                        <div class="label">UGC vs Brand Posts</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">3x</div>
+                        <div class="label">FB vs IG Gap</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">Your concept is the content.</div>
+                    <div class="context"><strong>Meat carved tableside. The sizzle. The theatre. The Quayside views at golden hour.</strong> Most restaurants have to manufacture moments for social media. You have them happening every single service. The only question is whether you are capturing and sharing them in a format that the algorithm actually pushes.</div>
+                </div>
+
+                <p class="takeaway">We took a restaurant with zero social presence and generated 27 million views in 90 days. Rio Quayside already has the brand, the location, the reviews, and the concept. The opportunity here is not about starting from scratch. It is about unlocking what is already there.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- How We Would Help -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">How We Would Help</div>
+            <div class="section-title">What We Would Do for Rio Quayside</div>
+
+            <div class="card">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content and Growth Package</h3>
+                <div class="package-grid">
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Short-form video production</strong> capturing the theatre of the Rio experience: tableside carving, cocktail making, sizzling cuts, Quayside views, and the energy of a full service</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Instagram Reels strategy</strong> to shift from static images to algorithm-friendly video content, designed to increase reach, engagement, and follower growth</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>UGC and influencer programme</strong> building a pipeline of Newcastle food bloggers, family creators, and lifestyle influencers to generate authentic content that reaches new audiences</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Paid social campaigns</strong> to drive bookings directly, promote the kids eat free offer, retarget website visitors, and reach new audiences through lookalike targeting</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Cross-platform growth</strong> closing the gap between your 10K Facebook audience and your 3.2K Instagram following by driving Facebook fans to Instagram with compelling reasons to follow</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Content calendar management</strong> so your team can focus on delivering an incredible dining experience while we handle the daily content engine across all platforms</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content Approach</h3>
+                <ul class="strategy-list">
+                    <li>Tableside carving videos: the sizzle, the slice, the serve. 15-second Reels that stop the scroll</li>
+                    <li>Behind-the-scenes: kitchen prep, the salad bar being built, cocktails being crafted, the team getting ready for service</li>
+                    <li>Customer experience content: families enjoying kids eat free, couples on date nights, birthday celebrations, the moment the cheese bread arrives</li>
+                    <li>Quayside lifestyle: the view from the window, the walk along the Tyne, positioning Rio as part of a perfect Newcastle night out</li>
+                    <li>Staff personality: meet the Gaucho chefs, the story behind the food, the team culture that drives those 5-star reviews</li>
+                    <li>Event and seasonal campaigns: bank holidays, cocktail weeks, private dining, APEX-style events</li>
+                    <li>UGC amplification: resharing and remixing the best customer-created content to build social proof</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">5 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working right now for restaurants on Instagram and TikTok. All of them play to Rio's unique strengths as a Brazilian churrascaria with a theatrical dining concept.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"POV: You just sat down at Rio Quayside"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Experience</span>
+                        <span class="idea-tag">Immersive</span>
+                    </div>
+                    <p class="idea-description">First-person POV from the moment you sit down. The cheese bread arrives. You flip the card to green. The first Gaucho chef approaches with a skewer of picanha. The carving. The plate filling up. Cut after cut. End with the Quayside view through the window. Trending audio. 20 seconds.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> POV restaurant content is one of the highest-performing formats on Reels and TikTok. It puts the viewer in the seat and creates an emotional response: "I need to go there." The green card flip is a unique visual hook that no other restaurant in Newcastle has. It is immediately distinctive and shareable.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"How much meat can one person eat at an all-you-can-eat Brazilian steakhouse?"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Challenge</span>
+                        <span class="idea-tag">Entertainment</span>
+                        <span class="idea-tag">Viral</span>
+                    </div>
+                    <p class="idea-description">Film someone attempting to try every single cut on the menu in one sitting. Keep a running count on screen. Show each new cut arriving, the reaction, the plate stacking up. End with the final tally and the person's face at the end. Light-hearted, fun, shareable.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Challenge and food quantity content drives massive engagement. It triggers comments ("I could beat that", "No way they ate all that"), shares between friend groups planning nights out, and saves from people who want to try it themselves. It also subtly communicates the value proposition: unlimited meat for one price.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"My kids ate free and this is what they got"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Family</span>
+                        <span class="idea-tag">Value</span>
+                        <span class="idea-tag">UGC Style</span>
+                    </div>
+                    <p class="idea-description">A parent films their kids' reaction to the Rio experience. The cheese bread. The unlimited meat. The salad bar. Show the children's plates piling up. End with "and it was completely free." Text overlay with the offer details. Film it to feel like a genuine family video, not a polished ad.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Your best-performing post was a family influencer talking about kids eating free. This is the same format, purpose-built for Reels. Parents share family dining content with other parents. It directly promotes your strongest offer and reaches the exact audience most likely to book: families looking for somewhere to eat this weekend.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"The art of the Gaucho: watch our chefs carve"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Cinematic</span>
+                        <span class="idea-tag">Craft</span>
+                        <span class="idea-tag">Brand</span>
+                    </div>
+                    <p class="idea-description">Slow motion, close-up footage of the Gaucho chefs at work. The knife sliding through picanha. The juices running. The precision of the carve. The sizzle. A cinematic, almost ASMR-style edit with minimal text. Let the visuals do the talking. End with "Rio Brazilian Steakhouse, Quayside."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Food ASMR and craft content has exploded on social media. The slow-motion carving footage is visually hypnotic and stops people mid-scroll. It positions Rio as premium and theatrical. This type of content gets saved and shared at high rates because it is satisfying to watch repeatedly.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 05</div>
+                    <div class="idea-title">"Rio Quayside at golden hour hits different"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Lifestyle</span>
+                        <span class="idea-tag">Location</span>
+                        <span class="idea-tag">Aspirational</span>
+                    </div>
+                    <p class="idea-description">Sunset over the Tyne through the restaurant window. A cocktail being placed on the table. The warm glow of the venue interior. A Gaucho chef approaching in the background. A couple clinking glasses. Slow zoom out to reveal the full Quayside view. Trending audio. 15 seconds of pure atmosphere.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Location and atmosphere content positions Rio as more than just a meal. It makes it a destination, an experience, a "we should go there" moment. The Quayside location is a genuine competitive advantage that most Newcastle restaurants cannot match. This content sells the evening, not just the food.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the social media work.</p>
+
+            <div class="enhancement-card">
+                <h4>Build a UGC Pipeline</h4>
+                <p>Your single best-performing post was a repost from a family influencer. That is not a coincidence. A structured programme of inviting 2-3 Newcastle food bloggers and family creators per month for a complimentary Rio experience would generate a steady stream of authentic content.</p>
+                <ul class="enhancement-list">
+                    <li>Newcastle has dozens of active food and family influencers with 5K-50K engaged followers</li>
+                    <li>Each visit generates 2-4 pieces of content that reaches an audience you currently have no access to</li>
+                    <li>The cost is a complimentary meal. The return is content and reach worth many times more</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Invite 3 local food bloggers this month. Give them the full Rio experience. Let them create content naturally. Repost the best pieces. Watch the engagement difference versus your own brand posts.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Kids Eat Free Campaign</h4>
+                <p>This is one of your strongest offers, but it is buried in generic posts that get 12 likes. A dedicated campaign with video testimonials from real families, targeted paid ads to parents within 15 miles of Newcastle, and a consistent content series around family dining at Rio would drive midweek and weekend lunch covers.</p>
+                <p>Your competitor set for family dining in Newcastle is large, but very few offer unlimited premium food for free for children. That is a remarkable offer. It deserves its own content strategy, not a single static image every few weeks.</p>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Leverage the Multi-Venue Brand</h4>
+                <p>Rio has locations in Jesmond, Quayside, and Middlesbrough. Cross-promoting between venue accounts, sharing content across locations, and building a unified brand presence would amplify reach for all three. A customer who follows Rio Jesmond but has never tried the Quayside location is a booking waiting to happen.</p>
+                <p>The APEX event you hosted, bringing 45 guests across Rio and Tomahawk, showed what is possible when you position the venues as more than just restaurants. More event content, more cross-venue promotion, more brand storytelling.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a UK content and marketing agency that specialises in hospitality. We produce short-form video content, manage social media, run paid ad campaigns, and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">We are based in Newcastle and work with restaurants, bars, and hospitality brands across the North East. Our approach is simple: create content that people actually want to watch, post it consistently, and let the results speak for themselves. No stock footage, no generic templates, no recycled ideas.</p>
+                <p class="about-fc-text">We have generated over 27 million views for a single restaurant client in under 90 days, including a single reel that hit 22 million views. We understand what makes hospitality content perform, and we know how to turn a great dining experience into a social media presence that drives real bookings.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">27M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Influencer Partnerships</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                    <span class="about-fc-tag">Hospitality Marketing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a look through this audit. The key takeaway is that you have already built something special. The restaurant, the concept, the reviews, and the consistency are all there. The content just needs to catch up to the experience.</li>
+                    <li>If any of this resonates, jump on a quick call with us. No pitch, just a conversation about where the biggest wins are for Rio Quayside specifically.</li>
+                    <li>We can put together a specific content plan and show you exactly what the first month would look like: the video shoots, the posting schedule, the paid campaign structure, and the influencer outreach.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But every weekend that passes without video content is a weekend where potential customers are scrolling past your competitors' Reels instead. Your concept sells itself. It just needs to be seen.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Rio Brazilian Steakhouse Quayside</div>
+            <div class="footer-note">This audit was put together using live data from your Instagram, Facebook, TripAdvisor, and website on 8 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
