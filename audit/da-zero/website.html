@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da-Zero - Authentic Italian Restaurant | Chester-le-Street</title>
+    <meta name="description" content="Family-run authentic Italian restaurant in Chester-le-Street. Everything made from scratch. Pizza, pasta, risotto and more. Dine in, takeaway or delivery available.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --burgundy: #8B1A1A;
+            --burgundy-light: #A52A2A;
+            --burgundy-dark: #6B1010;
+            --gold: #C4A265;
+            --gold-light: #D4B87A;
+            --gold-dark: #A88B4A;
+            --cream: #FAF8F2;
+            --cream-dark: #F0EDE4;
+            --white-pure: #ffffff;
+            --text-dark: #2c2c2c;
+            --text-mid: #5a5a5a;
+            --text-light: #8a8a8a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* Italian decorative border */
+        .italian-border {
+            height: 4px;
+            background: linear-gradient(90deg, var(--burgundy) 0%, var(--burgundy) 33%, var(--cream) 33%, var(--cream) 37%, var(--gold) 37%, var(--gold) 63%, var(--cream) 63%, var(--cream) 67%, var(--burgundy) 67%, var(--burgundy) 100%);
+            opacity: 0.6;
+        }
+
+        /* Italian wheat/diamond divider */
+        .italian-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .italian-divider-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .italian-divider-line::before,
+        .italian-divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .italian-divider svg {
+            width: 80px;
+            height: auto;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 248, 242, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 26, 26, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-mid);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-order-btn {
+            background: var(--burgundy) !important;
+            color: var(--cream) !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: background 0.3s ease !important;
+        }
+
+        .nav-order-btn:hover {
+            background: var(--burgundy-light) !important;
+        }
+
+        .nav-order-btn::after {
+            display: none !important;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--burgundy);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(160deg, rgba(139,26,26,0.92) 0%, rgba(107,16,16,0.94) 40%, rgba(44,44,44,0.97) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(196, 162, 101, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 26, 26, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 80%, rgba(196, 162, 101, 0.08) 0%, transparent 40%);
+        }
+
+        /* Subtle diamond pattern overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image:
+                linear-gradient(45deg, #fff 25%, transparent 25%),
+                linear-gradient(-45deg, #fff 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #fff 75%),
+                linear-gradient(-45deg, transparent 75%, #fff 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            color: var(--cream);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 .accent {
+            color: var(--gold-light);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-location svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gold-light);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(196, 162, 101, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.5s both;
+        }
+
+        .scroll-indicator .mouse {
+            width: 22px;
+            height: 34px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 11px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::after {
+            content: '';
+            width: 3px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s ease infinite;
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(145deg, var(--burgundy) 0%, var(--burgundy-dark) 60%, #3a0a0a 100%);
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .about-image-placeholder::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 180px;
+            height: 180px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .about-image-inner {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .about-image-inner .da-zero-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--cream);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .about-image-inner .da-zero-meaning {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 .accent {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .about-text p {
+            color: var(--text-mid);
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .about-feature .icon {
+            width: 36px;
+            height: 36px;
+            background: var(--cream-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Review badges */
+        .review-badges {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .review-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--cream-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .review-badge .stars {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--cream-dark);
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .menu-tab {
+            padding: 0.6rem 1.5rem;
+            border: 1.5px solid var(--burgundy);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--burgundy);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-tab.active,
+        .menu-tab:hover {
+            background: var(--burgundy);
+            color: var(--cream);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .menu-category-title {
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-category-subtitle {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .menu-item {
+            background: var(--white-pure);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--burgundy);
+            white-space: nowrap;
+        }
+
+        .menu-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn-menu-order {
+            background: var(--burgundy);
+            color: var(--cream);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-menu-order:hover {
+            background: var(--burgundy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 26, 26, 0.3);
+        }
+
+        /* Special Offer Section */
+        .special-offer {
+            background: var(--burgundy);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgba(196, 162, 101, 0.08);
+            border-radius: 50%;
+        }
+
+        .special-offer::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(196, 162, 101, 0.05);
+            border-radius: 50%;
+        }
+
+        .special-offer-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .special-offer-badge {
+            display: inline-block;
+            background: rgba(196, 162, 101, 0.2);
+            border: 1px solid rgba(196, 162, 101, 0.4);
+            color: var(--gold-light);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .special-offer h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .special-offer-percent {
+            color: var(--gold-light);
+        }
+
+        .special-offer p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .special-offer .btn-offer {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            background: var(--gold);
+            color: var(--text-dark);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .special-offer .btn-offer:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(196, 162, 101, 0.3);
+        }
+
+        .special-offer-note {
+            font-size: 0.9rem !important;
+            color: rgba(255, 255, 255, 0.4) !important;
+            margin-top: 1.5rem !important;
+        }
+
+        /* Private Dining Section */
+        .private-dining {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .private-dining-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .private-dining-visual {
+            background: linear-gradient(135deg, rgba(196,162,101,0.15) 0%, rgba(139,26,26,0.08) 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .private-dining-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            opacity: 0.15;
+            margin: 12px;
+        }
+
+        .private-dining-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .private-dining-visual h3 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .private-dining-visual p {
+            color: var(--text-mid);
+            font-size: 0.95rem;
+        }
+
+        .private-dining-text h2 {
+            font-size: 2.2rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+
+        .private-dining-text h2 .accent {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .private-dining-text p {
+            color: var(--text-mid);
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .private-dining-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .private-dining-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .private-dining-features li .check {
+            width: 24px;
+            height: 24px;
+            background: var(--burgundy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .private-dining-features li .check svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: var(--cream);
+            stroke-width: 2.5;
+        }
+
+        .private-dining-cta {
+            margin-top: 2rem;
+        }
+
+        .btn-private {
+            background: var(--burgundy);
+            color: var(--cream);
+            padding: 0.9rem 2rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-private:hover {
+            background: var(--burgundy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 26, 26, 0.3);
+        }
+
+        /* Find Us Section */
+        .find-us {
+            background: var(--cream-dark);
+        }
+
+        .find-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .find-us-map {
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .find-us-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        .find-us-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .info-block {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--white-pure);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--burgundy);
+        }
+
+        .info-block h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-block p, .info-block a {
+            color: var(--text-dark);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-block a:hover {
+            color: var(--burgundy);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.2rem 1rem;
+        }
+
+        .hours-grid .day {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .hours-grid .time {
+            color: var(--text-mid);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--white-pure);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-link:hover {
+            background: var(--burgundy);
+            transform: translateY(-2px);
+        }
+
+        .social-link:hover svg {
+            fill: var(--cream);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-mid);
+            transition: fill 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--burgundy-dark);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+        }
+
+        .footer-inner a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-inner a:hover {
+            color: var(--cream);
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.25);
+            line-height: 1.5;
+        }
+
+        .demo-banner a {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .about-grid,
+            .private-dining-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-placeholder {
+                aspect-ratio: 16/9;
+                order: -1;
+            }
+
+            .private-dining-visual {
+                min-height: 280px;
+                order: -1;
+            }
+
+            .find-us-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3.5rem 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .demo-banner {
+                font-size: 0.75rem;
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .review-badges {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+
+        /* Extra bottom padding to account for demo banner */
+        footer {
+            padding-bottom: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        This is a <strong>template website</strong> created by <a href="https://fusioncreative.uk" target="_blank">Fusion Creative</a> to showcase what we can build for Da-Zero. Menu items and prices are from current listings and may change.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Da<span>-Zero</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#private-dining">Private Dining</a></li>
+                <li><a href="#find-us">Find Us</a></li>
+                <li><a href="https://da-zero.uk" target="_blank" rel="noopener" class="nav-order-btn">Order Online</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                Chester-le-Street's Authentic Italian
+            </div>
+            <h1>Da<span class="accent">-Zero</span></h1>
+            <p class="hero-tagline">Authentic Italian, Made From Scratch</p>
+            <p class="hero-location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                15-33 Middle Chare, Chester-le-Street
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="https://da-zero.uk" target="_blank" rel="noopener" class="btn btn-secondary">
+                    Order Online
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            Scroll
+        </div>
+    </section>
+
+    <div class="italian-border"></div>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-placeholder fade-in">
+                    <div class="about-image-inner">
+                        <div class="da-zero-text">Da-Zero</div>
+                        <div class="da-zero-meaning">"From Scratch"</div>
+                    </div>
+                </div>
+                <div class="about-text fade-in fade-in-delay-1">
+                    <span class="section-label">Our Story</span>
+                    <h2>Authentic Italian,<br><span class="accent">From Scratch</span></h2>
+                    <p>Da-Zero is a family-run Italian restaurant in the heart of Chester-le-Street, where everything is made from scratch. That is what "Da Zero" means, and it is the principle behind everything we do.</p>
+                    <p>From hand-stretched pizza dough and slow-simmered sauces to fresh pasta made daily, we bring the authentic flavours of Italy to County Durham. Our menu features traditional recipes passed down through generations, prepared with care and served with warmth.</p>
+                    <p>Whether you are joining us for a weeknight dinner, a weekend lunch with family, or ordering takeaway for a night in, you will taste the difference that fresh, from-scratch cooking makes.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="icon">&#127837;</div>
+                            <span>Made From Scratch</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128150;</div>
+                            <span>Family Run</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#127860;</div>
+                            <span>Private Dining</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128666;</div>
+                            <span>Delivery Available</span>
+                        </div>
+                    </div>
+                    <div class="review-badges">
+                        <div class="review-badge">
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                            <span>4.5 on Google</span>
+                        </div>
+                        <div class="review-badge">
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                            <span>4.6 on TripAdvisor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Italian Divider -->
+    <div class="italian-divider">
+        <div class="italian-divider-line">
+            <svg viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Wheat-inspired diamond divider -->
+                <path d="M40 2 L48 12 L40 22 L32 12 Z" stroke="#C4A265" stroke-width="1.2" fill="none" opacity="0.5"/>
+                <path d="M40 6 L44 12 L40 18 L36 12 Z" fill="#C4A265" opacity="0.15"/>
+                <line x1="10" y1="12" x2="30" y2="12" stroke="#C4A265" stroke-width="1" opacity="0.3"/>
+                <line x1="50" y1="12" x2="70" y2="12" stroke="#C4A265" stroke-width="1" opacity="0.3"/>
+                <!-- Small decorative dots -->
+                <circle cx="15" cy="12" r="1.5" fill="#C4A265" opacity="0.3"/>
+                <circle cx="65" cy="12" r="1.5" fill="#C4A265" opacity="0.3"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <section class="menu" id="menu">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">What We Serve</span>
+                <h2 class="section-title">Our Menu</h2>
+                <p class="section-subtitle">Traditional Italian recipes, everything made from scratch with the freshest ingredients</p>
+            </div>
+
+            <!-- Menu Tabs -->
+            <div class="menu-categories fade-in">
+                <button class="menu-tab active" data-category="all">All</button>
+                <button class="menu-tab" data-category="starters">Starters</button>
+                <button class="menu-tab" data-category="pasta">Pasta &amp; Risotto</button>
+                <button class="menu-tab" data-category="pizza">Pizza</button>
+                <button class="menu-tab" data-category="mains">Carne &amp; Pesce</button>
+            </div>
+
+            <!-- Starters -->
+            <div class="menu-category fade-in" data-cat="starters">
+                <h3 class="menu-category-title">Starters</h3>
+                <p class="menu-category-subtitle">Begin your meal the Italian way</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Potato Skins</div>
+                            <div class="menu-item-desc">Crispy baked potato skins with your choice of filling</div>
+                        </div>
+                        <div class="menu-item-price">&pound;5.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Garlic Mushrooms</div>
+                            <div class="menu-item-desc">Sauteed mushrooms in a rich garlic butter sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;6.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Bruschetta Pomodoro</div>
+                            <div class="menu-item-desc">Toasted ciabatta topped with fresh tomatoes, basil and olive oil</div>
+                        </div>
+                        <div class="menu-item-price">&pound;6.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Bruschetta Caprino</div>
+                            <div class="menu-item-desc">Toasted ciabatta with goat's cheese and caramelised onion</div>
+                        </div>
+                        <div class="menu-item-price">&pound;7.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Gamberoni</div>
+                            <div class="menu-item-desc">King prawns sauteed in garlic, chilli and white wine</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Calamari &amp; Gamberoni</div>
+                            <div class="menu-item-desc">Crispy calamari and king prawns with a zesty dipping sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;14.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Caesar Salad</div>
+                            <div class="menu-item-desc">Crisp romaine, parmesan, croutons and classic Caesar dressing</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Mozzarella Balls</div>
+                            <div class="menu-item-desc">Deep-fried mozzarella balls with a crispy golden coating</div>
+                        </div>
+                        <div class="menu-item-price">&pound;6.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Golden Fried Halloumi</div>
+                            <div class="menu-item-desc">Halloumi cheese lightly battered and fried until golden</div>
+                        </div>
+                        <div class="menu-item-price">&pound;6.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Soup of the Day</div>
+                            <div class="menu-item-desc">Freshly prepared daily, served with warm bread</div>
+                        </div>
+                        <div class="menu-item-price">&pound;6.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pasta & Risotto -->
+            <div class="menu-category fade-in" data-cat="pasta">
+                <h3 class="menu-category-title">Pasta &amp; Risotto</h3>
+                <p class="menu-category-subtitle">Handmade pasta and creamy risottos, cooked to perfection</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Carbonara</div>
+                            <div class="menu-item-desc">Classic Roman recipe with pancetta, egg, parmesan and black pepper</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Bolognese</div>
+                            <div class="menu-item-desc">Slow-cooked beef ragu in a rich tomato sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Lasagna</div>
+                            <div class="menu-item-desc">Layers of pasta, beef ragu, bechamel and melted cheese</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Arrabbiata</div>
+                            <div class="menu-item-desc">Penne in a spicy tomato sauce with garlic and chilli</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Alfredo</div>
+                            <div class="menu-item-desc">Fettuccine in a creamy parmesan sauce with chicken</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Tuscany</div>
+                            <div class="menu-item-desc">Tuscan-style pasta with sun-dried tomatoes, spinach and cream</div>
+                        </div>
+                        <div class="menu-item-price">&pound;12.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Gamberonni e Rucola</div>
+                            <div class="menu-item-desc">King prawns with rocket in a light garlic and olive oil sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;14.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Marinara</div>
+                            <div class="menu-item-desc">Mixed seafood pasta in a rich tomato and white wine sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Risotto Chicken</div>
+                            <div class="menu-item-desc">Creamy arborio rice with tender chicken and parmesan</div>
+                        </div>
+                        <div class="menu-item-price">&pound;12.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Risotto Di Mare</div>
+                            <div class="menu-item-desc">Arborio rice with a medley of fresh seafood in white wine</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza -->
+            <div class="menu-category fade-in" data-cat="pizza">
+                <h3 class="menu-category-title">Pizza</h3>
+                <p class="menu-category-subtitle">Hand-stretched dough, stone-baked to perfection</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Margherita</div>
+                            <div class="menu-item-desc">San Marzano tomato sauce, mozzarella and fresh basil</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pepperoni</div>
+                            <div class="menu-item-desc">Classic pepperoni with mozzarella and tomato sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Caprese</div>
+                            <div class="menu-item-desc">Fresh mozzarella, tomatoes, basil and a drizzle of olive oil</div>
+                        </div>
+                        <div class="menu-item-price">&pound;12.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Quattro Stagioni</div>
+                            <div class="menu-item-desc">Four seasons: artichokes, mushrooms, ham and olives</div>
+                        </div>
+                        <div class="menu-item-price">&pound;12.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Americana</div>
+                            <div class="menu-item-desc">Pepperoni, ham, mushrooms and mozzarella</div>
+                        </div>
+                        <div class="menu-item-price">&pound;12.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Calzone</div>
+                            <div class="menu-item-desc">Folded pizza stuffed with your favourite fillings</div>
+                        </div>
+                        <div class="menu-item-price">&pound;13.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Fantasia</div>
+                            <div class="menu-item-desc">A house special with a selection of premium toppings</div>
+                        </div>
+                        <div class="menu-item-price">&pound;13.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Da Zero</div>
+                            <div class="menu-item-desc">Build your own with any 3 toppings of your choice</div>
+                        </div>
+                        <div class="menu-item-price">&pound;13.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carne & Pesce -->
+            <div class="menu-category fade-in" data-cat="mains">
+                <h3 class="menu-category-title">Carne &amp; Pesce</h3>
+                <p class="menu-category-subtitle">Premium cuts and fresh seafood, expertly prepared</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pollo Peppercorn</div>
+                            <div class="menu-item-desc">Chicken breast in a creamy peppercorn sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pollo Milanese</div>
+                            <div class="menu-item-desc">Breaded chicken breast, pan-fried golden and crispy</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Cajun Stuffer Pollo</div>
+                            <div class="menu-item-desc">Cajun-spiced stuffed chicken breast with a creamy sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;16.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Ribeye</div>
+                            <div class="menu-item-desc">28-day aged ribeye steak, cooked to your preference</div>
+                        </div>
+                        <div class="menu-item-price">&pound;20.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Fillet</div>
+                            <div class="menu-item-desc">Premium fillet steak, the finest cut cooked to perfection</div>
+                        </div>
+                        <div class="menu-item-price">&pound;25.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Fillet Surf &amp; Turf</div>
+                            <div class="menu-item-desc">Fillet steak topped with king prawns in garlic butter</div>
+                        </div>
+                        <div class="menu-item-price">&pound;35.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Seabass</div>
+                            <div class="menu-item-desc">Pan-seared seabass fillet with Mediterranean vegetables</div>
+                        </div>
+                        <div class="menu-item-price">&pound;17.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Salmon</div>
+                            <div class="menu-item-desc">Oven-baked salmon fillet with a light lemon and herb sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;18.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Grilled Gamberoni</div>
+                            <div class="menu-item-desc">King prawns grilled with garlic, lemon and fresh herbs</div>
+                        </div>
+                        <div class="menu-item-price">&pound;18.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-cta fade-in">
+                <a href="https://da-zero.uk" target="_blank" rel="noopener" class="btn btn-menu-order">
+                    Order Online for Takeaway
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="special-offer" id="offer">
+        <div class="special-offer-inner fade-in">
+            <div class="special-offer-badge">Limited Offer</div>
+            <h2><span class="special-offer-percent">10% Off</span> All Takeaway Orders</h2>
+            <p>Order through our website and enjoy 10% off your entire takeaway order. From hand-stretched pizzas to slow-cooked pasta, get restaurant-quality Italian delivered to your door or ready for collection.</p>
+            <a href="https://da-zero.uk" target="_blank" rel="noopener" class="btn-offer">
+                Order at da-zero.uk
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+            <p class="special-offer-note">Delivery and collection available. Order online at da-zero.uk</p>
+        </div>
+    </section>
+
+    <!-- Italian Divider -->
+    <div class="italian-divider">
+        <div class="italian-divider-line">
+            <svg viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 2 L48 12 L40 22 L32 12 Z" stroke="#C4A265" stroke-width="1.2" fill="none" opacity="0.5"/>
+                <path d="M40 6 L44 12 L40 18 L36 12 Z" fill="#C4A265" opacity="0.15"/>
+                <line x1="10" y1="12" x2="30" y2="12" stroke="#C4A265" stroke-width="1" opacity="0.3"/>
+                <line x1="50" y1="12" x2="70" y2="12" stroke="#C4A265" stroke-width="1" opacity="0.3"/>
+                <circle cx="15" cy="12" r="1.5" fill="#C4A265" opacity="0.3"/>
+                <circle cx="65" cy="12" r="1.5" fill="#C4A265" opacity="0.3"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Private Dining -->
+    <section class="private-dining" id="private-dining">
+        <div class="section-inner">
+            <div class="private-dining-grid">
+                <div class="private-dining-visual fade-in">
+                    <div class="private-dining-icon">&#127863;</div>
+                    <h3>Your Private Space</h3>
+                    <p>Upstairs at Da-Zero</p>
+                </div>
+                <div class="private-dining-text fade-in fade-in-delay-1">
+                    <span class="section-label">Exclusive Space</span>
+                    <h2>Private <span class="accent">Dining</span></h2>
+                    <p>Our spacious upstairs area is the perfect setting for your next celebration. Whether you are planning a birthday party, family gathering, corporate dinner, or any special occasion, we have the space and the menu to make it memorable.</p>
+                    <p>With a dedicated area for your group, personalised service, and the full Da-Zero menu at your disposal, your event will be one to remember. We can accommodate large groups and tailor the experience to suit your needs.</p>
+                    <ul class="private-dining-features">
+                        <li>
+                            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Large upstairs space for groups and parties
+                        </li>
+                        <li>
+                            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Perfect for birthdays, anniversaries and celebrations
+                        </li>
+                        <li>
+                            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Full menu available with personalised service
+                        </li>
+                        <li>
+                            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Corporate events and team dinners welcome
+                        </li>
+                    </ul>
+                    <div class="private-dining-cta">
+                        <a href="tel:01913880052" class="btn btn-private">
+                            Call to Book: 0191 388 0052
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Italian Divider -->
+    <div class="italian-divider">
+        <div class="italian-divider-line">
+            <svg viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 2 L48 12 L40 22 L32 12 Z" stroke="#C4A265" stroke-width="1.2" fill="none" opacity="0.5"/>
+                <path d="M40 6 L44 12 L40 18 L36 12 Z" fill="#C4A265" opacity="0.15"/>
+                <line x1="10" y1="12" x2="30" y2="12" stroke="#C4A265" stroke-width="1" opacity="0.3"/>
+                <line x1="50" y1="12" x2="70" y2="12" stroke="#C4A265" stroke-width="1" opacity="0.3"/>
+                <circle cx="15" cy="12" r="1.5" fill="#C4A265" opacity="0.3"/>
+                <circle cx="65" cy="12" r="1.5" fill="#C4A265" opacity="0.3"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Find Us -->
+    <section class="find-us" id="find-us">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">Visit Us</span>
+                <h2 class="section-title">Find Us</h2>
+                <p class="section-subtitle">In the heart of Chester-le-Street, County Durham</p>
+            </div>
+            <div class="find-us-grid">
+                <div class="find-us-map fade-in">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2300.0!2d-1.5726!3d54.8596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e7b3b8e8dc335%3A0x8c6a0d8e5e7b1234!2sMiddle+Chare%2C+Chester-le-Street!5e0!3m2!1sen!2suk!4v1700000000000"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Da-Zero location on Google Maps">
+                    </iframe>
+                </div>
+                <div class="find-us-info fade-in fade-in-delay-1">
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>15-33 Middle Chare<br>Chester-le-Street<br>Durham DH3 3QD</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <div class="hours-grid">
+                                <span class="day">Sunday</span>
+                                <span class="time">10:30 - 18:00</span>
+                                <span class="day">Mon - Tue</span>
+                                <span class="time">17:00 - 21:00</span>
+                                <span class="day">Wed - Sat</span>
+                                <span class="time">12:00 - 21:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:01913880052">0191 388 0052</a>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Follow Us</h4>
+                            <a href="https://www.instagram.com/da_zero_restaurant_/" target="_blank" rel="noopener">@da_zero_restaurant_</a>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/da_zero_restaurant_/" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Instagram">
+                                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                                </a>
+                                <a href="https://www.facebook.com/DaZeroRestaurant" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Facebook">
+                                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="italian-border"></div>
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; 2026 Da-Zero Restaurant. All rights reserved.</p>
+            <p>Website by <a href="https://fusioncreative.uk" target="_blank" rel="noopener">Fusion Creative</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Menu category filter tabs
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuCategories = document.querySelectorAll('.menu-category');
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                menuTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const category = tab.dataset.category;
+
+                menuCategories.forEach(cat => {
+                    if (category === 'all') {
+                        cat.style.display = 'block';
+                    } else if (cat.dataset.cat === category) {
+                        cat.style.display = 'block';
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
