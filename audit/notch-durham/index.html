@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Notch Durham | Fusion Creative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --card-border: rgba(0,0,0,0.06);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .intro-card .greeting {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.1);
+            color: var(--coral);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.1);
+            color: #ff9f0a;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #34c759;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat:nth-child(1) { animation-delay: 0.1s; }
+        .case-study-stat:nth-child(2) { animation-delay: 0.2s; }
+        .case-study-stat:nth-child(3) { animation-delay: 0.3s; }
+        .case-study-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .case-study-stat .number {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .package-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+        }
+
+        .package-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .package-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .package-item strong {
+            color: var(--text);
+        }
+
+        .strategy-list {
+            list-style: none;
+        }
+
+        .strategy-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+
+        .strategy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-list li::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.04);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 80%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.04);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat:nth-child(1) { animation-delay: 0.1s; }
+        .about-fc-stat:nth-child(2) { animation-delay: 0.2s; }
+        .about-fc-stat:nth-child(3) { animation-delay: 0.3s; }
+        .about-fc-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .about-fc-stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.4);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+            background: #edeef2;
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff;
+                --card: #f8f8f8;
+                --card-border: #e0e0e0;
+                --text: #111111;
+                --text-secondary: #444444;
+                --text-muted: #888888;
+            }
+
+            body {
+                background: white;
+                color: #111;
+                font-size: 11pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 28pt;
+            }
+
+            .hero h1 span {
+                -webkit-text-fill-color: var(--coral);
+                background: none;
+                animation: none;
+            }
+
+            .card, .video-idea-card, .enhancement-card, .case-study-card, .intro-card, .next-steps-card {
+                background: #f8f8f8 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border-color: #e0e0e0;
+                box-shadow: none !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .section {
+                animation: none !important;
+            }
+
+            .case-study-card::before {
+                background: var(--coral);
+            }
+
+            .video-idea-card::before {
+                background: var(--coral);
+            }
+
+            .case-study-stat {
+                background: rgba(232, 85, 60, 0.06) !important;
+                animation: none !important;
+            }
+
+            .viral-callout {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .highlight-box {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .cta-btn {
+                animation: none !important;
+                box-shadow: none !important;
+            }
+
+            a {
+                color: var(--coral) !important;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .hero {
+                padding: 40px 0 32px;
+                animation: none !important;
+            }
+
+            .footer {
+                background: #f0f0f0 !important;
+            }
+
+            .stat-badge, .about-fc-stat {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .video-idea-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .video-idea-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .enhancement-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .enhancement-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">8 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Notch Durham</span></h1>
+            <p class="hero-subtitle">Prepared by Fusion Creative | 8 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey, the Notch team,</div>
+                <p class="section-text">This is not a sales pitch. We are Fusion Creative, a UK content and marketing agency. We took a deep look at Notch's online presence and put together our honest findings.</p>
+                <p class="section-text">You have built something brilliant. A BBQ restaurant and bar on Elvet Bridge with a 4.6 star Google rating, ranked #2 of 30 Bars and Pubs in Durham on TripAdvisor, 12,000 Instagram followers, and a bottomless brunch that people actively seek out. The product is clearly there. But we found <strong>five areas where there is real room to grow</strong>, and some of them represent significant untapped revenue. It is all in this report.</p>
+                <p class="section-text">Inside you will find a full snapshot of where you are now, what is working well, key opportunities you are leaving on the table, video ideas you can use immediately, and recommendations for quick wins. Even if we never speak, this is yours to keep.</p>
+            </div>
+
+            <!-- Fusion Creative metrics card -->
+            <div class="card" style="margin-top:8px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--coral); margin-bottom:6px;">Client Results</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Generated for a single restaurant client within 90 days</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">27M+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">394K+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Engagements</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">6,657</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">22M</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
+                    </div>
+                </div>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">New Greek, a small independent restaurant in Newcastle with zero social presence before us. One reel hit 22 million views. They went from empty tables to a waiting list. Notch has the same potential, and you are starting from an even stronger position with 12K followers already in place and a product that films itself.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Google Rating</td>
+                        <td>4.6 / 5 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Rating</td>
+                        <td>4.5 / 5 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Reviews</td>
+                        <td>265 reviews <span class="stat-badge-green">Solid</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Ranking</td>
+                        <td>#2 of 30 Bars &amp; Pubs <span class="stat-badge-green">Excellent</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@notch_durham)</td>
+                        <td>12,000 followers / 730 posts <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok (@notchdurham)</td>
+                        <td>Active <span class="stat-badge-amber">Underperforming</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook (/notchdurham)</td>
+                        <td>Active <span class="stat-badge-green">Present</span></td>
+                    </tr>
+                    <tr>
+                        <td>Website</td>
+                        <td class="stat-highlight">None <span class="stat-badge">Missing</span></td>
+                    </tr>
+                    <tr>
+                        <td>Paid Ads Running</td>
+                        <td class="stat-highlight" style="color: var(--text-muted);">None visible <span class="stat-badge">Missing</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Instagram is strong with 12K followers and 730 posts</h4>
+                    <p>This is a seriously impressive number for an independent bar and restaurant in Durham. 12,000 followers with 730 posts shows clear consistency over time. You have not just set up an account and abandoned it. You have been showing up, posting regularly, and building an audience. That kind of foundation is exactly what makes scaling social media possible. Most businesses we audit have a fraction of this.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> TripAdvisor ranking is excellent</h4>
+                    <p>#2 of 30 Bars and Pubs in Durham with a 4.5 star rating across 265 reviews. That is not luck. That is consistently delivering a good experience across hundreds of visits. TripAdvisor rankings are driven by volume, recency, and quality of reviews, so maintaining that position takes real effort. This is a major asset for driving footfall from tourists and visitors to Durham.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Google rating of 4.6 is very strong</h4>
+                    <p>For a restaurant and bar, 4.6 on Google is excellent. This is often the first thing a potential customer sees when they search for you. A rating above 4.5 creates immediate trust. Combined with the TripAdvisor position, your review presence across the two most important discovery platforms is genuinely strong.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You are already on TikTok and posting content</h4>
+                    <p>Most hospitality businesses we speak to have not even created a TikTok account yet. The fact that you are already there and posting content, including bottomless brunch promos and behind-the-scenes footage, puts you ahead of the majority of your competitors. The foundation is laid. It just needs more volume and more intentional formats to start driving real reach.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The bottomless brunch is a signature offering people talk about</h4>
+                    <p>Every Saturday from 12pm to 5pm, and it has clearly become a draw. When customers actively mention a specific offering in reviews and social posts, that is a marketing asset in itself. The bottomless brunch is the kind of product that practically sells itself through content. It is visual, it is experiential, and it is exactly what performs on social media.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Riverside location on Elvet Bridge is a natural content backdrop</h4>
+                    <p>Most restaurants in Durham cannot offer what you have: outdoor seating overlooking the river in the heart of the city. That is not just a nice feature for customers. It is a content differentiator. Every video, every photo, every reel has a built-in aesthetic that most competitors simply cannot replicate. Location is a massive advantage in social media content and you are sitting on one of the best in Durham.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Things Holding You Back</div>
+            <p class="section-text" style="margin-bottom: 32px;">The food, the reviews, and the social presence all have strong foundations. You have built a bar and restaurant that people clearly love. The gaps below are not criticisms. They are areas where relatively small changes would make a disproportionately large difference.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>No Website at All</h3>
+                </div>
+                <p class="section-text">This is the single biggest gap. Notch does not have a dedicated website. notchdurham.co.uk does not exist as a proper site. There is no central place online where someone can see your full menu, book a table, check your opening hours, enquire about private hire, or learn what the bottomless brunch includes. The only way to find this information is by piecing it together from Instagram posts, third-party scrapers, and review sites.</p>
+                <p class="section-text">Every competitor in Durham city centre has a website. When someone Googles "BBQ restaurant Durham" or "bottomless brunch Durham," you are relying entirely on third-party listings to represent you. You have no control over how that information appears, whether it is accurate, or whether it converts a searcher into a customer.</p>
+                <p class="section-text">A single, clean website with your menu, booking system, events calendar, bottomless brunch details, private hire information, and contact details would immediately become your most valuable marketing asset. It is the digital front door that every other channel should point to, and right now it does not exist.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>TikTok Is Underperforming Relative to the Content Opportunity</h3>
+                </div>
+                <p class="section-text">You have a TikTok account and you are posting. That puts you ahead of most. But a BBQ restaurant with smoked meats, open flames, cocktail making, and a packed bottomless brunch is sitting on a content goldmine. The visual content practically makes itself. Brisket being pulled apart, cocktails being shaken, the energy of a Saturday brunch, smoke rolling off the grill. This is exactly the kind of content that goes viral on TikTok without any ad spend.</p>
+                <p class="section-text">The opportunity is in volume and format. You should be posting 4 to 5 times per week minimum, using trending audio, proven restaurant formats like price reveals and "POV" content, and leaning into the specific things that make Notch different. Right now, the account exists but it is not being used at anywhere near its potential. The gap between where you are and where you could be on TikTok is enormous.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>Instagram Engagement Could Be Higher for 12K Followers</h3>
+                </div>
+                <p class="section-text">12,000 followers is a strong base. But follower count only matters if those followers are actively engaging with your content. The opportunity here is to wake up your existing audience with more interactive content. Polls in Stories asking "which cocktail should we feature this weekend," Q&A sessions, "this or that" votes between menu items, behind-the-scenes kitchen content showing the smoking process, staff picks, customer shoutouts.</p>
+                <p class="section-text">Interactive content does two things. First, it drives the algorithm to push your posts to more of your existing followers who have stopped seeing your content. Second, it creates the kind of engagement signals that make Instagram show your content to new people through Explore and Reels. You have the audience. Now it is about activating them.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>No Visible Paid Advertising</h3>
+                </div>
+                <p class="section-text">We checked the Facebook and Instagram Ad Libraries. No ads running for Notch. For a bar and restaurant in a university city with a bottomless brunch offering, this is a missed opportunity. Targeted ads to Durham University students and young professionals would drive immediate bookings. The bottomless brunch practically sells itself as ad creative.</p>
+                <p class="section-text">A simple campaign showing a packed Saturday brunch with cocktails flowing, targeted at 18 to 30 year olds within 10 miles of Durham, with a clear call to action like "Book your Saturday," would generate direct bookings at a very low cost per acquisition. Midweek cocktail specials, event nights, and the riverside outdoor seating are all ad-ready hooks that just need a small budget behind them.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>Review Consistency Worth Watching</h3>
+                </div>
+                <p class="section-text">Your ratings are strong and your TripAdvisor ranking speaks for itself. This is worth mentioning gently rather than as a major concern. Some recent TripAdvisor reviews mention inconsistency in food quality and menu items being unavailable during busy periods. This is something that social media amplifies. One bad experience shared online reaches far more people than the hundred good ones that came before it.</p>
+                <p class="section-text">This is not about the food being bad. Clearly, the vast majority of customers love it. It is about operational consistency during peak times. When you start pushing more people through the door via better digital marketing, making sure the experience is consistently excellent becomes even more important. The marketing brings them in. The experience brings them back.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- The Opportunity -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">The Opportunity</div>
+            <div class="section-title">Strong Foundations, Massive Upside</div>
+            <div class="card case-study-card">
+                <p class="section-text">Most businesses we audit are starting from scratch. Notch is not. You have 12,000 Instagram followers, a top-2 TripAdvisor ranking, a 4.6 Google rating, an active TikTok account, and a product that is genuinely built for social media content. Smoked meats, craft cocktails, a riverside setting, and a bottomless brunch. The ingredients are all there. The gap is between the quality of what you have built and how visible it is online.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">12K</div>
+                        <div class="label">Instagram Followers</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">4.6</div>
+                        <div class="label">Google Rating</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">#2</div>
+                        <div class="label">Bars & Pubs Durham</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">0</div>
+                        <div class="label">Website / Paid Ads</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">22 million views. One reel. One restaurant.</div>
+                    <div class="context"><strong>That was New Greek, a small independent restaurant in Newcastle, before we started working with them.</strong> They had zero social presence. We created short-form video content and one reel hit 22 million views. They went from quiet midweek evenings to fully booked with a waiting list. Notch has even more to work with: an existing audience, a proven product, and a venue that was made for content. The upside is enormous.</div>
+                </div>
+
+                <p class="takeaway">You do not need to build something from nothing. You need to take what is already working and amplify it. A proper website, more intentional video content, and a small paid ads budget would transform your digital presence within 90 days.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- How We Would Help -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">How We Would Help</div>
+            <div class="section-title">What We Would Do for You</div>
+
+            <div class="card">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content and Growth Package</h3>
+                <div class="package-grid">
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Short-form video production</strong> creating high-retention Reels and TikToks from BBQ prep, cocktail making, busy brunch service, riverside shots, and behind-the-scenes kitchen content</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>TikTok growth strategy</strong> increasing posting frequency to 4-5x per week with trending audio, proven restaurant formats, and content that showcases what makes Notch different</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Instagram engagement revival</strong> activating your 12K audience with interactive Stories, Reels, polls, and content formats designed to boost reach and drive the algorithm</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Website design and build</strong> creating your first proper website with menu, booking, events, bottomless brunch details, private hire, and contact in one place</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Paid social campaigns</strong> targeting Durham University students and young professionals to drive bottomless brunch bookings, midweek traffic, and event attendance</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Content strategy</strong> building a content calendar around your key offerings: bottomless brunch, smoked BBQ, cocktails, riverside setting, and events</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content Approach</h3>
+                <ul class="strategy-list">
+                    <li>BBQ content: brisket going on the smoker, the pull-apart reveal, ribs being glazed, burgers being assembled. This is the most satisfying food content on social media</li>
+                    <li>Cocktail content: shaking, pouring, garnishing, flames. Cocktail-making videos are consistently high-performing on both TikTok and Reels</li>
+                    <li>Bottomless brunch energy: packed tables, cocktails arriving, food landing, the buzz of a Saturday afternoon. This is the single best recurring content series you could run</li>
+                    <li>Riverside setting: golden hour shots, outdoor seating, the view over the river. Use the location as a signature visual that competitors cannot replicate</li>
+                    <li>Behind-the-scenes: morning meat prep, smoking process, kitchen teamwork, the effort that goes into every service</li>
+                    <li>Customer moments: groups celebrating, dog-friendly visits, date nights, birthday brunches</li>
+                    <li>Price hooks: "Here is what you get at our bottomless brunch" format that stops people scrolling and drives bookings</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">5 Video Ideas You Could Film Today</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working right now for restaurants and bars on TikTok and Instagram. All of them play to Notch's specific strengths as a BBQ bar with smoked meats, craft cocktails, a riverside location, and a bottomless brunch.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"POV: Saturday bottomless brunch at Notch"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Atmosphere</span>
+                        <span class="idea-tag">Social Proof</span>
+                        <span class="idea-tag">Brunch</span>
+                    </div>
+                    <p class="idea-description">Cocktails being made behind the bar. Food landing on tables. The energy of a packed brunch. Glasses clinking. Groups laughing. The riverside view from the terrace. Fast cuts with a trending audio track. No voiceover needed. Just let the vibe do the work.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> "POV" and "day in the life" formats are massive on TikTok for bars and restaurants. A bottomless brunch is inherently visual, social, and aspirational. This video makes people feel like they are missing out, and that fear of missing out drives bookings directly. This is the single most effective content format for selling a brunch experience.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"How our brisket is smoked for 12 hours"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Process</span>
+                        <span class="idea-tag">Behind the Scenes</span>
+                        <span class="idea-tag">BBQ</span>
+                    </div>
+                    <p class="idea-description">Slow-motion shot of the meat going on the smoker. Time-lapse of smoke rolling. The kitchen working around it. Then the money shot: pulling it apart after 12 hours. Close-up of the bark, the smoke ring, the juicy pull. End with it being plated and served.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> BBQ process content is one of the most satisfying and shareable food formats on social media. The combination of smoke, time, and the final reveal triggers the same response as ASMR content. It racks up saves and shares because people want to show their friends. "We need to go here" is the comment you will see over and over.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"Rating every cocktail on our menu"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Interactive</span>
+                        <span class="idea-tag">Drinks</span>
+                        <span class="idea-tag">Series</span>
+                    </div>
+                    <p class="idea-description">A staff member or willing customer works through the cocktail menu. Each one gets made, tasted, and rated out of 10. Quick cuts. Honest reactions. Disagreements between staff. End with "which one should we try next?" to drive comments.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Rating and ranking content drives enormous engagement because people have opinions. Comments like "how is that only a 7?!" and "I need to try the one that got a 10" are exactly what the algorithm rewards. It also works as a series, meaning you can break this into multiple videos across the whole menu. Each one brings people back.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"This is what you get at our bottomless brunch"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Price Reveal</span>
+                        <span class="idea-tag">Value Hook</span>
+                        <span class="idea-tag">Conversion</span>
+                    </div>
+                    <p class="idea-description">Start with the price on screen. Then show everything that is included. The food arriving. The cocktails. The refills. The desserts. The whole experience from start to finish. End with the group leaving happy. "Every Saturday, 12 to 5. Book via our Instagram."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Price reveal content is the single most effective restaurant ad format on TikTok. People cannot resist finding out what they get for their money. It drives saves (people bookmark it for later), shares (people tag the group chat), and comments (people ask how to book). This one video could fill your bottomless brunch for months.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 05</div>
+                    <div class="idea-title">"Sunday roast at Notch - is it worth it?"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Review Style</span>
+                        <span class="idea-tag">Food</span>
+                        <span class="idea-tag">Trust</span>
+                    </div>
+                    <p class="idea-description">Honest review format. Walk in. Sit down. Show the Sunday roast arriving. Close-ups of each element. Taste reaction. Give it a score. "A food blogger called this one of their favourite Sunday dinners ever. I had to try it for myself." End with the verdict and a booking prompt.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Review-style content builds trust because it feels authentic rather than promotional. The third-party endorsement from Magpie and Mash calling it "one of my favourite Sunday dinners ever" is powerful social proof. Framing it as an honest review rather than an advert makes people trust the recommendation and drives them to try it themselves.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the social media work.</p>
+
+            <div class="enhancement-card">
+                <h4>Build a Proper Website</h4>
+                <p>This is the number one priority. Notch needs a dedicated website that handles everything in one place. Right now, there is no central hub online for your business. A customer searching for your menu, your hours, your brunch details, or private hire options has to dig through Instagram posts and third-party listing sites to find basic information.</p>
+                <ul class="enhancement-list">
+                    <li>Full menu with pricing, clearly laid out and easy to browse on mobile</li>
+                    <li>Online booking integration so people can reserve a table without calling or messaging</li>
+                    <li>Bottomless brunch dedicated page with details, pricing, and a direct booking link</li>
+                    <li>Events calendar showing what is coming up, from live music to special menus</li>
+                    <li>Private hire page for group bookings, corporate events, and birthday parties</li>
+                    <li>Contact details, location map, and opening hours front and centre</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Even a simple one-page site with your menu, hours, location, and a booking link would be a massive improvement over having nothing. Every day without a website is a day where potential customers are bouncing off your Google listing because they cannot find what they need.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Paid Social Targeting Durham Students and Young Professionals</h4>
+                <p>Durham is a university city. There are thousands of students and young professionals within walking distance of Notch who are actively looking for somewhere to eat, drink, and celebrate. Targeted Facebook and Instagram ads are the fastest way to get in front of them.</p>
+                <ul class="enhancement-list">
+                    <li>Bottomless brunch ads targeting 18 to 30 year olds in Durham during the week leading up to Saturday</li>
+                    <li>Midweek cocktail specials ads to fill quieter evenings</li>
+                    <li>Event promotion ads for any special nights, live music, or seasonal menus</li>
+                    <li>Retargeting ads to people who have engaged with your Instagram or visited your page but not booked</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>The numbers:</strong> Restaurant ads on Facebook and Instagram typically cost between 3p and 15p per click. A bottomless brunch booking is worth significantly more than that. Even a small monthly budget would generate measurable returns.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Leverage the Riverside Location in All Content</h4>
+                <p>The Elvet Bridge riverside setting is a huge differentiator that most Durham restaurants do not have. It should feature in every piece of content, not just occasionally. Outdoor seating overlooking the river, golden hour drinks on the terrace, the view at sunset. This is the kind of visual advantage that makes people choose you over a competitor before they even look at the menu.</p>
+                <ul class="enhancement-list">
+                    <li>Make the river view a signature element in your content calendar, not just a background detail</li>
+                    <li>Seasonal content: summer evenings by the river, cosy autumn drinks, the first warm day of spring when the terrace opens</li>
+                    <li>Use location as a hook in ads: "Cocktails overlooking the river. Durham's best-kept secret."</li>
+                    <li>Encourage customers to share photos from the terrace by making it as photogenic as possible</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a UK content and marketing agency that produces short-form video content, manages social media, builds websites, runs paid ad campaigns, and handles branding. Everything under one roof.</p>
+                <p class="about-fc-text">We are based in Newcastle and work with businesses across the North East and beyond. Our approach is simple: create content that people actually want to watch, post it consistently, and let the results speak for themselves. No stock footage, no generic templates, no recycled ideas.</p>
+                <p class="about-fc-text">We have generated over 27 million views for a single restaurant client in under 90 days, including a single reel that hit 22 million views. We understand what makes restaurant content perform, and we know how to turn great food into a packed dining room.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">27M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a look through this audit. The key takeaway is simple: the product, the reviews, and the audience are already there. The digital presence just needs to catch up to match the quality of what you have built.</li>
+                    <li>If any of this resonates, jump on a quick call with us. No pitch, just a conversation about where the biggest wins are for Notch specifically.</li>
+                    <li>We can put together a specific content plan and show you exactly what the first month would look like across TikTok, Instagram, website, and paid social.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But with 12,000 followers already in place, a top-2 TripAdvisor ranking, and a product that was made for social media content, the upside of doing this properly is enormous. You are not starting from zero. You are starting from a position most businesses would love to be in. It is about taking what you have and pushing it to the next level.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Notch Durham</div>
+            <div class="footer-note">This audit was put together using live data from your Instagram, TikTok, Facebook, TripAdvisor, Google, and Facebook Ad Library on 8 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>

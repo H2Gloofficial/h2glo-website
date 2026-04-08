@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notch Durham - BBQ Restaurant & Cocktail Bar | Elvet Bridge, Durham</title>
+    <meta name="description" content="American-style BBQ, handcrafted cocktails, and riverside views on Elvet Bridge, Durham. Slow-smoked meats, bottomless brunch, and good times at Notch.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #1a1a1a;
+            --dark-mid: #222222;
+            --dark-light: #2e2e2e;
+            --amber: #D4854A;
+            --amber-light: #e09a64;
+            --amber-glow: rgba(212, 133, 74, 0.15);
+            --red: #8B3A3A;
+            --red-light: #a04e4e;
+            --white: #FAF8F5;
+            --white-pure: #ffffff;
+            --cream: #f0ece5;
+            --text-dark: #2c2c2c;
+            --text-mid: #5a5a5a;
+            --text-light: #8a8a8a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* BBQ Grill Line Divider */
+        .grill-divider {
+            height: 6px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--dark) 0px, var(--dark) 30px,
+                transparent 30px, transparent 34px
+            );
+            opacity: 0.12;
+        }
+
+        /* Smoke/Flame Decorative Divider */
+        .smoke-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .smoke-divider-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .smoke-divider-line::before,
+        .smoke-divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--amber), transparent);
+        }
+
+        .smoke-divider svg {
+            width: 40px;
+            height: auto;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 133, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .nav-logo span {
+            color: var(--amber);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-book-btn {
+            background: var(--amber) !important;
+            color: var(--dark) !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            transition: background 0.3s ease !important;
+        }
+
+        .nav-book-btn:hover {
+            background: var(--amber-light) !important;
+        }
+
+        .nav-book-btn::after {
+            display: none !important;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(160deg, rgba(26,26,26,0.92) 0%, rgba(20,15,10,0.95) 50%, rgba(15,10,8,0.98) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 30% 70%, rgba(212, 133, 74, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(139, 58, 58, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 100%, rgba(212, 133, 74, 0.06) 0%, transparent 30%);
+        }
+
+        /* Subtle smoke pattern overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.04;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(255,255,255,0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.15) 0%, transparent 45%);
+        }
+
+        /* Animated smoke wisps */
+        .smoke-wisp {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,133,74,0.06) 0%, transparent 70%);
+            animation: drift 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .smoke-wisp:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .smoke-wisp:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+            animation-duration: 22s;
+            width: 300px;
+            height: 300px;
+        }
+
+        .smoke-wisp:nth-child(3) {
+            bottom: 10%;
+            left: 40%;
+            animation-delay: -10s;
+            animation-duration: 20s;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            25% { transform: translate(30px, -20px) scale(1.1); opacity: 0.8; }
+            50% { transform: translate(-20px, -40px) scale(1.2); opacity: 0.4; }
+            75% { transform: translate(20px, -10px) scale(0.9); opacity: 0.7; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 133, 74, 0.1);
+            border: 1px solid rgba(212, 133, 74, 0.25);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: var(--amber);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--amber);
+            font-weight: 400;
+            font-style: italic;
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-location svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--amber);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--amber-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 133, 74, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+            background: rgba(212, 133, 74, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.5s both;
+        }
+
+        .scroll-indicator .mouse {
+            width: 22px;
+            height: 34px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 11px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::after {
+            content: '';
+            width: 3px;
+            height: 8px;
+            background: var(--amber);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s ease infinite;
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-mid) 40%, var(--dark-light) 100%);
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--amber);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .about-image-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 60%, rgba(212, 133, 74, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 40%, rgba(139, 58, 58, 0.1) 0%, transparent 50%);
+        }
+
+        .about-image-placeholder .placeholder-icon {
+            position: relative;
+            z-index: 1;
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 .accent {
+            color: var(--amber);
+            font-style: italic;
+        }
+
+        .about-text p {
+            color: var(--text-mid);
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .about-feature .icon {
+            width: 36px;
+            height: 36px;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--cream);
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .menu-category-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-category-subtitle {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-item {
+            background: var(--white-pure);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .menu-item.signature {
+            border: 1.5px solid var(--amber);
+            position: relative;
+        }
+
+        .menu-item.signature::before {
+            content: 'SIGNATURE';
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            background: var(--amber);
+            color: var(--dark);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--amber);
+            white-space: nowrap;
+        }
+
+        .menu-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn-menu-order {
+            background: var(--amber);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .btn-menu-order:hover {
+            background: var(--amber-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 133, 74, 0.3);
+        }
+
+        /* Bottomless Brunch Section */
+        .brunch {
+            background: var(--dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brunch::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(212, 133, 74, 0.06);
+            border-radius: 50%;
+        }
+
+        .brunch::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgba(139, 58, 58, 0.05);
+            border-radius: 50%;
+        }
+
+        .brunch-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .brunch-badge {
+            display: inline-block;
+            background: rgba(212, 133, 74, 0.15);
+            border: 1px solid rgba(212, 133, 74, 0.35);
+            color: var(--amber);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .brunch h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .brunch-highlight {
+            color: var(--amber);
+        }
+
+        .brunch p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        .brunch-details {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .brunch-detail {
+            text-align: center;
+        }
+
+        .brunch-detail-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.3rem;
+        }
+
+        .brunch-detail-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        .brunch-note {
+            font-size: 0.85rem !important;
+            color: rgba(255, 255, 255, 0.35) !important;
+            margin-top: 1.5rem !important;
+        }
+
+        /* Review Stars */
+        .reviews {
+            background: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .review-card {
+            padding: 2rem;
+            border-radius: 16px;
+            background: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .review-platform {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .review-rating {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .review-stars {
+            color: var(--amber);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        .review-count {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Find Us Section */
+        .find-us {
+            background: var(--cream);
+        }
+
+        .find-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .find-us-map {
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .find-us-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        .find-us-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .info-block {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--amber);
+        }
+
+        .info-block h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-block p, .info-block a {
+            color: var(--text-dark);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-block a:hover {
+            color: var(--amber);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.2rem 1rem;
+        }
+
+        .hours-grid .day {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .hours-grid .time {
+            color: var(--text-mid);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-link:hover {
+            background: var(--amber);
+            transform: translateY(-2px);
+        }
+
+        .social-link:hover svg {
+            fill: var(--dark);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-mid);
+            transition: fill 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 2rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+        }
+
+        .footer-inner a {
+            color: var(--amber);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-inner a:hover {
+            color: var(--white);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-placeholder {
+                aspect-ratio: 16/9;
+                order: -1;
+            }
+
+            .find-us-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3.5rem 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(212, 133, 74, 0.1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 0.3em;
+            }
+
+            .brunch-details {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 0.25em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#1a1a1a,#2e2e2e);color:rgba(255,255,255,0.85);text-align:center;padding:12px 20px;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:0.3px;box-shadow:0 -2px 20px rgba(0,0,0,0.4);border-top:1px solid rgba(212,133,74,0.3);">
+        This is a <strong>template website</strong> created by <a href="https://fusioncreative.uk" target="_blank" style="color:#D4854A;text-decoration:underline;">Fusion Creative</a> to showcase what we can build for Notch. Menu items and prices are from current listings and may change.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">N O T C H</a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#brunch">Bottomless Brunch</a></li>
+                <li><a href="#find-us">Find Us</a></li>
+                <li><a href="#book" class="nav-book-btn">Book a Table</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="smoke-wisp"></div>
+        <div class="smoke-wisp"></div>
+        <div class="smoke-wisp"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                BBQ Restaurant &amp; Cocktail Bar
+            </div>
+            <h1>N O T C H</h1>
+            <p class="hero-tagline">Meet. Eat. Drink.</p>
+            <p class="hero-location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                96 Elvet Bridge, Durham
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#book" class="btn btn-secondary">
+                    Book a Table
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            Scroll
+        </div>
+    </section>
+
+    <div class="grill-divider"></div>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-placeholder fade-in">
+                    <span class="placeholder-icon">&#127830;</span>
+                </div>
+                <div class="about-text fade-in fade-in-delay-1">
+                    <span class="section-label">Our Story</span>
+                    <h2>Bold Flavours,<br><span class="accent">Laid-Back Vibes</span></h2>
+                    <p>Notch is Durham's home for American-style BBQ, handcrafted cocktails, and good times. Perched on Elvet Bridge overlooking the river, we combine bold flavours with a laid-back atmosphere that keeps people coming back.</p>
+                    <p>From slow-smoked brisket to signature cocktails, everything at Notch is crafted with care. Whether you are settling in for a weekend bottomless brunch, sharing a BBQ tray with friends, or enjoying a cocktail on the terrace with riverside views, there is always something to come back for.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="icon">&#128293;</div>
+                            <span>Slow-Smoked BBQ</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#127864;</div>
+                            <span>Craft Cocktails</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#127749;</div>
+                            <span>Riverside Views</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128054;</div>
+                            <span>Dog Friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smoke Divider -->
+    <div class="smoke-divider">
+        <div class="smoke-divider-line">
+            <svg viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 28C20 28 8 20 8 14C8 8 14 4 20 2C26 4 32 8 32 14C32 20 20 28 20 28Z" fill="#D4854A" opacity="0.25"/>
+                <path d="M20 24C20 24 12 18 12 13C12 9 16 6 20 5C24 6 28 9 28 13C28 18 20 24 20 24Z" fill="#D4854A" opacity="0.15"/>
+                <path d="M20 20C20 20 15 16 15 12.5C15 10 17 8 20 7C23 8 25 10 25 12.5C25 16 20 20 20 20Z" fill="#D4854A" opacity="0.1"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <section class="menu" id="menu">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">What We Serve</span>
+                <h2 class="section-title">Our Menu</h2>
+                <p class="section-subtitle">American-style BBQ, bold flavours, and handcrafted cocktails. Everything smoked, grilled, or shaken to perfection.</p>
+            </div>
+
+            <!-- Small Plates & Starters -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Small Plates &amp; Starters</h3>
+                <p class="menu-category-subtitle">Kick things off with something to share</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Halloumi Sticks</div>
+                            <div class="menu-item-desc">Crispy halloumi sticks served with a hot honey dip</div>
+                        </div>
+                        <div class="menu-item-price">&pound;7.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">BBQ Chicken Wings</div>
+                            <div class="menu-item-desc">Tossed in our cherry bourbon BBQ glaze</div>
+                        </div>
+                        <div class="menu-item-price">&pound;8.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Loaded Nachos</div>
+                            <div class="menu-item-desc">Tortilla chips loaded with cheese, jalapenos, salsa, and sour cream</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Crispy Calamari</div>
+                            <div class="menu-item-desc">Lightly battered squid rings with chipotle aioli</div>
+                        </div>
+                        <div class="menu-item-price">&pound;8.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Mac &amp; Cheese Bites</div>
+                            <div class="menu-item-desc">Golden fried mac and cheese balls with a smoky dip</div>
+                        </div>
+                        <div class="menu-item-price">&pound;7.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BBQ & Smoked Meats -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">BBQ &amp; Smoked Meats</h3>
+                <p class="menu-category-subtitle">Low and slow. The way BBQ should be.</p>
+                <div class="menu-grid">
+                    <div class="menu-item signature">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">The Notch Burger</div>
+                            <div class="menu-item-desc">Two smash patties, pulled pork, smoked brisket, cheese, pickles, and our house sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;16.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">BBQ Tray</div>
+                            <div class="menu-item-desc">Beef brisket, pork belly ends, smoked sausage, pulled pork, pickles, slaw, and cornbread</div>
+                        </div>
+                        <div class="menu-item-price">&pound;26.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Smoked Beef Brisket</div>
+                            <div class="menu-item-desc">12-hour smoked brisket, sliced thick, with house BBQ sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;17.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pulled Pork Plate</div>
+                            <div class="menu-item-desc">Slow-smoked pulled pork with coleslaw and pickles</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Smoked Ribs</div>
+                            <div class="menu-item-desc">Full rack of baby back ribs glazed with bourbon BBQ sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;18.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mains -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Mains</h3>
+                <p class="menu-category-subtitle">Something for everyone</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Cauliflower Steak</div>
+                            <div class="menu-item-desc">Chargrilled cauliflower with chimichurri and roasted peppers (V)</div>
+                        </div>
+                        <div class="menu-item-price">&pound;14.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Fish &amp; Chips</div>
+                            <div class="menu-item-desc">Beer-battered cod, thick-cut chips, mushy peas, and tartare sauce</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Chicken Milanese</div>
+                            <div class="menu-item-desc">Crispy breaded chicken breast with a fresh rocket and parmesan salad</div>
+                        </div>
+                        <div class="menu-item-price">&pound;15.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Sunday Roast</div>
+                            <div class="menu-item-desc">Smoked beef brisket, huge Yorkshires, roast potatoes, and all the trimmings (Sundays only)</div>
+                        </div>
+                        <div class="menu-item-price">&pound;16.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sides -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Sides</h3>
+                <p class="menu-category-subtitle">The essentials</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Halloumi Fries</div>
+                            <div class="menu-item-desc">Crispy halloumi fries with sweet chilli dip</div>
+                        </div>
+                        <div class="menu-item-price">&pound;5.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Coleslaw</div>
+                            <div class="menu-item-desc">House-made creamy coleslaw</div>
+                        </div>
+                        <div class="menu-item-price">&pound;4.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Fries</div>
+                            <div class="menu-item-desc">Seasoned skin-on fries</div>
+                        </div>
+                        <div class="menu-item-price">&pound;4.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Mac &amp; Cheese</div>
+                            <div class="menu-item-desc">Creamy three-cheese mac with a crispy breadcrumb top</div>
+                        </div>
+                        <div class="menu-item-price">&pound;5.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Corn on the Cob</div>
+                            <div class="menu-item-desc">Chargrilled corn with smoked butter</div>
+                        </div>
+                        <div class="menu-item-price">&pound;4.50</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cocktails -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Cocktails</h3>
+                <p class="menu-category-subtitle">Handcrafted at the bar</p>
+                <div class="menu-grid">
+                    <div class="menu-item signature">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Tiramisu Martini</div>
+                            <div class="menu-item-desc">Espresso, Baileys, Kahlua, and vanilla, finished with a cocoa dust rim</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Espresso Martini</div>
+                            <div class="menu-item-desc">Vodka, fresh espresso, and coffee liqueur shaken ice-cold</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Aperol Spritz</div>
+                            <div class="menu-item-desc">Aperol, prosecco, and soda over ice with a fresh orange slice</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Notch Old Fashioned</div>
+                            <div class="menu-item-desc">Bourbon, smoked maple syrup, Angostura bitters, orange peel</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Margarita</div>
+                            <div class="menu-item-desc">Tequila, triple sec, fresh lime juice, salted rim</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.50</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-cta fade-in">
+                <a href="#book" class="btn btn-menu-order">
+                    Book a Table
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottomless Brunch -->
+    <section class="brunch" id="brunch">
+        <div class="brunch-inner fade-in">
+            <div class="brunch-badge">Every Saturday</div>
+            <h2><span class="brunch-highlight">Bottomless</span> Brunch</h2>
+            <p>Unlimited cocktails and a selection of brunch bites. The best way to start your weekend in Durham.</p>
+            <p>Gather the group, grab a table on the terrace, and let us keep the drinks flowing.</p>
+            <div class="brunch-details">
+                <div class="brunch-detail">
+                    <div class="brunch-detail-label">When</div>
+                    <div class="brunch-detail-value">Every Saturday</div>
+                </div>
+                <div class="brunch-detail">
+                    <div class="brunch-detail-label">Time</div>
+                    <div class="brunch-detail-value">12pm - 5pm</div>
+                </div>
+                <div class="brunch-detail">
+                    <div class="brunch-detail-label">Where</div>
+                    <div class="brunch-detail-value">Elvet Bridge</div>
+                </div>
+            </div>
+            <a href="#book" class="btn btn-primary" style="margin-top:1rem;">Book Bottomless Brunch</a>
+            <p class="brunch-note">Booking recommended. 90-minute sittings. Must be 18+. Drink responsibly.</p>
+        </div>
+    </section>
+
+    <!-- Smoke Divider -->
+    <div class="smoke-divider">
+        <div class="smoke-divider-line">
+            <svg viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 28C20 28 8 20 8 14C8 8 14 4 20 2C26 4 32 8 32 14C32 20 20 28 20 28Z" fill="#D4854A" opacity="0.25"/>
+                <path d="M20 24C20 24 12 18 12 13C12 9 16 6 20 5C24 6 28 9 28 13C28 18 20 24 20 24Z" fill="#D4854A" opacity="0.15"/>
+                <path d="M20 20C20 20 15 16 15 12.5C15 10 17 8 20 7C23 8 25 10 25 12.5C25 16 20 20 20 20Z" fill="#D4854A" opacity="0.1"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <section class="reviews" id="reviews">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">What People Say</span>
+                <h2 class="section-title">Rated &amp; Reviewed</h2>
+                <p class="section-subtitle">#2 Bars &amp; Pubs in Durham on TripAdvisor</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-in">
+                    <div class="review-platform">Google</div>
+                    <div class="review-rating">4.6</div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="review-count">Google Reviews</div>
+                </div>
+                <div class="review-card fade-in fade-in-delay-1">
+                    <div class="review-platform">TripAdvisor</div>
+                    <div class="review-rating">4.5</div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                    <div class="review-count">265 reviews</div>
+                </div>
+                <div class="review-card fade-in fade-in-delay-2">
+                    <div class="review-platform">Durham Ranking</div>
+                    <div class="review-rating">#2</div>
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="review-count">Bars &amp; Pubs in Durham</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Us -->
+    <section class="find-us" id="find-us">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">Visit Us</span>
+                <h2 class="section-title">Find Us</h2>
+                <p class="section-subtitle">Right on Elvet Bridge, overlooking the River Wear</p>
+            </div>
+            <div class="find-us-grid">
+                <div class="find-us-map fade-in">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2312.5!2d-1.5749!3d54.7753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e876c5c7e7a1d%3A0x7a7a7a7a7a7a7a7a!2s96+Elvet+Bridge%2C+Durham+DH1+3AG!5e0!3m2!1sen!2suk!4v1700000000000"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Notch Durham location on Google Maps">
+                    </iframe>
+                </div>
+                <div class="find-us-info fade-in fade-in-delay-1">
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>96 Elvet Bridge<br>Durham<br>DH1 3AG</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <div class="hours-grid">
+                                <span class="day">Mon - Thu</span>
+                                <span class="time">5:00pm - 11:00pm</span>
+                                <span class="day">Fri - Sat</span>
+                                <span class="time">12:00pm - 12:00am</span>
+                                <span class="day">Sunday</span>
+                                <span class="time">12:00pm - 5:00pm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:Emilio@notchdurham.co.uk">Emilio@notchdurham.co.uk</a>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Follow Us</h4>
+                            <a href="https://www.instagram.com/notch_durham/" target="_blank" rel="noopener">@notch_durham</a>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/notch_durham/" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Instagram">
+                                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                                </a>
+                                <a href="https://www.tiktok.com/@notchdurham" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on TikTok">
+                                    <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.17V11.2a4.85 4.85 0 01-2-.51v-.01a4.83 4.83 0 002-3.99z"/></svg>
+                                </a>
+                                <a href="https://www.facebook.com/notchdurham" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Facebook">
+                                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="grill-divider"></div>
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; 2026 Notch Durham. All rights reserved.</p>
+            <p>Website by <a href="https://fusioncreative.uk" target="_blank" rel="noopener">Fusion Creative</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
