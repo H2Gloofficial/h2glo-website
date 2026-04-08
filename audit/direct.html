@@ -146,37 +146,10 @@ em{font-family:var(--font-serif);font-style:italic;font-weight:400}
   <div class="form-card">
     <div id="form-content" class="form-content">
       <div class="form-title">Get your free <em>audit.</em></div>
-      <p class="form-sub">Takes 60 seconds. We will be in touch within 24 hours.</p>
-      <div class="progress-track"><div class="progress-seg filled" id="seg-1"></div><div class="progress-seg" id="seg-2"></div><div class="progress-seg" id="seg-3"></div><div class="progress-seg" id="seg-4"></div><div class="progress-seg" id="seg-5"></div></div>
+      <p class="form-sub">Share your details and we will deep dive your socials, website, and competitors. Full branded report delivered to your inbox.</p>
+      <div class="progress-track"><div class="progress-seg filled" id="seg-1"></div><div class="progress-seg" id="seg-2"></div></div>
 
       <div class="form-step active" id="step-1">
-        <p style="font-weight:600;margin-bottom:1rem;">What type of business do you run?</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="form-options-grid">
-          <button type="button" class="opt-btn" data-field="business_type" data-value="restaurant"><span style="font-size:1.3rem">&#127869;</span> Restaurant</button>
-          <button type="button" class="opt-btn" data-field="business_type" data-value="pub_bar"><span style="font-size:1.3rem">&#127866;</span> Pub or Bar</button>
-          <button type="button" class="opt-btn" data-field="business_type" data-value="cafe_takeaway"><span style="font-size:1.3rem">&#9749;</span> Cafe or Takeaway</button>
-          <button type="button" class="opt-btn" data-field="business_type" data-value="other"><span style="font-size:1.3rem">&#127978;</span> Other</button>
-        </div>
-      </div>
-      <div class="form-step" id="step-2">
-        <p style="font-weight:600;margin-bottom:1rem;">What is your biggest goal right now?</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="form-options-grid">
-          <button type="button" class="opt-btn" data-field="goal" data-value="more_customers"><span style="font-size:1.3rem">&#128101;</span> More customers</button>
-          <button type="button" class="opt-btn" data-field="goal" data-value="brand_awareness"><span style="font-size:1.3rem">&#128227;</span> Brand awareness</button>
-          <button type="button" class="opt-btn" data-field="goal" data-value="go_viral"><span style="font-size:1.3rem">&#128640;</span> Go viral on TikTok</button>
-          <button type="button" class="opt-btn" data-field="goal" data-value="full_management"><span style="font-size:1.3rem">&#128241;</span> Full social management</button>
-        </div>
-      </div>
-      <div class="form-step" id="step-3">
-        <p style="font-weight:600;margin-bottom:1rem;">How is your social media currently?</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <button type="button" class="opt-btn" data-field="social_status" data-value="not_posting">Not really posting at all</button>
-          <button type="button" class="opt-btn" data-field="social_status" data-value="no_results">Posting but getting no results</button>
-          <button type="button" class="opt-btn" data-field="social_status" data-value="inconsistent">Inconsistent, no real strategy</button>
-          <button type="button" class="opt-btn" data-field="social_status" data-value="okay_want_more">Okay but want much more</button>
-        </div>
-      </div>
-      <div class="form-step" id="step-4">
         <p style="font-weight:600;margin-bottom:1rem;">Tell us about your business.</p>
         <div style="display:flex;flex-direction:column;gap:14px;">
           <label for="f-business_name" class="sr-only">Business Name</label>
@@ -187,8 +160,8 @@ em{font-family:var(--font-serif);font-style:italic;font-weight:400}
           <input class="form-input" id="f-website" name="website" placeholder="Website (optional)" autocomplete="url" />
         </div>
       </div>
-      <div class="form-step" id="step-5">
-        <p style="font-weight:600;margin-bottom:1rem;">How do we send your audit?</p>
+      <div class="form-step" id="step-2">
+        <p style="font-weight:600;margin-bottom:1rem;">Where do we send your audit?</p>
         <div style="display:flex;flex-direction:column;gap:14px;">
           <label for="f-name" class="sr-only">Your Name</label>
           <input class="form-input" id="f-name" name="name" placeholder="Your Name" autocomplete="name" />
@@ -205,9 +178,9 @@ em{font-family:var(--font-serif);font-style:italic;font-weight:400}
       </div>
     </div>
     <div class="form-success" id="form-success">
-      <div style="font-size:3.5rem;margin-bottom:1rem;">&#127881;</div>
-      <h2 style="font-size:2rem;font-weight:700;letter-spacing:-0.03em;">You are <em>in.</em></h2>
-      <p style="color:var(--mid);font-size:0.95rem;line-height:1.7;max-width:400px;margin:1rem auto 0;">We have received your audit request and will be in touch within 24 hours. Follow <strong style="color:var(--signal);">@fusioncreative.uk</strong> on TikTok and Instagram to see what we do.</p>
+      <div style="font-size:3.5rem;margin-bottom:1rem;">&#9889;</div>
+      <h2 style="font-size:2rem;font-weight:700;letter-spacing:-0.03em;">We are on <em>it.</em></h2>
+      <p style="color:var(--mid);font-size:0.95rem;line-height:1.7;max-width:400px;margin:1rem auto 0;">Our team is already diving into your socials, website, and competitors. You will receive a full branded audit report in your inbox shortly. Follow <strong style="color:var(--signal);">@fusioncreative.uk</strong> on TikTok and Instagram to see what we do.</p>
     </div>
   </div>
 
@@ -241,26 +214,12 @@ function declineCookies(){localStorage.setItem('fc_cookie_consent','declined');d
 (function(){var c=localStorage.getItem('fc_cookie_consent');if(!c)setTimeout(function(){document.getElementById('cookieBanner').classList.add('visible')},2000)})();
 
 // FORM LOGIC
-var formData={business_type:'',goal:'',social_status:'',business_name:'',social_handle:'',website:'',name:'',email:'',phone:''};
+var formData={business_name:'',social_handle:'',website:'',name:'',email:'',phone:''};
 var currentStep=1;
 
-document.querySelectorAll('.opt-btn').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var field=this.getAttribute('data-field');
-    var value=this.getAttribute('data-value');
-    formData[field]=value;
-    this.closest('.form-step').querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('active')});
-    this.classList.add('active');
-    updateButtons();
-  });
-});
-
 function canNext(){
-  if(currentStep===1)return!!formData.business_type;
-  if(currentStep===2)return!!formData.goal;
-  if(currentStep===3)return!!formData.social_status;
-  if(currentStep===4)return!!document.getElementById('f-business_name').value.trim();
-  if(currentStep===5)return!!document.getElementById('f-name').value.trim()&&!!document.getElementById('f-email').value.trim();
+  if(currentStep===1)return!!document.getElementById('f-business_name').value.trim();
+  if(currentStep===2)return!!document.getElementById('f-name').value.trim()&&!!document.getElementById('f-email').value.trim();
   return false;
 }
 
@@ -270,14 +229,14 @@ function updateButtons(){
   var nextText=document.getElementById('btn-next-text');
   back.style.display=currentStep>1?'inline-flex':'none';
   spacer.style.display=currentStep>1?'none':'block';
-  nextText.innerHTML=currentStep===5?'Get My Free Audit &rarr;':'Next &rarr;';
+  nextText.innerHTML=currentStep===2?'Get My Free Audit &rarr;':'Next &rarr;';
   document.getElementById('btn-next').classList.toggle('btn-disabled',!canNext());
 }
 
 function showStep(n){
   document.querySelectorAll('.form-step').forEach(function(el){el.classList.remove('active')});
   document.getElementById('step-'+n).classList.add('active');
-  for(var i=1;i<=5;i++)document.getElementById('seg-'+i).classList.toggle('filled',i<=n);
+  for(var i=1;i<=2;i++)document.getElementById('seg-'+i).classList.toggle('filled',i<=n);
   updateButtons();
 }
 
@@ -287,14 +246,12 @@ function nextStep(){
     btn.classList.add('shake');
     setTimeout(function(){btn.classList.remove('shake')},500);
     var step=document.getElementById('step-'+currentStep);
-    var opts=step.querySelectorAll('.opt-btn');
     var inputs=step.querySelectorAll('.form-input');
-    if(opts.length){opts.forEach(function(o){o.classList.add('highlight-required');setTimeout(function(){o.classList.remove('highlight-required')},1500)})}
     if(inputs.length){inputs.forEach(function(inp){if(!inp.value.trim()){inp.classList.add('highlight-required');setTimeout(function(){inp.classList.remove('highlight-required')},1500)}})}
     return;
   }
-  if(currentStep===4){formData.business_name=document.getElementById('f-business_name').value.trim();formData.social_handle=document.getElementById('f-social_handle').value.trim();formData.website=document.getElementById('f-website').value.trim()}
-  if(currentStep===5){formData.name=document.getElementById('f-name').value.trim();formData.email=document.getElementById('f-email').value.trim();formData.phone=document.getElementById('f-phone').value.trim();submitForm();return}
+  if(currentStep===1){formData.business_name=document.getElementById('f-business_name').value.trim();formData.social_handle=document.getElementById('f-social_handle').value.trim();formData.website=document.getElementById('f-website').value.trim()}
+  if(currentStep===2){formData.name=document.getElementById('f-name').value.trim();formData.email=document.getElementById('f-email').value.trim();formData.phone=document.getElementById('f-phone').value.trim();submitForm();return}
   currentStep++;showStep(currentStep);
 }
 function prevStep(){if(currentStep<=1)return;currentStep--;showStep(currentStep)}
@@ -307,12 +264,23 @@ function submitForm(){
   fetch('https://newgreek.fusioncreative.uk/api/audit-lead/',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(Object.assign({},formData,{notes:'Source: Audit Direct Landing Page (Ad Traffic)'}))
+    body:JSON.stringify({
+      business_type:'unknown',
+      goal:'free_audit',
+      social_status:'unknown',
+      business_name:formData.business_name,
+      social_handle:formData.social_handle||null,
+      website:formData.website||null,
+      name:formData.name,
+      email:formData.email,
+      phone:formData.phone||null,
+      notes:'Source: Audit Direct Landing Page (Ad Traffic) v2'
+    })
   }).then(function(res){
     if(!res.ok)throw new Error('Server error');
     return res.json();
   }).then(function(){
-    if(typeof fbq==='function')fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:'Hospitality',status:'submitted'});
+    if(typeof fbq==='function')fbq('track','Lead',{content_name:'Free Social Media Audit',content_category:'Audit Direct',status:'submitted'});
     document.getElementById('form-content').classList.add('hidden');
     document.getElementById('form-success').classList.add('active');
   }).catch(function(err){

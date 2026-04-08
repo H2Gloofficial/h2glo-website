@@ -59,7 +59,7 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
 /* ===== UTILITIES ===== */
 .container { max-width: 1240px; margin: 0 auto; padding: 0 5vw; width: 100%; }
 .container-center { text-align: center; }
-.section-pad { padding: 12vmax 0; }
+.section-pad { padding: 6vmax 0; }
 
 
 
@@ -969,8 +969,7 @@ a:not(.btn):hover, button:not(.btn):hover { transform: translateY(-1px); }
   .digital-grid { grid-template-columns: 1fr; max-width: 500px; }
   .proto-row { grid-template-columns: 1fr; gap: 1rem; text-align: center;}
   .proto-icon { margin: 0 auto; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 400px;}
-  .price-card.featured { transform: scale(1); }
+  /* Desktop pricing grid hidden on mobile - handled by card stack component */
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .f-col-large { grid-column: 1 / -1; }
 }
@@ -1059,10 +1058,7 @@ a:not(.btn):hover, button:not(.btn):hover { transform: translateY(-1px); }
   .demo-scheduler .week-grid { gap: 0.2rem; }
   .day-slot { width: 22px; height: 22px; font-size: 0.7rem; }
 
-  /* Pricing */
-  .pricing-grid { grid-template-columns: 1fr; }
-  .price-card { padding: 2rem 1.5rem; }
-  .price-card.featured { transform: none; }
+  /* Pricing - stacked cards handled by 768px breakpoint */
 
   /* Sections */
   .section-pad { padding: 4rem 1.25rem; }
