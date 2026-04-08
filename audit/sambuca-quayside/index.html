@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Sambuca Quayside | Fusion Creative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --card-border: rgba(0,0,0,0.06);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .intro-card .greeting {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.1);
+            color: var(--coral);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.1);
+            color: #ff9f0a;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #34c759;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat:nth-child(1) { animation-delay: 0.1s; }
+        .case-study-stat:nth-child(2) { animation-delay: 0.2s; }
+        .case-study-stat:nth-child(3) { animation-delay: 0.3s; }
+        .case-study-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .case-study-stat .number {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .package-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+        }
+
+        .package-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .package-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .package-item strong {
+            color: var(--text);
+        }
+
+        .strategy-list {
+            list-style: none;
+        }
+
+        .strategy-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+
+        .strategy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-list li::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.04);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 80%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.04);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat:nth-child(1) { animation-delay: 0.1s; }
+        .about-fc-stat:nth-child(2) { animation-delay: 0.2s; }
+        .about-fc-stat:nth-child(3) { animation-delay: 0.3s; }
+        .about-fc-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .about-fc-stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.4);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+            background: #edeef2;
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff;
+                --card: #f8f8f8;
+                --card-border: #e0e0e0;
+                --text: #111111;
+                --text-secondary: #444444;
+                --text-muted: #888888;
+            }
+
+            body {
+                background: white;
+                color: #111;
+                font-size: 11pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 28pt;
+            }
+
+            .hero h1 span {
+                -webkit-text-fill-color: var(--coral);
+                background: none;
+                animation: none;
+            }
+
+            .card, .video-idea-card, .enhancement-card, .case-study-card, .intro-card, .next-steps-card {
+                background: #f8f8f8 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border-color: #e0e0e0;
+                box-shadow: none !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .section {
+                animation: none !important;
+            }
+
+            .case-study-card::before {
+                background: var(--coral);
+            }
+
+            .video-idea-card::before {
+                background: var(--coral);
+            }
+
+            .case-study-stat {
+                background: rgba(232, 85, 60, 0.06) !important;
+                animation: none !important;
+            }
+
+            .viral-callout {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .highlight-box {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .cta-btn {
+                animation: none !important;
+                box-shadow: none !important;
+            }
+
+            a {
+                color: var(--coral) !important;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .hero {
+                padding: 40px 0 32px;
+                animation: none !important;
+            }
+
+            .footer {
+                background: #f0f0f0 !important;
+            }
+
+            .stat-badge, .about-fc-stat {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .video-idea-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .video-idea-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .enhancement-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .enhancement-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">8 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Sambuca Quayside</span></h1>
+            <p class="hero-subtitle">Prepared by Fusion Creative | 8 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey, the Sambuca Quayside team,</div>
+                <p class="section-text">This is not a sales pitch. We are Fusion Creative, a UK content and marketing agency. We took a deep look at Sambuca Quayside's online presence and put together our honest findings.</p>
+                <p class="section-text">You have built something that clearly works. An Italian restaurant on Newcastle's Quayside that has been going strong since 2001, with a 4.3 on TripAdvisor from 963 reviews, a 94% recommendation rate on Facebook, and customers consistently calling you "underpriced for the quality." That is a powerful combination. But we found <strong>five areas where there is real room to grow</strong>, and the biggest one is costing you thousands of potential followers and bookings every month. It is all in this report.</p>
+                <p class="section-text">Inside you will find a full snapshot of where you are now, what is working well, key opportunities you are leaving on the table, video ideas you can use immediately, and recommendations for quick wins. Even if we never speak, this is yours to keep.</p>
+            </div>
+
+            <!-- Fusion Creative metrics card -->
+            <div class="card" style="margin-top:8px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--coral); margin-bottom:6px;">Client Results</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Generated for a single restaurant client within 90 days</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">27M+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">394K+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Engagements</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">6,657</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">22M</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
+                    </div>
+                </div>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">New Greek, a small independent restaurant in Newcastle with zero social presence before us. One reel hit 22 million views. They went from empty tables to a waiting list. Sambuca Quayside has the same potential, and you are starting from a stronger position with an established brand, an incredible location, and a loyal customer base that already loves the food.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Google Rating</td>
+                        <td>~4.5 / 5 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Rating</td>
+                        <td>4.3 / 5 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Reviews</td>
+                        <td>963 reviews <span class="stat-badge-green">Excellent Volume</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Ranking</td>
+                        <td>#33 of 1,172 in Newcastle <span class="stat-badge-green">Top 3%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook</td>
+                        <td>1,459 reviews, 94% recommended <span class="stat-badge-green">Outstanding</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@sambucaquayside)</td>
+                        <td class="stat-highlight">3,028 followers <span class="stat-badge">Very Low</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok (@sambucaquayside)</td>
+                        <td>Active <span class="stat-badge-amber">Needs Strategy</span></td>
+                    </tr>
+                    <tr>
+                        <td>Website</td>
+                        <td class="stat-highlight">Generic chain page <span class="stat-badge">Underserving Location</span></td>
+                    </tr>
+                    <tr>
+                        <td>Paid Ads Running</td>
+                        <td class="stat-highlight" style="color: var(--text-muted);">None visible</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> TripAdvisor presence is excellent</h4>
+                    <p>963 reviews and ranked #33 in a city with 1,172 restaurants is genuinely impressive. That is the top 3% of all restaurants in Newcastle. The volume and consistency of positive reviews means TripAdvisor is actively working for you as a discovery channel. People searching for "Italian restaurant Newcastle" or "Quayside restaurants" are finding you through TripAdvisor, and what they find is convincing.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Facebook is a genuine asset</h4>
+                    <p>1,459 reviews with a 94% recommendation rate is outstanding social proof. That is the kind of number that makes someone trust you immediately. When a potential customer lands on your Facebook page and sees nearly 1,500 people recommending the restaurant, the decision to book is almost already made. This is one of the strongest Facebook review profiles we have seen for a restaurant in the North East.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You are already on TikTok and posting regularly</h4>
+                    <p>Most restaurants your size are not even on TikTok yet. You are ahead of the curve just by being there and posting. The fact that you have staff creating food content, customer reaction videos, and behind-the-scenes clips means the foundation is already in place. The content just needs to be sharpened and given a proper strategy to reach its full potential.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The Quayside location is an incredible content backdrop</h4>
+                    <p>The Tyne Bridge and Newcastle Quayside at night are one of the most photographed scenes in the entire North East. You sit right in the middle of it. Every piece of content you create has a built-in visual hook that most restaurants would pay anything for. Riverside dining with bridge views is not something you can manufacture. You already have it.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The value proposition is consistently praised</h4>
+                    <p>"Underpriced for the quality" appears repeatedly in your reviews. That is an incredibly powerful message in the current climate. When people are actively looking for affordable dining that does not compromise on quality, that phrase alone is worth more than any ad campaign. Budget-friendly hearty Italian food on the Quayside is a proposition that practically markets itself.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Live music and events create natural content opportunities</h4>
+                    <p>Live music nights, cocktails, and a buzzing atmosphere are exactly the kind of moments that perform on social media. A Friday night with a live musician, people enjoying cocktails by the river, plates of Italian food landing on tables. That is content gold. Most restaurants have to manufacture atmosphere. Yours happens naturally every weekend.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Things Holding You Back</div>
+            <p class="section-text" style="margin-bottom: 32px;">The food, the reviews, and the location are all strong. You have built a restaurant that people love once they walk through the door. The problem is that your digital presence is not matching the quality of the experience you deliver. Here is where the biggest gaps are.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>Instagram Is Massively Underperforming</h3>
+                </div>
+                <p class="section-text">3,028 followers for an established restaurant chain on the Newcastle Quayside is shockingly low. To put that in context, independent restaurants half your size in Newcastle have more followers. The Quayside is one of the most visited and photographed areas in the city. People are already taking photos of the bridge, the river, and the buildings around you and posting them to Instagram every single day. You should be capturing a share of that attention.</p>
+                <p class="section-text">This is the single biggest missed opportunity in your entire digital presence. Instagram is where people go to decide where to eat. They search locations, browse hashtags, check restaurant feeds. A Quayside restaurant with 3,000 followers is invisible in that ecosystem. With the right content strategy, consistent posting, and use of your location as a visual asset, this number should be 10 times higher within 12 months.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>TikTok Content Needs a Strategy Overhaul</h3>
+                </div>
+                <p class="section-text">You are posting on TikTok, which puts you ahead of most competitors. But the content is not optimised for how the platform works. TikTok rewards strong hooks in the first second, trending formats, high-quality visuals, and content that makes people stop scrolling. A restaurant with riverside views, live music, cocktail making, and Italian food being prepared has everything TikTok rewards. You have all the raw ingredients.</p>
+                <p class="section-text">What is missing is the strategy. Trending audio, better hooks, consistent production quality, and formats that are proven to drive reach for restaurants. The difference between a video that gets 500 views and one that gets 500,000 views is rarely the content itself. It is how it is packaged. Your content has the substance. It just needs the structure.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>No Paid Advertising in One of Newcastle's Most Competitive Dining Areas</h3>
+                </div>
+                <p class="section-text">We checked the Facebook and Instagram Ad Libraries. No ads running for Sambuca Quayside. The Quayside is a destination dining area. People actively search "where to eat Quayside Newcastle" and "Italian restaurant Quayside." If you are not appearing in those searches through paid social, your competitors are getting those bookings instead.</p>
+                <p class="section-text">Paid social advertising for restaurants is incredibly cost-effective when you have strong creative and a clear value proposition. A beautifully shot video of Italian food arriving at a riverside table, with a direct "Book a table" call to action, targeted at people within 15 miles of Newcastle who are interested in dining out and Italian food, would generate direct bookings. With your price point as the hook, the ads practically write themselves.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>The Chain Has 10+ Locations But the Quayside Account Is Siloed</h3>
+                </div>
+                <p class="section-text">There is a group account (@thesambucagroup) and a Quayside-specific account (@sambucaquayside). The strategy between them is unclear. The Quayside location has a unique selling point that no other Sambuca has: the riverside views and the Tyne Bridge backdrop. That deserves its own identity and content strategy, not just a branch page that follows the same template as every other location.</p>
+                <p class="section-text">The Quayside account needs to lean hard into what makes it different. The views, the atmosphere, the location. When someone follows @sambucaquayside, they should feel like they are following a Quayside experience, not just another chain restaurant. The identity of the location should come through in every post, every story, every reel.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>The Website Is a Generic Chain Page</h3>
+                </div>
+                <p class="section-text">The Quayside page on sambucarestaurants.co.uk is a basic listing on the chain site. It does not showcase what makes the Quayside location special. There are no atmospheric photos of the riverside setting, no highlight of the Tyne Bridge views, no events calendar, no sense of the experience that reviewers consistently rave about.</p>
+                <p class="section-text">When someone searches for "Sambuca Quayside" and lands on that page, they should immediately feel the atmosphere. They should see the views, the live music, the cocktails, the food. Instead, they get a generic listing that could be any of the 10+ Sambuca locations. The Quayside location has a story to tell that is different from every other branch. The website should tell it.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- The Opportunity -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">The Opportunity</div>
+            <div class="section-title">The Best Location in Newcastle, Undersold Online</div>
+            <div class="card case-study-card">
+                <p class="section-text">You are sitting on one of the best restaurant locations in the entire North East. The Quayside, the Tyne Bridge, the river at night. People travel specifically to eat on the Quayside. You have been there since 2001, the food is consistently praised, the value is outstanding, and you have nearly 2,500 reviews across TripAdvisor and Facebook proving it. The offline reputation is rock solid. The online presence just needs to catch up.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">963</div>
+                        <div class="label">TripAdvisor Reviews</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">94%</div>
+                        <div class="label">Facebook Recommended</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">3K</div>
+                        <div class="label">Instagram (Should Be 30K+)</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">#33</div>
+                        <div class="label">Out of 1,172 Restaurants</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">22 million views. One reel. One restaurant.</div>
+                    <div class="context"><strong>That was New Greek, a small independent restaurant in Newcastle, before we started working with them.</strong> They had zero social presence. We created short-form video content and one reel hit 22 million views. They went from quiet midweek evenings to fully booked with a waiting list. Sambuca Quayside has even more to work with: 25 years of history, a world-class location, live music, and a value proposition that customers cannot stop talking about. The content is right there. It just needs to be captured properly.</div>
+                </div>
+
+                <p class="takeaway">You do not need to change the restaurant. You need to show people what is already happening inside it. The views, the food, the music, the people. Turn the camera on and let the Quayside do the rest.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- How We Would Help -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">How We Would Help</div>
+            <div class="section-title">What We Would Do for You</div>
+
+            <div class="card">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content and Growth Package</h3>
+                <div class="package-grid">
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Short-form video production</strong> creating high-retention Reels and TikToks showcasing the riverside setting, food preparation, live music, cocktails, and the atmosphere that makes the Quayside location unique</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>TikTok strategy overhaul</strong> with trending formats, stronger hooks, consistent production quality, and a posting cadence designed to drive local discovery in Newcastle and the wider North East</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Instagram growth strategy</strong> to take the Quayside account from 3,000 followers to where it should be, with consistent Reels, Stories, and location-driven content that captures the Quayside audience</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Paid social campaigns</strong> targeting local diners searching for Quayside dining, Italian food in Newcastle, and weekend restaurant bookings to drive direct reservations</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Location identity development</strong> establishing the Quayside account as its own brand with a distinct personality that leverages the riverside setting and separates it from the generic chain presence</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Staff-led content creation</strong> turning team members like Adam into recognisable content characters that give the restaurant a personal, human face on social media</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content Approach</h3>
+                <ul class="strategy-list">
+                    <li>Riverside content: every video and photo should feature the Tyne Bridge and Quayside views because that is your biggest visual differentiator</li>
+                    <li>Live music atmosphere: capture the energy of a Friday night with a live musician, cocktails, and a packed dining room by the river</li>
+                    <li>Value reveals: "What you get for under 15 pounds at Sambuca" is the kind of content that drives massive engagement and shares</li>
+                    <li>Staff spotlight: Adam has 50+ five-star mentions on TripAdvisor. Turn him into a content character. People follow people, not restaurants</li>
+                    <li>Heritage storytelling: 25 years of serving Italian food on the Quayside is a story worth telling and one that builds trust instantly</li>
+                    <li>Cocktail and drink content: cocktail-making videos with the river in the background are exactly what TikTok and Reels reward</li>
+                    <li>Seasonal Quayside content: the location changes with the seasons. Summer evenings, Christmas lights, autumn sunsets over the Tyne. Each one is a content opportunity</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">5 Video Ideas You Could Film Today</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working right now for restaurants on TikTok and Instagram. All of them play to Sambuca Quayside's unique strengths: the riverside location, the value, the people, and the atmosphere.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"POV: Italian dinner with THIS view"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Location</span>
+                        <span class="idea-tag">Atmosphere</span>
+                        <span class="idea-tag">Food</span>
+                    </div>
+                    <p class="idea-description">Camera starts on a plate of food. Slow pan up and out through the window to reveal the Tyne Bridge lit up at night. The river reflecting the lights. Back to the table. Cocktails, pasta, the whole scene. No voiceover needed. Let the view do the talking. End with a text overlay: "Sambuca Quayside. Every table has this view."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> The view sells the restaurant. The Tyne Bridge at night is one of the most recognisable landmarks in the North East. A video that reveals it as your dinner backdrop creates an immediate emotional response. People save it, share it, tag friends. "We need to go here." That is the comment you want, and this video gets it.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"We have been serving Italian classics since 2001"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Heritage</span>
+                        <span class="idea-tag">Brand Story</span>
+                        <span class="idea-tag">Trust</span>
+                    </div>
+                    <p class="idea-description">A heritage story video. Show the restaurant through the years if you have old photos. Show the kitchen, the team, the regulars. The hands that make the food. The dining room being set up before service. A voiceover or text overlay telling the story: "25 years on the Quayside. Same recipes. Same passion. Same view." End with a packed Saturday night.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Chain restaurants struggle with authenticity on social media. People assume they are corporate and impersonal. A heritage story that shows 25 years of real history, real people, and real food breaks that assumption completely. It turns Sambuca Quayside from "a chain restaurant" into "the Italian that has been on the Quayside for a quarter of a century." That is a completely different proposition.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"Our waiter Adam has 50+ five-star reviews"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Staff Spotlight</span>
+                        <span class="idea-tag">Social Proof</span>
+                        <span class="idea-tag">Personality</span>
+                    </div>
+                    <p class="idea-description">Show screenshots of TripAdvisor reviews mentioning Adam by name. Then cut to Adam at work. Greeting customers, carrying plates, recommending dishes, having a laugh with a table. Let his personality come through. End with: "Come for the Italian food. Stay because Adam will not let you leave without trying the tiramisu."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> People follow people, not restaurants. Adam is mentioned by name in dozens of reviews. He is already a reason people come back. Turning him into a content character gives the restaurant a human face. It is personal, relatable, and shareable. When someone sees Adam in a video and then meets him in person, the experience feels connected. That builds loyalty and repeat visits.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"What you get for under 15 pounds at Sambuca"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Value Hook</span>
+                        <span class="idea-tag">Price Reveal</span>
+                        <span class="idea-tag">Local</span>
+                    </div>
+                    <p class="idea-description">Walk into the restaurant. Sit down at a table by the window. Order a two-course meal or the lunch deal. Show each dish arriving. Close-ups of the food. The view behind it. End with the bill or a price graphic. "All of this. Under 15 pounds. On the Quayside." Disbelief is the reaction you want.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Price reveal content is one of the most viral restaurant formats on both TikTok and Instagram. People genuinely cannot believe you can eat proper Italian food with Tyne Bridge views for that price. It drives comments ("where is this?"), saves (people bookmark it), and shares (people tag friends). The combination of quality, value, and location makes this almost unfairly shareable.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 05</div>
+                    <div class="idea-title">"Live music Friday night at Sambuca Quayside"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Atmosphere</span>
+                        <span class="idea-tag">Events</span>
+                        <span class="idea-tag">Nightlife</span>
+                    </div>
+                    <p class="idea-description">Capture a busy Friday evening. The live musician performing. People clinking cocktail glasses. Plates of Italian food going out. The river and bridge lights through the windows. Quick cuts, warm tones, the energy of a great night out. End with: "Every Friday. Live music. Italian food. The best view in Newcastle."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Atmosphere content drives bookings more than food content alone. People do not just choose a restaurant for the food. They choose it for the experience. A video that shows a lively Friday night with live music, great food, and riverside views makes the viewer feel like they are missing out. That fear of missing out turns into a booking. This is the kind of video that gets shared in group chats with "Friday night here?"</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the social media work.</p>
+
+            <div class="enhancement-card">
+                <h4>Give the Quayside Location Its Own Landing Page or Microsite</h4>
+                <p>The current page on sambucarestaurants.co.uk is a generic chain listing that does not capture what makes the Quayside location special. The Quayside branch deserves its own dedicated page or microsite that showcases the experience: the views, the events, the vibe, the team.</p>
+                <ul class="enhancement-list">
+                    <li>Atmospheric photography showing the riverside setting and Tyne Bridge views at different times of day</li>
+                    <li>An events calendar highlighting live music nights, special menus, and seasonal events</li>
+                    <li>Staff profiles featuring team members like Adam who are mentioned by name in reviews</li>
+                    <li>A curated selection of customer reviews that specifically praise the Quayside location</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Key point:</strong> The Quayside location has a unique selling point that no other Sambuca branch has. The website should make someone feel the atmosphere before they have even walked through the door. Right now it does not. Make it feel like a destination, not just another branch listing.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Leverage the Riverside Location in Every Single Piece of Content</h4>
+                <p>The Tyne Bridge and Quayside at night are one of the most photographed scenes in Newcastle. This is an asset that most restaurants would dream of having. Every video, every photo, every story should include the view. It is the single most powerful visual hook you have and it costs nothing to use.</p>
+                <ul class="enhancement-list">
+                    <li>Set a rule: no content goes out without the river or bridge visible somewhere in the shot</li>
+                    <li>Use the location tag on every Instagram post and reel to capture people browsing Quayside content</li>
+                    <li>Create content at different times: sunset, blue hour, full dark with the bridge lights. Each creates a different mood</li>
+                    <li>Encourage customers to tag the location when they post their own photos. User-generated content from the Quayside is free marketing</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Turn Adam and the Staff into Content Characters</h4>
+                <p>Personal service is what people rave about in the reviews. Adam is mentioned by name in dozens of TripAdvisor reviews. That is extraordinary for a member of staff. He is already a reason people come back. Show the people, not just the food.</p>
+                <ul class="enhancement-list">
+                    <li>Create recurring content series featuring staff: "Adam's pick of the week," "Ask the chef," "Behind the bar"</li>
+                    <li>Film genuine interactions between staff and customers (with permission). Authenticity is what performs on social media</li>
+                    <li>Let staff personalities come through. People follow people. A restaurant with recognisable, likeable staff builds a community, not just a customer base</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Why this matters:</strong> The biggest challenge for chain restaurants on social media is feeling corporate and impersonal. Staff-led content is the antidote. When people see Adam, the chef, the bartender, they connect with humans, not a brand. That connection drives loyalty, repeat visits, and word-of-mouth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a UK content and marketing agency that produces short-form video content, manages social media, builds websites, runs paid ad campaigns, and handles branding. Everything under one roof.</p>
+                <p class="about-fc-text">We are based in Newcastle and work with businesses across the North East and beyond. Our approach is simple: create content that people actually want to watch, post it consistently, and let the results speak for themselves. No stock footage, no generic templates, no recycled ideas.</p>
+                <p class="about-fc-text">We have generated over 27 million views for a single restaurant client in under 90 days, including a single reel that hit 22 million views. We understand what makes restaurant content perform, and we know how to turn great food into a packed dining room.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">27M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a look through this audit. The key takeaway is simple: the food, the location, and the reputation are already there. The digital presence just needs to catch up.</li>
+                    <li>If any of this resonates, jump on a quick call with us. No pitch, just a conversation about where the biggest wins are for Sambuca Quayside specifically.</li>
+                    <li>We can put together a specific content plan and show you exactly what the first month would look like across TikTok, Instagram, paid social, and the website.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But every week without a proper social media strategy is a week where potential customers are choosing another Quayside restaurant because they never found you on Instagram or TikTok. The reviews prove you deliver. The location is world-class. Now it is about making sure the people scrolling their phones on a Friday afternoon looking for dinner plans see Sambuca Quayside first.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Sambuca Quayside</div>
+            <div class="footer-note">This audit was put together using live data from your Instagram, Facebook, TikTok, TripAdvisor, Google, website, and Facebook Ad Library on 8 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
