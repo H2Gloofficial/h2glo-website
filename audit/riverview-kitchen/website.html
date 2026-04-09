@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riverview Kitchen - Breakfast & Brunch on the River Wear | Durham</title>
+    <meta name="description" content="Riverside cafe with panoramic views of the River Wear in the heart of Durham. Breakfast, brunch, pancake stacks and specialty coffee. Walk-in only, dog-friendly.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2A5F4F;
+            --primary-light: #3a7a66;
+            --accent: #D4954A;
+            --accent-light: #e0ab6a;
+            --white: #F5F2EC;
+            --white-pure: #ffffff;
+            --cream: #EDE9E0;
+            --text-dark: #2c2c2c;
+            --text-mid: #5a5a5a;
+            --text-light: #8a8a8a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* Decorative border */
+        .decorative-border {
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--primary) 0px, var(--primary) 8px,
+                transparent 8px, transparent 10px,
+                var(--primary) 10px, var(--primary) 18px,
+                transparent 18px, transparent 20px
+            );
+            opacity: 0.15;
+        }
+
+        /* Leaf Divider */
+        .leaf-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .leaf-divider-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .leaf-divider-line::before,
+        .leaf-divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+        }
+
+        .leaf-divider svg {
+            width: 120px;
+            height: auto;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(245, 242, 236, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(42, 95, 79, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-mid);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(160deg, rgba(42,95,79,0.88) 0%, rgba(30,70,58,0.92) 60%, rgba(20,50,40,0.96) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(212, 149, 74, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(42, 95, 79, 0.1) 0%, transparent 40%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image:
+                linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent-light);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-location svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent-light);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 149, 74, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.5s both;
+        }
+
+        .scroll-indicator .mouse {
+            width: 22px;
+            height: 34px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 11px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::after {
+            content: '';
+            width: 3px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s ease infinite;
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 .accent {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .about-text p {
+            color: var(--text-mid);
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .about-feature .icon {
+            width: 36px;
+            height: 36px;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--cream);
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .menu-category-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-category-subtitle {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-item {
+            background: var(--white-pure);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        /* Find Us Section */
+        .find-us {
+            background: var(--cream);
+        }
+
+        .find-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .find-us-map {
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .find-us-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        .find-us-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .info-block {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+        }
+
+        .info-block h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-block p, .info-block a {
+            color: var(--text-dark);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-block a:hover {
+            color: var(--accent);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.2rem 1rem;
+        }
+
+        .hours-grid .day {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .hours-grid .time {
+            color: var(--text-mid);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .social-link:hover svg {
+            fill: var(--white);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-mid);
+            transition: fill 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+        }
+
+        .footer-inner a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-inner a:hover {
+            color: var(--white);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-placeholder {
+                aspect-ratio: 16/9;
+                order: -1;
+            }
+
+            .find-us-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3.5rem 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#2A5F4F,#3a7a66);color:#fff;text-align:center;padding:12px 20px;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:0.3px;box-shadow:0 -2px 20px rgba(0,0,0,0.2);">
+        This is a <strong>template website</strong> created by <a href="https://fusioncreative.uk" target="_blank" style="color:#D4954A;text-decoration:underline;">Fusion Creative</a> to showcase what we can build for Riverview Kitchen. Menu items and prices are illustrative and may change.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Riverview <span>Kitchen</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#find-us">Find Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                Durham's Riverside Cafe
+            </div>
+            <h1>Riverview <span class="accent">Kitchen</span></h1>
+            <p class="hero-tagline">Breakfast &amp; Brunch on the River Wear</p>
+            <p class="hero-location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                20-21 Silver Street, Durham
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#find-us" class="btn btn-secondary">Find Us</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            Scroll
+        </div>
+    </section>
+
+    <div class="decorative-border"></div>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-placeholder fade-in"></div>
+                <div class="about-text fade-in fade-in-delay-1">
+                    <span class="section-label">Our Story</span>
+                    <h2>Riverside Views,<br><span class="accent">Brilliant Brunch</span></h2>
+                    <p>Riverview Kitchen is a riverside cafe with panoramic views of the River Wear in the heart of Durham. Perched on Silver Street, we offer the perfect spot to watch the world go by while enjoying freshly prepared breakfast and brunch.</p>
+                    <p>We operate walk-in only with fast turnaround, so there is no need to book. Just turn up, grab a table, and let us take care of the rest. We are proudly dog-friendly too, so your four-legged friends are always welcome.</p>
+                    <p>From towering pancake stacks to classic full English breakfasts, everything is made fresh to order using quality ingredients.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="icon">&#127858;</div>
+                            <span>Walk-in Only</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#9749;</div>
+                            <span>Specialty Coffee</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128054;</div>
+                            <span>Dog Friendly</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#127749;</div>
+                            <span>River Views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaf Divider -->
+    <div class="leaf-divider">
+        <div class="leaf-divider-line">
+            <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 15 Q30 5 60 15 Q90 25 110 15" stroke="#2A5F4F" stroke-width="1.5" fill="none" opacity="0.5"/>
+                <ellipse cx="30" cy="10" rx="8" ry="4" fill="#2A5F4F" opacity="0.2" transform="rotate(-25 30 10)"/>
+                <ellipse cx="50" cy="12" rx="8" ry="4" fill="#2A5F4F" opacity="0.15" transform="rotate(-10 50 12)"/>
+                <ellipse cx="70" cy="17" rx="8" ry="4" fill="#2A5F4F" opacity="0.2" transform="rotate(10 70 17)"/>
+                <ellipse cx="90" cy="15" rx="8" ry="4" fill="#2A5F4F" opacity="0.15" transform="rotate(25 90 15)"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <section class="menu" id="menu">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">What We Serve</span>
+                <h2 class="section-title">Our Menu</h2>
+                <p class="section-subtitle">Fresh breakfast, brunch, and pancake stacks served with riverside views</p>
+            </div>
+
+            <!-- Breakfast -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Breakfast</h3>
+                <p class="menu-category-subtitle">Served fresh every morning</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Full English</div>
+                            <div class="menu-item-desc">The classic full English breakfast with all the trimmings</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Eggs Royale</div>
+                            <div class="menu-item-desc">Poached eggs and smoked salmon on a toasted muffin with hollandaise</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Avocado &amp; Halloumi</div>
+                            <div class="menu-item-desc">Smashed avocado and grilled halloumi on sourdough toast</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Breakfast Wrap</div>
+                            <div class="menu-item-desc">Scrambled eggs, bacon, sausage, and cheese in a warm tortilla wrap</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pancake Stacks -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Pancake Stacks</h3>
+                <p class="menu-category-subtitle">Fluffy American-style pancakes piled high</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Biscoff Stack</div>
+                            <div class="menu-item-desc">Pancakes layered with Biscoff spread, crumbled Biscoff biscuits, and cream</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Berry Stack</div>
+                            <div class="menu-item-desc">Fresh mixed berries, berry compote, and whipped cream on fluffy pancakes</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Maple &amp; Bacon</div>
+                            <div class="menu-item-desc">Crispy streaky bacon drizzled with pure maple syrup on a pancake stack</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Lunch</h3>
+                <p class="menu-category-subtitle">Hearty lunch options served all day</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Prawn &amp; Avocado Sourdough</div>
+                            <div class="menu-item-desc">King prawns and smashed avocado on toasted sourdough with a citrus dressing</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Chicken Wrap</div>
+                            <div class="menu-item-desc">Grilled chicken breast with salad, peppers, and house sauce in a warm wrap</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Club Sandwich</div>
+                            <div class="menu-item-desc">Triple-stacked sandwich with chicken, bacon, lettuce, tomato, and mayo</div>
+                        </div>
+                        <div class="menu-item-price">&pound;10.50</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Drinks</h3>
+                <p class="menu-category-subtitle">Specialty coffee and refreshing drinks</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Flat White</div>
+                            <div class="menu-item-desc">Velvety steamed milk over a double ristretto shot</div>
+                        </div>
+                        <div class="menu-item-price">&pound;3.20</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Tropical Smoothie</div>
+                            <div class="menu-item-desc">Mango, pineapple, and banana blended with coconut milk</div>
+                        </div>
+                        <div class="menu-item-price">&pound;4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Homemade Lemonade</div>
+                            <div class="menu-item-desc">Freshly squeezed lemons with a touch of sweetness, served over ice</div>
+                        </div>
+                        <div class="menu-item-price">&pound;3.50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaf Divider -->
+    <div class="leaf-divider">
+        <div class="leaf-divider-line">
+            <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 15 Q30 5 60 15 Q90 25 110 15" stroke="#2A5F4F" stroke-width="1.5" fill="none" opacity="0.5"/>
+                <ellipse cx="30" cy="10" rx="8" ry="4" fill="#2A5F4F" opacity="0.2" transform="rotate(-25 30 10)"/>
+                <ellipse cx="50" cy="12" rx="8" ry="4" fill="#2A5F4F" opacity="0.15" transform="rotate(-10 50 12)"/>
+                <ellipse cx="70" cy="17" rx="8" ry="4" fill="#2A5F4F" opacity="0.2" transform="rotate(10 70 17)"/>
+                <ellipse cx="90" cy="15" rx="8" ry="4" fill="#2A5F4F" opacity="0.15" transform="rotate(25 90 15)"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Find Us -->
+    <section class="find-us" id="find-us">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">Visit Us</span>
+                <h2 class="section-title">Find Us</h2>
+                <p class="section-subtitle">Right on the banks of the River Wear in the heart of Durham</p>
+            </div>
+            <div class="find-us-grid">
+                <div class="find-us-map fade-in">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2312.5!2d-1.5762!3d54.7753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z20-21+Silver+Street+Durham!5e0!3m2!1sen!2suk!4v1700000000000"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Riverview Kitchen location on Google Maps">
+                    </iframe>
+                </div>
+                <div class="find-us-info fade-in fade-in-delay-1">
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>20-21 Silver Street<br>Durham<br>DH1 3RB</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <div class="hours-grid">
+                                <span class="day">Mon - Fri</span>
+                                <span class="time">9:30am - 5:00pm</span>
+                                <span class="day">Sat - Sun</span>
+                                <span class="time">9:00am - 5:00pm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:07398998963">07398 998963</a>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:riverviewkitchendurham@gmail.com">riverviewkitchendurham@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Follow Us</h4>
+                            <a href="https://www.instagram.com/riverviewkitchen" target="_blank" rel="noopener">@riverviewkitchen</a>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/riverviewkitchen" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Instagram">
+                                    <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                                </a>
+                                <a href="https://www.facebook.com/RiverviewKitchenDurham" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Facebook">
+                                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="decorative-border"></div>
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; 2026 Riverview Kitchen. All rights reserved.</p>
+            <p>Website by <a href="https://fusioncreative.uk" target="_blank" rel="noopener">Fusion Creative</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Shore Pizza Co - Handmade Pizza</title>
+    <meta name="description" content="Handmade pizza crafted with care. Fresh dough, quality toppings, and a passion for great pizza.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #C4382A;
+            --primary-light: #D4584A;
+            --accent: #D4954A;
+            --accent-light: #E0AD6A;
+            --cream: #F5F0E5;
+            --white: #F5F0E5;
+            --white-pure: #ffffff;
+            --text-dark: #2c2c2c;
+            --text-mid: #5a5a5a;
+            --text-light: #8a8a8a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* Pattern Border */
+        .pattern-border {
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--primary) 0px, var(--primary) 8px,
+                transparent 8px, transparent 10px,
+                var(--primary) 10px, var(--primary) 18px,
+                transparent 18px, transparent 20px
+            );
+            opacity: 0.15;
+        }
+
+        /* Simple Line Divider */
+        .simple-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .simple-divider-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .simple-divider-line::before,
+        .simple-divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+        }
+
+        .simple-divider svg {
+            width: 80px;
+            height: auto;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(245, 240, 229, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(196, 56, 42, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-mid);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(160deg, rgba(196,56,42,0.9) 0%, rgba(150,40,30,0.92) 60%, rgba(100,25,18,0.95) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(212, 149, 74, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(245, 240, 229, 0.08) 0%, transparent 40%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image:
+                linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent-light);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white-pure);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 149, 74, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.5s both;
+        }
+
+        .scroll-indicator .mouse {
+            width: 22px;
+            height: 34px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 11px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::after {
+            content: '';
+            width: 3px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s ease infinite;
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(196,56,42,0.7) 50%, var(--accent) 100%);
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 .accent {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .about-text p {
+            color: var(--text-mid);
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .about-feature .icon {
+            width: 36px;
+            height: 36px;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--cream);
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .menu-category-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-category-subtitle {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-item {
+            background: var(--white-pure);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        /* Find Us Section */
+        .find-us {
+            background: var(--white);
+        }
+
+        .find-us-simple {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .find-us-simple .info-block {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--cream);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+        }
+
+        .info-block h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-block p, .info-block a {
+            color: var(--text-dark);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-block a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--cream);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .social-link:hover svg {
+            fill: var(--white);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-mid);
+            transition: fill 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+        }
+
+        .footer-inner a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-inner a:hover {
+            color: var(--white);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-placeholder {
+                aspect-ratio: 16/9;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3.5rem 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#C4382A,#D4584A);color:#fff;text-align:center;padding:12px 20px;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:0.3px;box-shadow:0 -2px 20px rgba(0,0,0,0.2);">
+        This is a <strong>template website</strong> created by <a href="https://fusioncreative.uk" target="_blank" style="color:#D4954A;text-decoration:underline;">Fusion Creative</a> to showcase what we can build for North Shore Pizza Co. Menu items and prices are illustrative and may change.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">North Shore <span>Pizza Co</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#find-us">Find Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                Handcrafted with Care
+            </div>
+            <h1>North Shore <span class="accent">Pizza Co</span></h1>
+            <p class="hero-tagline">Handmade Pizza</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#find-us" class="btn btn-secondary">Find Us</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            Scroll
+        </div>
+    </section>
+
+    <div class="pattern-border"></div>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-placeholder fade-in"></div>
+                <div class="about-text fade-in fade-in-delay-1">
+                    <span class="section-label">Our Story</span>
+                    <h2>Fresh Dough,<br><span class="accent">Quality Toppings</span></h2>
+                    <p>Handmade pizza crafted with care. Every base is made from fresh dough, topped with quality ingredients, and baked to perfection. Simple, honest, and always satisfying.</p>
+                    <p>A passion for great pizza, from our hands to your table.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="icon">&#127829;</div>
+                            <span>Handmade Dough</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#127813;</div>
+                            <span>Fresh Toppings</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128293;</div>
+                            <span>Baked to Order</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128150;</div>
+                            <span>Made with Care</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Divider -->
+    <div class="simple-divider">
+        <div class="simple-divider-line">
+            <svg viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="5" y1="10" x2="75" y2="10" stroke="#C4382A" stroke-width="1" opacity="0.3"/>
+                <circle cx="20" cy="10" r="2" fill="#D4954A" opacity="0.4"/>
+                <circle cx="40" cy="10" r="3" fill="#C4382A" opacity="0.3"/>
+                <circle cx="60" cy="10" r="2" fill="#D4954A" opacity="0.4"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <section class="menu" id="menu">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">What We Serve</span>
+                <h2 class="section-title">Our Menu</h2>
+                <p class="section-subtitle">Handmade pizza with fresh dough and quality toppings</p>
+            </div>
+
+            <!-- Pizza -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Pizza</h3>
+                <p class="menu-category-subtitle">All handmade with fresh dough</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Margherita</div>
+                            <div class="menu-item-desc">Tomato sauce, mozzarella, and fresh basil</div>
+                        </div>
+                        <div class="menu-item-price">&pound;9.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pepperoni</div>
+                            <div class="menu-item-desc">Tomato sauce, mozzarella, and pepperoni</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Meat Feast</div>
+                            <div class="menu-item-desc">Pepperoni, ham, sausage, and beef on a tomato and mozzarella base</div>
+                        </div>
+                        <div class="menu-item-price">&pound;13.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">BBQ Chicken</div>
+                            <div class="menu-item-desc">BBQ sauce, chicken, red onion, and mozzarella</div>
+                        </div>
+                        <div class="menu-item-price">&pound;12.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Veggie Supreme</div>
+                            <div class="menu-item-desc">Peppers, onions, mushrooms, sweetcorn, and olives</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Hawaiian</div>
+                            <div class="menu-item-desc">Tomato sauce, mozzarella, ham, and pineapple</div>
+                        </div>
+                        <div class="menu-item-price">&pound;11.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sides -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Sides</h3>
+                <p class="menu-category-subtitle">The perfect extras</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Garlic Bread</div>
+                            <div class="menu-item-desc">Freshly baked with garlic butter</div>
+                        </div>
+                        <div class="menu-item-price">&pound;4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Dough Balls</div>
+                            <div class="menu-item-desc">Warm dough balls with garlic butter dip</div>
+                        </div>
+                        <div class="menu-item-price">&pound;5.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Coleslaw</div>
+                            <div class="menu-item-desc">Creamy homestyle coleslaw</div>
+                        </div>
+                        <div class="menu-item-price">&pound;2.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Fries</div>
+                            <div class="menu-item-desc">Crispy golden fries</div>
+                        </div>
+                        <div class="menu-item-price">&pound;3.50</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-category fade-in">
+                <h3 class="menu-category-title">Drinks</h3>
+                <p class="menu-category-subtitle">Something to wash it down</p>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Soft Drinks</div>
+                            <div class="menu-item-desc">Coke, Diet Coke, Fanta, Sprite</div>
+                        </div>
+                        <div class="menu-item-price">&pound;2.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Water</div>
+                            <div class="menu-item-desc">Still or sparkling</div>
+                        </div>
+                        <div class="menu-item-price">&pound;1.50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Divider -->
+    <div class="simple-divider">
+        <div class="simple-divider-line">
+            <svg viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="5" y1="10" x2="75" y2="10" stroke="#C4382A" stroke-width="1" opacity="0.3"/>
+                <circle cx="20" cy="10" r="2" fill="#D4954A" opacity="0.4"/>
+                <circle cx="40" cy="10" r="3" fill="#C4382A" opacity="0.3"/>
+                <circle cx="60" cy="10" r="2" fill="#D4954A" opacity="0.4"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Find Us -->
+    <section class="find-us" id="find-us">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Find Us</h2>
+                <p class="section-subtitle">Follow us on socials for updates</p>
+            </div>
+            <div class="find-us-simple fade-in">
+                <div class="info-block">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Follow Us</h4>
+                        <a href="https://www.instagram.com/northshorepizzaco/" target="_blank" rel="noopener">@northshorepizzaco</a>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/northshorepizzaco/" target="_blank" rel="noopener" class="social-link" aria-label="Follow us on Instagram">
+                                <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="pattern-border"></div>
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; 2026 North Shore Pizza Co. All rights reserved.</p>
+            <p>Website by <a href="https://fusioncreative.uk" target="_blank" rel="noopener">Fusion Creative</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
