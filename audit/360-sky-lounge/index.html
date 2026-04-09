@@ -467,7 +467,6 @@
             color: var(--text-secondary);
             font-weight: 400;
             padding-right: 24px;
-            white-space: nowrap;
         }
 
         .stats-table td:last-child {
@@ -1458,45 +1457,184 @@
         /* Responsive */
         @media (max-width: 640px) {
             .container {
-                padding: 0 16px;
+                padding: 0 18px;
             }
 
             .card {
-                padding: 28px 22px;
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            .card-sm {
+                padding: 22px 16px;
             }
 
             .hero {
-                padding: 50px 0 40px;
+                padding: 44px 0 36px;
+                text-align: center;
             }
 
-            .section {
-                padding: 32px 0;
+            .hero h1 {
+                font-size: clamp(30px, 9vw, 42px);
+                letter-spacing: -0.5px;
             }
 
-            .case-study-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero h1 .neon-text {
+                text-shadow: 0 0 6px #ec2383, 0 0 14px #ec2383, 0 0 28px #ec238355;
             }
 
-            .video-idea-card {
-                padding: 24px 22px;
+            .hero-label {
+                justify-content: center;
+                font-size: 11px;
+                margin-bottom: 14px;
+            }
+
+            .hero-label::before {
+                width: 24px;
+            }
+
+            .hero-subtitle {
+                font-size: 15px;
+                margin: 0 auto;
+            }
+
+            .header {
+                padding: 32px 0 24px;
             }
 
             .header-inner {
                 flex-direction: column;
-                gap: 8px;
+                gap: 6px;
+                align-items: flex-start;
+            }
+
+            .exclusive-badge {
+                font-size: 10px;
+                letter-spacing: 1.4px;
+                padding: 7px 14px;
+                margin-top: 18px;
+            }
+
+            .section {
+                padding: 28px 0;
+            }
+
+            .section-title {
+                font-size: 22px;
+                margin-bottom: 18px;
+            }
+
+            .section-label {
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
+
+            .section-text {
+                font-size: 14px;
+            }
+
+            .stats-table {
+                font-size: 13px;
+            }
+
+            .stats-table td {
+                padding: 12px 0;
+                display: block;
+            }
+
+            .stats-table tr {
+                display: block;
+                padding: 6px 0;
+            }
+
+            .stats-table td:first-child {
+                padding-right: 0;
+                padding-bottom: 4px;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: var(--text-muted);
+            }
+
+            .stats-table td:last-child {
+                text-align: left;
+                padding-top: 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin: 24px 0;
+            }
+
+            .case-study-stat {
+                padding: 18px 10px;
+            }
+
+            .case-study-stat .number {
+                font-size: 26px;
+            }
+
+            .case-study-stat .label {
+                font-size: 10px;
+                letter-spacing: 0.5px;
+            }
+
+            .viral-callout {
+                padding: 18px 18px;
+            }
+
+            .viral-callout .big-number {
+                font-size: 22px;
+            }
+
+            .video-idea-card {
+                padding: 22px 18px;
+                border-radius: 16px;
+            }
+
+            .video-idea-card .idea-title {
+                font-size: 16px;
+            }
+
+            .enhancement-card {
+                padding: 22px 18px;
+                border-radius: 16px;
             }
 
             .about-fc-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 12px;
+                gap: 10px;
+            }
+
+            .about-fc-stat {
+                padding: 16px 12px;
             }
 
             .about-fc-stat-val {
-                font-size: 22px;
+                font-size: 20px;
+            }
+
+            .about-fc-stat-label {
+                font-size: 11px;
+            }
+
+            .about-fc-text {
+                font-size: 14px;
             }
 
             .platform-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
+                margin-top: 18px;
+            }
+
+            .platform-card {
+                padding: 18px 18px;
+            }
+
+            .platform-stat {
+                font-size: 24px;
             }
 
             .metrics-grid {
@@ -1504,22 +1642,124 @@
                 gap: 10px;
             }
 
-            .package-grid {
-                grid-template-columns: 1fr;
+            .metric-item {
+                padding: 14px 6px;
             }
 
-            .competitor-name {
-                min-width: 100px;
-                font-size: 13px;
+            .metric-value {
+                font-size: 20px;
+            }
+
+            .package-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
             }
 
             .competitor-row {
                 flex-direction: column;
-                gap: 10px;
+                align-items: stretch;
+                gap: 8px;
+                padding: 14px 16px;
             }
 
             .competitor-name {
                 min-width: auto;
+                font-size: 13px;
+            }
+
+            .competitor-bar-row {
+                gap: 8px;
+            }
+
+            .competitor-bar-label {
+                min-width: 48px;
+                font-size: 10px;
+            }
+
+            .competitor-count {
+                min-width: 42px;
+                font-size: 11px;
+            }
+
+            .steps-list li {
+                font-size: 14px;
+                gap: 12px;
+                padding: 14px 0;
+            }
+
+            .steps-list li::before {
+                min-width: 28px;
+                height: 28px;
+                font-size: 13px;
+                border-radius: 8px;
+            }
+
+            .opportunity-heading h3 {
+                font-size: 16px;
+            }
+
+            .cta-btn {
+                font-size: 14px;
+                padding: 14px 28px;
+            }
+
+            .signature {
+                padding: 32px 0;
+            }
+
+            .footer {
+                padding: 24px 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                padding: 0 14px;
+            }
+
+            .card {
+                padding: 20px 14px;
+            }
+
+            .hero h1 {
+                font-size: clamp(26px, 10vw, 34px);
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .case-study-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .case-study-stat .number {
+                font-size: 22px;
+            }
+
+            .metrics-grid {
+                gap: 8px;
+            }
+
+            .metric-value {
+                font-size: 18px;
+            }
+
+            .metric-label {
+                font-size: 10px;
+            }
+
+            .platform-stat {
+                font-size: 22px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 20px;
             }
         }
     </style>
