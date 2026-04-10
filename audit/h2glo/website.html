@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H2Glo Professional Exterior Cleaning | Driveways, Patios, Fascias | North East England</title>
+    <meta name="description" content="Professional exterior cleaning across the North East. Driveways, patios, fascias, and block paving. Family-run, fully insured, free quotes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #1E6BB8;
+            --blue-dark: #165a9a;
+            --blue-light: #3a8ad4;
+            --white: #ffffff;
+            --white-off: #f8fafb;
+            --cream: #f0f5f9;
+            --text-dark: #1a1a2e;
+            --text-mid: #4a5568;
+            --text-light: #718096;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(135deg, #E8553C, #ff7a64);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .demo-banner a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 107, 184, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--blue);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-mid);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta-btn {
+            background: var(--blue) !important;
+            color: var(--white) !important;
+            padding: 0.55rem 1.3rem !important;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta-btn:hover {
+            background: var(--blue-dark) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 107, 184, 0.3);
+        }
+
+        .nav-cta-btn::after {
+            display: none !important;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--blue);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(160deg, rgba(30,107,184,0.92) 0%, rgba(22,90,154,0.95) 50%, rgba(15,60,110,0.97) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(58,138,212,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.04;
+            background-image:
+                linear-gradient(30deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff),
+                linear-gradient(150deg, #fff 12%, transparent 12.5%, transparent 87%, #fff 87.5%, #fff);
+            background-size: 80px 140px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 850px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--blue);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease 1.5s both;
+        }
+
+        .scroll-indicator .mouse {
+            width: 22px;
+            height: 34px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 11px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::after {
+            content: '';
+            width: 3px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s ease infinite;
+        }
+
+        @keyframes scrollDot {
+            0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+
+        .about-image-placeholder .placeholder-icon {
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 .accent {
+            color: var(--blue);
+            font-style: italic;
+        }
+
+        .about-text p {
+            color: var(--text-mid);
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .about-feature .icon {
+            width: 36px;
+            height: 36px;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--cream);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--blue-light));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--cream);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Before/After Section */
+        .before-after {
+            background: var(--white);
+        }
+
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .ba-item {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .ba-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ba-visual {
+            height: 240px;
+            display: flex;
+            position: relative;
+        }
+
+        .ba-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .ba-before {
+            background: linear-gradient(135deg, #3a3a3a 0%, #5a5a5a 30%, #4a4a4a 60%, #3d3d3d 100%);
+            color: rgba(255,255,255,0.5);
+            position: relative;
+        }
+
+        .ba-before::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(80,80,60,0.4) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(60,70,50,0.3) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(90,80,70,0.3) 0%, transparent 30%);
+        }
+
+        .ba-after {
+            background: linear-gradient(135deg, #c8d8e4 0%, #dce8f0 30%, #e8f0f5 60%, #d4e4ed 100%);
+            color: var(--blue);
+            position: relative;
+        }
+
+        .ba-after::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 60%);
+        }
+
+        .ba-side span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ba-divider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--white);
+            z-index: 3;
+        }
+
+        .ba-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background: var(--blue);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+        }
+
+        .ba-label {
+            padding: 1.2rem 1.5rem;
+            background: var(--white);
+        }
+
+        .ba-label h4 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .ba-label p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Areas Section */
+        .areas {
+            background: var(--blue);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .areas::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .areas .section-label {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .areas .section-title {
+            color: var(--white);
+        }
+
+        .areas .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .areas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .area-tag {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .area-tag:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--white-off);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-stars {
+            color: #f5a623;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 3rem;
+            color: var(--blue);
+            opacity: 0.1;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-item .ci-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item .ci-text {
+            font-size: 0.95rem;
+            color: var(--text-mid);
+        }
+
+        .contact-item .ci-text strong {
+            display: block;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-form h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 107, 184, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255,255,255,0.6);
+            padding: 3rem 1.5rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--blue-light);
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--blue);
+            margin: 1.5rem auto;
+            opacity: 0.5;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-fc {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .footer-fc a {
+            color: #E8553C;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-placeholder {
+                aspect-ratio: 16/9;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ba-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        This is a template website created by <a href="https://fusioncreative.uk" target="_blank">Fusion Creative</a> to showcase what we can build for H2Glo.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">H2<span>Glo</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#areas">Areas</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="nav-cta-btn">Get a Free Quote</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Family-Run &bull; Fully Insured &bull; Free Quotes</div>
+            <h1>Professional Exterior Cleaning</h1>
+            <div class="hero-tagline">Driveways. Patios. Fascias. Block Paving.</div>
+            <div class="hero-subtitle">Bringing your property back to life</div>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+                <a href="tel:07465621099" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Call Now
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            Scroll
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-placeholder reveal">
+                    <div class="placeholder-icon">&#128166;</div>
+                </div>
+                <div class="about-text reveal">
+                    <span class="section-label">About H2Glo</span>
+                    <h2>A Family Business Built on <span class="accent">Trust</span></h2>
+                    <p>H2Glo Professional Exterior Cleaning is a family-run business serving homeowners and businesses across the North East of England. We take pride in transforming tired, weathered outdoor surfaces back to their original condition.</p>
+                    <p>Fully insured and equipped with professional-grade equipment, we deliver results that speak for themselves. From driveways caked in years of grime to patios overtaken by moss and algae, we bring properties back to life.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="icon">&#128737;</div>
+                            Fully Insured
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#128106;</div>
+                            Family Run
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#9989;</div>
+                            Free Quotes
+                        </div>
+                        <div class="about-feature">
+                            <div class="icon">&#11088;</div>
+                            5-Star Service
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-label">Our Services</span>
+                <h2 class="section-title">What We Do</h2>
+                <p class="section-subtitle">Professional cleaning services to transform every exterior surface of your property</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">&#127968;</div>
+                    <h3>Driveway Cleaning</h3>
+                    <p>Remove years of dirt, oil stains, moss, and algae from your driveway. We restore block paving, tarmac, concrete, and natural stone driveways to look brand new.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">&#127795;</div>
+                    <h3>Patio Cleaning</h3>
+                    <p>Transform your outdoor living space. We deep clean patios of all types, removing embedded grime, green growth, and weathering to reveal the original surface beneath.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">&#127969;</div>
+                    <h3>Fascia &amp; Soffit Cleaning</h3>
+                    <p>Brighten up your roofline. We safely clean fascias, soffits, and guttering to remove years of dirt, algae, and black streaks, giving your home a fresh, well-maintained appearance.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">&#129521;</div>
+                    <h3>Block Paving</h3>
+                    <p>Our full block paving service includes professional pressure washing, chemical treatment to kill moss and weeds at the root, and re-sanding of joints for a finish that lasts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After -->
+    <section class="before-after" id="gallery">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-label">Our Results</span>
+                <h2 class="section-title">Before &amp; After</h2>
+                <p class="section-subtitle">See the dramatic difference professional exterior cleaning makes</p>
+            </div>
+            <div class="ba-grid">
+                <div class="ba-item reveal">
+                    <div class="ba-visual">
+                        <div class="ba-side ba-before"><span>Before</span></div>
+                        <div class="ba-divider"></div>
+                        <div class="ba-side ba-after"><span>After</span></div>
+                    </div>
+                    <div class="ba-label">
+                        <h4>Driveway Transformation</h4>
+                        <p>Block paving restored after 8 years of weathering</p>
+                    </div>
+                </div>
+                <div class="ba-item reveal">
+                    <div class="ba-visual">
+                        <div class="ba-side ba-before"><span>Before</span></div>
+                        <div class="ba-divider"></div>
+                        <div class="ba-side ba-after"><span>After</span></div>
+                    </div>
+                    <div class="ba-label">
+                        <h4>Patio Revival</h4>
+                        <p>Flagstone patio cleared of moss and algae build-up</p>
+                    </div>
+                </div>
+                <div class="ba-item reveal">
+                    <div class="ba-visual">
+                        <div class="ba-side ba-before"><span>Before</span></div>
+                        <div class="ba-divider"></div>
+                        <div class="ba-side ba-after"><span>After</span></div>
+                    </div>
+                    <div class="ba-label">
+                        <h4>Fascia Brightening</h4>
+                        <p>Black streaks and grime removed from white uPVC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas Covered -->
+    <section class="areas" id="areas">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-label">Coverage</span>
+                <h2 class="section-title">Areas We Cover</h2>
+                <p class="section-subtitle">Professional exterior cleaning across the North East of England</p>
+            </div>
+            <div class="areas-grid reveal">
+                <div class="area-tag">Tyne &amp; Wear</div>
+                <div class="area-tag">County Durham</div>
+                <div class="area-tag">Northumberland</div>
+                <div class="area-tag">Newcastle</div>
+                <div class="area-tag">Sunderland</div>
+                <div class="area-tag">Gateshead</div>
+                <div class="area-tag">Durham</div>
+                <div class="area-tag">South Shields</div>
+                <div class="area-tag">North Shields</div>
+                <div class="area-tag">Washington</div>
+                <div class="area-tag">Cramlington</div>
+                <div class="area-tag">Blyth</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-label">Reviews</span>
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Do not just take our word for it</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-quote">&ldquo;</div>
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">Absolutely fantastic job on our driveway. It looks brand new. Chris and Marc were professional, on time, and the results speak for themselves. Would not hesitate to recommend H2Glo to anyone.</p>
+                    <div class="testimonial-author">Chris</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-quote">&ldquo;</div>
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">Could not believe the difference. Our patio had not been touched in years and now it looks like it was just laid. Really impressed with the attention to detail and the whole process from start to finish.</p>
+                    <div class="testimonial-author">David R.</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-quote">&ldquo;</div>
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">Brilliant service from start to finish. The fascias and soffits look incredible. Very friendly, hard-working team. Already booked them for the driveway next month. Highly recommend.</p>
+                    <div class="testimonial-author">J Johnson</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Request a Free Quote</h2>
+                <p class="section-subtitle">Get in touch today for a no-obligation quote on any of our services</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Contact Details</h3>
+                    <div class="contact-item">
+                        <div class="ci-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="ci-text">
+                            <strong>Phone</strong>
+                            07465 621 099
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="ci-text">
+                            <strong>Email</strong>
+                            christopher@philogene.co.za
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="ci-text">
+                            <strong>Service Area</strong>
+                            North East England
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        </div>
+                        <div class="ci-text">
+                            <strong>WhatsApp</strong>
+                            Message us on 07465 621 099
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <h3>Get a Free Quote</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="John Smith">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="07xxx xxx xxx">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Required</label>
+                            <select id="service">
+                                <option value="">Select a service</option>
+                                <option value="driveway">Driveway Cleaning</option>
+                                <option value="patio">Patio Cleaning</option>
+                                <option value="fascia">Fascia &amp; Soffit Cleaning</option>
+                                <option value="block">Block Paving</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell us about the job</label>
+                            <textarea id="message" placeholder="Approximate size, condition, any specific requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Request Free Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">H2<span>Glo</span></div>
+            <p class="footer-text">Professional Exterior Cleaning</p>
+            <p class="footer-text">Covering Tyne &amp; Wear, County Durham &amp; Northumberland</p>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">&copy; 2026 H2Glo Professional Exterior Cleaning. All rights reserved.</p>
+            <p class="footer-fc">Template website by <a href="https://fusioncreative.uk" target="_blank">Fusion Creative</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const banner = document.querySelector('.demo-banner');
+        let bannerHeight = banner ? banner.offsetHeight : 0;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navbar.style.top = '0';
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.style.top = bannerHeight + 'px';
+            }
+        });
+
+        // Initial position
+        navbar.style.top = bannerHeight + 'px';
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        reveals.forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = navbar.offsetHeight + 20;
+                    const pos = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: pos, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
