@@ -968,63 +968,35 @@
   </section>
 
 
-  <!-- I. PROTOCOL (moved before Philosophy) -->
-  <section class="protocol-section section-pad">
-    <div class="container">
-      <div class="section-label">/ How It Works</div>
-      <h2>From zero to <em>viral</em> in four steps.</h2>
-
-      <div style="text-align:center; margin-bottom:2rem;">
-        <button onclick="toggleProtocol(this)" class="expand-btn"><span>See How It Works</span><svg class="expand-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
-      </div>
-
-      <div class="protocol-rows" id="protocol-rows" style="display:none;">
-        <div class="proto-row pr-reveal">
-          <div class="proto-num">01</div>
-          <div class="proto-content">
-            <h3>Brand Discovery</h3>
-            <p>We learn your business - your story, your strengths, your audience. We find the angles that make people stop scrolling.</p>
+  <!-- HOW IT WORKS FLOATING CARD -->
+  <div style="position:relative; z-index:10; max-width:900px; margin:-60px auto 0; padding:0 24px;">
+    <div style="background:#111; color:#fff; border-radius:2rem; padding:48px 56px; text-align:center; transform:rotate(-1.2deg); box-shadow:0 20px 60px rgba(0,0,0,0.2), 0 0 80px rgba(230,59,46,0.08); position:relative; overflow:hidden;">
+      <div style="position:absolute; inset:0; opacity:0.05; background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.65%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27300%27 height=%27300%27 filter=%27url(%23n)%27/%3E%3C/svg%3E');"></div>
+      <div style="position:relative; z-index:1;">
+        <p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--signal); margin-bottom:14px;">/ How It Works</p>
+        <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem,4vw,2.8rem); margin-bottom:14px; line-height:1.15;">From zero to <em style='font-style:italic; color:var(--signal);'>viral</em> in four steps.</h2>
+        <p style="color:#888; font-size:0.95rem; max-width:520px; margin:0 auto 28px; line-height:1.7;">Discovery. Production. Publish. Scale. We handle the entire process so you can focus on running your business.</p>
+        <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">01</div>
+            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Discover</div>
           </div>
-          <div class="proto-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">02</div>
+            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Create</div>
           </div>
-        </div>
-
-        <div class="proto-row pr-reveal">
-          <div class="proto-num">02</div>
-          <div class="proto-content">
-            <h3>Content Production</h3>
-            <p>We script, film, and edit short-form videos optimised for TikTok, Instagram Reels, and YouTube Shorts. Hook-first, always.</p>
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">03</div>
+            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Publish</div>
           </div>
-          <div class="proto-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-          </div>
-        </div>
-
-        <div class="proto-row pr-reveal">
-          <div class="proto-num">03</div>
-          <div class="proto-content">
-            <h3>Publish & Optimise</h3>
-            <p>We manage your posting schedule, captions, and hashtags. Every post is monitored and iterated based on real performance data.</p>
-          </div>
-          <div class="proto-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          </div>
-        </div>
-
-        <div class="proto-row pr-reveal">
-          <div class="proto-num">04</div>
-          <div class="proto-content">
-            <h3>Scale What Works</h3>
-            <p>When a video hits, we double down. We identify the format, the hook, the story - and we build a repeatable system around it.</p>
-          </div>
-          <div class="proto-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          <div style="text-align:center;">
+            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">04</div>
+            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Scale</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- DIGITAL SERVICES SECTION (moved before pricing) -->
   <section class="digital-services-section section-pad" id="digital">
