@@ -964,7 +964,7 @@
       position: relative;
       z-index: 10;
       max-width: 1000px;
-      margin: -60px auto -40px;
+      margin: 40px auto -40px;
       padding: 0 24px;
     }
     .hiw-glow {
@@ -1056,7 +1056,7 @@
   </style>
   <div class="hiw-sticker-wrap">
     <div class="hiw-glow"></div>
-    <a href="/why-us" class="hiw-sticker" id="hiwSticker" style="display:block; text-decoration:none; color:#fff; cursor:pointer;">
+    <div class="hiw-sticker" id="hiwSticker" onclick="window.location='/why-us'" style="cursor:pointer;">
       <div class="hiw-inner">
         <p class="hiw-label">Why Fusion Creative</p>
         <h2>What makes us <em>different?</em></h2>
@@ -1068,11 +1068,11 @@
           <div><div class="hiw-step-num" style="font-size:1.4rem;">&#10003;</div><div class="hiw-step-label">One Price</div></div>
         </div>
         <a href="/why-us" style="display:inline-flex; align-items:center; gap:8px; background:var(--signal); color:#fff; padding:14px 32px; border-radius:var(--rad-sm); font-weight:600; font-size:0.9rem; text-decoration:none; margin-top:28px; transition:background 0.2s ease;">
-          See our pricing & comparison
+          See our pricing &amp; comparison
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-    </a>
+    </div>
   </div>
   <script>
     (function() {
