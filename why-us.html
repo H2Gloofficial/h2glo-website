@@ -118,14 +118,25 @@
       font-family: var(--font-mono);
       font-size: 2.4rem;
       font-weight: 700;
+      color: var(--black);
       margin-bottom: 4px;
     }
     .price-amount .struck {
       text-decoration: line-through;
-      color: #bbb;
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin-right: 8px;
+      color: #999;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-right: 10px;
+      position: relative;
+    }
+    .price-card.featured .price-amount {
+      color: var(--signal);
+    }
+    .price-card.featured .price-amount .struck {
+      color: #aaa;
+    }
+    .price-card.featured h3 {
+      color: var(--black);
     }
     .price-period {
       font-size: 0.8rem;
@@ -370,78 +381,6 @@
     </div>
   </header>
 
-  <!-- PRICING CARDS -->
-  <section class="comparison-section">
-    <div class="comparison-header">
-      <h2>Simple, transparent pricing</h2>
-      <p>No hidden fees. No long contracts. Cancel anytime.</p>
-    </div>
-
-    <div class="price-grid">
-
-      <!-- Starter -->
-      <div class="price-card">
-        <div class="price-card-label">Starter</div>
-        <h3>Growth Package</h3>
-        <div class="price-amount"><span class="struck">&pound;1,850</span> &pound;899</div>
-        <div class="price-period">per month</div>
-        <ul class="price-features">
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Short-form video production</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Social media management</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Content strategy</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Analytics dashboard</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Weekly reports</li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Branding & digital upgrade</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Custom website</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Booking system</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Food ordering system</span></li>
-        </ul>
-        <a href="/contact" class="price-cta price-cta-outline">Get Started</a>
-      </div>
-
-      <!-- Full Stack -->
-      <div class="price-card featured">
-        <div class="price-badge">Most Popular</div>
-        <div class="price-card-label">Full Stack</div>
-        <h3>The Full Package</h3>
-        <div class="price-amount"><span class="struck">&pound;3,415</span> &pound;1,600</div>
-        <div class="price-period">per month &mdash; everything included</div>
-        <ul class="price-features">
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Short-form video production</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Social media management</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Content strategy</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Analytics dashboard & reporting</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Full branding & digital upgrade</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Custom website design & build</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Booking system & management</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Food ordering system</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Weekly performance reports</li>
-        </ul>
-        <a href="/contact" class="price-cta price-cta-primary">Get Started</a>
-      </div>
-
-      <!-- Full-Time Staff -->
-      <div class="price-card dim">
-        <div class="price-card-label">The Alternative</div>
-        <h3>Full-Time Staff Member</h3>
-        <div class="price-amount">&pound;2,500+</div>
-        <div class="price-period">per month (salary alone)</div>
-        <ul class="price-features">
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">One person, limited skills</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">No analytics platform</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">No website or booking system</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">No weekly reports</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Holiday pay, sick pay, NI, pension</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Equipment costs on you</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Training and management needed</span></li>
-          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Lower output than a full team</span></li>
-        </ul>
-        <span class="price-cta price-cta-outline" style="cursor:default; opacity:0.5;">Not recommended</span>
-      </div>
-
-    </div>
-  </section>
-
   <!-- SAAS COST BREAKDOWN -->
   <section class="saas-section">
     <div class="saas-table">
@@ -533,6 +472,78 @@
           <li class="yes" style="font-weight:700; padding-top:12px; border-top:1px solid var(--border); color:var(--signal);">Save &pound;1,400+/mo vs hiring</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- PRICING CARDS -->
+  <section class="comparison-section">
+    <div class="comparison-header">
+      <h2>Simple, transparent pricing</h2>
+      <p>No hidden fees. No long contracts. Cancel anytime.</p>
+    </div>
+
+    <div class="price-grid">
+
+      <!-- Starter -->
+      <div class="price-card">
+        <div class="price-card-label">Starter</div>
+        <h3>Growth Package</h3>
+        <div class="price-amount"><span class="struck">&pound;1,850</span> &pound;899</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Short-form video production</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Social media management</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Content strategy</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Analytics dashboard</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Weekly reports</li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Branding & digital upgrade</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Custom website</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Booking system</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Food ordering system</span></li>
+        </ul>
+        <a href="/contact" class="price-cta price-cta-outline">Get Started</a>
+      </div>
+
+      <!-- Full Stack -->
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-card-label">Full Stack</div>
+        <h3>The Full Package</h3>
+        <div class="price-amount"><span class="struck">&pound;3,415</span> &pound;1,600</div>
+        <div class="price-period">per month &mdash; everything included</div>
+        <ul class="price-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Short-form video production</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Social media management</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Content strategy</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Analytics dashboard & reporting</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Full branding & digital upgrade</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Custom website design & build</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Booking system & management</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Food ordering system</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Weekly performance reports</li>
+        </ul>
+        <a href="/contact" class="price-cta price-cta-primary">Get Started</a>
+      </div>
+
+      <!-- Full-Time Staff -->
+      <div class="price-card dim">
+        <div class="price-card-label">The Alternative</div>
+        <h3>Full-Time Staff Member</h3>
+        <div class="price-amount">&pound;2,500+</div>
+        <div class="price-period">per month (salary alone)</div>
+        <ul class="price-features">
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">One person, limited skills</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">No analytics platform</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">No website or booking system</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">No weekly reports</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Holiday pay, sick pay, NI, pension</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Equipment costs on you</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Training and management needed</span></li>
+          <li><span class="cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> <span style="color:var(--mid)">Lower output than a full team</span></li>
+        </ul>
+        <span class="price-cta price-cta-outline" style="cursor:default; opacity:0.5;">Not recommended</span>
+      </div>
+
     </div>
   </section>
 
