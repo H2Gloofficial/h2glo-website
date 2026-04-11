@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Cards - Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F5F2EE;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pricing-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+.pricing-section h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #1A1A1A;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.pricing-section h2 em {
+  font-style: italic;
+  color: #E8645A;
+  font-family: 'DM Serif Display', serif;
+}
+
+.pricing-sub {
+  font-size: 1.05rem;
+  color: #888;
+  margin-bottom: 48px;
+}
+
+/* ===== CARD STACK ===== */
+.card-stack-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 620px;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+}
+
+.pricing-card {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 88%;
+  max-width: 340px;
+  min-height: 520px;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+.pricing-card:active { cursor: grabbing; }
+
+.pricing-card.is-featured {
+  border: 2px solid #E8645A;
+}
+
+/* Badge */
+.card-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #E8645A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* Plan name */
+.plan-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.plan-name.featured-name { color: #E8645A; }
+
+/* Price */
+.plan-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: #1A1A1A;
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.plan-price span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #888;
+  letter-spacing: 0;
+}
+
+.plan-subtext {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 24px;
+}
+
+/* Features */
+.plan-features {
+  list-style: none;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.plan-features li {
+  font-size: 14px;
+  color: #1A1A1A;
+  padding: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.plan-features li::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E8645A;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* CTA */
+.plan-cta {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.plan-cta:hover {
+  transform: scale(1.02);
+}
+
+.plan-cta.cta-primary {
+  background: #E8645A;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(232,100,90,0.3);
+}
+
+.plan-cta.cta-primary:hover {
+  box-shadow: 0 6px 24px rgba(232,100,90,0.4);
+}
+
+.plan-cta.cta-outline {
+  background: transparent;
+  color: #1A1A1A;
+  border: 2px solid #e0ddd8;
+}
+
+.plan-cta.cta-outline:hover {
+  border-color: #E8645A;
+  color: #E8645A;
+}
+
+/* Nav dots */
+.card-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.card-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4d0cb;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  border: none;
+  padding: 0;
+}
+
+.card-dot.active {
+  background: #E8645A;
+  transform: scale(1.3);
+}
+
+/* Swipe hint */
+.swipe-hint {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 0.5px;
+}
+
+/* Desktop: side by side grid */
+@media (min-width: 769px) {
+  .card-stack-container {
+    display: none;
+  }
+  .card-dots { display: none; }
+  .swipe-hint { display: none; }
+  .desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .desktop-grid .pricing-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .desktop-grid .pricing-card.is-featured {
+    transform: scale(1.04) !important;
+    box-shadow: 0 12px 48px rgba(232,100,90,0.2) !important;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-grid { display: none; }
+}
+</style>
+</head>
+<body>
+
+<section class="pricing-section">
+  <h2>Pick your <em>growth</em> tier.</h2>
+  <p class="pricing-sub">All plans include the guarantee. Double your impressions or pay half.</p>
+
+  <!-- DESKTOP GRID (hidden on mobile) -->
+  <div class="desktop-grid">
+    <div class="pricing-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">Content <span>/ monthly</span></div>
+      <div class="plan-subtext">Perfect for getting started</div>
+      <ul class="plan-features">
+        <li>8 short-form videos per month</li>
+        <li>TikTok and Reels publishing</li>
+        <li>Basic performance reporting</li>
+        <li>Hashtag and caption strategy</li>
+        <li>Content management</li>
+      </ul>
+      <a href="#contact" class="plan-cta cta-outline">Get Started</a>
+    </div>
+
+    <div class="pricing-card is-featured">
+      <div class="card-badge">Most Popular</div>
+      <div class="plan-name featured-name">Growth</div>
+      <div class="plan-price">Full Stack <span>/ monthly</span></div>
+      <div class="plan-subtext">The most popular plan</div>
+      <ul class="plan-features">
+        <li>20 short-form videos per month</li>
+        <li>TikTok, Reels and Shorts</li>
+        <li>Profile optimisation</li>
+        <li>Local search setup</li>
+        <li>Tracking setup</li>
+        <li>Community management</li>
+        <li>Growth guarantee</li>
+        <li>Live client dashboard</li>
+        <li>Monthly strategy calls</li>
+      </ul>
+      <a href="#contact" class="plan-cta cta-primary">Get Started</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Scale</div>
+      <div class="plan-price">Custom <span>/ bespoke</span></div>
+      <div class="plan-subtext">Everything, tailored to you</div>
+      <ul class="plan-features">
+        <li>Unlimited content production</li>
+        <li>Dedicated creative strategist</li>
+        <li>Full website design and build</li>
+        <li>Complete brand identity</li>
+        <li>Multi-platform domination</li>
+        <li>Email and CRM automation</li>
+        <li>Consulting and growth strategy</li>
+        <li>Live client dashboard</li>
+        <li>Priority turnaround</li>
+      </ul>
+      <a href="#contact" class="plan-cta cta-outline">Talk to Us</a>
+    </div>
+  </div>
+
+  <!-- MOBILE CARD STACK (hidden on desktop) -->
+  <div class="card-stack-container" id="cardStack">
+    <!-- Cards injected by JS -->
+  </div>
+  <div class="card-dots" id="cardDots">
+    <button class="card-dot active" data-idx="0"></button>
+    <button class="card-dot" data-idx="1"></button>
+    <button class="card-dot" data-idx="2"></button>
+  </div>
+  <div class="swipe-hint">Swipe to explore plans</div>
+</section>
+
+<script>
+(function() {
+  var CARDS_DATA = [
+    {
+      name: 'Starter',
+      nameClass: '',
+      price: 'Content',
+      priceSuffix: '/ monthly',
+      subtext: 'Perfect for getting started',
+      features: ['8 short-form videos per month','TikTok and Reels publishing','Basic performance reporting','Hashtag and caption strategy','Content management'],
+      cta: 'Get Started',
+      ctaClass: 'cta-outline',
+      featured: false
+    },
+    {
+      name: 'Growth',
+      nameClass: 'featured-name',
+      price: 'Full Stack',
+      priceSuffix: '/ monthly',
+      subtext: 'The most popular plan',
+      features: ['20 short-form videos per month','TikTok, Reels and Shorts','Profile optimisation','Local search setup','Tracking setup','Community management','Growth guarantee','Live client dashboard','Monthly strategy calls'],
+      cta: 'Get Started',
+      ctaClass: 'cta-primary',
+      featured: true,
+      badge: 'Most Popular'
+    },
+    {
+      name: 'Scale',
+      nameClass: '',
+      price: 'Custom',
+      priceSuffix: '/ bespoke',
+      subtext: 'Everything, tailored to you',
+      features: ['Unlimited content production','Dedicated creative strategist','Full website design and build','Complete brand identity','Multi-platform domination','Email and CRM automation','Consulting and growth strategy','Live client dashboard','Priority turnaround'],
+      cta: 'Talk to Us',
+      ctaClass: 'cta-outline',
+      featured: false
+    }
+  ];
+
+  var stack = document.getElementById('cardStack');
+  var dots = document.querySelectorAll('.card-dot');
+  var activeIndex = 1; // Start on Growth
+  var cardEls = [];
+  var isDragging = false;
+  var dragStartX = 0;
+  var dragCurrentX = 0;
+  var dragCardEl = null;
+
+  // Spring animation engine
+  function springAnimate(el, props, config, onDone) {
+    var stiffness = (config && config.stiffness) || 280;
+    var damping = (config && config.damping) || 20;
+    var mass = (config && config.mass) || 1;
+
+    // Get current values
+    var current = {};
+    var velocity = {};
+    var targets = {};
+    for (var key in props) {
+      targets[key] = props[key];
+      velocity[key] = 0;
+      if (key === 'x') current[key] = parseFloat(el._springX) || 0;
+      else if (key === 'y') current[key] = parseFloat(el._springY) || 0;
+      else if (key === 'scale') current[key] = parseFloat(el._springScale) || 1;
+      else if (key === 'rotate') current[key] = parseFloat(el._springRotate) || 0;
+      else if (key === 'opacity') current[key] = parseFloat(el._springOpacity != null ? el._springOpacity : 1);
+    }
+
+    if (el._springRaf) cancelAnimationFrame(el._springRaf);
+
+    function step() {
+      var allSettled = true;
+      for (var key in targets) {
+        var displacement = current[key] - targets[key];
+        var springForce = -stiffness * displacement;
+        var dampingForce = -damping * velocity[key];
+        var acceleration = (springForce + dampingForce) / mass;
+        velocity[key] += acceleration * (1/60);
+        current[key] += velocity[key] * (1/60);
+
+        if (Math.abs(velocity[key]) > 0.01 || Math.abs(current[key] - targets[key]) > 0.01) {
+          allSettled = false;
+        } else {
+          current[key] = targets[key];
+          velocity[key] = 0;
+        }
+      }
+
+      // Apply
+      var x = current.x != null ? current.x : (parseFloat(el._springX) || 0);
+      var y = current.y != null ? current.y : (parseFloat(el._springY) || 0);
+      var s = current.scale != null ? current.scale : (parseFloat(el._springScale) || 1);
+      var r = current.rotate != null ? current.rotate : (parseFloat(el._springRotate) || 0);
+      var o = current.opacity != null ? current.opacity : 1;
+
+      el.style.transform = 'translateX(calc(-50% + ' + x + 'px)) translateY(' + y + 'px) scale(' + s + ') rotate(' + r + 'deg)';
+      el.style.opacity = o;
+
+      // Store
+      if (current.x != null) el._springX = current.x;
+      if (current.y != null) el._springY = current.y;
+      if (current.scale != null) el._springScale = current.scale;
+      if (current.rotate != null) el._springRotate = current.rotate;
+      if (current.opacity != null) el._springOpacity = current.opacity;
+
+      if (!allSettled) {
+        el._springRaf = requestAnimationFrame(step);
+      } else {
+        if (onDone) onDone();
+      }
+    }
+    el._springRaf = requestAnimationFrame(step);
+  }
+
+  // Build card HTML
+  function buildCard(data, index) {
+    var card = document.createElement('div');
+    card.className = 'pricing-card' + (data.featured ? ' is-featured' : '');
+    card.setAttribute('data-index', index);
+    var html = '';
+    if (data.badge) html += '<div class="card-badge">' + data.badge + '</div>';
+    html += '<div class="plan-name ' + data.nameClass + '">' + data.name + '</div>';
+    html += '<div class="plan-price">' + data.price + ' <span>' + data.priceSuffix + '</span></div>';
+    html += '<div class="plan-subtext">' + data.subtext + '</div>';
+    html += '<ul class="plan-features">';
+    data.features.forEach(function(f) { html += '<li>' + f + '</li>'; });
+    html += '</ul>';
+    html += '<a href="#contact" class="plan-cta ' + data.ctaClass + '">' + data.cta + '</a>';
+    card.innerHTML = html;
+    return card;
+  }
+
+  // Position cards in stack
+  function layoutStack(skipAnim) {
+    var order = getOrder();
+    var springConf = { stiffness: 500, damping: 28, mass: 0.8 };
+
+    for (var slot = 0; slot < 3; slot++) {
+      var cardIdx = order[slot];
+      var el = cardEls[cardIdx];
+      var props;
+
+      if (slot === 0) {
+        // Active: center, full size
+        props = { x: 0, y: 0, scale: 1, rotate: 0, opacity: 1 };
+        el.style.zIndex = 10;
+        el.style.boxShadow = '0 16px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(232,100,90,0.08)';
+        el.style.pointerEvents = 'auto';
+      } else if (slot === 1) {
+        // Behind left
+        props = { x: -24, y: 12, scale: 0.92, rotate: 0, opacity: 0.7 };
+        el.style.zIndex = 5;
+        el.style.boxShadow = '0 4px 20px rgba(0,0,0,0.06)';
+        el.style.pointerEvents = 'none';
+      } else {
+        // Behind right
+        props = { x: 24, y: 20, scale: 0.88, rotate: 0, opacity: 0.5 };
+        el.style.zIndex = 2;
+        el.style.boxShadow = '0 2px 12px rgba(0,0,0,0.04)';
+        el.style.pointerEvents = 'none';
+      }
+
+      if (skipAnim) {
+        el._springX = props.x;
+        el._springY = props.y;
+        el._springScale = props.scale;
+        el._springRotate = props.rotate;
+        el._springOpacity = props.opacity;
+        el.style.transform = 'translateX(calc(-50% + ' + props.x + 'px)) translateY(' + props.y + 'px) scale(' + props.scale + ') rotate(' + props.rotate + 'deg)';
+        el.style.opacity = props.opacity;
+      } else {
+        springAnimate(el, props, springConf);
+      }
+    }
+
+    // Update dots
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === activeIndex);
+    });
+  }
+
+  function getOrder() {
+    // Returns [active, behindLeft, behindRight] card indices
+    var a = activeIndex;
+    var l = (a - 1 + 3) % 3;
+    var r = (a + 1) % 3;
+    return [a, l, r];
+  }
+
+  function goTo(idx) {
+    activeIndex = idx;
+    layoutStack();
+  }
+
+  function next() {
+    activeIndex = (activeIndex + 1) % 3;
+    layoutStack();
+  }
+
+  function prev() {
+    activeIndex = (activeIndex - 1 + 3) % 3;
+    layoutStack();
+  }
+
+  // Drag handling
+  function onDragStart(e) {
+    if (window.innerWidth > 768) return;
+    var el = e.currentTarget;
+    if (parseInt(el.getAttribute('data-index')) !== activeIndex) return;
+    isDragging = true;
+    dragCardEl = el;
+    dragStartX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    dragCurrentX = 0;
+    el.style.cursor = 'grabbing';
+  }
+
+  function onDragMove(e) {
+    if (!isDragging || !dragCardEl) return;
+    var clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    dragCurrentX = clientX - dragStartX;
+    var rotation = (dragCurrentX / 400) * 8; // Max 8 deg
+    rotation = Math.max(-8, Math.min(8, rotation));
+    var baseX = parseFloat(dragCardEl._springX) || 0;
+    dragCardEl.style.transform = 'translateX(calc(-50% + ' + (baseX + dragCurrentX) + 'px)) translateY(0px) scale(1) rotate(' + rotation + 'deg)';
+  }
+
+  function onDragEnd(e) {
+    if (!isDragging || !dragCardEl) return;
+    isDragging = false;
+    dragCardEl.style.cursor = 'grab';
+    var threshold = 50;
+
+    if (dragCurrentX < -threshold) {
+      // Fling left -> next card: instant dismiss, immediate layout
+      var dismissed = dragCardEl;
+      dismissed.style.transition = 'transform 0.15s ease-out, opacity 0.12s ease-out';
+      dismissed.style.transform = 'translateX(calc(-50% + -350px)) translateY(0px) scale(0.9) rotate(-10deg)';
+      dismissed.style.opacity = '0';
+      activeIndex = (activeIndex + 1) % 3;
+      layoutStack();
+      setTimeout(function(){ dismissed.style.transition = ''; }, 200);
+    } else if (dragCurrentX > threshold) {
+      // Fling right -> prev card: instant dismiss, immediate layout
+      var dismissed = dragCardEl;
+      dismissed.style.transition = 'transform 0.15s ease-out, opacity 0.12s ease-out';
+      dismissed.style.transform = 'translateX(calc(-50% + 350px)) translateY(0px) scale(0.9) rotate(10deg)';
+      dismissed.style.opacity = '0';
+      activeIndex = (activeIndex - 1 + 3) % 3;
+      layoutStack();
+      setTimeout(function(){ dismissed.style.transition = ''; }, 200);
+    } else {
+      // Snap back
+      springAnimate(dragCardEl, { x: 0, y: 0, scale: 1, rotate: 0, opacity: 1 }, { stiffness: 280, damping: 20 });
+    }
+    dragCardEl = null;
+    dragCurrentX = 0;
+  }
+
+  // Init
+  CARDS_DATA.forEach(function(data, i) {
+    var card = buildCard(data, i);
+    stack.appendChild(card);
+    cardEls.push(card);
+
+    // Drag events
+    card.addEventListener('mousedown', onDragStart);
+    card.addEventListener('touchstart', onDragStart, { passive: true });
+  });
+
+  document.addEventListener('mousemove', onDragMove);
+  document.addEventListener('touchmove', onDragMove, { passive: true });
+  document.addEventListener('mouseup', onDragEnd);
+  document.addEventListener('touchend', onDragEnd);
+
+  // Dot clicks
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(this.getAttribute('data-idx'));
+      if (idx === activeIndex) return;
+      goTo(idx);
+    });
+  });
+
+  // Initial layout (no animation)
+  layoutStack(true);
+})();
+</script>
+
+</body>
+</html>

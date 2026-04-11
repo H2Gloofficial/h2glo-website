@@ -2,6 +2,8 @@ import { registerRoot, Composition } from 'remotion';
 import { DashboardAd } from './DashboardAdV2';
 import { FusionCreativeShootDay } from './FusionCreativeShootDay';
 import { InstagramBeforeAfter } from './InstagramBeforeAfter';
+import { SmokedSmashedMenu } from './SmokedSmashedMenu';
+import { SmokedSmashedMenuWide } from './SmokedSmashedMenuWide';
 
 function Root() {
   return (
@@ -26,6 +28,22 @@ function Root() {
         id="InstagramBeforeAfter"
         component={InstagramBeforeAfter}
         durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="SmokedSmashedMenu"
+        component={SmokedSmashedMenu}
+        durationInFrames={1210}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="SmokedSmashedMenuWide"
+        component={SmokedSmashedMenuWide}
+        durationInFrames={1210}
         fps={30}
         width={1920}
         height={1080}

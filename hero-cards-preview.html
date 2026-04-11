@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Card Stack - Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --signal:#E8645A;
+  --off-white:#F5F3EE;
+  --black:#111;
+  --mid:#888;
+  --font-head:'Space Grotesk',sans-serif;
+  --font-serif:'DM Serif Display',serif;
+  --font-mono:'Space Mono',monospace;
+}
+body{font-family:var(--font-head);background:#000;color:var(--off-white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  padding:0 6vw;
+  background:radial-gradient(circle at 50% 100%,#300d0d 0%,#0a0a0a 70%,#000 100%);
+  overflow:visible;
+  z-index:1;
+}
+.hero-split{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  max-width:1260px;
+  margin:0 auto;
+  gap:60px;
+}
+.hero-left{
+  max-width:560px;
+  flex-shrink:0;
+}
+.hero-eyebrow{
+  font-family:var(--font-mono);
+  font-size:0.75rem;
+  color:var(--signal);
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  margin-bottom:2rem;
+  opacity:0;transform:translateY(30px);
+}
+.hero-h1{
+  font-family:var(--font-head);
+  font-size:clamp(2.8rem,5.5vw,4.5rem);
+  font-weight:700;
+  color:var(--off-white);
+  line-height:1.08;
+  letter-spacing:-0.03em;
+  margin-bottom:1.5rem;
+  opacity:0;transform:translateY(30px);
+}
+.hero-h1 em{
+  font-family:var(--font-serif);
+  font-style:italic;
+  color:var(--signal);
+}
+.hero-sub{
+  font-size:1.1rem;
+  color:rgba(245,243,238,0.55);
+  line-height:1.65;
+  margin-bottom:2.5rem;
+  max-width:480px;
+  opacity:0;transform:translateY(30px);
+}
+.hero-ctas{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;transform:translateY(30px);
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-weight:600;font-size:1rem;
+  padding:1rem 2rem;border-radius:12px;text-decoration:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-signal{background:var(--signal);color:#fff}
+.btn-signal:hover{transform:scale(1.03);box-shadow:0 6px 30px rgba(232,100,90,0.4)}
+.btn-ghost{color:var(--mid);font-size:0.9rem;padding:1rem 1.5rem}
+.btn-ghost:hover{color:var(--off-white)}
+
+/* ===== CARD STACK ===== */
+.hero-card-stack{
+  position:relative;
+  width:380px;
+  height:520px;
+  flex-shrink:0;
+  margin-bottom:-80px; /* extend below hero */
+}
+
+.hcs-card{
+  position:absolute;
+  width:280px;
+  height:420px;
+  border-radius:20px;
+  overflow:hidden;
+  cursor:default;
+  will-change:transform,opacity;
+  background:#1a1a1a;
+}
+
+/* Thumbnail fills entire card */
+.hcs-card-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* Top glassmorphism overlay */
+.hcs-top{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:56px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.15);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+  z-index:2;
+}
+.hcs-avatar{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:var(--signal);
+  color:#fff;
+  font-family:'DM Sans',sans-serif;
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.hcs-handle{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:700;
+  color:#fff;
+  margin-left:8px;
+  flex:1;
+  text-shadow:0 1px 2px rgba(0,0,0,0.3);
+}
+.hcs-heart-top{flex-shrink:0;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3))}
+
+/* Centre play pill */
+.hcs-play-pill{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-radius:100px;
+  padding:8px 18px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  z-index:2;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.hcs-play-icon{
+  width:18px;height:18px;
+  fill:#fff;
+}
+.hcs-view-count{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px;
+  color:#fff;
+  letter-spacing:1px;
+  line-height:1;
+}
+
+/* Bottom glassmorphism overlay */
+.hcs-bottom{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,0.12);
+  padding:14px;
+  z-index:2;
+}
+.hcs-caption{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  color:#fff;
+  line-height:1.4;
+  margin-bottom:8px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-shadow:0 1px 2px rgba(0,0,0,0.3);
+}
+.hcs-engagement{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.hcs-eng-item{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;
+  color:rgba(255,255,255,0.8);
+}
+.hcs-eng-item svg{
+  width:13px;height:13px;
+  fill:rgba(255,255,255,0.8);
+}
+
+/* "Next section" preview to show overflow */
+.next-section{
+  background:#F5F2EE;
+  padding:80px 6vw;
+  text-align:center;
+  position:relative;
+  z-index:0;
+}
+.next-section h2{
+  font-family:var(--font-head);
+  font-size:2rem;
+  color:var(--black);
+  font-weight:700;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .hero-split{flex-direction:column;text-align:center;gap:40px}
+  .hero-left{max-width:100%}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-ctas{justify-content:center}
+  .hero-card-stack{display:none}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-split">
+    <div class="hero-left">
+      <div class="hero-eyebrow" id="heroEyebrow">Full-Stack Digital Agency</div>
+      <h1 class="hero-h1" id="heroH1">We Make Your <em>Business</em> Go Viral.</h1>
+      <p class="hero-sub" id="heroSub">Content, websites, and marketing that grows your business. Proven results. Guaranteed growth.</p>
+      <div class="hero-ctas" id="heroCtas">
+        <a href="#" class="btn btn-signal">Start Growing</a>
+        <a href="#" class="btn btn-ghost">See Client Results</a>
+      </div>
+    </div>
+
+    <div class="hero-card-stack" id="heroCardStack"></div>
+  </div>
+</section>
+
+<section class="next-section">
+  <h2>Cards overlap into this section</h2>
+</section>
+
+<script>
+(function(){
+  var CARDS = [
+    {
+      slot: 0, // front centre
+      caption: 'This wrap hits different every time',
+      views: '2.4M',
+      likes: '39K',
+      comments: '1.2K',
+      // SWAP: replace with real image path
+      image: '',
+      placeholderGrad: 'linear-gradient(145deg, #2a1508 0%, #0d0a06 50%, #1a0e05 100%)'
+    },
+    {
+      slot: 1, // behind left
+      caption: 'Newcastle does not miss with this one',
+      views: '1.1M',
+      likes: '18K',
+      comments: '420',
+      // SWAP: replace with real image path
+      image: '',
+      placeholderGrad: 'linear-gradient(145deg, #0a1a2a 0%, #0a0a15 50%, #151020 100%)'
+    },
+    {
+      slot: 2, // behind right
+      caption: 'POV you just discovered New Greek',
+      views: '556K',
+      likes: '9.2K',
+      comments: '117',
+      // SWAP: replace with real image path
+      image: '',
+      placeholderGrad: 'linear-gradient(145deg, #1a200a 0%, #0a0a0a 50%, #0d1a0a 100%)'
+    }
+  ];
+
+  var SLOTS = [
+    { x: 50,  y: 30,  r: 0,  s: 1,    o: 1,    shadow: '0 32px 80px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.2)' },
+    { x: -20, y: 50,  r: -8, s: 0.93, o: 0.85, shadow: '0 24px 64px rgba(0,0,0,0.25), 0 6px 16px rgba(0,0,0,0.15)' },
+    { x: 110, y: 60,  r: 6,  s: 0.87, o: 0.7,  shadow: '0 20px 48px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1)' }
+  ];
+
+  var stack = document.getElementById('heroCardStack');
+  var cardEls = [];
+
+  // Build card DOM
+  CARDS.forEach(function(c, i) {
+    var el = document.createElement('div');
+    el.className = 'hcs-card';
+    el.setAttribute('data-slot', c.slot);
+
+    var bgStyle = c.image
+      ? 'background-image:url(' + c.image + ')'
+      : 'background:' + c.placeholderGrad;
+
+    el.innerHTML =
+      '<div class="hcs-card-bg" style="' + bgStyle + '"></div>' +
+
+      // Top overlay
+      '<div class="hcs-top">' +
+        '<div class="hcs-avatar">NG</div>' +
+        '<span class="hcs-handle">@newgreek.ncl</span>' +
+        '<svg class="hcs-heart-top" width="18" height="18" viewBox="0 0 24 24" fill="#E8645A"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' +
+      '</div>' +
+
+      // Play pill
+      '<div class="hcs-play-pill">' +
+        '<svg class="hcs-play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>' +
+        '<span class="hcs-view-count">' + c.views + ' VIEWS</span>' +
+      '</div>' +
+
+      // Bottom overlay
+      '<div class="hcs-bottom">' +
+        '<div class="hcs-caption">' + c.caption + '</div>' +
+        '<div class="hcs-engagement">' +
+          '<span class="hcs-eng-item"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' + c.likes + '</span>' +
+          '<span class="hcs-eng-item"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' + c.comments + '</span>' +
+        '</div>' +
+      '</div>';
+
+    el.style.opacity = '0';
+    stack.appendChild(el);
+    cardEls.push(el);
+  });
+
+  // Spring physics engine
+  function springTo(el, target, config, delay, onDone) {
+    var stiff = config.stiffness || 180;
+    var damp = config.damping || 16;
+    var mass = config.mass || 1;
+    var keys = ['x','y','r','s','o'];
+    var cur = {
+      x: target.x,
+      y: target.y + 60,
+      r: target.r + (target.r <= 0 ? -10 : 10),
+      s: target.s * 0.75,
+      o: 0
+    };
+    var vel = {x:0,y:0,r:0,s:0,o:0};
+
+    setTimeout(function() {
+      function step() {
+        var settled = true;
+        for (var i = 0; i < keys.length; i++) {
+          var k = keys[i];
+          var d = cur[k] - target[k];
+          vel[k] += (-stiff * d + -damp * vel[k]) / mass * (1/60);
+          cur[k] += vel[k] * (1/60);
+          if (Math.abs(vel[k]) > 0.01 || Math.abs(cur[k] - target[k]) > 0.01) settled = false;
+          else { cur[k] = target[k]; vel[k] = 0; }
+        }
+
+        el.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px) rotate(' + cur.r + 'deg) scale(' + cur.s + ')';
+        el.style.opacity = Math.max(0, Math.min(1, cur.o));
+        el.style.boxShadow = target.shadow;
+
+        if (!settled) {
+          requestAnimationFrame(step);
+        } else {
+          el._restX = target.x;
+          el._restY = target.y;
+          el._restR = target.r;
+          el._restS = target.s;
+          if (onDone) onDone();
+        }
+      }
+      requestAnimationFrame(step);
+    }, delay);
+  }
+
+  // Animate cards in: back first, front last
+  var springConf = { stiffness: 180, damping: 16, mass: 1 };
+  cardEls.forEach(function(el, i) {
+    var slot = parseInt(el.getAttribute('data-slot'));
+    var zIndexes = [3, 2, 1];
+    el.style.zIndex = zIndexes[slot];
+    springTo(el, SLOTS[slot], springConf, (2 - slot) * 120 + 300);
+  });
+
+  // Animate hero text in
+  var textEls = [
+    document.getElementById('heroEyebrow'),
+    document.getElementById('heroH1'),
+    document.getElementById('heroSub'),
+    document.getElementById('heroCtas')
+  ];
+  textEls.forEach(function(el, i) {
+    setTimeout(function() {
+      el.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 200 + i * 100);
+  });
+
+  // Hover: lift front card
+  var frontCard = cardEls[0]; // slot 0 = front
+  stack.addEventListener('mouseenter', function() {
+    if (frontCard._restY == null) return;
+    frontCard.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s';
+    frontCard.style.transform = 'translate(' + frontCard._restX + 'px,' + (frontCard._restY - 10) + 'px) rotate(0deg) scale(1.02)';
+    frontCard.style.boxShadow = '0 40px 100px rgba(0,0,0,0.4), 0 12px 32px rgba(0,0,0,0.25)';
+  });
+  stack.addEventListener('mouseleave', function() {
+    if (frontCard._restY == null) return;
+    frontCard.style.transform = 'translate(' + frontCard._restX + 'px,' + frontCard._restY + 'px) rotate(0deg) scale(1)';
+    frontCard.style.boxShadow = SLOTS[0].shadow;
+    setTimeout(function() { frontCard.style.transition = ''; }, 400);
+  });
+})();
+</script>
+
+</body>
+</html>

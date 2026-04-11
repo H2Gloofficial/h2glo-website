@@ -192,13 +192,13 @@ a:not(.btn):hover, button:not(.btn):hover { transform: translateY(-1px); }
 .hero {
   position: relative;
   z-index: 1;
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 6vw;
   background: radial-gradient(circle at 50% 100%, #300d0d 0%, #0a0a0a 70%, #000000 100%);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-content {
