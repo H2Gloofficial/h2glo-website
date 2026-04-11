@@ -958,35 +958,124 @@
   </section>
 
 
-  <!-- HOW IT WORKS FLOATING CARD -->
-  <div style="position:relative; z-index:10; max-width:900px; margin:-60px auto 0; padding:0 24px;">
-    <div style="background:#111; color:#fff; border-radius:2rem; padding:48px 56px; text-align:center; transform:rotate(-1.2deg); box-shadow:0 20px 60px rgba(0,0,0,0.2), 0 0 80px rgba(230,59,46,0.08); position:relative; overflow:hidden;">
-      <div style="position:absolute; inset:0; opacity:0.05; background-image:url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.65%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27300%27 height=%27300%27 filter=%27url(%23n)%27/%3E%3C/svg%3E');"></div>
-      <div style="position:relative; z-index:1;">
-        <p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--signal); margin-bottom:14px;">/ How It Works</p>
-        <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem,4vw,2.8rem); margin-bottom:14px; line-height:1.15;">From zero to <em style='font-style:italic; color:var(--signal);'>viral</em> in four steps.</h2>
-        <p style="color:#888; font-size:0.95rem; max-width:520px; margin:0 auto 28px; line-height:1.7;">Discovery. Production. Publish. Scale. We handle the entire process so you can focus on running your business.</p>
-        <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap;">
-          <div style="text-align:center;">
-            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">01</div>
-            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Discover</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">02</div>
-            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Create</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">03</div>
-            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Publish</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-family:var(--font-mono); font-size:1.6rem; font-weight:700; color:var(--signal);">04</div>
-            <div style="font-size:0.78rem; color:#aaa; margin-top:2px;">Scale</div>
-          </div>
+  <!-- HOW IT WORKS STICKER -->
+  <style>
+    .hiw-sticker-wrap {
+      position: relative;
+      z-index: 10;
+      max-width: 1000px;
+      margin: -80px auto -60px;
+      padding: 0 24px;
+    }
+    .hiw-sticker {
+      background: #111;
+      color: #fff;
+      border-radius: 2.4rem;
+      padding: 56px 64px;
+      text-align: center;
+      transform: rotate(-1.5deg) scale(0.6);
+      opacity: 0;
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.3),
+        0 0 120px rgba(230,59,46,0.15),
+        0 0 200px rgba(230,59,46,0.08);
+      position: relative;
+      overflow: hidden;
+      transition: none;
+    }
+    .hiw-sticker.stamped {
+      transform: rotate(-1.5deg) scale(1);
+      opacity: 1;
+      animation: hiw-stamp 0.4s cubic-bezier(0.17, 0.67, 0.3, 1.3) forwards;
+    }
+    @keyframes hiw-stamp {
+      0% { transform: rotate(-3deg) scale(1.3); opacity: 0.5; }
+      50% { transform: rotate(-0.5deg) scale(0.97); opacity: 1; }
+      70% { transform: rotate(-1.8deg) scale(1.02); }
+      100% { transform: rotate(-1.5deg) scale(1); opacity: 1; }
+    }
+    .hiw-sticker::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .hiw-sticker .hiw-inner { position: relative; z-index: 1; }
+    .hiw-sticker .hiw-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 16px;
+    }
+    .hiw-sticker h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .hiw-sticker h2 em { font-style: italic; color: var(--signal); }
+    .hiw-sticker .hiw-desc {
+      color: #888;
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hiw-steps {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hiw-step-num {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--signal);
+    }
+    .hiw-step-label {
+      font-size: 0.82rem;
+      color: #aaa;
+      margin-top: 4px;
+    }
+    @media (max-width: 600px) {
+      .hiw-sticker { padding: 40px 28px; border-radius: 1.8rem; }
+      .hiw-steps { gap: 24px; }
+    }
+  </style>
+  <div class="hiw-sticker-wrap">
+    <div class="hiw-sticker" id="hiwSticker">
+      <div class="hiw-inner">
+        <p class="hiw-label">/ How It Works</p>
+        <h2>From zero to <em>viral</em> in four steps.</h2>
+        <p class="hiw-desc">Discovery. Production. Publish. Scale. We handle the entire process so you can focus on running your business.</p>
+        <div class="hiw-steps">
+          <div><div class="hiw-step-num">01</div><div class="hiw-step-label">Discover</div></div>
+          <div><div class="hiw-step-num">02</div><div class="hiw-step-label">Create</div></div>
+          <div><div class="hiw-step-num">03</div><div class="hiw-step-label">Publish</div></div>
+          <div><div class="hiw-step-num">04</div><div class="hiw-step-label">Scale</div></div>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    (function() {
+      var sticker = document.getElementById('hiwSticker');
+      if (!sticker) return;
+      var done = false;
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !done) {
+          done = true;
+          sticker.classList.add('stamped');
+          obs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      obs.observe(sticker);
+    })();
+  </script>
 
   <!-- DIGITAL SERVICES SECTION (moved before pricing) -->
   <section class="digital-services-section section-pad" id="digital">
