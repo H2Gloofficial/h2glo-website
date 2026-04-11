@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS8XCRSG4W"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TS8XCRSG4W');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Fusion Creative | Full-Stack Digital Agency</title>
+  <meta name="description" content="Meet the team behind Fusion Creative. UK-based content strategists, filmmakers, and social media specialists driving real results for businesses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    .about-hero {
+      padding: 160px 0 80px;
+      background: var(--off-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(230,59,46,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .about-hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .about-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .about-hero h1 em { font-style: italic; color: var(--signal); }
+    .about-hero .lead {
+      font-size: 1.15rem;
+      color: var(--mid);
+      line-height: 1.8;
+      max-width: 650px;
+    }
+
+    /* Founder section */
+    .founder-section {
+      padding: 80px 0;
+      background: #fff;
+    }
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      align-items: start;
+    }
+    .founder-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--rad-md);
+      overflow: hidden;
+      background: var(--off-white);
+    }
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .founder-text h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .founder-role {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--signal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .founder-text p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Values */
+    .values-section {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .values-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .values-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+    .values-header p { color: var(--mid); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .value-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--rad-md);
+      padding: 36px 28px;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .value-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-3px);
+    }
+    .value-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--signal);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .value-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .value-card p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* What we do */
+    .services-strip {
+      padding: 80px 0;
+      background: #fff;
+    }
+    .services-strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .services-strip h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 32px;
+    }
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    .service-row:first-of-type { border-top: 1px solid var(--border); }
+    .service-row span:last-child {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--mid);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Stats */
+    .stats-bar {
+      padding: 60px 0;
+      background: #111;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .stat-item h3 {
+      font-family: var(--font-mono);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--signal);
+      margin-bottom: 4px;
+    }
+    .stat-item p {
+      font-size: 0.75rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* CTA */
+    .about-cta {
+      padding: 100px 0;
+      text-align: center;
+      background: var(--off-white);
+    }
+    .about-cta h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+    .about-cta p {
+      color: var(--mid);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+    .about-cta-btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: var(--rad-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .about-cta-btn:hover { background: #c42f24; }
+
+    @media (max-width: 768px) {
+      .founder-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .values-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Fusion Creative</a>
+      <ul class="nav-links">
+        <li><a href="/#results">Results</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/why-us">Why Us</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+      </ul>
+      <a href="/contact" class="nav-cta">Start a Project</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="about-hero">
+    <div class="about-hero-inner">
+      <p style="font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--signal); margin-bottom:16px;">/ About Us</p>
+      <h1>Built by creators,<br>for <em>businesses.</em></h1>
+      <p class="lead">We're a UK-based team of content strategists, filmmakers, and social media specialists. We create content that people actually want to watch, and we turn that attention into real results for your business.</p>
+    </div>
+  </header>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>100M+</h3>
+        <p>Views Generated</p>
+      </div>
+      <div class="stat-item">
+        <h3>6+</h3>
+        <p>Years Experience</p>
+      </div>
+      <div class="stat-item">
+        <h3>50+</h3>
+        <p>Clients Served</p>
+      </div>
+      <div class="stat-item">
+        <h3>0</h3>
+        <p>Long Contracts</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="founder-section">
+    <div class="founder-grid">
+      <div class="founder-photo">
+        <img src="/assets/jay.jpg" alt="Jay - Founder of Fusion Creative">
+      </div>
+      <div class="founder-text">
+        <h2>Jay Williams</h2>
+        <div class="founder-role">Founder & Creative Director</div>
+        <p>I've spent over six years in the content creation space, working with brands across every industry. In that time I've driven hundreds of thousands of pounds in sales and generated millions upon millions of views. I know what content converts and, more importantly, what content people actually want to watch.</p>
+        <p>That experience is the backbone of Fusion Creative. No stock footage. No generic templates. Just authentic, high-converting content built around your story.</p>
+        <p>Every client we work with gets a full creative team behind them. Strategy, filming, editing, analytics, reporting, websites, branding. Everything your business needs to grow, handled by people who genuinely care about the results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values-section">
+    <div class="values-header">
+      <h2>What drives us</h2>
+      <p>Three principles behind everything we do.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <h3>Results-First</h3>
+        <p>Every creative decision is backed by data. If it doesn't drive views, engagement, or revenue, we don't do it.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <h3>Transparent</h3>
+        <p>No long contracts, no hidden fees. You see exactly what we deliver, when we deliver it, and how it performs.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <h3>Growth-Obsessed</h3>
+        <p>We live and breathe digital growth. We understand your market, your competition, your goals, and how to turn them into content gold.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="services-strip">
+    <div class="services-strip-inner">
+      <h2>What we do</h2>
+      <div class="service-row">
+        <span>Short-Form Video Production</span>
+        <span>Filming + Editing</span>
+      </div>
+      <div class="service-row">
+        <span>Social Media Management</span>
+        <span>Strategy + Posting</span>
+      </div>
+      <div class="service-row">
+        <span>Analytics Dashboard & Reporting</span>
+        <span>Real-Time Data</span>
+      </div>
+      <div class="service-row">
+        <span>Website Design & Development</span>
+        <span>Custom Build</span>
+      </div>
+      <div class="service-row">
+        <span>Branding & Identity</span>
+        <span>Full Package</span>
+      </div>
+      <div class="service-row">
+        <span>Booking & Ordering Systems</span>
+        <span>Built-In</span>
+      </div>
+      <div class="service-row">
+        <span>Paid Advertising</span>
+        <span>Meta + Google</span>
+      </div>
+      <div class="service-row">
+        <span>SEO & Google Optimisation</span>
+        <span>Organic Growth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <h2>Let's build something great.</h2>
+    <p>Book a free call and we'll show you exactly what we can do for your business.</p>
+    <a href="/contact" class="about-cta-btn">Start a Project</a>
+  </section>
+
+  <script src="/scripts/main.js"></script>
+</body>
+</html>
