@@ -142,49 +142,112 @@
       max-width: 500px;
       margin: 0 auto 40px;
     }
-    .circle-ring {
-      width: 320px;
-      height: 320px;
+    .hub-wrap {
+      width: 420px;
+      height: 420px;
       margin: 0 auto;
       position: relative;
     }
-    .circle-ring::before {
+    /* Rotating outer ring of dots */
+    .hub-orbit {
+      position: absolute;
+      inset: 0;
+      animation: hub-spin 25s linear infinite;
+    }
+    .hub-orbit::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1.5px dashed rgba(230,59,46,0.2);
+      border-radius: 50%;
+    }
+    /* Inner orbit */
+    .hub-orbit-inner {
+      position: absolute;
+      inset: 60px;
+      animation: hub-spin-rev 18s linear infinite;
+    }
+    .hub-orbit-inner::before {
       content: '';
       position: absolute;
       inset: 0;
-      border: 2px dashed rgba(230,59,46,0.3);
+      border: 1px dashed rgba(255,255,255,0.06);
       border-radius: 50%;
     }
-    .ring-node {
+    @keyframes hub-spin { to { transform: rotate(360deg); } }
+    @keyframes hub-spin-rev { to { transform: rotate(-360deg); } }
+    /* Orbiting dots */
+    .orb-dot {
       position: absolute;
-      width: 80px;
-      text-align: center;
-    }
-    .ring-node-dot {
-      width: 36px; height: 36px;
+      width: 10px; height: 10px;
       background: var(--signal);
       border-radius: 50%;
-      margin: 0 auto 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 0 12px rgba(230,59,46,0.4);
     }
-    .ring-node-dot svg { width: 16px; height: 16px; color: #fff; }
-    .ring-node span {
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    .orb-dot-sm {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: rgba(230,59,46,0.5);
+      border-radius: 50%;
     }
-    .ring-center {
+    /* Connection lines from centre */
+    .hub-line {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 1px;
+      height: 140px;
+      background: linear-gradient(to bottom, rgba(230,59,46,0.3), transparent);
+      transform-origin: top center;
+    }
+    /* Centre hub */
+    .hub-center {
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
+      width: 80px; height: 80px;
+      background: var(--signal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(230,59,46,0.3), 0 0 80px rgba(230,59,46,0.1);
+      z-index: 3;
+    }
+    .hub-center svg { width: 28px; height: 28px; color: #fff; }
+    .hub-center-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: 58px;
       font-family: var(--font-serif);
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       color: var(--signal);
       font-style: italic;
+      white-space: nowrap;
+      z-index: 3;
+    }
+    /* Fixed labels around the outside */
+    .hub-label {
+      position: absolute;
+      text-align: center;
+      z-index: 2;
+    }
+    .hub-label-icon {
+      width: 40px; height: 40px;
+      background: rgba(230,59,46,0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 6px;
+    }
+    .hub-label-icon svg { width: 18px; height: 18px; color: var(--signal); }
+    .hub-label span {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     /* Features strip */
@@ -259,7 +322,9 @@
 
     @media (max-width: 768px) {
       .loop-grid { grid-template-columns: 1fr; }
-      .circle-ring { width: 240px; height: 240px; }
+      .hub-wrap { width: 300px; height: 300px; }
+      .hub-line { height: 100px; }
+      .hub-label { display: none; }
     }
   </style>
 </head>
@@ -334,24 +399,76 @@
   <section class="circle-section">
     <h2 class="reveal">Everything connects</h2>
     <p class="reveal">Content drives traffic. Traffic drives action. Action drives revenue. You see it all.</p>
-    <div class="circle-ring">
-      <div class="ring-node" style="top:-30px; left:50%; margin-left:-40px;">
-        <div class="ring-node-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+    <div class="hub-wrap">
+      <!-- Connection lines from centre -->
+      <div class="hub-line" style="transform:rotate(0deg);"></div>
+      <div class="hub-line" style="transform:rotate(45deg);"></div>
+      <div class="hub-line" style="transform:rotate(90deg);"></div>
+      <div class="hub-line" style="transform:rotate(135deg);"></div>
+      <div class="hub-line" style="transform:rotate(180deg);"></div>
+      <div class="hub-line" style="transform:rotate(225deg);"></div>
+      <div class="hub-line" style="transform:rotate(270deg);"></div>
+      <div class="hub-line" style="transform:rotate(315deg);"></div>
+
+      <!-- Outer orbit (rotating dots) -->
+      <div class="hub-orbit">
+        <div class="orb-dot" style="top:0; left:50%; margin-left:-5px;"></div>
+        <div class="orb-dot" style="top:50%; right:0; margin-top:-5px;"></div>
+        <div class="orb-dot" style="bottom:0; left:50%; margin-left:-5px;"></div>
+        <div class="orb-dot" style="top:50%; left:0; margin-top:-5px;"></div>
+        <div class="orb-dot-sm" style="top:12%; right:12%;"></div>
+        <div class="orb-dot-sm" style="bottom:12%; right:12%;"></div>
+        <div class="orb-dot-sm" style="bottom:12%; left:12%;"></div>
+        <div class="orb-dot-sm" style="top:12%; left:12%;"></div>
+      </div>
+
+      <!-- Inner orbit (rotating opposite) -->
+      <div class="hub-orbit-inner">
+        <div class="orb-dot-sm" style="top:0; left:50%; margin-left:-3px;"></div>
+        <div class="orb-dot-sm" style="top:50%; right:0; margin-top:-3px;"></div>
+        <div class="orb-dot-sm" style="bottom:0; left:50%; margin-left:-3px;"></div>
+        <div class="orb-dot-sm" style="top:50%; left:0; margin-top:-3px;"></div>
+      </div>
+
+      <!-- Centre hub -->
+      <div class="hub-center">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="hub-center-label">Full Stack</div>
+
+      <!-- Fixed labels (don't rotate) -->
+      <div class="hub-label" style="top:-50px; left:50%; transform:translateX(-50%);">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
         <span>Content</span>
       </div>
-      <div class="ring-node" style="top:50%; right:-30px; margin-top:-30px;">
-        <div class="ring-node-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="hub-label" style="top:15%; right:-60px;">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <span>Traffic</span>
       </div>
-      <div class="ring-node" style="bottom:-30px; left:50%; margin-left:-40px;">
-        <div class="ring-node-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+      <div class="hub-label" style="top:50%; right:-70px; transform:translateY(-50%);">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
+        <span>Website</span>
+      </div>
+      <div class="hub-label" style="bottom:15%; right:-60px;">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
         <span>Orders</span>
       </div>
-      <div class="ring-node" style="top:50%; left:-30px; margin-top:-30px;">
-        <div class="ring-node-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="hub-label" style="bottom:-50px; left:50%; transform:translateX(-50%);">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <span>Bookings</span>
+      </div>
+      <div class="hub-label" style="bottom:15%; left:-70px;">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <span>App</span>
+      </div>
+      <div class="hub-label" style="top:50%; left:-70px; transform:translateY(-50%);">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <span>Followers</span>
+      </div>
+      <div class="hub-label" style="top:15%; left:-60px;">
+        <div class="hub-label-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
         <span>Results</span>
       </div>
-      <div class="ring-center">Full Stack</div>
     </div>
   </section>
 
