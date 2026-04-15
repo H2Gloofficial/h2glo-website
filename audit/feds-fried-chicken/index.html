@@ -283,11 +283,11 @@
                         <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
                     </div>
                     <div style="text-align:center; background:rgba(232,85,60,0.08); border:1px solid rgba(232,85,60,0.18); border-radius:12px; padding:16px 8px;">
-                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">394K+</div>
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">525K+</div>
                         <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Engagements</div>
                     </div>
                     <div style="text-align:center; background:rgba(232,85,60,0.08); border:1px solid rgba(232,85,60,0.18); border-radius:12px; padding:16px 8px;">
-                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">6,657</div>
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">10.4K</div>
                         <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
                     </div>
                     <div style="text-align:center; background:rgba(232,85,60,0.08); border:1px solid rgba(232,85,60,0.18); border-radius:12px; padding:16px 8px;">
@@ -295,6 +295,46 @@
                         <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
                     </div>
                 </div>
+
+                <!-- Growth Graph -->
+                <div style="margin:20px 0; background:rgba(0,0,0,0.4); border-radius:12px; padding:24px; position:relative;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <span style="font-size:12px; color:var(--text-muted);">Cumulative views / since launch</span>
+                        <span style="background:var(--coral); color:#fff; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">40M+ total</span>
+                    </div>
+                    <svg viewBox="0 0 400 150" style="width:100%; height:auto;">
+                        <!-- Grid lines -->
+                        <line x1="40" y1="20" x2="390" y2="20" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <line x1="40" y1="50" x2="390" y2="50" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <line x1="40" y1="80" x2="390" y2="80" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <line x1="40" y1="110" x2="390" y2="110" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <!-- Y axis labels -->
+                        <text x="35" y="24" fill="rgba(255,255,255,0.3)" font-size="8" text-anchor="end">40M</text>
+                        <text x="35" y="54" fill="rgba(255,255,255,0.3)" font-size="8" text-anchor="end">30M</text>
+                        <text x="35" y="84" fill="rgba(255,255,255,0.3)" font-size="8" text-anchor="end">20M</text>
+                        <text x="35" y="114" fill="rgba(255,255,255,0.3)" font-size="8" text-anchor="end">10M</text>
+                        <!-- "We started here" marker -->
+                        <line x1="180" y1="15" x2="180" y2="135" stroke="var(--coral)" stroke-width="0.8" stroke-dasharray="3,3"/>
+                        <text x="183" y="130" fill="var(--coral)" font-size="7" font-weight="600">We started here</text>
+                        <text x="80" y="130" fill="rgba(255,255,255,0.2)" font-size="7">Before Fusion Creative</text>
+                        <!-- The line - flat before, explosive after -->
+                        <polyline fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            points="50,138 80,137 110,136 140,135 170,134 180,133 200,130 220,125 240,115 260,100 280,75 300,45 320,30 340,22 360,18 380,15"/>
+                        <!-- Fill under the line -->
+                        <polygon fill="url(#graphGrad)" opacity="0.3"
+                            points="50,138 80,137 110,136 140,135 170,134 180,133 200,130 220,125 240,115 260,100 280,75 300,45 320,30 340,22 360,18 380,15 380,140 50,140"/>
+                        <defs>
+                            <linearGradient id="graphGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="var(--coral)"/>
+                                <stop offset="100%" stop-color="transparent"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- X axis labels -->
+                        <text x="50" y="148" fill="rgba(255,255,255,0.3)" font-size="7">Oct 2025</text>
+                        <text x="340" y="148" fill="rgba(255,255,255,0.3)" font-size="7">Apr 2026</text>
+                    </svg>
+                </div>
+
                 <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">New Greek, a small independent restaurant in Newcastle with zero social presence before us. We generated over 40 million views in 90 days. One reel alone hit 30 million views. They went from empty tables to a waiting list. FEDs has an even stronger brand, a fiercely loyal following, and fried chicken is one of the highest performing food categories on the internet. The content potential here is enormous.</p>
             </div>
         </div>
