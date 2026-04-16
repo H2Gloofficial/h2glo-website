@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - The Dubliner Newcastle | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0e0f12;
+            --bg-alt: #15171c;
+            --card: #1a1d23;
+            --card-border: rgba(255,255,255,0.08);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #f5f6fa;
+            --text-secondary: #b8bcc6;
+            --text-muted: #7c8090;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.55); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(42px, 7vw, 64px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(26,29,35,0.98) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .intro-card .greeting {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.15);
+            color: var(--coral-light);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.15);
+            color: #4cd97d;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.15);
+            color: #ffb84d;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #4cd97d;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(26,29,35,0.98) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.18);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat .number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(30px, 5vw, 44px);
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            color: var(--text);
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(26,29,35,0.98) 80%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.18);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat-val {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.5);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            background: var(--bg-alt);
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">16 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>The Dubliner Newcastle</span></h1>
+            <p class="hero-subtitle">Newcastle Quayside's First Irish Bar | Prepared by Fusion Creative | 16 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey team,</div>
+                <p class="section-text">We have been following The Dubliner since you opened on the Quayside and honestly, what you have built in a short time is seriously impressive. 35K on Instagram, 138K on TikTok, 2.4M likes, live music seven days a week, and a genuine Temple Bar energy that no other venue in Newcastle has. You are already one of the best social-first pubs in the North East.</p>
+                <p class="section-text">We are Fusion Creative, a content and marketing agency based in Newcastle that works exclusively with hospitality businesses. We put together this honest audit of your social presence. Inside you will find a full snapshot of where you are now, what is working, <strong>five areas where there is real room to grow</strong>, video ideas you can use straight away, and recommendations for quick digital wins.</p>
+                <p class="section-text">This is yours whether we work together or not.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Website</td>
+                        <td>thedublinernewcastle.com <span class="stat-badge-amber">Placeholder</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@thedublinerncl)</td>
+                        <td>35K followers <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok (@thedublinerncl)</td>
+                        <td class="stat-highlight">138.4K followers, 2.4M likes <span class="stat-badge-green">Excellent</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook</td>
+                        <td>facebook.com/thedublinerncl <span class="stat-badge-green">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Google Rating</td>
+                        <td>4.3/5 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor</td>
+                        <td>3.3/5 (19 reviews) <span class="stat-badge-amber">Unclaimed listing</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor Rank</td>
+                        <td>#69 of 91 Bars &amp; Pubs <span class="stat-badge-amber">Room to Climb</span></td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Guru</td>
+                        <td>4.3/5 (220 reviews) <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>12 Close, Newcastle upon Tyne NE1 3RE</td>
+                    </tr>
+                    <tr>
+                        <td>USP</td>
+                        <td>Live music 7 days a week, Temple Bar vibe on the Quayside</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> TikTok is genuinely excellent for a pub of your age</h4>
+                    <p>138K followers and 2.4M likes on TikTok is a top-tier result for any hospitality venue, let alone one still in its opening years. Your live music clips, the Temple Bar import content, the "Fairytale of Newcastle" Christmas posts, all of it has clear personality. You have cracked the format. Most pubs would sell a kidney for this account.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> 35K on Instagram is a serious community</h4>
+                    <p>That is a big number for a relatively new Quayside pub. It shows the brand has cut through fast. The challenge now is making sure the Instagram content is pulling its weight the same way the TikTok is, because right now there is a clear gap between the two platforms.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Live music 7 days a week is a content goldmine</h4>
+                    <p>There is not another venue in Newcastle with nightly live music in this format. Every single night is a ready-made filming opportunity. Sing-alongs, cover reactions, guest musicians flying in from Dublin, fans getting emotional during Fairytale of New York. You are not short on moments, and the ones you have captured so far have proven the appetite is huge.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Google rating of 4.3/5 is strong social proof</h4>
+                    <p>People who visit The Dubliner rate it highly. That is the single most important number for long-term pub success. It tells you the product is right. The TripAdvisor score is a separate issue and easy to fix, but the fundamentals of the customer experience are already landing.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The "Temple Bar on the Quayside" positioning is sharp</h4>
+                    <p>It is clear, memorable, and it immediately tells someone in Newcastle exactly what they are going to get. Most pubs fail the positioning test. You passed it the day you opened. That line does a lot of the marketing for you without you ever having to explain what you are.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Areas With Real Potential</div>
+            <p class="section-text" style="margin-bottom: 32px;">The Dubliner already punches above its weight. These are the areas where small changes would unlock a lot more reach, more bookings, and more regulars through the door.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>Instagram Is Lagging Behind TikTok</h3>
+                </div>
+                <p class="section-text">You have 138K on TikTok and 35K on Instagram. That is a huge gap. The same audio, the same clips, the same moments that are hitting hundreds of thousands of views on TikTok should be landing on Instagram Reels and building that follower count to match. Cross-posting alone would close half the gap.</p>
+                <p class="section-text">The bigger win is native Instagram content. Reels with tighter hooks, carousel posts that work on the feed, and Stories that turn your regulars into ambassadors. Instagram drives bookings for pubs more directly than TikTok does, especially for the after-work and weekend crowd. You are currently leaving the higher-intent platform underused.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>The Website Is Still a Placeholder</h3>
+                </div>
+                <p class="section-text">thedublinernewcastle.com is currently a holding page. For a pub with this much social momentum, that is a serious leak in the funnel. People discover you on TikTok, go to Google, see no proper website, and end up on a third-party listing where the Guinness review is a 2-star from 2024.</p>
+                <p class="section-text">A proper site with live music schedule, menu, private hire enquiries, gift vouchers, and an email capture would turn that social traffic into bookings and repeat visits. It also stops competitors from ranking above you when someone searches "Irish pub Newcastle." Right now you are the loudest brand on socials but the quietest in Google results.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>TripAdvisor Listing Is Unclaimed and Hurting You</h3>
+                </div>
+                <p class="section-text">The TripAdvisor listing sits at 3.3 stars with 19 reviews and is marked unclaimed. That is a red flag to any tourist searching "Irish pub Newcastle" on TripAdvisor, which is still one of the biggest sources of walk-in trade from out-of-towners during football weekends, stag dos, and the Christmas market.</p>
+                <p class="section-text">Claiming the listing, responding to every review, and running a simple review-generation push from your happiest regulars could move that rating to 4.3+ within three months. Google is strong, but TripAdvisor needs the same love because different audiences look in different places.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>Match Days Are Under-Monetised on Social</h3>
+                </div>
+                <p class="section-text">The Dubliner is a short walk from St James' Park. Match day content showing a packed pub before kickoff, Geordies singing Irish trad tunes, big screens, fans spilling onto the Quayside afterwards, this is the exact stuff that goes viral during any NUFC weekend. It is also the exact content that fills your pub on the next match day.</p>
+                <p class="section-text">Right now, match days feel like a missed content opportunity. A dedicated match day content loop (pre-game hype, in-game atmosphere, full-time celebrations) would lock in the away fan and tourist market permanently. You would become the default "watch the match with proper craic" venue in Newcastle.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>Staff and Musicians Are Underused as Characters</h3>
+                </div>
+                <p class="section-text">Your best performing content is already the live music clips with musicians visibly enjoying themselves. That is not an accident. People do not follow pubs, they follow people. The Dubliner has a cast of characters (bartenders, resident musicians, door staff) who could each become recognisable faces on the account.</p>
+                <p class="section-text">A bartender who always pulls the "perfect Guinness" shot. A musician who always opens with the same song. A face people start looking out for when they visit. That turns your pub from a venue into a community people feel part of before they have even walked in.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Case Study -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Case Study</div>
+            <div class="section-title">What We Did for New Greek</div>
+            <div class="card case-study-card">
+                <p class="section-text">New Greek is a small independent restaurant in Newcastle. No brand head start, no live music, no 138K TikTok. They started from zero. Here is where they are now after working with Fusion Creative.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">40M+</div>
+                        <div class="label">Total Views</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">37.4M</div>
+                        <div class="label">Instagram Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">5.2M</div>
+                        <div class="label">TikTok Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">11.5K</div>
+                        <div class="label">Followers</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">40 million views. One restaurant. Zero head start.</div>
+                    <div class="context"><strong>New Greek had no followers, no content history, and no brand recognition.</strong> We built their social presence from scratch with short-form video. They went from empty tables to fully booked with a waiting list. The Dubliner already has 173K combined followers, a venue that audiences clearly love, and live music every night. Imagine what happens when you add a full content strategy on top of that.</div>
+                </div>
+
+                <p class="takeaway">The Dubliner is not starting from zero. You are starting from a platform most hospitality brands in the UK would envy. The job now is converting that reach into bookings, private hire, brand deals, and a second venue if you want one.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">4 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working right now on TikTok and Instagram Reels and that are tailored specifically to an Irish pub with live music. Film any one of these properly and it could push The Dubliner into the next bracket of reach.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"The perfect Guinness pour: every step explained by our bartender"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Craft</span>
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Satisfying</span>
+                    </div>
+                    <p class="idea-description">Single shot, close up on the tap. Bartender walks through the two-part pour, the 119.5 second rest, the shamrock finish. Narration is calm and confident. End on the slow push of the settled pint across the bar. Audio is either the ambient sound of the pub in the background or a trending moody audio. Text overlay: "This is why it matters."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Guinness content consistently pulls massive engagement because people genuinely care about a properly poured pint. It is craft, it is satisfying to watch, and it positions The Dubliner as the authority on Guinness in Newcastle. This is a repeatable series: different bartenders, different common mistakes, Guinness myths debunked. Each one will pull views from the wider Guinness-loving audience across the UK and Ireland.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"POV: you walk into The Dubliner on a live music night"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Atmosphere</span>
+                        <span class="idea-tag">FOMO</span>
+                    </div>
+                    <p class="idea-description">First person camera walking in from the Quayside. Cross the threshold. Music is already playing, the room is packed, a musician is in the middle of a crowd singalong. Keep walking, approach the bar, order a Guinness. Hero shot of the pint with the band in soft focus behind it. Finish with a quick pan across the crowd. One take, no cuts, trending audio under a faded live vocal.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> POV atmosphere videos are the single highest-converting format for hospitality right now. They show exactly what someone is about to experience. People save these to send to friends as a "we are going here." Done right, this is the video that fills your next Friday night. Film a different version for match days, Sunday sessions, and Paddy's Day and you have a whole library.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"Match day at Newcastle's most Irish pub, 3 hours before kickoff"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Match Day</span>
+                        <span class="idea-tag">Atmosphere</span>
+                        <span class="idea-tag">NUFC</span>
+                    </div>
+                    <p class="idea-description">Fast-cut montage of a match day. Doors open at 11. Pints being pulled in a line. Big screen getting switched on. Fans in black and white filing in. A chant breaks out. The ref blows the whistle. A goal goes in, the place erupts. Full time, fans spilling onto the Quayside still singing. Text overlay: "Every match day at The Dubliner, NE1." Trending NUFC or anthemic audio.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> NUFC content gets picked up by one of the biggest, most engaged fan bases in the Premier League. Tourists and away fans actively search for "best pub to watch Newcastle" before they travel. This video plants a flag. It also builds a sense of tradition around the pub (this is what match day looks like here) which drives repeat visits from locals who want to be part of it.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"Meet the Dubliner regulars: the bartenders who basically live here"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">People</span>
+                        <span class="idea-tag">Series</span>
+                        <span class="idea-tag">Personality</span>
+                    </div>
+                    <p class="idea-description">Short intro clip for each bartender. Name, how long they have worked at The Dubliner, their signature drink, their favourite song when the band plays it, one funny story from behind the bar. Shot in the bar during opening. Keep it fast, warm, and honest. Make each one its own post so followers start to recognise faces. Pin them to a highlight called "The Team."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> People return to pubs because of the people, not the pub. Giving your bartenders a public identity turns them into destinations in their own right. Regulars start visiting "on a night Aoife is working." Tourists walk in and feel like they already know the staff. It also helps you recruit better (everyone wants to work at a pub where the staff are mini local celebrities) and directly counters TripAdvisor complaints about unfriendly service.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the content work.</p>
+
+            <div class="enhancement-card">
+                <h4>Ship a Proper Website</h4>
+                <p>The current holding page is costing you bookings, private hire enquiries, press pickups, and SEO ground. A simple but well-built site would turn social traffic into direct business. Nothing fancy. It just needs to do the job.</p>
+                <ul class="enhancement-list">
+                    <li>Homepage with live music schedule, atmosphere video, and a clear "what's on" calendar</li>
+                    <li>Private hire and group booking enquiry form (feed to email and a CRM)</li>
+                    <li>Email capture for "this week's live music" newsletter</li>
+                    <li>Match day page ranking for "watch Newcastle match pub" searches</li>
+                    <li>Gift voucher sales (a genuine revenue stream for Irish pubs at Christmas)</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Even a one-page site with live music schedule and contact details, launched this month, would immediately improve Google search presence and capture bookings you are currently losing.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Claim TripAdvisor and Run a Review Push</h4>
+                <p>19 reviews and 3.3 stars on an unclaimed listing is the biggest under-served asset in your digital estate. Out-of-town visitors, especially during football weekends and stag dos, absolutely look at TripAdvisor before choosing a pub. This is fixable fast.</p>
+                <ul class="enhancement-list">
+                    <li>Claim the TripAdvisor listing and respond to every existing review, positive and negative</li>
+                    <li>Add a QR code on every table linking to TripAdvisor and Google</li>
+                    <li>Train bar staff to casually mention reviews after a happy moment (after a great song, a perfect pint)</li>
+                    <li>Target: move TripAdvisor to 4.3 and Google to 4.5 within 90 days</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Close the Instagram Gap</h4>
+                <p>Your TikTok is doing four times the follower count of your Instagram. Closing that gap is the single biggest short-term win available. Instagram drives higher-intent traffic for pubs, and your existing TikTok library is already doing the creative work. It just needs to be pushed through the other platform properly.</p>
+                <ul class="enhancement-list">
+                    <li>Cross-post every TikTok as a Reel, reformatted with correct safe zones</li>
+                    <li>Native Instagram content: carousels with the week's musicians, Stories showing live sessions in real time</li>
+                    <li>Turn on Broadcast Channels for "tonight at The Dubliner" updates</li>
+                    <li>Build a UGC collection strategy with a branded hashtag for regulars</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Turn Live Music Into a Content Machine</h4>
+                <p>Seven nights a week, you have musicians performing to a packed room. Every night is a filming opportunity, but right now the content capture feels opportunistic rather than systematic. A simple filming rota (two short clips per night, one carousel per week, one recap reel per month) would create a constant content flow with almost no extra effort.</p>
+                <div class="highlight-box">
+                    <p><strong>The reality:</strong> No other Newcastle pub has nightly live music. The first Irish pub in the North East to turn that into a consistent content engine owns the "live music Newcastle" search forever. That should be The Dubliner.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a content and marketing agency based in Newcastle. We produce short-form video content, manage social media accounts, run paid campaigns, build websites, and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">We work exclusively with hospitality businesses. Restaurants, bars, hotels, and events. We know what works in this space because it is all we do. No stock footage, no generic templates, no recycled ideas. Every piece of content is original and tailored to the venue.</p>
+                <p class="about-fc-text">Our headline result is New Greek, a small independent restaurant in Newcastle that went from zero followers to over 40 million views. We know what makes hospitality content perform, and we know how to turn a great venue into a packed room.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">250M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a read through this audit. The short version: The Dubliner is already one of the best social-first pubs in the North East. The next growth bracket is about closing the Instagram gap, shipping a real website, and turning live music into a proper content engine.</li>
+                    <li>If any of this resonates, let us jump on a quick call. No pitch, just a straight conversation about where the biggest wins are for The Dubliner specifically.</li>
+                    <li>We can put together a content plan showing exactly what the first month would look like across TikTok, Instagram Reels, match day content, and live music capture.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But with Paddy's Day, summer football, and the Christmas markets all in the next 12 months, the next few months are the most important window to convert 173K combined followers into a proper content and booking engine. The pub is already a hit. Now it is about making sure every search, every visit, and every match day pulls its full weight.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for The Dubliner Newcastle</div>
+            <div class="footer-note">This audit was put together using live data from your website, social media accounts, and online listings on 16 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>

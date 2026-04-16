@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Dawson &amp; Sanderson | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0d0d10;
+            --bg-2: #14141a;
+            --card: #1a1a22;
+            --card-border: rgba(255,255,255,0.08);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #f5f5f7;
+            --text-secondary: #b5b5bd;
+            --text-muted: #7a7a82;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.35); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.55); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2), 0 16px 48px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.3);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.10) 0%, var(--card) 60%);
+            border-color: rgba(232, 85, 60, 0.25);
+        }
+
+        .intro-card .greeting {
+            font-family: 'DM Serif Display', serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.15);
+            color: var(--coral-light);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.15);
+            color: #5dd97d;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.15);
+            color: #ffb84a;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #5dd97d;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.45);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, var(--card) 70%);
+            border-color: rgba(232, 85, 60, 0.25);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat .number {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(30px, 5vw, 44px);
+            font-weight: 400;
+            color: var(--coral-light);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 400;
+            color: var(--coral-light);
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2), 0 16px 48px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.3);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.06);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral-light);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2), 0 16px 48px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.3);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral-light);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, var(--card) 80%);
+            border-color: rgba(232, 85, 60, 0.25);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.4);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.06);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat-val {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--coral-light);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.5);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            background: var(--bg-2);
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">16 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Dawson &amp; Sanderson</span></h1>
+            <p class="hero-subtitle">Award-winning North East travel agent since 1962 | Prepared by Fusion Creative | 16 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey team,</div>
+                <p class="section-text">We had a proper look at Dawson &amp; Sanderson and honestly, the potential here is massive. A 60-plus year North East heritage, over 8 million customers served, a branch network across Newcastle and Yorkshire, and a product that is literally designed for video content. Package holidays, cruises, destination reveals. You are sitting on one of the most visually appealing categories on the internet.</p>
+                <p class="section-text">We are Fusion Creative, a content and marketing agency based in Newcastle that works with consumer brands across the region. We put together this honest audit of your social media presence. Inside you will find a full snapshot of where you are now, what is working, <strong>five areas where there is real room to grow</strong>, video ideas you can film in a branch this week, and recommendations for quick digital wins.</p>
+                <p class="section-text">This is yours whether we work together or not.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Website</td>
+                        <td>dawsonandsanderson.co.uk <span class="stat-badge-green">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@dawsonandsanderson)</td>
+                        <td>~4,900 followers <span class="stat-badge-amber">Underpowered</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok</td>
+                        <td class="stat-highlight">No meaningful presence <span class="stat-badge">Biggest Gap</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook</td>
+                        <td>Main page + individual branch pages <span class="stat-badge-green">Network Built</span></td>
+                    </tr>
+                    <tr>
+                        <td>X / Twitter (@holidaycoUK)</td>
+                        <td><span class="stat-badge-amber">Low Activity</span></td>
+                    </tr>
+                    <tr>
+                        <td>Feefo</td>
+                        <td>Platinum Trusted Service Award <span class="stat-badge-green">Excellent</span></td>
+                    </tr>
+                    <tr>
+                        <td>Google Reviews (by branch)</td>
+                        <td>4.6 to 4.9 out of 5 <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>Trustpilot</td>
+                        <td>4.0 out of 5 <span class="stat-badge-amber">Mixed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Heritage</td>
+                        <td>Since 1962, 8M+ customers served</td>
+                    </tr>
+                    <tr>
+                        <td>USP</td>
+                        <td>In-branch expert advice + ABTA, ATOL, IATA bonded</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> A 60-plus year heritage most agencies can only dream of</h4>
+                    <p>Since 1962 is not just a date on the website, it is a genuine competitive moat. Dawson &amp; Sanderson has seen off the rise of Thomas Cook, Teletext, Expedia, Booking.com, and everything in between. That kind of resilience is a story on its own, and it is a story that resonates hard with a generation that is losing trust in online-only travel. The brand has earned the right to be told properly on camera.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Feefo Platinum and excellent branch-level Google ratings</h4>
+                    <p>Branch Google ratings sitting between 4.6 and 4.9 out of 5 are genuinely excellent. Feefo Platinum Trusted Service is not handed out easily. The customer service reputation, especially at branch level, is already strong. That trust is the foundation every content strategy should be built on.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> A physical branch network is a content goldmine</h4>
+                    <p>Most competitors are online-only call centres. You have actual humans, in actual branches, across Newcastle, Gosforth, South Shields, Ashington, Doncaster, Redcar, Middlesbrough and beyond. That is dozens of ready-made on-camera personalities. A network of real people talking about real holidays is exactly what the algorithm rewards right now.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Full ABTA, ATOL and IATA credentials</h4>
+                    <p>Financial protection is the single biggest buying trigger for over-45s booking holidays. You already have it, but it is buried in the footer of your website. Put it on camera, say it out loud, and it becomes a real differentiator against the online-only booking engines customers are increasingly nervous about.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> A wide product range from package holidays to cruise to corporate</h4>
+                    <p>Package holidays, cruises, touring holidays, travel money and corporate travel. That is five entirely different content streams under one brand. You could run five different content calendars and never repeat a post. Most agencies would envy that kind of product depth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Areas With Real Potential</div>
+            <p class="section-text" style="margin-bottom: 32px;">Dawson &amp; Sanderson has a lot going for it. The gaps are not about the product, the branches, or the service. They are about how the story is being told online. Fix these and bookings will follow.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>Instagram Is Underpowered Relative to the Brand</h3>
+                </div>
+                <p class="section-text">Around 4,900 Instagram followers for a 60-plus year travel brand with a branch network and 8 million customers is well below where it should be. The feed leans on static destination photos and deal graphics. Nice to look at, but they do not stop the scroll and they do not get pushed by the algorithm in 2026.</p>
+                <p class="section-text">The fix is a shift from "pretty beach photo with price tag" to video-led content with personality. Consultants on camera, customer reactions, destination POVs. You already have the audience intent. People research holidays on Instagram constantly. You just need content that actually gets picked up when they do.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>TikTok Is a Near-Empty Platform Where Your Customer Is Actively Searching</h3>
+                </div>
+                <p class="section-text">"Where should I go on holiday 2026", "cheap all inclusive", "best cruise for first timers". These are high-intent TikTok searches happening right now, and almost no UK high street travel agents are showing up in the results. That is an enormous organic discovery gap sitting wide open.</p>
+                <p class="section-text">One Dawson &amp; Sanderson consultant doing a 30-second "three countries you can get for under £500 this summer" could pull six-figure views overnight. The under-45 traveller, the exact audience that thinks high street agents are outdated, is on TikTok searching for exactly what you sell. Every month without a TikTok presence is free leads going to competitors.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>No Face, No Expert, No Personality on Camera</h3>
+                </div>
+                <p class="section-text">Travel in 2026 is a trust-driven purchase, and trust is built through faces. Right now, the Dawson &amp; Sanderson content does not have a recognisable on-screen consultant. No "Sarah at the Gosforth branch". No "ask Mark about Caribbean cruises". The brand feels like a company rather than a team, and that is a real gap in a category where people want advice from someone they have seen before.</p>
+                <p class="section-text">The fix is simple. Pick two or three consultants from across the branches. Put them on camera weekly. Let them talk about what they know, the destinations they have been to, the mistakes they stop customers making. Build them into mini personalities. That is how you turn a 60-year brand into a modern content engine.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>Review Narratives on Trustpilot Need Active Countering</h3>
+                </div>
+                <p class="section-text">Branch Google reviews are excellent, but Trustpilot sits at 4.0 and contains real complaints about post-booking communication and accommodation mismatches. Prospective customers read Trustpilot before they book. Those reviews are currently shaping first impressions with no counter-narrative.</p>
+                <p class="section-text">The answer is not to argue online. It is to create content that shows the opposite. Behind-the-scenes of your duty consultant team handling an in-resort issue. A customer video diary of a holiday that went right. Transparent "here is what happens if something goes wrong" explainers. Content like that rewrites the narrative faster than any Trustpilot reply ever could.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>The Branch Network Is Being Used as Infrastructure, Not Content</h3>
+                </div>
+                <p class="section-text">Every branch is a film set. Gosforth, South Shields, Ashington, Doncaster, Redcar, Middlesbrough. Every one of them has consultants, customers walking in, brochures, maps, travel money desks, and the exact look and feel that builds trust on camera. Right now, almost none of that is being captured.</p>
+                <p class="section-text">A weekly in-branch content day across the network could produce 40 pieces of video a month. Consultant picks of the week, customer booking moments, overheard conversations, "what a £2k budget actually gets you" desk walkthroughs. The infrastructure is already in place and already paid for. It just needs a camera and a plan.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Case Study -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Case Study</div>
+            <div class="section-title">What We Did for New Greek</div>
+            <div class="card case-study-card">
+                <p class="section-text">New Greek is a small independent restaurant in Newcastle. No brand backing, no 60-year heritage, no branch network. They started from zero. Here is where they are now after working with Fusion Creative.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">40M+</div>
+                        <div class="label">Total Views</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">37.4M</div>
+                        <div class="label">IG Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">5.2M</div>
+                        <div class="label">TikTok Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">11.5K</div>
+                        <div class="label">Followers</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">40 million views. One restaurant. Zero head start.</div>
+                    <div class="context"><strong>New Greek had no followers, no content history, and no brand recognition.</strong> We built their entire social presence from scratch with short-form video. They went from empty tables to fully booked with a waiting list. Dawson &amp; Sanderson already has 60-plus years of heritage, a branch network, 4,900 Instagram followers, and an 8 million customer base. Imagine what happens when you add the right content strategy on top of that.</div>
+                </div>
+
+                <p class="takeaway">New Greek did not have a branch network. They did not have a heritage brand. They did not have ABTA credentials or a Feefo Platinum. The only thing that changed was the content. Dawson &amp; Sanderson has a significantly stronger starting position.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">4 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats working right now on TikTok and Instagram Reels. All of them are built around what makes Dawson &amp; Sanderson unique. Film any one of these properly in a branch and it could outperform everything you have posted in the last year.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"POV: You walk into Dawson &amp; Sanderson and ask for a surprise holiday under £500"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Destination Reveal</span>
+                        <span class="idea-tag">High Hook</span>
+                    </div>
+                    <p class="idea-description">Start on a customer at the branch door. Walk up to the desk. Text overlay: "I have given this travel agent £500 and told them to send me anywhere." Consultant on camera smirks, flips open the screen, and starts pitching three destinations with quick cutaways to beach, pool, plate of food, sunset. End on the consultant sliding a brochure across the desk with the winning destination revealed. Trending audio over the top.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Destination reveal content is one of the top-performing formats on TikTok travel. The under-£500 hook is relatable, the in-branch setting is native to Dawson &amp; Sanderson specifically, and the suspense of "where are they going to send me" keeps people watching to the end. One strong version of this could hit seven-figure views.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"What £500 vs £1,000 vs £2,000 actually gets you in Turkey right now"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Comparison</span>
+                        <span class="idea-tag">Value</span>
+                        <span class="idea-tag">Expert</span>
+                    </div>
+                    <p class="idea-description">A consultant at the desk with three brochures laid out. £500, £1,000, £2,000. For each budget, a quick cutaway to the hotel, the pool, the beach, the flight time, all ticked off in captions. Honest commentary on what you get and what you do not. End with a direct camera line: "Whatever your budget is, come in and we will find it." Can be repeated for Greece, Spain, Caribbean, Dubai and so on as a whole series.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Comparison content performs because it answers a question every holiday shopper has: "Is it worth paying more?" It positions Dawson &amp; Sanderson as the expert who knows the difference between £500 and £2,000 hotels, something booking engines cannot do. It also drives branch footfall, because the natural next step is "come in and we will build your exact budget".</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"Three things a travel agent knows that Booking.com will never tell you"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Expert Tips</span>
+                        <span class="idea-tag">Authority</span>
+                        <span class="idea-tag">Series</span>
+                    </div>
+                    <p class="idea-description">Consultant at the desk straight to camera. Three quick, punchy secrets. For example: the room numbers you should ask for in a specific Turkish resort, which Caribbean island is a nightmare in November, the cruise cabin category that is always upgraded for free. Fast cuts between each tip with on-screen text. End on "That is what 60 years of travel advice looks like. Book with us in branch or online."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Insider information content is huge on TikTok and Reels because it feels like genuine value, not a sales pitch. It directly positions the Dawson &amp; Sanderson consultant as an expert worth listening to, which is the core of the brand. It is a format you can run weekly forever, and every consultant across the branch network can contribute their own tips. Endless content supply.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"Filming customers booking their 2026 holiday at the desk"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Customer Moments</span>
+                        <span class="idea-tag">UGC Style</span>
+                        <span class="idea-tag">Social Proof</span>
+                    </div>
+                    <p class="idea-description">Real customers, at the branch desk, the moment they commit to a trip. Capture the reactions. The grin when the flights are locked in. The hug between couples booking an anniversary. The kid losing it when Disney is confirmed. Each clip is 10 to 15 seconds. Cut a compilation together every week with captions like "Today at Dawson &amp; Sanderson Gosforth". Add a trending audio underneath.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Real customer reaction content is the most persuasive form of social proof on short-form video. It tells prospective bookers "this is what happens when you walk through our door". It humanises a 60-year brand and directly shows the emotional payoff of booking in a branch, which is exactly the thing Booking.com cannot replicate. Needs a simple consent process, then it becomes a weekly staple.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the content work.</p>
+
+            <div class="enhancement-card">
+                <h4>Launch a Consultant-Led TikTok Account</h4>
+                <p>Pick two or three consultants across the branch network and build the TikTok account around them as the face of Dawson &amp; Sanderson. Destination reveals, budget comparisons, booking moments, expert tips. Post three to five times a week. The brand TikTok account is the single biggest untapped growth lever you have.</p>
+                <ul class="enhancement-list">
+                    <li>Name and tag specific consultants so viewers recognise them across videos</li>
+                    <li>Use trending audio to accelerate reach in the early weeks</li>
+                    <li>Geo-target captions and hashtags to Newcastle, North East and Yorkshire audiences</li>
+                    <li>Repurpose every TikTok to Instagram Reels and YouTube Shorts on the same day</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>The reality:</strong> Almost no UK high street travel agent is winning on TikTok yet. The first one to own destination content in 2026 will dominate the "book with a real person" search for years. That should be Dawson &amp; Sanderson.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Build a Branch Content Day System</h4>
+                <p>One day a month per branch with a content producer on site. Batch-film two to four weeks of content in a single day. Consultant tips, destination walkthroughs, desk reveals, customer booking clips with consent. The branch network becomes a content factory without pulling consultants off the phones.</p>
+                <ul class="enhancement-list">
+                    <li>Produce a branch-specific content calendar every month</li>
+                    <li>Rotate featured destinations to match your commercial campaigns</li>
+                    <li>Mix evergreen "expert tips" content with timely deal and launch content</li>
+                    <li>Use branch content to feed paid social ads targeting local postcodes</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Convert Feefo and Branch Google Reviews Into Video Social Proof</h4>
+                <p>Feefo Platinum and 4.6 to 4.9 Google ratings are powerful but invisible outside the review sites themselves. Turn the best written reviews into short video quotes with destination b-roll. Film customer video testimonials post-holiday. Embed everything on the website and use it in paid ads.</p>
+                <ul class="enhancement-list">
+                    <li>Pick the 20 best reviews from Feefo and Google and film them as 15-second quote videos</li>
+                    <li>Offer customers a small thank-you for filming a 30-second post-holiday video</li>
+                    <li>Add review social proof prominently to the website homepage and branch pages</li>
+                    <li>Use customer reaction content in Meta and Google ads to cut cost per booking</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Counter the Trustpilot Gap With Transparency Content</h4>
+                <p>Trustpilot at 4.0 with complaints about post-booking communication is shaping first impressions. The answer is a "what happens after you book" content series. Show the resort support team, show how issues get handled, show the duty team that is on call at 2am. Transparency rebuilds trust faster than a pinned reply ever will.</p>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> A single three-minute explainer video on the homepage titled "what happens after you book with Dawson &amp; Sanderson" would counter most of the concerns a nervous Trustpilot reader arrives with.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a content and marketing agency based in Newcastle. We produce short-form video content, manage social media accounts, run paid campaigns, build websites, and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">We work with consumer brands across the North East, with deep experience in hospitality, retail and leisure. We know what works because it is all we do. No stock footage, no generic templates, no recycled ideas. Every piece of content is original and tailored to the brand.</p>
+                <p class="about-fc-text">Our headline result is New Greek, a small independent restaurant in Newcastle that went from zero followers to over 40 million views. We know what makes consumer content perform, and we know how to turn a trusted brand into a packed room, or in your case a full booking diary.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">250M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a read through this audit. The short version: Dawson &amp; Sanderson has one of the strongest heritage stories and branch networks of any travel agent in the UK. The content just needs to catch up with the brand.</li>
+                    <li>If any of this resonates, let us jump on a quick call. No pitch, just a straight conversation about where the biggest wins are for Dawson &amp; Sanderson specifically.</li>
+                    <li>We can put together a 30-day content plan showing exactly what the first month would look like across TikTok, Instagram Reels, consultant-led content, and branch content days.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. Summer 2026 booking window is the most important window of the year for travel. Getting the right content engine running now is the difference between watching Jet2 and TUI adverts eat your enquiries on Facebook, and pulling thousands of new high-intent viewers into your branches through short-form video.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Dawson &amp; Sanderson</div>
+            <div class="footer-note">This audit was put together using live data from your website, social media accounts, and online listings on 16 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>

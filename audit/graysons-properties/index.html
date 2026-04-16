@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Graysons Properties | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f1012;
+            --card: #17191d;
+            --card-border: rgba(255,255,255,0.06);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #f5f5f7;
+            --text-secondary: #b8b9be;
+            --text-muted: #7d7f85;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(40px, 6.5vw, 64px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(23,25,29,1) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .intro-card .greeting {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.15);
+            color: var(--coral-light);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.15);
+            color: #4ee07c;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.15);
+            color: #ffb340;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #4ee07c;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.1) 0%, rgba(23,25,29,1) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat .number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(30px, 5vw, 44px);
+            font-weight: 400;
+            color: var(--coral-light);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 400;
+            color: var(--coral-light);
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            color: var(--text);
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral-light);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral-light);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(23,25,29,1) 80%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.06);
+            border: 1px solid rgba(232, 85, 60, 0.18);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat-val {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--coral-light);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.4);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            background: #0a0b0d;
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">16 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Graysons Properties</span></h1>
+            <p class="hero-subtitle">Student &amp; Residential Lettings in the North East | Prepared by Fusion Creative | 16 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey team,</div>
+                <p class="section-text">We had a proper look at Graysons and there is a real opportunity sitting in front of you. Student accommodation in Newcastle is one of the most search-heavy categories on TikTok and Instagram right now. Every September, tens of thousands of Newcastle and Northumbria students are scrolling social media looking for next year's house. Whoever shows up wins.</p>
+                <p class="section-text">We are Fusion Creative, a Newcastle based content and marketing agency. We put together this honest audit of your current social media presence. Inside you will find a full snapshot of where you are now, what is working, <strong>five areas where there is real room to grow</strong>, four video ideas built specifically for a property agent, and recommendations for quick wins.</p>
+                <p class="section-text">This is yours whether we work together or not.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Website</td>
+                        <td>graysonsproperties.co.uk <span class="stat-badge-green">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@graysonspropertysolutions)</td>
+                        <td>490 followers, 44 posts <span class="stat-badge-amber">Underused</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok (@graysonproperties)</td>
+                        <td class="stat-highlight">Low followers, few videos <span class="stat-badge">Big Opportunity</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook</td>
+                        <td>2 pages (Team + Letting) <span class="stat-badge-amber">Split Presence</span></td>
+                    </tr>
+                    <tr>
+                        <td>Twitter/X (@graysonsne)</td>
+                        <td><span class="stat-badge-amber">Low Activity</span></td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn</td>
+                        <td>Company page <span class="stat-badge-green">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Rightmove &amp; OnTheMarket</td>
+                        <td>Active portfolio listings <span class="stat-badge-green">Established</span></td>
+                    </tr>
+                    <tr>
+                        <td>Company</td>
+                        <td>Graysons Properties Ltd (incorporated 2014)</td>
+                    </tr>
+                    <tr>
+                        <td>Focus</td>
+                        <td>Student, residential, commercial, sales</td>
+                    </tr>
+                    <tr>
+                        <td>Geography</td>
+                        <td>Newcastle, Jesmond, Sunderland, Durham</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You are already on TikTok, which is rare for a North East agent</h4>
+                    <p>Most estate and letting agents in Newcastle do not have a TikTok presence at all. The fact you have an account posting Leazes Terrace and student house content is a real head start. You are ahead of almost every local competitor on the one platform where students are actively searching for next year's accommodation.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Four service lines under one roof</h4>
+                    <p>Student lettings, residential lettings, commercial, and sales. Most agents only do one or two. That breadth means you have four distinct content pillars you could build audiences around. A student in Jesmond becomes a young professional renter in the city, then a buyer. Graysons can genuinely follow that customer journey, and that is a content story worth telling.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Portfolio concentrated in high-demand postcodes</h4>
+                    <p>NE1, NE2, NE4, Sunderland SR2 and properties near both Newcastle and Northumbria universities. These are exactly the postcodes students and young professionals search for. Every property in those areas is a ready-made piece of short-form content because the search intent is already there.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Anuk Code accreditation gives trust signal</h4>
+                    <p>Student landlord horror stories spread fast on social media. Your Anuk Code accreditation, alongside being a registered letting agent since 2014, is a genuine differentiator when trust is the biggest barrier to a student signing a tenancy. You just need to say it louder and in video form.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Established property stock with visual appeal</h4>
+                    <p>Leazes Terrace, Grosvenor Gardens, Stepney Lane. These are not bland newbuilds. They are the kind of character Newcastle properties that photograph and film beautifully. The visual raw material for great content is already in your portfolio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Areas With Real Potential</div>
+            <p class="section-text" style="margin-bottom: 32px;">Graysons has the stock, the service range, and the footprint. The gaps are not about the business. They are about how the story is being told online. Fix these and the enquiries will follow.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>490 Instagram Followers Is Sitting Well Below Potential</h3>
+                </div>
+                <p class="section-text">490 followers for an established letting agent operating across Newcastle, Jesmond, Sunderland and Durham is low. The content is mostly static property shots and listing tiles. It looks like a shop window, but social media is not a shop window. Static listings belong on Rightmove. Instagram and Reels reward personality, tours, and people on camera.</p>
+                <p class="section-text">The fix is a weekly Reels cadence built around property tours, staff on camera, and area guides for the postcodes you actually list in. Done consistently, getting to 5,000 engaged followers within six months is very achievable for an agent in this market.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>TikTok Is the Single Biggest Missed Opportunity</h3>
+                </div>
+                <p class="section-text">Student housing is one of the most viral categories on TikTok. "Newcastle student house tour," "what 500 quid gets you in Jesmond," "Leazes Terrace flat tour" are all searches racking up hundreds of thousands of views. You have a TikTok, but it is barely moving. A handful of videos, very low follower count, no consistent format.</p>
+                <p class="section-text">A Newcastle or Northumbria student looking for a house in September 2026 is looking at TikTok, not Rightmove. The first letting agent to properly own "Newcastle student house tours" on TikTok will fill their properties every year without ever running a paid ad. Right now, nobody in the city is doing this properly.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>No Video House Tours, Despite the Format Being Proven</h3>
+                </div>
+                <p class="section-text">Vertical short-form house tours are the single highest-performing content format in UK property right now. A 45-second Jesmond flat tour with a hook at the second mark, a walk-through, a price reveal, and a CTA in the caption is the exact video that drives tenant enquiries. Yet your listings are being marketed almost entirely through photos.</p>
+                <p class="section-text">Every new instruction should get a video tour filmed the same day the photography is done. That single habit change would give you 4 to 6 pieces of high-intent content every single week, with zero extra content days needed.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>Nothing Shows the People Behind Graysons</h3>
+                </div>
+                <p class="section-text">Students and young renters do not sign contracts with logos. They sign with people they feel they can trust. Right now, the audience has no idea who the agents at Graysons are, what you sound like, or whether you are the kind of landlord who will answer the phone at 9pm when the boiler packs in.</p>
+                <p class="section-text">"Day in the life of a Newcastle letting agent" style content is one of the most under-used formats in UK property. Put your negotiators, property managers, and directors on camera. Reviewers on Google and WhichPad go in harder on faceless companies. People defend and recommend people. Show who runs Graysons.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>The Student Booking Window Is Not Being Engineered</h3>
+                </div>
+                <p class="section-text">Newcastle and Northumbria students start looking for next year's house in October and November. Peak sign-up is November through January. That is a 90-day window every single year when the right content puts you in front of thousands of actively searching renters, and the wrong content means you are invisible.</p>
+                <p class="section-text">There is no visible content calendar aligned to that window. No "still deciding on your house?" countdown content, no group content targeting "tag the 4 mates you are moving in with," no Jesmond vs Heaton vs Sandyford comparison reels. A proper student-season content plan could genuinely change how quickly your portfolio fills each year.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Case Study -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Case Study</div>
+            <div class="section-title">What We Did for New Greek</div>
+            <div class="card case-study-card">
+                <p class="section-text">New Greek is a small independent restaurant in Newcastle. No brand history, no chain backing, no head start. They started from zero. Here is where they are now after working with Fusion Creative.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">40M+</div>
+                        <div class="label">Total Views</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">37.4M</div>
+                        <div class="label">Instagram Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">5.2M</div>
+                        <div class="label">TikTok Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">11.5K</div>
+                        <div class="label">Followers</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">40 million views. One venue. Zero head start.</div>
+                    <div class="context"><strong>New Greek had no followers, no content history, and no brand recognition.</strong> We built their entire social presence from scratch with short-form video. Different industry, same principle. Property and hospitality both live on emotion, taste, and trust. When you give people proper video content they can imagine themselves inside, they act on it. Graysons already has the stock. The content just needs to match.</div>
+                </div>
+
+                <p class="takeaway">Across all our clients Fusion Creative has generated over 250M+ views. A letting agent with Graysons' portfolio breadth, four service lines, and a city of 50,000+ students should be able to dominate this space.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">4 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats built specifically for a North East letting agent, not generic property content. All four can be filmed around your existing portfolio and team. Post any one of these properly and it will outperform 90 percent of what UK agents are putting out right now.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"The reveal walk-through: this Jesmond flat looks tiny until&hellip;"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">House Tour</span>
+                        <span class="idea-tag">Reveal</span>
+                        <span class="idea-tag">Hook-First</span>
+                    </div>
+                    <p class="idea-description">Start on the front door. Tight hallway, ordinary exterior. "You would never guess what is behind this door." Walk in, pan up to high ceilings, throw open the living room doors. Bigger than expected, period features, natural light. End on the rent per person per week and the line "available September, only 4 rooms left." Trending audio under it.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Reveal content is the highest-performing format on Reels and TikTok in 2026. Property especially. The viewer gets hooked on "I want to see what is inside." Price at the end drives the enquiry. One of these done well on Leazes Terrace or Grosvenor Gardens could do 500k+ views.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"What does 500 quid a month actually get you in Newcastle?"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Price Compare</span>
+                        <span class="idea-tag">Student</span>
+                        <span class="idea-tag">Searchable</span>
+                    </div>
+                    <p class="idea-description">Pick three real properties at different price points from your portfolio. A 400 per month room in Sandyford, a 500 per month room in Jesmond, a 600 per month ensuite near the universities. Walk through each with a running price banner on screen. Quick hits: kitchen, bedroom, the view, the commute to campus. End with a clear CTA: "DM GRAYSONS for the shortlist."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> "What does X get you in Y city" is one of the most searched formats in property TikTok. Students actively look this up when deciding their budget. It positions Graysons as the answer to the exact question they are already typing. Totally repeatable every month with different stock.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"Day in the life of a Newcastle letting agent in peak season"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Day in Life</span>
+                        <span class="idea-tag">Staff</span>
+                        <span class="idea-tag">Trust</span>
+                    </div>
+                    <p class="idea-description">Follow one of your negotiators through a morning of back-to-back viewings. 8am unlocking Leazes Terrace, 10am showing four Northumbria students around a 5 bed, 1pm quick lunch at Quay, 3pm chasing a gas certificate, 5pm signing a tenancy. Fast cuts, genuine moments, a bit of humour. Show the actual pace of the job during student season.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Day in the life content humanises the brand and builds trust before a tenant ever walks in the office. Students comparing Graysons against a faceless competitor will lean toward the agency they feel they already know. It is also endlessly repeatable across different staff members and seasons.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"Before and after: how we turned this tired 5 bed into a fully booked student house"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Before / After</span>
+                        <span class="idea-tag">Staging</span>
+                        <span class="idea-tag">Social Proof</span>
+                    </div>
+                    <p class="idea-description">Pick one property you have recently refreshed. Open with the before footage. Tired wallpaper, dated kitchen, empty bedrooms. Quick cut to the work being done. Then the reveal: freshly painted, styled, photographed, ready to market. End card: "listed Monday, fully let by Friday." Text overlay throughout so it works with sound off.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Before and after is one of the most saved and shared formats on Instagram Reels. For Graysons it doubles as social proof to landlords: "this is what we can do with your property." One video pulls in tenant enquiries and landlord instructions at the same time. Two revenue streams, one piece of content.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the content work.</p>
+
+            <div class="enhancement-card">
+                <h4>Build a Student-Season Content Calendar</h4>
+                <p>The student sign-up window runs October to January. That 90-day stretch is when your content has to be at its loudest. Right now there is no visible seasonal plan, so the content is either absent or off-pace.</p>
+                <ul class="enhancement-list">
+                    <li>Map 12 weeks of content around the sign-up window: tours in October, price comparisons in November, group viewing content in December, final decision content in January</li>
+                    <li>Run location-based Reels: Jesmond vs Heaton vs Sandyford, walking commute to Newcastle Uni, nearest takeaway to Northumbria</li>
+                    <li>Use paid Reels ads geo-targeted to Newcastle and Northumbria students during the booking window</li>
+                    <li>Repeat the entire cycle every year with fresh stock. The playbook compounds</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Film every new instruction as a vertical video the same day the photographer attends. That single habit gives you a running content library with zero extra production days.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Fix the Split Facebook and Handle Consistency Issue</h4>
+                <p>You currently have two Facebook pages (GraysonsPropertiesTeam and graysonspropertyletting), the Instagram is @graysonspropertysolutions, the TikTok is @graysonproperties, and Twitter is @graysonsne. That is four different handles across four platforms. For a brand that lives on trust, it is confusing to tenants and landlords trying to check you out.</p>
+                <ul class="enhancement-list">
+                    <li>Pick one handle, ideally @graysonsproperties, and unify as many platforms as possible</li>
+                    <li>Consolidate the two Facebook pages into one active page and archive the other</li>
+                    <li>Use the same profile image and bio line across every platform to create a recognisable visual signature</li>
+                    <li>Add all handles to your website footer and email signatures so tenants can actually find you</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Turn Your Landlords Into a Marketing Channel</h4>
+                <p>Landlords trust Graysons with significant assets. Short video case studies of landlords you already work with would be the single most persuasive piece of new-business content you could make. Two minutes of a real landlord explaining why they switched to Graysons would outperform any Google Ad you could run.</p>
+                <ul class="enhancement-list">
+                    <li>Film 3 to 5 short landlord testimonial videos across sales and lettings</li>
+                    <li>Cut each into a 60-second Reel plus a 2 minute long-form version for the website</li>
+                    <li>Pair with a clear "list your property with Graysons" landing page and CTA</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Start Owning Newcastle Property Search on Google and TikTok</h4>
+                <p>"Student houses Newcastle," "letting agents Jesmond," "flats to rent NE1" are the exact search terms your next tenants are typing. Your Rightmove feed ranks for listings, but your own brand visibility in those searches is thin. Content and SEO together should move that.</p>
+                <div class="highlight-box">
+                    <p><strong>The reality:</strong> Your competitors are fighting for search results. They are not fighting for TikTok. Whichever Newcastle agent owns the TikTok student house tour space in 2026 will dominate student lettings in this city for the next 5 years. That should be Graysons.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a Newcastle based content and marketing agency. We produce short-form video content, manage social media accounts, run paid campaigns, build websites, and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">Our roots are in hospitality, but the playbook works across any business that sells an experience on camera. Property, hotels, restaurants, venues, gyms. If a customer decides based on what a place looks and feels like, our content moves the needle.</p>
+                <p class="about-fc-text">Our headline result is New Greek, a small independent Newcastle restaurant that went from zero followers to over 40 million views. Across all our clients we have generated 250M+ views. That is the kind of reach we can point at Graysons' property stock.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">250M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">37.4M</div>
+                        <div class="about-fc-stat-label">IG monthly views</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">5.2M</div>
+                        <div class="about-fc-stat-label">TikTok monthly views</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Property Video Tours</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a read through this audit. The short version: Graysons has the stock, the accreditation, and the postcodes. The content just needs to catch up with the business.</li>
+                    <li>If any of this resonates, let us jump on a quick call. No pitch, just a straight conversation about where the biggest wins are for Graysons specifically, and what the first 90 days could look like before the 2026 student season kicks off.</li>
+                    <li>We can put together a content plan showing exactly what the first month would look like across TikTok, Instagram Reels, video tours for new instructions, and landlord content.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But with the October to January student sign-up window being the most valuable 90 days in a Newcastle letting agent's year, getting the content engine running properly before then is where the real gains are. The portfolio is already there. Now it is about making sure the next generation of tenants and landlords actually sees it.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Graysons Properties</div>
+            <div class="footer-note">This audit was put together using live data from your website, social media accounts, and online listings on 16 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>

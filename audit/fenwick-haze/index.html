@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Fenwick Haze | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0e0e10;
+            --bg-alt: #15151a;
+            --card: #1b1b22;
+            --card-border: rgba(255,255,255,0.08);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #f5f5f7;
+            --text-secondary: #b5b5bd;
+            --text-muted: #7a7a82;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(44px, 7vw, 68px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, rgba(232, 85, 60, 0.08) 0%, var(--card) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .intro-card .greeting {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.15);
+            color: var(--coral);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.15);
+            color: #5dd77f;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.15);
+            color: #ffb84a;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #5dd77f;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.5);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, rgba(232, 85, 60, 0.08) 0%, var(--card) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat:nth-child(1) { animation-delay: 0.1s; }
+        .case-study-stat:nth-child(2) { animation-delay: 0.2s; }
+        .case-study-stat:nth-child(3) { animation-delay: 0.3s; }
+        .case-study-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .case-study-stat .number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            line-height: 1.25;
+            color: var(--text);
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, rgba(232, 85, 60, 0.1) 0%, var(--card) 80%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.4);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat:nth-child(1) { animation-delay: 0.1s; }
+        .about-fc-stat:nth-child(2) { animation-delay: 0.2s; }
+        .about-fc-stat:nth-child(3) { animation-delay: 0.3s; }
+        .about-fc-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .about-fc-stat-val {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.5);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            background: var(--bg-alt);
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff;
+                --bg-alt: #f5f5f5;
+                --card: #f8f8f8;
+                --card-border: #e0e0e0;
+                --text: #111111;
+                --text-secondary: #444444;
+                --text-muted: #888888;
+            }
+
+            body {
+                background: white;
+                color: #111;
+                font-size: 11pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero h1 span {
+                -webkit-text-fill-color: var(--coral);
+                background: none;
+                animation: none;
+            }
+
+            .card, .video-idea-card, .enhancement-card, .case-study-card, .intro-card, .next-steps-card {
+                background: #f8f8f8 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border-color: #e0e0e0;
+                box-shadow: none !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .section {
+                animation: none !important;
+            }
+
+            .cta-btn {
+                animation: none !important;
+                box-shadow: none !important;
+            }
+
+            a {
+                color: var(--coral) !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">16 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Fenwick Haze</span></h1>
+            <p class="hero-subtitle">The Rooftop Bar at Fenwick Newcastle | Prepared by Fusion Creative | 16 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey team,</div>
+                <p class="section-text">We took a proper look at Haze and honestly, the potential sitting on top of Fenwick is something most venues in the UK would never get near. A rooftop, above one of Britain's most iconic luxury department stores, in the middle of a city that is having a genuine moment. The brand equity alone is rare. The view, the cocktails, the crowd, the location, they all line up.</p>
+                <p class="section-text">We are Fusion Creative, a content and marketing agency based in Newcastle that works exclusively with hospitality. We put together this honest audit of the social media presence around Haze. Inside you will find a snapshot of where things are now, what is already working, <strong>five areas where there is real room to grow</strong>, four video ideas you could film next week, and some digital wins beyond content.</p>
+                <p class="section-text">This is yours whether we work together or not.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Parent site</td>
+                        <td>fenwick.co.uk <span class="stat-badge-green">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fenwick Instagram (@fenwickofficial)</td>
+                        <td>165K followers <span class="stat-badge-green">Huge Reach</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fenwick TikTok (@fenwickofficial)</td>
+                        <td class="stat-highlight">10.3K followers <span class="stat-badge">Underused</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated Haze handle</td>
+                        <td><span class="stat-badge-amber">Not Established</span></td>
+                    </tr>
+                    <tr>
+                        <td>Haze share of parent feed</td>
+                        <td class="stat-highlight">Low frequency <span class="stat-badge">Diluted</span></td>
+                    </tr>
+                    <tr>
+                        <td>Rooftop TripAdvisor sentiment</td>
+                        <td>Polarised: views loved, value flagged <span class="stat-badge-amber">Mixed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Parent brand strength</td>
+                        <td>Fenwick since 1882 <span class="stat-badge-green">Iconic</span></td>
+                    </tr>
+                    <tr>
+                        <td>Venue positioning</td>
+                        <td>Rooftop bar, luxury department store context</td>
+                    </tr>
+                    <tr>
+                        <td>USP</td>
+                        <td>Rooftop cocktails above Fenwick Newcastle</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Fenwick is a top-tier umbrella brand to launch under</h4>
+                    <p>Fenwick has been around since 1882 and the Newcastle flagship carries serious cultural weight in the North East. The Christmas window alone is a national moment. Haze does not need to explain who it is, the Fenwick name does that work for free. Most new bars spend years building trust that Haze inherits on day one.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> 165K combined Instagram audience already exists above it</h4>
+                    <p>@fenwickofficial has a 165K Instagram following and strong local engagement. That audience is already paying attention to anything Fenwick Newcastle launches. Haze can be surfaced to a warm, qualified, local audience the second it has consistent content to push. Most independent bars would kill for that kind of launch platform.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Rooftop plus luxury retail is a genuinely unique combo</h4>
+                    <p>There is no real equivalent in Newcastle. Vermont has ABOVE, but the Fenwick context is different. You are drinking on top of a luxury department store on Northumberland Street. That gives Haze a specific aesthetic, shopping day, treat culture, after-work glamour, birthday and hen crowd, that other rooftops in the city cannot mirror.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Cocktail programme has credibility baked in</h4>
+                    <p>Fenwick's rooftop bar programme has worked with names like Joe Schofield and Hepple Spirits in the past. That credibility translates on camera. When a bartender has a real story, the cocktail content almost makes itself. The ingredients are there, they just need to be filmed the way the algorithm rewards in 2026.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Foot traffic inside Fenwick is a built-in funnel</h4>
+                    <p>Thousands of people walk through Fenwick every day. Shoppers, tourists, business lunches, hen parties, post-work crowds. Haze has one of the most valuable pre-qualified footfall funnels of any bar in Newcastle. The job is simply making sure they know the rooftop exists and making them want to film it when they get there.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Areas With Real Potential</div>
+            <p class="section-text" style="margin-bottom: 32px;">The venue is special. The brand is iconic. The gap is almost entirely in how the story is being told online. Fix these and the growth will follow.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>No Dedicated Social Identity for Haze</h3>
+                </div>
+                <p class="section-text">Right now, content about the rooftop is folded into the wider Fenwick feed, which is fashion, beauty, Christmas, events and retail all at once. That dilutes the rooftop story. A bar needs a clear, consistent, ownable identity: the crowd, the view, the cocktails, the energy at 7pm on a Friday. That is not something a parent retail feed can deliver on its own.</p>
+                <p class="section-text">A dedicated @fenwickhaze handle on Instagram and TikTok, cross-promoted from the main Fenwick accounts, would give the rooftop its own voice. The main Fenwick audience becomes the launchpad, not the ceiling. Within six months, Haze could have a stand-alone following that works for its own bookings without relying on the parent feed.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>TikTok Is a Wide Open Door</h3>
+                </div>
+                <p class="section-text">Fenwick's own TikTok sits at 10.3K followers. For a 140-year-old national retail brand that is small, and for a rooftop bar it is almost nothing. Rooftop bars, cocktail pours, reveal content, and luxury retail interiors are all top-performing TikTok categories. Haze sits at the exact intersection of those.</p>
+                <p class="section-text">A single well-filmed sunset reveal reel from the top of Fenwick, posted with a trending sound, could comfortably clear half a million views. The platform is still the cheapest place in hospitality to grow organically, and there is no competitor in Newcastle owning the "rooftop cocktail" search on TikTok yet. That should be Haze.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>The Luxury Department Store Context Is Barely Used</h3>
+                </div>
+                <p class="section-text">The Fenwick interior is a visual gift. Escalators, fragrance hall, Christmas windows, fashion floors, then the reveal onto the rooftop. That entire journey is content most bars simply cannot create. Right now that vertical experience is not being turned into video. Viewers just see the bar itself, they do not see the five-floor build-up that makes Haze feel like an occasion.</p>
+                <p class="section-text">Filming the journey from the ground floor to the rooftop, cut tight with a trending sound, is a format that routinely performs in the hundreds of thousands on TikTok. The Fenwick context is the whole point. Lean into it.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>No Obvious UGC or Creator Strategy</h3>
+                </div>
+                <p class="section-text">Rooftop bars are one of the most-filmed categories in hospitality. Customers at Haze are already creating content when they visit. The view, the cocktail in hand, the friend across the table. But there is no visible branded hashtag, no consistent resharing of customer stories, and no creator seeding programme targeting Newcastle-based lifestyle accounts.</p>
+                <p class="section-text">A simple creator strategy, five to ten local accounts invited per month for cocktails in exchange for one Reel or TikTok, would multiply reach without increasing production cost. Combine that with a branded hashtag on table cards and Haze could collect free qualified content every single week.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>Review Narratives Need Countering With Content</h3>
+                </div>
+                <p class="section-text">Some TripAdvisor reviews of the Fenwick rooftop flag pricing, service speed and value. Fair or not, people read those before they book. The most effective way to rewrite the narrative is not by arguing in the response thread. It is by putting out content that visibly shows the opposite.</p>
+                <p class="section-text">Attentive staff, cocktails landing quickly, a warm welcome, a full table enjoying themselves at golden hour. Thirty seconds of that, shot well, outweighs twenty written review responses. Content is the most underrated reputation tool a hospitality brand has.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Case Study -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Case Study</div>
+            <div class="section-title">What We Did for New Greek</div>
+            <div class="card case-study-card">
+                <p class="section-text">New Greek is a small independent restaurant in Newcastle. No national brand, no rooftop, no 165K umbrella audience. They started from zero. Here is where they are now after working with Fusion Creative.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">40M+</div>
+                        <div class="label">Total Views</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">37.4M</div>
+                        <div class="label">Instagram Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">5.2M</div>
+                        <div class="label">TikTok Monthly</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">11.5K</div>
+                        <div class="label">Followers</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">40 million views. One restaurant. Zero head start.</div>
+                    <div class="context"><strong>New Greek had no followers, no content history, no national brand and no rooftop.</strong> We built their entire social presence from scratch with short-form video and turned empty tables into a waiting list. Haze has the Fenwick name, a 165K launch audience, a rooftop, and a built-in daily footfall funnel. The starting position is significantly stronger.</div>
+                </div>
+
+                <p class="takeaway">New Greek did not have a view of Newcastle. They did not have 165K followers to draw from. They did not have a 140-year-old brand behind them. The only thing that changed was the content. Haze is starting on completely different terrain.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">4 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working on TikTok and Instagram Reels right now. All four lean directly into what makes Haze unique: rooftop, cocktails, and the luxury Fenwick context.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"Most people don't know there is a rooftop bar on top of Fenwick"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Hidden Gem</span>
+                        <span class="idea-tag">Reveal</span>
+                        <span class="idea-tag">Journey</span>
+                    </div>
+                    <p class="idea-description">Start at the ground floor fragrance hall. Quick cuts up through the fashion floors, maybe the food hall, the escalators, the lift. Each beat shows how deep inside the store you are going. Then a door opens, you step out, wide shot of the Newcastle skyline and a cocktail being placed on the bar. Text overlay: "This is hiding on top of Fenwick." Trending audio underneath.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> "Hidden gem" and vertical journey content are two of the most viral formats on TikTok right now. The Fenwick interior gives Haze a journey nobody else has. The payoff of the rooftop view makes it sharable. This single format alone could clear six figures in views the first time it is filmed properly.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"Ranking every cocktail on the Haze menu with the bartender"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Ranking</span>
+                        <span class="idea-tag">Staff</span>
+                        <span class="idea-tag">Personality</span>
+                    </div>
+                    <p class="idea-description">Get the head bartender on camera. Line every cocktail up along the bar with the Newcastle skyline behind them. Taste, rate, and rank each one honestly. Let them have strong opinions. Quick cuts, tight edits, each drink gets a reaction and a score. The winner gets a slow-motion hero shot against the view. Signature pour at golden hour.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Ranking content is engagement gold because viewers argue in the comments. It showcases the full menu, puts a real face to the bar, and leans into Fenwick's cocktail credibility. It is also a series: signature drinks vs classics, summer menu, staff picks vs customer picks. Unlimited variations from one format.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"A day at Fenwick ending with sunset cocktails on the rooftop"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Aspirational</span>
+                        <span class="idea-tag">Lifestyle</span>
+                        <span class="idea-tag">Vlog</span>
+                    </div>
+                    <p class="idea-description">Frame the video as a perfect day out in Newcastle. Shopping in Fenwick, maybe a fragrance sample, a fitting room moment, a bite in the food hall, a beauty counter detail. Build the aesthetic. Then the final scene: golden hour, rooftop, cocktail, friend, skyline. Position Haze as the reward, the finale, the "we have to end the day here" moment.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> "Perfect day" content is one of the strongest performing lifestyle formats on Instagram Reels in 2026. It naturally targets the exact audience Haze wants, the fashion-aware, hospitality-loving, treat-yourself crowd. It also tightens the link between Fenwick shopping and Haze drinking, turning every shopper into a potential booking.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"POV: Your first cocktail at Newcastle's smartest rooftop"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Cocktail</span>
+                        <span class="idea-tag">ASMR</span>
+                    </div>
+                    <p class="idea-description">Shot entirely from the customer's point of view. Walking through the door onto the rooftop, the view hits the frame. A hand places a menu. A finger points at a cocktail. The bartender builds it in front of the camera, close ups on the pour, the garnish, the ice. The drink lands. First sip. Wide reveal of the skyline behind it. Minimal speaking, lots of sound design.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> POV cocktail content combines reveal, ASMR and aspirational aesthetics in one format, all top-tier TikTok drivers. The Fenwick rooftop backdrop elevates it beyond what a regular bar could shoot. This is also the kind of content that gets saved, which is the strongest signal you can send the algorithm.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">Strategic changes that would make a real difference alongside the content work.</p>
+
+            <div class="enhancement-card">
+                <h4>Launch a Dedicated Haze Social Identity</h4>
+                <p>A bar needs its own voice. Right now Haze lives inside a retail feed. Splitting it out into its own handles, cross-promoted from Fenwick, would let the rooftop story breathe and create a proper booking engine.</p>
+                <ul class="enhancement-list">
+                    <li>Secure @fenwickhaze on Instagram and TikTok before anyone else grabs it</li>
+                    <li>Announce the launch from the main @fenwickofficial account to drive the first 5K followers overnight</li>
+                    <li>Develop a visual identity distinct from Fenwick retail: warmer, slower, more editorial</li>
+                    <li>Pin a strong reveal video to the grid so every new visitor immediately understands the venue</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Even before the dedicated account is live, a branded hashtag on table cards would start collecting UGC that can be fed straight into the launch day content bank.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Build a Creator Seeding Programme</h4>
+                <p>Newcastle has a strong lifestyle and foodie creator scene. Haze is the kind of venue they are actively looking for. A structured seeding programme, not ad-hoc invites, would turn that into consistent reach.</p>
+                <ul class="enhancement-list">
+                    <li>Identify 15 to 20 Newcastle-based creators in lifestyle, fashion and food</li>
+                    <li>Invite five to ten per month for cocktails in exchange for one Reel or TikTok</li>
+                    <li>Track which creators drive the highest view counts and build longer term relationships with the top performers</li>
+                    <li>Use the strongest UGC as boosted paid content for geo-targeted Newcastle ads</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Own the "Rooftop Bar Newcastle" Search</h4>
+                <p>People searching "rooftop bar Newcastle" on TikTok, Instagram and Google are already in market. The venue that owns those searches owns the default booking. Right now nobody in Newcastle properly owns it across all three.</p>
+                <ul class="enhancement-list">
+                    <li>SEO optimise a dedicated Haze page on fenwick.co.uk for "rooftop bar Newcastle" and related terms</li>
+                    <li>Use consistent captions and hashtags on every TikTok and Reel to dominate platform search</li>
+                    <li>Claim and optimise Google Business Profile, TripAdvisor and Yelp listings with fresh photos and video</li>
+                    <li>Run a low-spend Google and Meta campaign targeting "things to do in Newcastle" and "cocktail bar Newcastle"</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Turn Events Into Content Cycles</h4>
+                <p>Any pop-ups, seasonal launches, private hires or collaborations should run on a three-part content cycle. Teaser before, atmosphere during, recap after. That turns every single event into a week of content rather than a single static post.</p>
+                <div class="highlight-box">
+                    <p><strong>The reality:</strong> Haze sitting inside Fenwick means it benefits from the retail calendar. Summer menu, Christmas windows, pop-ups, brand collabs. Every one of those moments is free content fuel most bars do not have.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a content and marketing agency based in Newcastle. We produce short-form video, manage social accounts, run paid campaigns, build websites and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">We work exclusively with hospitality businesses. Restaurants, bars, hotels and events. We know what works in this space because it is all we do. No stock footage, no generic templates, no recycled ideas. Every piece of content is original and tailored to the venue.</p>
+                <p class="about-fc-text">Our headline result is New Greek, a small independent restaurant in Newcastle that went from zero to more than 40 million views. We know how to turn a special venue into a packed booking sheet.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">40M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">37.4M</div>
+                        <div class="about-fc-stat-label">IG monthly views</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">5.2M</div>
+                        <div class="about-fc-stat-label">TikTok monthly views</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">11.5K</div>
+                        <div class="about-fc-stat-label">Followers built</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Creator Seeding</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a read through this audit. The short version: Haze sits on one of the strongest brand platforms of any bar in the North East, with a 165K launch audience already warm. The content just needs to catch up with the venue.</li>
+                    <li>If any of this resonates, let us jump on a quick call. No pitch, just a straight conversation about where the biggest wins are for Haze specifically.</li>
+                    <li>We can put together a content plan showing exactly what the first month would look like across a dedicated Haze Instagram and TikTok, creator seeding, and rooftop UGC activation.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But with summer coming and the rooftop season about to peak, the next few months are the most important window to turn the Fenwick brand equity into a proper booking engine for Haze. The venue already stands out. Now it is about making sure the rest of the city, and the country, sees it.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Fenwick Haze</div>
+            <div class="footer-note">This audit was put together using publicly available data from Fenwick's website, social media accounts and online listings on 16 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
