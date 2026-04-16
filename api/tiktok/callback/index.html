@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connecting TikTok... | Fusion Creative</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0A0A0A;
+  color: #E8E4DD;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  max-width: 440px;
+  width: 90%;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 48px 36px;
+  text-align: center;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(232,85,60,0.2);
+  border-top-color: #E8553C;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 24px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+h1 { font-size: 20px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+p { font-size: 14px; color: #888; line-height: 1.6; }
+.status { margin-top: 20px; font-size: 13px; color: #E8553C; }
+.error { color: #ff4444; }
+.success { color: #22c55e; }
+.tick { font-size: 40px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="spinner" id="spinner"></div>
+  <h1 id="title">Connecting TikTok...</h1>
+  <p id="message">Exchanging authorisation code for access tokens. This will only take a moment.</p>
+  <p class="status" id="status"></p>
+</div>
+
+<script>
+(function() {
+  var EXCHANGE_URL = 'https://fusion-dashboard-sigma.vercel.app/api/tiktok/exchange';
+  var DASHBOARD_URL = 'https://fusion-dashboard-sigma.vercel.app/admin/clients';
+
+  var params = new URLSearchParams(window.location.search);
+  var code = params.get('code');
+  var state = params.get('state');
+  var error = params.get('error');
+
+  var titleEl = document.getElementById('title');
+  var messageEl = document.getElementById('message');
+  var statusEl = document.getElementById('status');
+  var spinnerEl = document.getElementById('spinner');
+
+  if (error) {
+    spinnerEl.style.display = 'none';
+    titleEl.textContent = 'Connection Failed';
+    messageEl.textContent = 'TikTok denied the authorisation request: ' + (params.get('error_description') || error);
+    statusEl.className = 'status error';
+    statusEl.textContent = 'Please try again or contact Jay.';
+    return;
+  }
+
+  if (!code || !state) {
+    spinnerEl.style.display = 'none';
+    titleEl.textContent = 'Invalid Request';
+    messageEl.textContent = 'No authorisation code received. This page should only be accessed via the TikTok OAuth flow.';
+    return;
+  }
+
+  // Exchange the code for tokens via the dashboard API
+  fetch(EXCHANGE_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code: code, state: state })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    spinnerEl.style.display = 'none';
+    if (data.success) {
+      document.getElementById('card').innerHTML =
+        '<div class="tick">&#9989;</div>' +
+        '<h1 style="color:#22c55e">TikTok Connected</h1>' +
+        '<p>Account linked successfully. The dashboard will now pull live TikTok data automatically.</p>' +
+        '<p style="margin-top:20px;"><a href="' + DASHBOARD_URL + '" style="color:#E8553C;text-decoration:none;font-weight:600;">Back to Dashboard &rarr;</a></p>';
+    } else {
+      titleEl.textContent = 'Connection Failed';
+      messageEl.textContent = data.details || data.error || 'Something went wrong during token exchange.';
+      statusEl.className = 'status error';
+      statusEl.textContent = 'Please try again.';
+    }
+  })
+  .catch(function(err) {
+    spinnerEl.style.display = 'none';
+    titleEl.textContent = 'Connection Error';
+    messageEl.textContent = 'Could not reach the dashboard API: ' + err.message;
+    statusEl.className = 'status error';
+    statusEl.textContent = 'Check your connection and try again.';
+  });
+})();
+</script>
+
+</body>
+</html>
