@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Greek Spot - Pricing & Packages | Fusion Creative</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A0A0A;
+  color: #E8E4DD;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+a { color: #E8553C; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.header {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.brand {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #888;
+}
+.brand span { color: #E8553C; }
+.date {
+  font-size: 12px;
+  color: #555;
+}
+.header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.header p {
+  font-size: 16px;
+  color: #888;
+}
+.header .for {
+  font-size: 14px;
+  color: #666;
+  margin-top: 16px;
+}
+.header .for strong { color: #aaa; }
+
+/* Section */
+.section {
+  padding: 48px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.section:last-child { border-bottom: none; }
+.section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.section h3 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #E8553C;
+  margin-bottom: 12px;
+}
+
+/* Pricing Cards */
+.pricing-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+.pricing-card {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.pricing-card:hover { border-color: rgba(232,85,60,0.3); }
+.pricing-card.recommended {
+  border-color: #E8553C;
+  background: linear-gradient(135deg, #111 0%, #1a0f0d 100%);
+}
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 32px;
+  background: #E8553C;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+.plan-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.plan-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: #fff;
+}
+.plan-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+.plan-price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+}
+.plan-desc {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.plan-features {
+  list-style: none;
+}
+.plan-features li {
+  font-size: 14px;
+  color: #bbb;
+  padding: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.plan-features li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #E8553C;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* Guarantee */
+.guarantee-box {
+  background: linear-gradient(135deg, #1a1510 0%, #111 100%);
+  border: 1px solid rgba(232,85,60,0.2);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 32px;
+  text-align: center;
+}
+.guarantee-box h3 {
+  margin-bottom: 8px;
+}
+.guarantee-box p {
+  font-size: 14px;
+  color: #999;
+  line-height: 1.6;
+}
+
+/* What's included breakdown */
+.included-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+@media (max-width: 600px) { .included-grid { grid-template-columns: 1fr; } }
+.included-item {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 20px;
+}
+.included-item h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.included-item p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+}
+
+/* Case study */
+.case-study {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px;
+  margin-top: 24px;
+}
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+@media (max-width: 500px) { .stat-row { grid-template-columns: 1fr; } }
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  color: #E8553C;
+}
+.stat-label {
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* CTA */
+.cta-section {
+  text-align: center;
+  padding: 60px 0;
+}
+.cta-section h2 { margin-bottom: 12px; }
+.cta-section p {
+  color: #888;
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+.cta-btn {
+  display: inline-block;
+  background: #E8553C;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 24px rgba(232,85,60,0.4);
+  text-decoration: none;
+}
+
+/* Footer */
+.footer {
+  padding: 32px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  font-size: 12px;
+  color: #444;
+}
+
+/* Note */
+.note {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div class="brand">Fusion <span>Creative</span></div>
+      <div class="date">April 2026</div>
+    </div>
+    <h1>Pricing & Packages</h1>
+    <p>Short-form video and social media growth for hospitality</p>
+    <p class="for">Prepared for <strong>Mikael</strong> at <strong>The Greek Spot</strong>, Middlesbrough</p>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section">
+    <h2>How it works</h2>
+    <p style="color:#999; font-size:15px; margin-bottom:24px;">We come to your shop on Dundas Street, film content with you and the team, then handle everything else. Editing, captions, posting, engagement, reporting. You focus on the food, we handle the phones.</p>
+
+    <div class="included-grid">
+      <div class="included-item">
+        <h4>Shoot Days</h4>
+        <p>We come to you with our gear. Each shoot produces multiple videos from different angles and formats, enough to cover the whole month.</p>
+      </div>
+      <div class="included-item">
+        <h4>Editing & Posting</h4>
+        <p>Every video is edited with hooks, captions, trending audio, and posted at optimal times. You approve or we just run with it.</p>
+      </div>
+      <div class="included-item">
+        <h4>Account Management</h4>
+        <p>We manage your Instagram and TikTok. Hashtags, replies, stories, community engagement. Your accounts, handled properly.</p>
+      </div>
+      <div class="included-item">
+        <h4>Live Dashboard</h4>
+        <p>Real-time analytics you can check anytime. Views, followers, engagement, content performance, all in one place.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="section">
+    <h2>Choose your plan</h2>
+    <p style="color:#999; font-size:15px;">All plans include our growth guarantee. Every plan is month to month with no long-term contracts.</p>
+
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="pricing-card">
+        <div class="plan-header">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">&pound;500 <span>/month</span></div>
+        </div>
+        <p class="plan-desc">Get consistent, professional content on your channels every week.</p>
+        <ul class="plan-features">
+          <li>8 short-form videos per month</li>
+          <li>1 shoot day per month at your location</li>
+          <li>TikTok and Instagram Reels publishing</li>
+          <li>Hashtag and caption strategy</li>
+          <li>Basic monthly performance report</li>
+          <li>Content calendar planning</li>
+        </ul>
+      </div>
+
+      <!-- Growth -->
+      <div class="pricing-card recommended">
+        <div class="badge">Recommended</div>
+        <div class="plan-header">
+          <div class="plan-name">Growth</div>
+          <div class="plan-price">&pound;950 <span>/month</span></div>
+        </div>
+        <p class="plan-desc">The full stack. This is what we run for New Greek and it is what drives real results.</p>
+        <ul class="plan-features">
+          <li>20 short-form videos per month</li>
+          <li>2 shoot days per month at your location</li>
+          <li>TikTok, Instagram Reels, and YouTube Shorts</li>
+          <li>Full profile optimisation across all platforms</li>
+          <li>Local search and Google Business setup</li>
+          <li>Tracking setup (analytics, pixel, conversions)</li>
+          <li>Community management and comment replies</li>
+          <li>Growth guarantee: double your impressions or pay half</li>
+          <li>Live client dashboard with real-time analytics</li>
+          <li>Monthly strategy call</li>
+        </ul>
+      </div>
+
+      <!-- Scale -->
+      <div class="pricing-card">
+        <div class="plan-header">
+          <div class="plan-name">Scale</div>
+          <div class="plan-price">Custom</div>
+        </div>
+        <p class="plan-desc">For when you want everything. Content, website, brand identity, CRM, the lot.</p>
+        <ul class="plan-features">
+          <li>Unlimited content production</li>
+          <li>Dedicated creative strategist</li>
+          <li>Full website design and build</li>
+          <li>Complete brand identity and assets</li>
+          <li>Multi-platform content domination</li>
+          <li>Email marketing and CRM automation</li>
+          <li>Consulting and growth strategy sessions</li>
+          <li>Live client dashboard</li>
+          <li>Priority turnaround on everything</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Guarantee -->
+    <div class="guarantee-box">
+      <h3>The Guarantee</h3>
+      <p>Every plan comes with our growth guarantee. We double your impressions within 30 days or you pay half. No catches, no small print. We only win when you win.</p>
+    </div>
+
+    <p class="note">All prices exclude VAT. No setup fees. No lock-in contracts. Cancel any time with 30 days notice.</p>
+  </div>
+
+  <!-- What We Did for New Greek -->
+  <div class="section">
+    <h2>What we did 30 miles up the road</h2>
+    <p style="color:#999; font-size:15px; margin-bottom:8px;">New Greek is a Greek restaurant in Newcastle. Same region, same type of food, very similar starting position. Here is where they are now.</p>
+
+    <div class="case-study">
+      <h3>New Greek, Newcastle</h3>
+      <p style="color:#999; font-size:14px;">Results after working with Fusion Creative</p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-value">37.4M</div>
+          <div class="stat-label">Instagram Views (30 day)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5.2M</div>
+          <div class="stat-label">TikTok Views (30 day)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">11.5K</div>
+          <div class="stat-label">Followers</div>
+        </div>
+      </div>
+      <p style="color:#666; font-size:13px; margin-top:20px; text-align:center;">They started from zero. Same food, same location. The only difference was the content.</p>
+    </div>
+  </div>
+
+  <!-- What We Would Do -->
+  <div class="section">
+    <h2>What we would do for The Greek Spot</h2>
+    <p style="color:#999; font-size:15px; margin-bottom:20px;">Based on your audit, here is the approach we would take in the first 30 days on the Growth plan.</p>
+
+    <ul class="plan-features">
+      <li>Get you and the team on camera with personality-driven, hook-first content</li>
+      <li>Launch your TikTok account and own the Middlesbrough Greek food space</li>
+      <li>Film reaction videos with customers trying your pastries for the first time</li>
+      <li>Behind the scenes bakery content: morning prep, dough, ovens, the full experience</li>
+      <li>Student-focused content to drive Teesside Uni foot traffic</li>
+      <li>Trending formats adapted for food and hospitality</li>
+      <li>Turn your 5-star TripAdvisor reviews into video social proof</li>
+      <li>Optimise your Google Business listing and set up review collection</li>
+      <li>Set up tracking so every view, click, and visit is measured</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to get started?</h2>
+    <p>Book a quick call or we can pop into the shop for a coffee.<br>No pressure, just a chat about what would work best for you.</p>
+    <a href="https://cal.com/fusioncreative/discovery" class="cta-btn">Book a Call</a>
+    <p style="margin-top:16px; font-size:13px; color:#555;">Or reply to this email and we will sort something out</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Fusion Creative | <a href="https://fusioncreative.uk">fusioncreative.uk</a></p>
+    <p style="margin-top:4px;">Jay Williams, Founder</p>
+  </div>
+
+</div>
+
+</body>
+</html>
