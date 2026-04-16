@@ -769,6 +769,7 @@
         <p style="color:var(--off-white);font-weight:600;margin-bottom:16px;text-align:center;">Almost there - where do we send your audit?</p>
         <div style="display:flex;flex-direction:column;gap:12px;">
           <input type="text" id="audit-cta-name" placeholder="Your Name" style="width:100%;padding:0.9rem 1.1rem;border-radius:var(--rad-sm);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:var(--off-white);font-family:var(--font-head);font-size:0.95rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--signal)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'" />
+          <input type="text" id="audit-cta-business" placeholder="Business Name" style="width:100%;padding:0.9rem 1.1rem;border-radius:var(--rad-sm);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:var(--off-white);font-family:var(--font-head);font-size:0.95rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--signal)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'" />
           <input type="email" id="audit-cta-email" placeholder="Email Address" style="width:100%;padding:0.9rem 1.1rem;border-radius:var(--rad-sm);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:var(--off-white);font-family:var(--font-head);font-size:0.95rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--signal)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'" />
           <button type="button" onclick="submitAuditCTAFinal()" id="audit-cta-btn2" class="btn btn-signal" style="width:100%;justify-content:center;padding:1rem 2rem;"><span>Send My Free Audit</span></button>
         </div>
@@ -797,6 +798,7 @@
   }
   function submitAuditCTAFinal() {
     var name = document.getElementById('audit-cta-name').value.trim();
+    var businessName = document.getElementById('audit-cta-business').value.trim();
     var email = document.getElementById('audit-cta-email').value.trim();
     if (!name || !email) return;
     var btn = document.getElementById('audit-cta-btn2');
@@ -814,7 +816,7 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         business_type: 'unknown', goal: 'free_audit', social_status: 'unknown',
-        business_name: name + ' (via homepage)', social_handle: socialHandle || null,
+        business_name: businessName || name, social_handle: socialHandle || null,
         website: website || null, name: name, email: email, phone: null,
         notes: 'Source: Homepage Free Audit CTA | URL provided: ' + auditCTAUrl
       })
