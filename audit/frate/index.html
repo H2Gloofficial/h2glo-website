@@ -78,11 +78,40 @@
         /* Divider */
         .divider{width:60px;height:2px;background:var(--coral);opacity:0.3;margin:48px auto}
 
+        /* Stats Bar */
+        .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-border);border-radius:16px;overflow:hidden;margin:0 0 16px}
+        .stat{background:var(--card);padding:24px 16px;text-align:center}
+        .stat .num{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--coral);line-height:1.2}
+        .stat .label{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-top:6px}
+
+        /* Comparison */
+        .comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+        .comp-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:32px;position:relative}
+        .comp-card.highlight{border-color:var(--coral);box-shadow:0 0 40px rgba(232,85,60,0.08)}
+        .comp-card .comp-label{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;font-weight:600}
+        .comp-card.highlight .comp-label{color:var(--coral)}
+        .comp-card h3{font-family:'DM Serif Display',serif;font-size:1.15rem;font-weight:400;margin-bottom:4px;color:var(--text)}
+        .comp-card .comp-sub{font-size:0.78rem;color:var(--text-muted);margin-bottom:18px}
+        .comp-card ul{list-style:none;padding:0}
+        .comp-card ul li{font-size:0.82rem;color:var(--text-secondary);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);position:relative;padding-left:18px}
+        .comp-card ul li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--text-muted)}
+        .comp-card.highlight ul li::before{background:var(--coral)}
+        .comp-card ul li:last-child{border-bottom:none}
+        .comp-card .comp-extras{font-size:0.76rem;color:var(--text-muted);margin-top:16px;font-style:italic}
+
+        /* What We Bring */
+        .bring-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+        .bring-item{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:20px 24px;font-size:0.88rem;color:var(--text-secondary);position:relative;padding-left:40px}
+        .bring-item::before{content:'';position:absolute;left:18px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:2px;background:var(--coral);opacity:0.7}
+
         /* Mobile */
         @media(max-width:640px){
             .hero{padding:72px 0 56px}
             .idea-grid{grid-template-columns:1fr}
             .case-study .case-stats{grid-template-columns:1fr;text-align:center}
+            .stats-bar{grid-template-columns:repeat(2,1fr)}
+            .comparison{grid-template-columns:1fr}
+            .bring-grid{grid-template-columns:1fr}
             .container{padding:0 20px}
             .card{padding:24px}
             .case-study{padding:28px 24px}
@@ -101,6 +130,14 @@
 </header>
 
 <div class="container">
+
+    <!-- Stats Bar -->
+    <div class="stats-bar reveal">
+        <div class="stat"><div class="num">2023</div><div class="label">Opened</div></div>
+        <div class="stat"><div class="num">Open-Air</div><div class="label">Courtyard</div></div>
+        <div class="stat"><div class="num">Mon&ndash;Sun</div><div class="label">Events Most Nights</div></div>
+        <div class="stat"><div class="num">Central</div><div class="label">Grey Street, NE1</div></div>
+    </div>
 
     <!-- Who We Are -->
     <section class="section">
@@ -127,7 +164,41 @@
 
     <!-- What We Noticed -->
     <section class="section">
-        <div class="section-label reveal">Why Frate</div>
+        <div class="section-label reveal">The Audit</div>
+        <h2 class="reveal">An honest look at where Frate is <em>right now</em></h2>
+        <p class="lead reveal">None of this is criticism. It is an outside eye on what is there, what is missing, and where the easiest wins are. You can use every one of these observations whether we end up working together or not.</p>
+
+        <div class="card reveal">
+            <h3>The feed is beautiful but under-used</h3>
+            <p>The grid looks good. Photography is strong, branding is consistent, the aesthetic is on point. But aesthetic does not equal reach in 2026. Static images and carousels rarely leave the follower bubble. The algorithm is pushing short-form video to non-followers at a rate nothing else comes close to. That is where the growth lives.</p>
+        </div>
+
+        <div class="card reveal">
+            <h3>Reels are sporadic, not systematic</h3>
+            <p>There are some Reels in the feed and a couple have performed well, which proves the audience is there when the content is right. But posting is inconsistent and there is no clear content strategy driving the account forward. Virality should not feel accidental. It should feel like a plan.</p>
+        </div>
+
+        <div class="card reveal">
+            <h3>Events are announced, not built up</h3>
+            <p>Most events get a poster post the day before, maybe a story on the night, and that is it. Every event at Frate has the potential for a three-act content arc: tease, night-of, recap. That turns a single event into a week of content and builds anticipation that actually drives footfall.</p>
+        </div>
+
+        <div class="card reveal">
+            <h3>The people are missing from the feed</h3>
+            <p>Frate's personality is people. Bar staff, regulars, DJs, punters. But the feed is mostly venue shots and food photography. The content that pulls in Newcastle right now is personality-led, raw, and human. That is the side of Frate that lives in real life and not yet online.</p>
+        </div>
+
+        <div class="card reveal">
+            <h3>No local content flywheel</h3>
+            <p>Frate sits in the middle of Newcastle's night-out route but the content is not tapping into that. Trending local audio, in-jokes about the city, crossovers with other venues, reactions to Newcastle-specific moments. That is what gets you saved, shared, and talked about on group chats before Friday night.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- The Opportunity -->
+    <section class="section">
+        <div class="section-label reveal">The Opportunity</div>
         <h2 class="reveal">Honestly, we think we can <em>blow this place up</em>.</h2>
         <p class="lead reveal">We do not say that lightly. We have worked with a lot of Newcastle venues and Frate is sitting on one of the strongest organic content opportunities in the city right now. Here is why.</p>
 
@@ -225,6 +296,68 @@
                 <h4>Whatever is trending</h4>
                 <p>Weekly pickups of whatever format is exploding on TikTok and Reels that week, adapted to Frate. Speed is the edge here. We move on a trend within 48 hours, not two weeks. This is the category that wins virality.</p>
             </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- How We'd Work -->
+    <section class="section">
+        <div class="section-label reveal">The Numbers</div>
+        <h2 class="reveal">In-house team vs working with <em>us</em></h2>
+        <p class="lead reveal">Most venues either hire internally or try to do it themselves. Both work, sometimes. Here is the honest comparison, with no pricing pressure. Run the maths however you like, we just want you to have the numbers.</p>
+
+        <div class="comparison reveal">
+            <div class="comp-card">
+                <div class="comp-label">Building In-House</div>
+                <h3>Content Manager + Videographer</h3>
+                <div class="comp-sub">&pound;55,000&ndash;70,000 per year (salaries only)</div>
+                <ul>
+                    <li>Content Manager - &pound;28,000&ndash;35,000</li>
+                    <li>Videographer or Editor - &pound;25,000&ndash;32,000</li>
+                    <li>Camera, lenses, lighting kit</li>
+                    <li>Editing software and subscriptions</li>
+                    <li>Training, time to find traction</li>
+                </ul>
+                <div class="comp-extras">Plus National Insurance, pension, holiday cover, and the ramp-up time before they know what actually works.</div>
+            </div>
+            <div class="comp-card highlight">
+                <div class="comp-label">Working with Fusion Creative</div>
+                <h3>A full creative team, on call</h3>
+                <div class="comp-sub">Monthly retainer, scoped to what Frate actually needs</div>
+                <ul>
+                    <li>Strategy, filming, editing, publishing</li>
+                    <li>Trend intelligence already in place</li>
+                    <li>Kit, team, and systems already running</li>
+                    <li>Output live from day one, not month six</li>
+                    <li>Scale up, scale back, cancel any time</li>
+                </ul>
+                <div class="comp-extras">No hiring risk. No ramp-up. Pricing shaped to the exact engagement, whether that is a campaign, an event push, or a full content engine.</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- What We Bring -->
+    <section class="section">
+        <div class="section-label reveal">What We Bring</div>
+        <h2 class="reveal">What working with us actually <em>looks like</em></h2>
+        <p class="lead reveal">Not a volume commitment. Not a content-per-month guarantee. This is the scope of capability that is yours when you work with us, shaped to whatever Frate needs in any given month.</p>
+
+        <div class="bring-grid reveal">
+            <div class="bring-item">Short-form video strategy and calendar</div>
+            <div class="bring-item">On-site filming at Frate</div>
+            <div class="bring-item">Professional editing and post-production</div>
+            <div class="bring-item">Trend research and reactive content</div>
+            <div class="bring-item">Event content campaigns (tease, night-of, recap)</div>
+            <div class="bring-item">Instagram Reels and TikTok publishing</div>
+            <div class="bring-item">Caption and hook copywriting</div>
+            <div class="bring-item">Performance reporting and iteration</div>
+            <div class="bring-item">Social media management</div>
+            <div class="bring-item">Community engagement and DM replies</div>
+            <div class="bring-item">Creator and influencer collaboration scoping</div>
+            <div class="bring-item">Ongoing strategic input, not just execution</div>
         </div>
     </section>
 
