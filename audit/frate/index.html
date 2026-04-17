@@ -36,8 +36,37 @@
             --surface:#fafafa;
         }
         html{scroll-behavior:smooth}
-        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
-        .container{max-width:900px;margin:0 auto;padding:0 28px}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+        /* Ambient background gradient glow */
+        body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:
+            radial-gradient(600px circle at 12% 8%, rgba(232,85,60,0.12), transparent 55%),
+            radial-gradient(700px circle at 88% 22%, rgba(232,85,60,0.10), transparent 60%),
+            radial-gradient(900px circle at 50% 65%, rgba(232,85,60,0.07), transparent 65%),
+            radial-gradient(500px circle at 10% 95%, rgba(232,85,60,0.10), transparent 60%),
+            radial-gradient(550px circle at 95% 92%, rgba(232,85,60,0.11), transparent 55%)}
+        body > *{position:relative;z-index:1}
+
+        /* Cursor trail glow */
+        .cursor-glow{position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+            transform:translate3d(-50%,-50%,0);
+            background:radial-gradient(circle, rgba(232,85,60,0.22) 0%, rgba(232,85,60,0.10) 30%, transparent 70%);
+            mix-blend-mode:multiply;
+            filter:blur(8px);
+            opacity:0;
+            transition:opacity 0.4s ease}
+        .cursor-glow.visible{opacity:1}
+        .cursor-trail{position:fixed;top:0;left:0;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:0;
+            transform:translate3d(-50%,-50%,0);
+            background:radial-gradient(circle, rgba(232,85,60,0.18) 0%, transparent 65%);
+            mix-blend-mode:multiply;
+            filter:blur(4px);
+            opacity:0;
+            transition:opacity 0.5s ease}
+        .cursor-trail.visible{opacity:1}
+        @media (hover:none) and (pointer:coarse){
+            .cursor-glow,.cursor-trail{display:none}
+        }
+        .container{max-width:900px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
         .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
         .reveal.vis{opacity:1;transform:translateY(0)}
 
@@ -145,6 +174,9 @@
     </style>
 </head>
 <body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
 
 <header class="hero">
     <div class="container">
@@ -415,6 +447,45 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Cursor trail glow (desktop pointer only)
+    (function(){
+        if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+        var glow = document.getElementById('cursorGlow');
+        var trail = document.getElementById('cursorTrail');
+        if (!glow || !trail) return;
+        var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+        var gx = tx, gy = ty, trx = tx, try_ = ty;
+        var visible = false;
+        function onMove(e){
+            tx = e.clientX; ty = e.clientY;
+            if (!visible){
+                visible = true;
+                glow.classList.add('visible');
+                trail.classList.add('visible');
+            }
+        }
+        function onLeave(){
+            visible = false;
+            glow.classList.remove('visible');
+            trail.classList.remove('visible');
+        }
+        window.addEventListener('mousemove', onMove, { passive: true });
+        window.addEventListener('mouseleave', onLeave);
+        window.addEventListener('blur', onLeave);
+        function tick(){
+            // Fast glow follows cursor closely
+            gx += (tx - gx) * 0.20;
+            gy += (ty - gy) * 0.20;
+            // Slower trail lags behind for the streak effect
+            trx += (tx - trx) * 0.08;
+            try_ += (ty - try_) * 0.08;
+            glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0) translate(-50%,-50%)';
+            trail.style.transform = 'translate3d(' + trx + 'px,' + try_ + 'px,0) translate(-50%,-50%)';
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    })();
 
     // Notify Jay when the phone number is clicked
     var phoneLink = document.getElementById('fratePhone');
