@@ -16,7 +16,7 @@ I noticed Newcastle United is hiring a Social Media Marketing Manager for the co
 
 I run Fusion Creative, a short-form video agency based here in Newcastle. We specialise in exactly this: high-volume Reels, TikTok, and Shorts production that drives real engagement.
 
-Quick context on what we do: we took a Newcastle restaurant from minimal social presence to 36.2 million views in 30 days. Reels drove the majority of that. One client. One month.
+Quick context on what we do: we took a Newcastle restaurant from minimal social presence to 38.9 million views in 30 days. Reels drove the majority of that. One client. One month.
 
 I put together a short proposal covering what we spotted on your social channels and three specific opportunities we think could work for the club - particularly around St James' Park venue content, the women's team, and YouTube Shorts.
 
@@ -45,7 +45,7 @@ I saw Vertu is hiring a Content Creator (£32K), YouTube Channel Lead (£35K), a
 
 I run Fusion Creative, a short-form video agency based in Newcastle - literally 10 minutes from your HQ on Team Valley. We produce the exact content those three roles would deliver: trend-reactive Reels, TikTok, and YouTube Shorts.
 
-For context: we took a single Newcastle restaurant to 36.2 million views in 30 days through Reels. One client. One month.
+For context: we took a single Newcastle restaurant to 38.9 million views in 30 days through Reels. One client. One month.
 
 I put together a proposal specifically for Vertu covering what we noticed on your channels (31K followers across 198 dealerships is a gap), three content opportunities, and a cost comparison that might surprise you.
 
@@ -76,7 +76,7 @@ But 98K Instagram followers and 95K on TikTok across 530 branches means your org
 
 I run Fusion Creative, a short-form video agency based in Newcastle - 15 minutes from your Sunderland HQ. We specialise in high-volume Reels and TikTok production.
 
-For context: we generated 36.2 million views in 30 days for a single Newcastle restaurant through Reels. Your 530 branches are sitting on a goldmine of authentic, local content from real travel consultants. Nobody is capturing it.
+For context: we generated 38.9 million views in 30 days for a single Newcastle restaurant through Reels. Your 530 branches are sitting on a goldmine of authentic, local content from real travel consultants. Nobody is capturing it.
 
 I put together a proposal with specific ideas and a cost comparison: fusioncreative.uk/audit/hays-travel/
 
@@ -100,7 +100,7 @@ I have been looking at NGU Homes' Instagram and I want to be straight with you: 
 
 The good news: your market data content is genuinely useful, your refurbishment before-and-afters are gold, and you and Nigel have 17+ years of property expertise that audiences would engage with. The content just needs a different format.
 
-I run Fusion Creative, a short-form video agency based here in Newcastle. We took a Newcastle restaurant from minimal presence to 36.2 million views in 30 days through Reels. The same principles apply to property.
+I run Fusion Creative, a short-form video agency based here in Newcastle. We took a Newcastle restaurant from minimal presence to 38.9 million views in 30 days through Reels. The same principles apply to property.
 
 I put together a short proposal with what we spotted, five specific video ideas for NGU, and a cost comparison against hiring a full-time social media specialist: fusioncreative.uk/audit/ngu-homes/
 
@@ -128,7 +128,7 @@ Durham University has one of the most visually stunning campuses in the UK. The 
 
 Meanwhile, Newcastle University - 15 miles up the road and lower in the rankings - is ahead of you on every social platform. They have 123K on Instagram and 30K on TikTok. Glasgow has 80K on TikTok. Durham is not in the top 10 Russell Group universities by TikTok content volume.
 
-I run Fusion Creative, a short-form video agency based in Newcastle. We specialise in making places look incredible on camera and driving real engagement. We took a single Newcastle restaurant to 36.2 million views in 30 days through professional Reels.
+I run Fusion Creative, a short-form video agency based in Newcastle. We specialise in making places look incredible on camera and driving real engagement. We took a single Newcastle restaurant to 38.9 million views in 30 days through professional Reels.
 
 I put together a proposal with a Russell Group comparison, three specific opportunities, and video ideas designed for Durham's campus: fusioncreative.uk/audit/durham-university/
 
@@ -152,7 +152,7 @@ I saw you are hiring an Organic Social Media Assistant and I wanted to reach out
 
 I run Fusion Creative, a short-form video agency based right here in Newcastle. We could take the video production burden off your team entirely - delivering professional, trend-aware Reels and TikToks every month so your in-house team can focus on strategy, community management, and campaign execution.
 
-For context: we generated 36.2 million views in 30 days for a Newcastle restaurant through Reels. We know this city and we know how to make it look incredible on camera.
+For context: we generated 38.9 million views in 30 days for a Newcastle restaurant through Reels. We know this city and we know how to make it look incredible on camera.
 
 Your TikTok is at 30K followers. With professional short-form content, there is a clear path to 100K+. Your campus and city are visually strong - they just need the right production behind them.
 
