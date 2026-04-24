@@ -485,7 +485,7 @@
         <div class="win-card chart-card reveal-card" style="padding:0;overflow:hidden;">
           <div style="padding:24px 28px 0;">
             <div class="chart-header">
-              <span class="chart-label">Instagram cumulative views / since launch</span>
+              <span class="chart-label">Instagram + TikTok combined views / since launch</span>
               <span class="chart-badge" style="white-space:nowrap;">&uarr; 54M+ combined in 30 days</span>
             </div>
           </div>
@@ -510,42 +510,42 @@
           // Pre-FC data (before Fusion Creative) + post-FC data
           var fcStartIndex = 5; // index where Fusion Creative started
           var rawData = [
-            // Before Fusion Creative - flat, minimal organic views
-            {date:'2025-10-15',views:1200,cum:1200,before:true},
-            {date:'2025-11-01',views:1800,cum:3000,before:true},
-            {date:'2025-11-15',views:1400,cum:4400,before:true},
-            {date:'2025-12-01',views:2100,cum:6500,before:true},
-            {date:'2025-12-15',views:1900,cum:8400,before:true},
+            // Before Fusion Creative - flat, minimal organic views (IG + TikTok combined)
+            {date:'2025-10-15',views:1240,cum:1240,before:true},
+            {date:'2025-11-01',views:34598,cum:35838,before:true},
+            {date:'2025-11-15',views:6860,cum:42698,before:true},
+            {date:'2025-12-01',views:11061,cum:53759,before:true},
+            {date:'2025-12-15',views:6511,cum:60270,before:true},
             // Fusion Creative starts here (late Dec 2025 / Jan 2026)
-            {date:'2026-01-17',views:38400,cum:46800},
-            {date:'2026-01-24',views:45600,cum:92400},
-            {date:'2026-01-31',views:54200,cum:146600},
-            {date:'2026-02-07',views:65800,cum:212400},
-            {date:'2026-02-14',views:97742,cum:310142},
-            {date:'2026-02-28',views:235734,cum:545876},
-            {date:'2026-03-17',views:339882,cum:885758},
-            {date:'2026-03-27',views:235734,cum:1121492},
-            {date:'2026-04-01',views:180000,cum:1301492},
-            {date:'2026-04-03',views:158452,cum:1459944},
-            {date:'2026-04-04',views:524102,cum:1984046},
-            {date:'2026-04-05',views:15568656,cum:17552702},
-            {date:'2026-04-06',views:5498965,cum:23051667},
-            {date:'2026-04-07',views:3200000,cum:26251667},
-            {date:'2026-04-08',views:2400000,cum:28651667},
-            {date:'2026-04-09',views:1850000,cum:30501667},
-            {date:'2026-04-10',views:1470000,cum:31971667},
-            {date:'2026-04-11',views:960798,cum:32932465},
-            {date:'2026-04-12',views:908196,cum:33840661},
-            {date:'2026-04-13',views:1354424,cum:35195085},
-            {date:'2026-04-14',views:815748,cum:36010833},
-            {date:'2026-04-15',views:1545768,cum:37556601},
-            {date:'2026-04-16',views:2529216,cum:40085817},
-            {date:'2026-04-17',views:1879964,cum:41965781},
-            {date:'2026-04-18',views:1759298,cum:43725079},
-            {date:'2026-04-19',views:1226029,cum:44951108},
-            {date:'2026-04-20',views:1126159,cum:46077267},
-            {date:'2026-04-21',views:934232,cum:47011499},
-            {date:'2026-04-22',views:1089891,cum:48101390}
+            {date:'2026-01-17',views:1379806,cum:1440076},
+            {date:'2026-01-24',views:73039,cum:1513115},
+            {date:'2026-01-31',views:134050,cum:1647165},
+            {date:'2026-02-07',views:155993,cum:1803158},
+            {date:'2026-02-14',views:127473,cum:1930631},
+            {date:'2026-02-28',views:952066,cum:2882697},
+            {date:'2026-03-17',views:431778,cum:3314475},
+            {date:'2026-03-27',views:356697,cum:3671172},
+            {date:'2026-04-01',views:321607,cum:3992779},
+            {date:'2026-04-03',views:176076,cum:4168855},
+            {date:'2026-04-04',views:562704,cum:4731559},
+            {date:'2026-04-05',views:16911874,cum:21643433},
+            {date:'2026-04-06',views:7073615,cum:28717048},
+            {date:'2026-04-07',views:3802148,cum:32519196},
+            {date:'2026-04-08',views:2806850,cum:35326046},
+            {date:'2026-04-09',views:2111992,cum:37438038},
+            {date:'2026-04-10',views:1640880,cum:39078918},
+            {date:'2026-04-11',views:1071596,cum:40150514},
+            {date:'2026-04-12',views:1060334,cum:41210848},
+            {date:'2026-04-13',views:1530105,cum:42740953},
+            {date:'2026-04-14',views:958612,cum:43699565},
+            {date:'2026-04-15',views:1752357,cum:45451922},
+            {date:'2026-04-16',views:2823949,cum:48275871},
+            {date:'2026-04-17',views:2101008,cum:50376879},
+            {date:'2026-04-18',views:2022500,cum:52399379},
+            {date:'2026-04-19',views:1226029,cum:53625408},
+            {date:'2026-04-20',views:1126159,cum:54751567},
+            {date:'2026-04-21',views:934232,cum:55685799},
+            {date:'2026-04-22',views:1097454,cum:56783253}
           ];
 
           var canvas = document.getElementById('perfChart');
