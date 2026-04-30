@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Something Greek | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0e0f12;
+            --bg-alt: #15171c;
+            --card: #1a1d23;
+            --card-border: rgba(255,255,255,0.08);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #f5f6fa;
+            --text-secondary: #b8bcc6;
+            --text-muted: #7c8090;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.55); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(42px, 7vw, 64px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(26,29,35,0.98) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .intro-card .greeting {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.15);
+            color: var(--coral-light);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.15);
+            color: #4cd97d;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.15);
+            color: #ffb84d;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-red {
+            display: inline-block;
+            background: rgba(255, 59, 48, 0.15);
+            color: #ff6b6b;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #4cd97d;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(26,29,35,0.98) 60%);
+            border-color: rgba(232, 85, 60, 0.2);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.18);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat .number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(30px, 5vw, 44px);
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            color: var(--text);
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25), 0 16px 48px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.25);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.2);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(26,29,35,0.98) 80%);
+            border-color: rgba(232, 85, 60, 0.2);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.08);
+            border: 1px solid rgba(232, 85, 60, 0.18);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat-val {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.5);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            background: var(--bg-alt);
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">30 April 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Something Greek</span></h1>
+            <p class="hero-subtitle">Authentic Greek Street Food, Coxhoe, County Durham | Prepared by Fusion Creative | 30 April 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey Dimitrios,</div>
+                <p class="section-text">Thank you for requesting an audit. We really appreciate you taking the time.</p>
+                <p class="section-text">We had a look through Something Greek and honestly, the food looks incredible. Gyros, halloumi fries, mixed boxes, baklava. You are serving proper Greek street food in a village takeaway format and the reviews back it up. People love the food, they love the portions, and they keep coming back. That is the hardest part of any food business and you have already nailed it.</p>
+                <p class="section-text">We are Fusion Creative, a content and marketing agency based in Newcastle that works exclusively with hospitality businesses. We have put together a full audit of Something Greek's online presence. Inside you will find a snapshot of where things stand right now, what is already working well, <strong>five areas where there is real room to grow</strong>, video ideas you can use straight away, and recommendations for quick digital wins.</p>
+                <p class="section-text">Even if we never speak again, this is yours to keep. We genuinely hope it is useful.</p>
+            </div>
+
+            <!-- Fusion Creative metrics card -->
+            <div class="card" style="margin-top:8px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--coral); margin-bottom:6px;">Client Results</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Generated for a single local restaurant in Newcastle</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">54M+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">791K+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Interactions</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">5,900+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">47M</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
+                    </div>
+                </div>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">We generated 54M+ views in 30 days for a local Newcastle restaurant. One single reel hit 47 million views. They went from zero social presence to a household name in the North East. Something Greek has the same ingredients: authentic food, a loyal customer base, and a cuisine that films beautifully. The only difference is nobody is filming it yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Website</td>
+                        <td>somethinggreekdh6.co.uk <span class="stat-badge-amber">Ordering Platform Only</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@somethinggreekcoxhoe)</td>
+                        <td class="stat-highlight">187 followers, 76 posts <span class="stat-badge">Needs Growth</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok (@somethinggreekcoxhoe)</td>
+                        <td class="stat-highlight">126 followers, 6 videos <span class="stat-badge">Needs Growth</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook</td>
+                        <td>Something Greek Coxhoe <span class="stat-badge-amber">Duplicate Pages</span></td>
+                    </tr>
+                    <tr>
+                        <td>Google Rating</td>
+                        <td>Listed on Google <span class="stat-badge-green">Visible</span></td>
+                    </tr>
+                    <tr>
+                        <td>Restaurant Guru</td>
+                        <td>3.8/5 (220 reviews) <span class="stat-badge-green">Solid</span></td>
+                    </tr>
+                    <tr>
+                        <td>TripAdvisor</td>
+                        <td>3.8/5 (12 reviews) <span class="stat-badge-amber">Low Volume</span></td>
+                    </tr>
+                    <tr>
+                        <td>Food Hygiene</td>
+                        <td>4/5 (Good) <span class="stat-badge-green">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>3 Blackgate East, Coxhoe, County Durham DH6 4LD</td>
+                    </tr>
+                    <tr>
+                        <td>USP</td>
+                        <td>Authentic Greek street food in a village takeaway, handmade gyros and halloumi fries</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The food is the star and customers confirm it</h4>
+                    <p>Reviews across Restaurant Guru and TripAdvisor consistently praise the quality, the portion sizes, and the authenticity. Customers talk about "best gyro I have ever had" and "portions are massive." When the product is this good, the content practically makes itself. You are not selling something average. You are selling something people genuinely love.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You have a clear identity and cuisine niche</h4>
+                    <p>Greek street food in a County Durham village is distinctive. You are not competing with ten other gyro shops on the same street. You own that niche in Coxhoe and the surrounding area. That is a massive advantage for content because everything you post is immediately different from the chippy, the curry house, and the pizza place.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You already have Instagram and TikTok accounts set up</h4>
+                    <p>76 posts on Instagram and 6 on TikTok tells us you have already started the journey. The accounts exist, the handles are consistent, and the foundation is there. What is missing is volume, consistency, and the kind of content that actually reaches people beyond your existing followers.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> 220 reviews on Restaurant Guru shows real footfall</h4>
+                    <p>You do not get 220 reviews without a genuine stream of customers. That tells us the demand is there and people care enough to leave feedback. The job now is making sure the same people who walk through your door are also seeing you on their phone every day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Areas With Real Potential</div>
+            <p class="section-text" style="margin-bottom: 32px;">Something Greek has a brilliant product. These are the five areas where focused effort would turn a well-loved local takeaway into a destination people drive to from across the region.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>Social Media Is Almost Invisible</h3>
+                </div>
+                <p class="section-text">187 Instagram followers and 126 on TikTok with only 6 videos posted. For a food business with reviews this strong, that is a massive missed opportunity. Greek food is one of the most visually satisfying cuisines on social media. Gyros being carved, halloumi frying until golden, tzatziki being drizzled over a loaded plate. This is the exact content that goes viral on food TikTok every single day.</p>
+                <p class="section-text">The gap between how good your food is and how many people know about it online is enormous. Closing that gap is the single biggest growth lever available to you right now. One well-filmed gyro video could reach more people in a week than your shop sees in a year.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>No Branded Website, Just an Ordering Platform</h3>
+                </div>
+                <p class="section-text">somethinggreekdh6.co.uk is a FeedMeOnline ordering page. It does the job for placing orders, but it does nothing for your brand. There is no story, no photography, no menu presentation that makes someone think "I need to try this place." When someone searches for Greek food near Durham, you need to show up with something that looks as good as the food tastes.</p>
+                <p class="section-text">A proper branded site with professional food photography, your story, and a direct ordering link would convert browsers into customers. It also gives you a home base for SEO so you rank for "Greek food Durham," "gyros near me," and "halloumi fries County Durham." Right now, that search traffic is going nowhere.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>TikTok Is Completely Untapped</h3>
+                </div>
+                <p class="section-text">6 videos and 126 followers. Greek food content is one of the best performing niches on TikTok. Gyro compilation videos regularly pull millions of views. Halloumi cheese pulls, meat being carved off the spit, sauces being drizzled. This is content people watch on repeat, save, and send to friends. You are sitting on a content goldmine and barely touching it.</p>
+                <p class="section-text">The benchmark is clear: post three to four short-form videos per week, each under 30 seconds, focused purely on the food. No complicated production, just clean close-ups with good lighting and trending audio. Within 90 days of consistent posting, you would be reaching tens of thousands of people who have never heard of Coxhoe but would drive there for a gyro that looks like yours.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>Duplicate Facebook Pages Are Confusing Customers</h3>
+                </div>
+                <p class="section-text">There are at least two Facebook pages for Something Greek. One appears to be a newer business page, the other an older personal or community page. When a customer searches for you on Facebook, they do not know which one is real. That erodes trust, splits your audience, and means any reviews or check-ins are scattered across two places instead of building on one.</p>
+                <p class="section-text">Merging or removing the duplicate page and consolidating everything under one verified business page is a quick win. It also unlocks Facebook and Instagram integration so you can cross-post, run ads, and track insights from one place.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>Review Volume Is Low on TripAdvisor</h3>
+                </div>
+                <p class="section-text">12 reviews on TripAdvisor at 3.8 stars. That is a decent score but the sample size is tiny. A handful of bad reviews from delivery complaints could drag you below 3.5, which is the threshold where people start filtering you out. Meanwhile, Restaurant Guru has 220 reviews proving people love the food.</p>
+                <p class="section-text">A simple review generation push, a QR code on the counter, a "loved your meal? Leave us a review" card in the bag, would move TripAdvisor to 4.5+ within two months. That is especially important for the tourist and visitor crowd in Durham who default to TripAdvisor when looking for somewhere to eat.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Case Study -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Case Study</div>
+            <div class="section-title">What We Did for New Greek</div>
+            <div class="card case-study-card">
+                <p class="section-text">New Greek is a small independent Greek restaurant in Newcastle. No brand head start, no existing following, no ad budget. They started from zero. Here is where they are now after working with Fusion Creative.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">54M+</div>
+                        <div class="label">Total Views</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">47M</div>
+                        <div class="label">Single Reel Views</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">791K+</div>
+                        <div class="label">Interactions</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">5,900+</div>
+                        <div class="label">Followers Grown</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">54 million views. One restaurant. Zero head start.</div>
+                    <div class="context"><strong>New Greek had no followers, no content history, and no brand recognition.</strong> We built their social presence from scratch with short-form video. One single reel hit 47 million views. They went from empty tables to fully booked with a waiting list. The parallel with Something Greek is direct: same cuisine, same kind of food that films beautifully, same starting position. The only difference is they started filming.</div>
+                </div>
+
+                <p class="takeaway">Something Greek serves the same cuisine, has the same visual appeal, and has the same kind of loyal customer base that New Greek had before we started working with them. The opportunity here is not theoretical. We have already proven it works with Greek food in the North East.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">4 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working right now on TikTok and Instagram Reels and that are tailored specifically to a Greek street food takeaway. Film any one of these properly and it could be the video that puts Something Greek on the map.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"How we build the perfect chicken gyro, step by step"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Process</span>
+                        <span class="idea-tag">Satisfying</span>
+                        <span class="idea-tag">ASMR</span>
+                    </div>
+                    <p class="idea-description">Close-up camera. Start with the warm pita. Layer the chicken carved fresh off the spit. Add the salad, the red onion, the tomato. Drizzle the tzatziki. Wrap it tight. Cut it in half to reveal the cross-section. Hold the hero shot for two seconds. Trending audio or pure ASMR sound. Text overlay: "Our chicken gyro. Made fresh every time."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Gyro assembly videos are one of the most reliably viral formats in food content. The layering, the drizzle, the cross-section reveal. People cannot scroll past it. This is also the video that answers the question "what does their food actually look like?" for every potential customer who finds you online. It is both a brand video and a conversion tool.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"The halloumi fries that have 220 five-star reviews"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Hero Product</span>
+                        <span class="idea-tag">Close-Up</span>
+                        <span class="idea-tag">Cheese Pull</span>
+                    </div>
+                    <p class="idea-description">Halloumi going into the fryer. Sizzle. Golden brown coming out. Stack them on the plate. Slow motion cheese pull as you break one in half. Dip into the sauce. Text overlay: "Halloumi fries. Coxhoe, County Durham. Yes, really." Trending audio. Keep it under 15 seconds.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Cheese pull content is one of the highest-engagement food formats on both platforms. The "Yes, really" hook in the text creates curiosity because people do not expect this kind of food from a County Durham village, which makes them save it, share it, and tell their friends. The location surprise is part of the hook.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"POV: you order the mixed box and this is what arrives"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Unboxing</span>
+                        <span class="idea-tag">Portion Flex</span>
+                    </div>
+                    <p class="idea-description">First person POV. Open the bag. Pull out the box. Open the lid to reveal three portions of meat with seasoned chips, salad, tzatziki, the full spread. Camera slowly pans across the entire box. Reaction audio or trending sound. Text overlay: "The Something Greek mixed box. Under a tenner."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Food unboxing and portion-size reveals are huge engagement drivers. When the portion is generous and the price is right, people tag their friends and say "we need to go here." The value angle is especially powerful because it positions Something Greek as the place that gives you more than you expected. That is the kind of reputation that drives word of mouth both online and off.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"The story behind Something Greek: how a village takeaway became the best gyro in Durham"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Origin Story</span>
+                        <span class="idea-tag">Founder</span>
+                        <span class="idea-tag">Personality</span>
+                    </div>
+                    <p class="idea-description">You, Dimitrios, talking to camera. Keep it raw and honest. Why Greek food? Why Coxhoe? What makes your gyros different? Cut between your words and shots of the food being prepared. Show the passion. Show the kitchen. Show the queue outside on a Friday night. Text overlay: "Something Greek. Our story." Trending emotional audio underneath.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> People follow people, not businesses. A founder story humanises the brand and creates an emotional connection that no food shot can match. Once your audience knows your name and your story, they are not just ordering a gyro. They are supporting Dimitrios and the dream behind Something Greek. That is the difference between a customer and a fan.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the content work.</p>
+
+            <div class="enhancement-card">
+                <h4>Build a Proper Branded Website</h4>
+                <p>The FeedMeOnline ordering page is functional but it is not doing anything for your brand. A proper site with professional food photography, your menu presented beautifully, your story, and a direct link to order would convert significantly more browsers into customers.</p>
+                <ul class="enhancement-list">
+                    <li>Homepage with hero food imagery, opening hours, and a clear "Order Now" button</li>
+                    <li>Full menu page with descriptions and photography that does the food justice</li>
+                    <li>Your story page showing the people behind the food</li>
+                    <li>Google Maps embed and delivery radius information</li>
+                    <li>Email capture for weekly specials and new menu items</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Even a one-page site with a hero image, the menu, and an order button, launched this month, would immediately improve your Google search ranking for "Greek food near me" in the Durham area.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Consolidate Facebook and Drive Reviews</h4>
+                <p>Two Facebook pages splitting your audience is hurting you. Merge them into one verified business page, connect it to Instagram, and start running a simple review generation campaign. A QR code on the counter and a card in every delivery bag linking to Google and TripAdvisor reviews would move your TripAdvisor to 4.5+ within 60 days.</p>
+                <ul class="enhancement-list">
+                    <li>Merge or remove the duplicate Facebook page</li>
+                    <li>Set up Facebook and Instagram business integration</li>
+                    <li>QR code on counter and in delivery bags linking to review platforms</li>
+                    <li>Respond to every existing review, positive and negative</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Own "Greek Food Durham" on Google</h4>
+                <p>Right now, if someone in Durham, Sedgefield, Spennymoor, or Bishop Auckland searches for Greek food, you should be the first result. With a proper website and a consistent stream of content being posted, Google starts to recognise Something Greek as the authority on Greek food in County Durham. That is free traffic from people who are already hungry and looking for exactly what you sell.</p>
+                <div class="highlight-box">
+                    <p><strong>The opportunity:</strong> There is almost no competition for "Greek food County Durham" in search. The first Greek restaurant to claim that space with a proper site and active social accounts owns it indefinitely. That should be Something Greek.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a content and marketing agency based in Newcastle. We produce short-form video content, manage social media accounts, run paid campaigns, build websites, and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">We work exclusively with hospitality businesses. Restaurants, bars, hotels, and events. We know what works in this space because it is all we do. No stock footage, no generic templates, no recycled ideas. Every piece of content is original and tailored to the venue.</p>
+                <p class="about-fc-text">Our headline result is New Greek, a small independent Greek restaurant in Newcastle that went from zero followers to over 54 million views in 30 days, including a single reel that hit 47 million views. We know what makes hospitality content perform, and we know how to turn great food into a packed room.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">250M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a read through this audit. The short version: Something Greek has incredible food, loyal customers, and practically zero online presence. The gap between the quality of your product and the size of your audience is the biggest growth opportunity we have seen in a while.</li>
+                    <li>If any of this resonates, Dimitrios, we would love to jump on a quick call. No pitch, just a straight conversation about where the biggest wins are for Something Greek specifically and what we could do together.</li>
+                    <li>We can put together a content plan showing exactly what the first month would look like across TikTok and Instagram Reels, with video ideas built around gyros, halloumi, and everything that makes your menu special.</li>
+                </ol>
+                <p class="closing-note">No pressure at all, Dimitrios. But the reality is that Greek food content is one of the highest performing niches on social media right now, and you are the only proper Greek street food spot in County Durham. We already proved what this kind of content can do for a Greek restaurant in Newcastle. Something Greek has every ingredient it needs to be the next one. We would genuinely love to help you get there.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Something Greek</div>
+            <div class="footer-note">This audit was put together using live data from your website, social media accounts, and online listings on 30 April 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
