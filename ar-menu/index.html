@@ -281,16 +281,16 @@
     }
     .ar-loading-overlay {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
+      inset: 0;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 1rem;
       pointer-events: none;
-      transition: opacity 0.4s ease;
+      background: linear-gradient(180deg, #F5F0E8 0%, #E8E0D0 100%);
+      transition: opacity 0.3s ease;
     }
     .ar-loading-overlay.hidden { opacity: 0; }
     .ar-loading-spinner {
@@ -995,48 +995,48 @@
       if (!loadBtn || !mv) return;
 
       var revealed = false;
+      var pollId = null;
 
-      function reveal() {
+      function hideLoading() {
         if (revealed) return;
         revealed = true;
-        loadingState.style.display = 'none';
-        mvContainer.style.opacity = '1';
+        if (pollId) { clearInterval(pollId); pollId = null; }
+        loadingState.style.setProperty('display', 'none', 'important');
         if (hint) {
           hint.style.display = 'flex';
           setTimeout(function() { hint.style.display = 'none'; }, 5000);
         }
       }
 
-      // Track download progress
-      mv.addEventListener('progress', function(e) {
-        var pct = Math.round((e.detail.totalProgress || 0) * 100);
-        if (progressEl) progressEl.textContent = pct + '%';
-        // When download hits 100%, give parser ~500ms then reveal regardless
-        if (pct >= 100) setTimeout(reveal, 500);
-      });
-
-      // Standard load event
-      mv.addEventListener('load', reveal);
-
-      // Visibility event (fires when model is actually drawn)
+      // Listen for all possible "ready" signals
+      mv.addEventListener('load', hideLoading);
       mv.addEventListener('model-visibility', function(e) {
-        if (e.detail && e.detail.visible) reveal();
+        if (e.detail && e.detail.visible) hideLoading();
+      });
+      mv.addEventListener('progress', function(e) {
+        var p = (e.detail && typeof e.detail.totalProgress === 'number') ? e.detail.totalProgress : 0;
+        var pct = Math.round(p * 100);
+        if (progressEl) progressEl.textContent = pct + '%';
+        if (p >= 0.99) hideLoading();
       });
 
       loadBtn.addEventListener('click', function() {
         posterState.style.display = 'none';
         loadingState.style.display = 'flex';
+        // Show model-viewer fully visible from the start
         mvContainer.style.display = 'block';
-        mvContainer.style.opacity = '0';
-        // Set src now to trigger download (model-viewer was inert without src)
+        mvContainer.style.opacity = '1';
+        // Trigger the GLB download by setting src
         mv.setAttribute('src', '/ar-menu/models/mix-grill.glb');
         mv.setAttribute('ios-src', '/ar-menu/models/mix-grill.usdz');
 
-        // Already-loaded fallback
-        if (mv.loaded || mv.modelIsVisible) reveal();
+        // Poll every 200ms checking model state as a robust fallback
+        pollId = setInterval(function() {
+          if (mv.loaded || mv.modelIsVisible) hideLoading();
+        }, 200);
 
-        // Safety: reveal after 20s no matter what
-        setTimeout(reveal, 20000);
+        // Safety timeout: 30s
+        setTimeout(hideLoading, 30000);
       });
     })();
   </script>
