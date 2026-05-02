@@ -382,6 +382,27 @@
       z-index: 5;
     }
     .ar-place-btn.visible { display: inline-flex; }
+    .ar-desktop-msg {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 17, 17, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      display: none;
+      z-index: 5;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .ar-desktop-msg.visible { display: block; }
     .ar-place-btn:hover {
       transform: translateX(-50%) scale(1.05);
       box-shadow: 0 6px 24px rgba(230,59,46,0.5);
@@ -818,6 +839,7 @@
               <div class="ar-loading-progress" id="ar-loading-progress">0%</div>
             </div>
             <button slot="ar-button" class="ar-place-btn" id="ar-place-btn">Place on your table</button>
+            <div class="ar-desktop-msg" id="ar-desktop-msg">View on mobile to place on your table</div>
           </model-viewer>
           <div class="ar-demo-label">New Greek, Newcastle / Mix Grill for 2 / Drag, pinch to zoom, or tap "Place on your table"</div>
         </div>
@@ -1033,10 +1055,16 @@
       });
 
       var arBtn = document.getElementById('ar-place-btn');
+      var desktopMsg = document.getElementById('ar-desktop-msg');
 
       function onModelReady() {
         if (progressOverlay) progressOverlay.classList.add('hidden');
-        if (arBtn && mv.canActivateAR) arBtn.classList.add('visible');
+        // Show AR button on AR-capable devices, otherwise show desktop message
+        if (mv.canActivateAR) {
+          if (arBtn) arBtn.classList.add('visible');
+        } else {
+          if (desktopMsg) desktopMsg.classList.add('visible');
+        }
         if (hint) {
           hint.style.display = 'flex';
           setTimeout(function() { hint.style.display = 'none'; }, 5000);
