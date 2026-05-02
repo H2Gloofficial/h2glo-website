@@ -611,23 +611,17 @@
             src="/ar-menu/models/mix-grill.glb"
             ios-src="/ar-menu/models/mix-grill.usdz"
             alt="New Greek Mix Grill - 3D AR model"
-            auto-rotate
-            auto-rotate-delay="500"
-            rotation-per-second="20deg"
             camera-controls
             touch-action="pan-y"
-            interaction-prompt="none"
-            shadow-intensity="1"
-            shadow-softness="0.8"
-            exposure="1.1"
-            environment-image="neutral"
-            camera-orbit="0deg 70deg 4m"
-            field-of-view="30deg"
-            loading="eager"
-            reveal="auto"
             ar
-            ar-modes="webxr scene-viewer quick-look"
+            ar-modes="scene-viewer webxr quick-look"
             ar-scale="auto"
+            shadow-intensity="1.2"
+            environment-image="neutral"
+            exposure="1.1"
+            auto-rotate
+            interaction-prompt="none"
+            loading="eager"
           >
             <button slot="ar-button" class="ar-place-btn">Place on your table</button>
           </model-viewer>
