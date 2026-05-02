@@ -129,10 +129,40 @@
       width: 100%;
       height: 460px;
       background: transparent;
-      --poster-color: transparent;
       --progress-bar-color: var(--signal);
-      --progress-bar-height: 3px;
+      --progress-bar-height: 4px;
+      --progress-mask: rgba(245, 240, 232, 0.4);
     }
+    .ar-loading-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .ar-loading-overlay.hidden { opacity: 0; }
+    .ar-loading-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(17,17,17,0.1);
+      border-top-color: var(--signal);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    .ar-loading-text {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     @media (max-width: 768px) {
       .ar-demo-viewer model-viewer { height: 380px; }
     }
@@ -150,8 +180,7 @@
       letter-spacing: 0.05em;
       pointer-events: none;
       opacity: 0;
-      animation: dragHintFade 4s ease 1.5s forwards;
-      display: flex;
+      animation: dragHintFade 4s ease 0.2s forwards;
       align-items: center;
       gap: 0.4rem;
     }
@@ -165,8 +194,8 @@
     @keyframes dragHintFade {
       0% { opacity: 0; transform: translateY(-4px); }
       15% { opacity: 1; transform: translateY(0); }
-      85% { opacity: 1; }
-      100% { opacity: 0; }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-4px); }
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -569,8 +598,13 @@
       <p class="section-label center">Live demo</p>
       <div class="ar-demo-grid">
         <div class="ar-demo-viewer">
-          <div class="ar-drag-hint">Drag to rotate</div>
+          <div class="ar-loading-overlay" id="ar-loading">
+            <div class="ar-loading-spinner"></div>
+            <div class="ar-loading-text">Loading 3D model...</div>
+          </div>
+          <div class="ar-drag-hint" id="ar-drag-hint" style="display:none">Drag to rotate</div>
           <model-viewer
+            id="ar-demo-model"
             src="/ar-menu/models/mix-grill.glb"
             ios-src="/ar-menu/models/mix-grill.usdz"
             alt="New Greek Mix Grill - 3D AR model"
@@ -579,16 +613,13 @@
             rotation-per-second="20deg"
             camera-controls
             touch-action="pan-y"
-            interaction-prompt="auto"
-            interaction-prompt-style="basic"
-            interaction-prompt-threshold="2000"
+            interaction-prompt="none"
             shadow-intensity="1"
             shadow-softness="0.8"
             exposure="1.1"
             environment-image="neutral"
-            camera-orbit="0deg 75deg 105%"
-            min-camera-orbit="auto auto 50%"
-            max-camera-orbit="auto auto 200%"
+            camera-orbit="0deg 70deg 4m"
+            field-of-view="30deg"
             loading="eager"
             reveal="auto"
             ar
@@ -775,6 +806,33 @@
         if (!isOpen) item.classList.add('open');
       });
     });
+  </script>
+
+  <!-- 3D model load handler -->
+  <script>
+    (function() {
+      var mv = document.getElementById('ar-demo-model');
+      var loading = document.getElementById('ar-loading');
+      var hint = document.getElementById('ar-drag-hint');
+      if (!mv) return;
+
+      mv.addEventListener('load', function() {
+        if (loading) {
+          loading.classList.add('hidden');
+          setTimeout(function() { loading.style.display = 'none'; }, 400);
+        }
+        if (hint) {
+          hint.style.display = 'flex';
+        }
+      });
+
+      mv.addEventListener('error', function(e) {
+        if (loading) {
+          loading.querySelector('.ar-loading-text').textContent = 'Could not load 3D model';
+          loading.querySelector('.ar-loading-spinner').style.display = 'none';
+        }
+      });
+    })();
   </script>
 
 </body>
