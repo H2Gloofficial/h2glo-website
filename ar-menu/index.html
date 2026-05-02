@@ -403,6 +403,54 @@
       white-space: nowrap;
     }
     .ar-desktop-msg.visible { display: block; }
+
+    /* Show/hide based on viewport */
+    .ar-mobile-only { display: none; }
+    .ar-desktop-only { display: inline-flex; }
+    @media (max-width: 900px) and (pointer: coarse) {
+      .ar-mobile-only { display: inline-flex; }
+      .ar-desktop-only { display: none; }
+    }
+
+    /* Desktop-only message inside poster overlay */
+    .ar-poster-msg {
+      pointer-events: auto;
+      position: relative;
+      background: rgba(17, 17, 17, 0.7);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem 1.75rem 0.9rem;
+      border-radius: 18px;
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow:
+        0 12px 36px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      min-width: 240px;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .ar-poster-msg svg {
+      width: 22px;
+      height: 22px;
+      margin-bottom: 0.4rem;
+      stroke: #fff;
+    }
+    .ar-poster-msg small {
+      display: block;
+      font-family: var(--font-mono);
+      font-weight: 400;
+      font-size: 0.68rem;
+      opacity: 0.85;
+      letter-spacing: 0.03em;
+      margin-top: 0.15rem;
+    }
     .ar-place-btn:hover {
       transform: translateX(-50%) scale(1.05);
       box-shadow: 0 6px 24px rgba(230,59,46,0.5);
@@ -821,7 +869,7 @@
             <div slot="poster" class="ar-poster-slot">
               <img src="/ar-menu/models/poster.jpg" alt="Mix Grill for 2 - New Greek Newcastle" class="ar-poster-img">
               <div class="ar-poster-overlay">
-                <button class="ar-load-btn" id="ar-load-btn">
+                <button class="ar-load-btn ar-mobile-only" id="ar-load-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3L2 8l10 5 10-5-10-5z"/>
                     <path d="M2 17l10 5 10-5"/>
@@ -830,6 +878,14 @@
                   <span>Load 3D Model</span>
                   <small>6.8MB / takes a few seconds</small>
                 </button>
+                <div class="ar-poster-msg ar-desktop-only">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                    <line x1="12" y1="18" x2="12" y2="18"/>
+                  </svg>
+                  <span>Please view this on mobile only</span>
+                  <small>Scan or open on a phone to interact in AR</small>
+                </div>
               </div>
             </div>
             <!-- Custom loading progress bar overlay (hidden until user clicks Load 3D) -->
