@@ -544,12 +544,38 @@
     .ar-desktop-msg.visible { display: block; }
 
     /* Show/hide based on viewport */
-    .ar-mobile-only { display: none; }
+    .ar-mobile-only { display: none !important; }
     .ar-desktop-only { display: inline-flex; }
     @media (max-width: 900px) and (pointer: coarse) {
-      .ar-mobile-only { display: inline-flex; }
-      .ar-desktop-only { display: none; }
+      .ar-mobile-only { display: inline-flex !important; }
+      .ar-desktop-only { display: none !important; }
     }
+
+    /* Mobile-only red AR button on poster (replaces frosted glass on touch devices) */
+    .ar-poster-ar-btn {
+      pointer-events: auto;
+      background: var(--signal);
+      color: #fff;
+      border: none;
+      padding: 1rem 1.75rem;
+      border-radius: 999px;
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(230,59,46,0.45), 0 2px 6px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-width: 220px;
+    }
+    .ar-poster-ar-btn:hover { transform: scale(1.04); }
+    .ar-poster-ar-btn:active { transform: scale(0.98); }
+    .ar-poster-ar-btn svg { width: 20px; height: 20px; }
+
+    /* Hide the slotted AR button while poster is up - it shows after model loads via .visible class */
+    .ar-place-btn:not(.visible) { display: none !important; opacity: 0 !important; pointer-events: none !important; }
 
     /* Desktop-only message inside poster overlay */
     .ar-poster-msg {
@@ -1297,23 +1323,23 @@
             <div slot="poster" class="ar-poster-slot">
               <img src="/ar-menu/models/poster.jpg" alt="Mix Grill for 2 - New Greek Newcastle" class="ar-poster-img">
               <div class="ar-poster-overlay">
-                <button class="ar-load-btn ar-mobile-only" id="ar-load-btn">
+                <button class="ar-load-btn ar-desktop-only" id="ar-load-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3L2 8l10 5 10-5-10-5z"/>
                     <path d="M2 17l10 5 10-5"/>
                     <path d="M2 12l10 5 10-5"/>
                   </svg>
                   <span>Load 3D Model</span>
-                  <small>6.8MB / takes a few seconds</small>
+                  <small>5.2MB / takes a few seconds</small>
                 </button>
-                <div class="ar-poster-msg ar-desktop-only">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                    <line x1="12" y1="18" x2="12" y2="18"/>
+                <button class="ar-poster-ar-btn ar-mobile-only" id="ar-mobile-trigger">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
                   </svg>
-                  <span>Please view this on mobile only</span>
-                  <small>Scan or open on a phone to interact in AR</small>
-                </div>
+                  Place on your table
+                </button>
               </div>
             </div>
             <!-- Custom loading progress bar overlay (hidden until user clicks Load 3D) -->
@@ -1703,11 +1729,13 @@
       if (!mv) return;
 
       var loadBtn = document.getElementById('ar-load-btn');
+      var mobileTrigger = document.getElementById('ar-mobile-trigger');
       var progressOverlay = document.getElementById('ar-progress-overlay');
       var progressEl = document.getElementById('ar-loading-progress');
       var hint = document.getElementById('ar-drag-hint');
       var arBtn = document.getElementById('ar-place-btn');
       var desktopMsg = document.getElementById('ar-desktop-msg');
+      var autoActivateAR = false;
 
       var clicked = false;
       var revealed = false;
@@ -1723,6 +1751,10 @@
         }
         if (mv.canActivateAR) {
           if (arBtn) arBtn.classList.add('visible');
+          // If user came from mobile trigger, auto-activate AR now
+          if (autoActivateAR && typeof mv.activateAR === 'function') {
+            try { mv.activateAR(); } catch (err) { console.error('activateAR failed:', err); }
+          }
         } else {
           if (desktopMsg) desktopMsg.classList.add('visible');
         }
@@ -1732,10 +1764,11 @@
         }
       }
 
-      function startLoad(e) {
+      function startLoad(e, opts) {
         if (clicked) return;
         if (e) { e.preventDefault(); e.stopPropagation(); }
         clicked = true;
+        if (opts && opts.activateAR) autoActivateAR = true;
         if (typeof mv.dismissPoster === 'function') {
           mv.dismissPoster();
         }
@@ -1750,7 +1783,8 @@
         setTimeout(reveal, 25000);
       }
 
-      if (loadBtn) loadBtn.addEventListener('click', startLoad);
+      if (loadBtn) loadBtn.addEventListener('click', function(e) { startLoad(e); });
+      if (mobileTrigger) mobileTrigger.addEventListener('click', function(e) { startLoad(e, { activateAR: true }); });
 
       // Track download progress
       var hit100At = null;
