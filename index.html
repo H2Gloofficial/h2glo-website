@@ -1722,45 +1722,17 @@
   })();
   </script>
 
-  <!-- BOOKING SECTION -->
+  <!-- CONTACT SECTION -->
   <section class="booking-section section-pad" id="contact">
     <div class="container container-center">
-      <div class="section-label">/ Book a Call</div>
+      <div class="section-label">/ Get In Touch</div>
       <h2>Ready to go <em>viral?</em></h2>
-      <p class="booking-sub">Pick a time that suits you. We'll discuss your goals, audit your current content, and map out a plan - no obligation.</p>
-      
-      <!-- Cal.com Inline Embed -->
-      <div class="cal-embed-wrap">
-        <div id="cal-inline" style="width:100%;height:100%;overflow:hidden;min-height:500px;"></div>
+      <p class="booking-sub">Tell us about your business and what you are looking to achieve. We will get back to you within 24 hours.</p>
+      <div style="margin-top:40px;">
+        <a href="/contact" class="cta-pill" style="font-size:18px;padding:18px 48px;">Contact Us</a>
       </div>
     </div>
   </section>
-
-  <!-- Cal.com Embed Script -->
-  <script>
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-
-    Cal("init", {origin:"https://cal.com"});
-
-    Cal("inline", {
-      elementOrSelector: "#cal-inline",
-      calLink: "jason-williams-fwj7sj/30min",
-      layout: "month_view",
-      config: {
-        theme: "light"
-      }
-    });
-
-    Cal("ui", {
-      styles: { branding: { brandColor: "#E63B2E" } },
-      hideEventTypeDetails: false,
-      layout: "month_view"
-    });
-  </script>
 
 
 
@@ -1796,7 +1768,7 @@
           <ul>
             <li><a href="https://fusioncreative.uk">fusioncreative.uk</a></li>
             <li><a href="/contact">Contact Us</a></li>
-            <li><a href="#contact">Book a Call</a></li>
+            <li><a href="/contact">Contact Us</a></li>
             <li><a href="https://www.instagram.com/fusioncreative.uk" target="_blank">Instagram</a></li>
             <li><a href="https://www.facebook.com/fusioncreative.uk" target="_blank">Facebook</a></li>
             <li><a href="/privacy">Privacy Policy</a></li>
