@@ -4,10 +4,27 @@ import { FusionCreativeShootDay } from './FusionCreativeShootDay';
 import { InstagramBeforeAfter } from './InstagramBeforeAfter';
 import { SmokedSmashedMenu } from './SmokedSmashedMenu';
 import { SmokedSmashedMenuWide } from './SmokedSmashedMenuWide';
+import { ARMenuPromo } from './ARMenuPromo';
 
 function Root() {
   return (
     <>
+      <Composition
+        id="ARMenuPromo"
+        component={ARMenuPromo}
+        durationInFrames={540}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="ARMenuPromoSquare"
+        component={ARMenuPromo}
+        durationInFrames={540}
+        fps={30}
+        width={1080}
+        height={1080}
+      />
       <Composition
         id="DashboardAd"
         component={DashboardAd}

@@ -493,6 +493,48 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Video Section */
+    .ar-video-section {
+      padding: 6vmax 0;
+      background: var(--off-white);
+      text-align: center;
+    }
+    .ar-video-sub {
+      max-width: 540px;
+      margin: 1rem auto 0;
+      color: #555;
+      line-height: 1.6;
+      padding: 0 5vw;
+    }
+    .ar-video-wrap {
+      position: relative;
+      max-width: 360px;
+      margin: 3rem auto 0;
+      padding: 0 5vw;
+    }
+    .ar-video-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(230,59,46,0.18) 0%, transparent 65%);
+      filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .ar-video {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 9/16;
+      border-radius: 32px;
+      box-shadow:
+        0 30px 70px rgba(0,0,0,0.25),
+        0 0 0 8px #0a0a0a,
+        0 0 0 10px #2a2a2a;
+      background: #000;
+      object-fit: cover;
+    }
+
     /* How It Works */
     .ar-how {
       padding: 6vmax 0;
@@ -910,6 +952,29 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO PREVIEW ===== -->
+  <section class="ar-video-section">
+    <div class="container container-center">
+      <p class="section-label center">In action</p>
+      <h2>See how it works on a phone</h2>
+      <p class="ar-video-sub">A quick walkthrough of the AR menu experience your customers get when they scan a QR code at the table.</p>
+    </div>
+    <div class="ar-video-wrap">
+      <div class="ar-video-glow"></div>
+      <video
+        class="ar-video"
+        src="/ar-menu/videos/ar-menu-promo.mp4"
+        poster="/ar-menu/videos/ar-menu-promo-poster.jpg"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        controls
+      ></video>
     </div>
   </section>
 
