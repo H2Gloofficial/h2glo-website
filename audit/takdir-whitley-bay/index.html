@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - Takdir Whitley Bay | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f5f6fa; --bg-alt: #ecedf1; --card: #ffffff; --card-border: rgba(0,0,0,0.08);
+            --coral: #E8553C; --coral-light: #ff7a64; --coral-dark: #c4412b;
+            --text: #1a1d23; --text-secondary: #4a4f5c; --text-muted: #7c8090;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); } 50% { box-shadow: 0 0 40px rgba(232,85,60,0.55); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 840px; margin: 0 auto; padding: 0 24px; }
+        .header { padding: 48px 0 40px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .header-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+        .brand { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--coral); }
+        .brand-dot { display: inline-block; width: 6px; height: 6px; background: var(--coral); border-radius: 50%; margin-right: 8px; vertical-align: middle; position: relative; top: -1px; }
+        .header-date { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+        .hero { padding: 64px 0 56px; animation: fadeInUp 0.6s ease both; }
+        .hero-label { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 20px; }
+        .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(42px, 7vw, 64px); font-weight: 400; line-height: 1.05; letter-spacing: -1px; margin-bottom: 24px; }
+        .hero h1 span { background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear infinite; }
+        .hero-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; line-height: 1.7; font-weight: 400; }
+        .section { padding: 48px 0; animation: fadeInUp 0.6s ease both; }
+        .section-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent); }
+        .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 40px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.04); }
+        .card-sm { padding: 28px 32px; }
+        .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+        .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 34px; font-weight: 400; letter-spacing: -0.5px; margin-bottom: 24px; line-height: 1.2; }
+        .section-text { color: var(--text-secondary); font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+        .section-text:last-child { margin-bottom: 0; }
+        .intro-card { background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(255,255,255,0.98) 60%); border-color: rgba(232,85,60,0.2); }
+        .intro-card .greeting { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; color: var(--text); }
+        .stats-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .stats-table tr { border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .stats-table tr:last-child { border-bottom: none; }
+        .stats-table tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+        .stats-table td { padding: 14px 0; }
+        .stats-table td:first-child { color: var(--text-secondary); font-weight: 400; padding-right: 24px; white-space: nowrap; }
+        .stats-table td:last-child { font-weight: 600; color: var(--text); text-align: right; }
+        .stat-highlight { color: var(--coral) !important; font-weight: 700 !important; }
+        .stat-badge { display: inline-block; background: rgba(232,85,60,0.15); color: var(--coral-light); padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .stat-badge-green { display: inline-block; background: rgba(52,199,89,0.15); color: #4cd97d; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .stat-badge-amber { display: inline-block; background: rgba(255,159,10,0.15); color: #ffb84d; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .working-item { margin-bottom: 28px; }
+        .working-item:last-child { margin-bottom: 0; }
+        .working-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+        .working-item p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+        .check-icon { display: inline-block; color: #4cd97d; margin-right: 6px; font-weight: 700; }
+        .opportunity-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--coral); color: white; border-radius: 8px; font-size: 13px; font-weight: 700; margin-right: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(232,85,60,0.35); }
+        .opportunity-heading { display: flex; align-items: center; margin-bottom: 14px; }
+        .opportunity-heading h3 { font-size: 19px; font-weight: 600; color: var(--text); }
+        .opportunity-card { margin-bottom: 20px; }
+        .opportunity-card:last-child { margin-bottom: 0; }
+        .case-study-card { background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(255,255,255,0.98) 60%); border-color: rgba(232,85,60,0.2); border-left: 4px solid var(--coral); overflow: hidden; position: relative; }
+        .case-study-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--coral), var(--coral-light)); }
+        .case-study-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; margin: 32px 0; }
+        .case-study-stat { text-align: center; padding: 24px 16px; background: rgba(232,85,60,0.08); border: 1px solid rgba(232,85,60,0.18); border-radius: 12px; animation: scaleIn 0.5s ease both; }
+        .case-study-stat .number { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(30px, 5vw, 44px); font-weight: 400; color: var(--coral); letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+        .case-study-stat .label { font-size: 12px; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .viral-callout { background: rgba(232,85,60,0.08); border: 1px solid rgba(232,85,60,0.2); border-radius: 12px; padding: 24px 28px; margin-top: 24px; }
+        .viral-callout .big-number { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(28px, 5vw, 40px); font-weight: 400; color: var(--coral); letter-spacing: -1px; line-height: 1.15; }
+        .viral-callout .context { font-size: 14px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6; }
+        .viral-callout .context strong { color: var(--text); }
+        .takeaway { margin-top: 24px; font-size: 15px; color: var(--text-secondary); font-style: italic; line-height: 1.7; }
+        .video-ideas-grid { display: grid; gap: 20px; }
+        .video-idea-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .video-idea-card:hover { transform: translateY(-4px); box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.04); }
+        .video-idea-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--coral); border-radius: 4px 0 0 4px; }
+        .idea-number { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--coral); margin-bottom: 10px; }
+        .idea-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; margin-bottom: 16px; line-height: 1.3; color: var(--text); }
+        .idea-meta { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+        .idea-tag { font-size: 12px; font-weight: 600; color: var(--text-muted); background: rgba(0,0,0,0.04); padding: 4px 12px; border-radius: 6px; }
+        .idea-description { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
+        .idea-why { font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-top: 14px; border-top: 1px solid var(--card-border); }
+        .idea-why strong { color: var(--coral); font-weight: 600; }
+        .enhancement-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 28px 32px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .enhancement-card:hover { transform: translateY(-4px); box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.04); }
+        .enhancement-card:last-child { margin-bottom: 0; }
+        .enhancement-card h4 { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+        .enhancement-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+        .enhancement-card p:last-child { margin-bottom: 0; }
+        .enhancement-list { list-style: none; margin: 12px 0; }
+        .enhancement-list li { font-size: 14px; color: var(--text-secondary); padding: 6px 0 6px 18px; position: relative; line-height: 1.6; }
+        .enhancement-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 5px; height: 5px; background: var(--coral); border-radius: 50%; }
+        .highlight-box { background: rgba(232,85,60,0.08); border: 1px solid rgba(232,85,60,0.2); border-radius: 10px; padding: 18px 22px; margin-top: 14px; }
+        .highlight-box p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+        .highlight-box strong { color: var(--coral); }
+        .next-steps-card { background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(255,255,255,0.98) 80%); border-color: rgba(232,85,60,0.2); }
+        .steps-list { list-style: none; counter-reset: steps; }
+        .steps-list li { counter-increment: steps; display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--card-border); font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+        .steps-list li:last-child { border-bottom: none; }
+        .steps-list li::before { content: counter(steps); display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; background: var(--coral); color: white; border-radius: 10px; font-size: 14px; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(232,85,60,0.3); }
+        .about-fc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+        .about-fc-stat { background: rgba(232,85,60,0.08); border: 1px solid rgba(232,85,60,0.18); border-radius: 12px; padding: 20px 24px; text-align: center; animation: scaleIn 0.5s ease both; }
+        .about-fc-stat-val { font-family: 'DM Serif Display', Georgia, serif; font-size: 30px; font-weight: 400; color: var(--coral); letter-spacing: -0.5px; }
+        .about-fc-stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .about-fc-text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+        .about-fc-services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .about-fc-tag { background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+        .cta-wrap { text-align: center; margin-top: 32px; }
+        .cta-btn { display: inline-block; background: var(--coral); color: #ffffff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; padding: 16px 40px; border-radius: 999px; text-decoration: none; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; animation: pulseGlow 3s ease-in-out infinite; }
+        .cta-btn:hover { background: var(--coral-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,85,60,0.5); animation: none; }
+        .cta-sub { font-size: 13px; color: var(--text-muted); margin-top: 12px; }
+        .closing-note { margin-top: 24px; font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+        .signature { padding: 48px 0; }
+        .signature-name { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; font-weight: 400; margin-bottom: 4px; color: var(--text); }
+        .signature-role { font-size: 14px; color: var(--text-secondary); margin-bottom: 2px; }
+        .signature-link { font-size: 14px; color: var(--coral); text-decoration: none; font-weight: 500; }
+        .signature-link:hover { text-decoration: underline; }
+        .footer { padding: 32px 0; border-top: 1px solid rgba(0,0,0,0.08); text-align: center; background: var(--bg-alt); }
+        .footer-confidential { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+        .footer-note { font-size: 12px; color: var(--text-muted); font-style: italic; }
+        .footer-brand { margin-top: 16px; font-size: 12px; color: var(--text-muted); }
+        .footer-brand span { color: var(--coral); font-weight: 600; }
+        @media (max-width: 640px) {
+            .container { padding: 0 16px; } .card { padding: 28px 22px; } .hero { padding: 40px 0 36px; } .section { padding: 32px 0; }
+            .case-study-grid { grid-template-columns: repeat(2, 1fr); } .video-idea-card { padding: 24px 22px; }
+            .header-inner { flex-direction: column; gap: 8px; } .about-fc-grid { grid-template-columns: 1fr 1fr; gap: 12px; } .about-fc-stat-val { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand"><span class="brand-dot"></span>Fusion Creative</div>
+                <div class="header-date">4 May 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>Takdir Whitley Bay</span></h1>
+            <p class="hero-subtitle">Fine Indian Dining on the Seafront | Prepared by Fusion Creative | 4 May 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey Mamzy and Suff,</div>
+                <p class="section-text">Thanks for reaching out about Takdir and Gulshan. We have done two separate audits, one for each restaurant, so you can see exactly what we are looking at for both.</p>
+                <p class="section-text">This one is for Takdir. Honestly, what your family has built on the Whitley Bay seafront is something special. 47 years in business since 1979 puts Takdir among the longest-running Indian restaurants in the entire region. A 5/5 food hygiene rating, 4.5 on Google, the buttered honey chicken that reviewers cannot stop talking about, and the relaunch that doubled the size of the restaurant. The history, the heritage, and the location are an unbeatable combination. That is the part most restaurants will never have. You already do.</p>
+                <p class="section-text">You said you want more interaction, more bookings, and content that performs. That is exactly what we do. We are Fusion Creative, a content and marketing agency based in Newcastle that works exclusively with hospitality. We have put together a full audit of Takdir's online presence. Inside you will find a snapshot of where things stand, what is already working, <strong>five areas with real room to grow</strong>, video ideas you could film this week, and the quick digital wins.</p>
+                <p class="section-text">Even if we never speak again, this is yours to keep. Genuinely hope it is useful.</p>
+            </div>
+
+            <!-- Fusion Creative metrics card -->
+            <div class="card" style="margin-top:8px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--coral); margin-bottom:6px;">Client Results</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Generated for a single local restaurant in Newcastle</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">63M+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">824K+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Interactions</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">6,200+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">47M</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
+                    </div>
+                </div>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">We generated 63M+ combined views across Instagram and TikTok in 30 days for a local Newcastle restaurant. One single reel hit 47 million views. They went from zero social presence to a household name in the North East. Takdir starts in a far stronger position: 47 years of heritage, a seafront location with sea views, a second-generation family running it, and a brand identity that translates beautifully to camera. The story is already there. It just needs the right format on top.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where Takdir Is Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr><td>Website</td><td>takdir.co.uk <span class="stat-badge-amber">Live but dated</span></td></tr>
+                    <tr><td>Instagram (@takdir_whitleybay)</td><td class="stat-highlight">2,838 followers, 3,002 posts <span class="stat-badge-amber">Effort high, growth low</span></td></tr>
+                    <tr><td>TikTok</td><td class="stat-highlight">No account <span class="stat-badge">Missing</span></td></tr>
+                    <tr><td>Facebook</td><td>@takdirwbay <span class="stat-badge-green">Active</span></td></tr>
+                    <tr><td>X / Twitter</td><td>@takdir_wbay <span class="stat-badge-green">Active</span></td></tr>
+                    <tr><td>Google</td><td>4.5/5 <span class="stat-badge-green">Strong</span></td></tr>
+                    <tr><td>TripAdvisor</td><td>~97 reviews, mid-3.5 to 4 range <span class="stat-badge-amber">Mixed</span></td></tr>
+                    <tr><td>Food Hygiene (FSA)</td><td>5/5 Very Good <span class="stat-badge-green">Top rating</span></td></tr>
+                    <tr><td>Online ordering</td><td>Preoday + Just Eat + Uber Eats <span class="stat-badge-green">Listed</span></td></tr>
+                    <tr><td>Reservations</td><td>Dish Cult <span class="stat-badge-green">Listed</span></td></tr>
+                    <tr><td>Established</td><td>1979 (47 years) <span class="stat-badge-green">Heritage</span></td></tr>
+                    <tr><td>Address</td><td>7-8 East Parade, Whitley Bay NE26 1AP</td></tr>
+                    <tr><td>USP</td><td>Indian Kitchen, Grill and Cocktail Bar on the Whitley Bay seafront</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> 47 years of heritage is irreplaceable</h4>
+                    <p>Open since 1979. Most restaurants in the UK do not last five years. Takdir has been on the Whitley Bay seafront for nearly five decades. That is a story you cannot manufacture and competitors cannot copy. Heritage is the single most under-leveraged asset in independent hospitality and Takdir has more of it than 99% of restaurants in the North East.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Second-generation family ownership is a powerful narrative</h4>
+                    <p>Mamzy and Suff taking over from your father is the kind of story that makes content emotional. The audience does not just connect with food, they connect with people. Family-run, second-generation, taking the baton from a father who built it, is the foundation of a brand story that translates beautifully to short-form video and would resonate hard on both Instagram and TikTok.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> 4.5 on Google and a 5/5 food hygiene rating</h4>
+                    <p>Strong Google rating combined with the highest possible FSA hygiene score is a trust combo most restaurants do not have. Google ratings are what 80% of new customers check first. Food hygiene at 5/5 is something you should be talking about constantly. The reviews repeatedly praise the buttered honey chicken, the family atmosphere, and the staff. There is real love for the brand, especially from regulars.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The seafront location is a content goldmine</h4>
+                    <p>An Indian restaurant with sea views is rare anywhere in the UK and basically unique on the North East coast. Sunset shots, blue hour, the Whitley Bay lights coming on, the boardwalk, the lighthouse in the background. Most Indian restaurants in the country are sandwiched between high-street shops. Takdir has one of the most photogenic settings imaginable, and it is currently being underused in the content.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The recent expansion shows you are investing in the brand</h4>
+                    <p>Doubling the size of the restaurant and modernising the space is a serious commitment. That signals to customers and to potential partners that Takdir is in growth mode, not maintenance mode. It also gives you a fresh-looking venue to show off in content, which makes everything from food shots to atmosphere reels look better than they would have done five years ago.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Areas With Real Potential</div>
+            <p class="section-text" style="margin-bottom: 32px;">Takdir has 47 years of history, a seafront location, a second-generation family, and a strong product. These are the five areas where focused effort would turn a long-standing local restaurant into a regional name that people drive to from across Tyne and Wear.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>3,002 Posts and Only 2,838 Followers Is the Biggest Red Flag</h3>
+                </div>
+                <p class="section-text">This is the single most important metric in the audit. 3,002 posts and 2,838 followers means the account is averaging less than one new follower per post. For a restaurant with this much history and this much content effort, that is a clear sign the format is not working. The algorithm is not pushing the content out, the content is not being shared, and the work being put in is not compounding into reach.</p>
+                <p class="section-text">The good news is the effort is already there. The discipline is already there. The brand is already there. What is missing is short-form vertical video built specifically for the Reels and TikTok algorithm. If we converted even 25% of the existing posting cadence into proper Reels with hooks, audio, and pacing, we would expect to see follower growth ten to twenty times the current rate within 60 days. That is not a guess. That is what we have seen on accounts with weaker starting positions.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>The 47-Year Heritage Story Is Almost Invisible</h3>
+                </div>
+                <p class="section-text">Takdir has been on the Whitley Bay seafront since 1979. That is one of the strongest stories in independent hospitality in the North East and it is barely visible in the content. There is no founder story content, no archival photos, no second-generation handover narrative, no "how we built Takdir over 47 years" reel. This is the most under-leveraged asset in the entire brand.</p>
+                <p class="section-text">A heritage-led content series, with archive photos, your father's story, the original 1979 menu, the moment Mamzy and Suff took over, would humanise the brand instantly and give Takdir a depth no competitor can copy. People do not book heritage restaurants because of the food alone. They book because they feel they are part of something that has lasted. We need to make sure the audience feels that the moment they land on the profile.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>The Seafront Setting Is Not in the Content</h3>
+                </div>
+                <p class="section-text">An Indian restaurant with sea views on the Whitley Bay coast is rare. Genuinely. Most of the content on the account focuses on close-up food shots that could have been taken anywhere. The location, which is your single biggest visual differentiator, almost never appears in posts.</p>
+                <p class="section-text">A reel that opens with a wide shot of the Whitley Bay lighthouse at golden hour, pulls inside Takdir as the sun sets through the windows, and lands on a tikka platter being placed on the table is a piece of content that no other Indian restaurant in the country can replicate. "Indian food with this view" is the hook that travels far beyond Whitley Bay. Tourists, day-trippers, and anyone planning a coast visit would save and share that.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>TikTok Does Not Exist Yet</h3>
+                </div>
+                <p class="section-text">There is no TikTok account for Takdir. Indian food is one of the highest-performing categories on the platform. Tikka grill content, naga heat reactions, cheese-pull naan, the theatre of a mixed grill being plated. The algorithm rewards this content massively and there is no Indian restaurant on the North East coast currently dominating that space.</p>
+                <p class="section-text">TikTok is also where the under-35 booking crowd discovers restaurants. Whitley Bay is a date-night and weekend destination for people coming up from Newcastle. Right now, when they search "things to do Whitley Bay" or "Indian Newcastle coast," Takdir does not come up. Setting up the account and posting consistently for 90 days would put you in front of a regional audience that currently does not know you exist.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>The Website Is Working Against the Brand</h3>
+                </div>
+                <p class="section-text">The current site is on WordPress with WPBakery and feels several years out of date. The testimonials section uses generic placeholder icons rather than real customer photos. The menu is PDF-only, which is bad for SEO and miserable on mobile. For a restaurant with 47 years of heritage and a recently renovated venue, the website should look as premium as the room. Right now it does not.</p>
+                <p class="section-text">A modern, fast, mobile-first site with an embedded menu, real customer photography, the seafront story front and centre, online booking and ordering integrated cleanly, and proper SEO would lift conversion on every Google click and every social click. Most importantly, when food bloggers and journalists land on the site after seeing a viral reel, the site needs to match the content. Right now it pulls the brand down.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Case Study -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Case Study</div>
+            <div class="section-title">What We Did for New Greek</div>
+            <div class="card case-study-card">
+                <p class="section-text">New Greek is a small independent Greek restaurant in Newcastle. No brand head start, no existing following, no ad budget. They started from zero. Here is where they are now after working with Fusion Creative.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat"><div class="number">63M+</div><div class="label">Total Views</div></div>
+                    <div class="case-study-stat"><div class="number">47M</div><div class="label">Single Reel Views</div></div>
+                    <div class="case-study-stat"><div class="number">824K+</div><div class="label">Interactions</div></div>
+                    <div class="case-study-stat"><div class="number">6,200+</div><div class="label">Followers Grown</div></div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">63 million views. One restaurant. Zero head start.</div>
+                    <div class="context"><strong>New Greek had no followers, no content history, and no brand recognition.</strong> We built their social presence from scratch with short-form video. One single reel hit 47 million views. They went from empty tables to fully booked with a waiting list. Takdir starts in a stronger position: 47 years of heritage, a second-generation family running it, a seafront location, and an existing audience already paying attention. Imagine what happens when you add a proper short-form content strategy on top of all that.</div>
+                </div>
+
+                <p class="takeaway">Takdir does not need to build a reputation. The reputation is already there. The job is making sure the next generation of customers, the people who scroll TikTok and Reels rather than read TripAdvisor, get to see the restaurant the way regulars already see it.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">4 Video Ideas You Could Film This Week</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats working right now on TikTok and Instagram Reels, tailored specifically to Takdir's grill, seafront setting, and second-generation family story. Film any one of these properly and it could be the video that puts Takdir in front of hundreds of thousands of new people across the North East and beyond.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"The buttered honey chicken everyone reviews about, made on camera"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Process</span>
+                        <span class="idea-tag">Hero Dish</span>
+                        <span class="idea-tag">ASMR</span>
+                    </div>
+                    <p class="idea-description">Open with a close-up of a TripAdvisor review on a phone screen praising the buttered honey chicken. Cut to the kitchen. Chicken hits the pan. Butter foaming. Honey going in slowly, ribbon shot. Spices added by hand. Sauce reducing. Hero plate-up. End on the dish at the table with the seafront softly out of focus. Trending audio. Under 25 seconds.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Building content around the dish customers already rave about closes the loop. People see the review, then watch the dish being made, then book a table for the same dish. It is a self-reinforcing format that turns 5-star reviews into bookings without ever feeling like a sales pitch.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"POV: Indian food on the Whitley Bay seafront at sunset"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">POV</span>
+                        <span class="idea-tag">Location</span>
+                        <span class="idea-tag">Cinematic</span>
+                    </div>
+                    <p class="idea-description">First person camera. Walk along the seafront, the lighthouse in the distance, the sun going down. Push open the door at Takdir. Pan across to a window seat. Sit down. Drink lands. Mezze and starters arrive. Mixed grill comes out as the sun finishes setting. Camera slowly pans from the food across to the sea view. Cinematic trending audio. Text overlay: "Indian food with this view. Whitley Bay."</p>
+                    <div class="idea-why"><strong>Why it works:</strong> POV restaurant content is the highest-converting format for hospitality. The seafront view is a hook that travels well beyond Whitley Bay. People save it for "next time we go to the coast" and plan trips around it. No Indian restaurant in the UK can film this exact video. That uniqueness is what makes it spread.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"47 years of Takdir: the family that has fed Whitley Bay since 1979"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Heritage</span>
+                        <span class="idea-tag">Family</span>
+                        <span class="idea-tag">Emotional</span>
+                    </div>
+                    <p class="idea-description">Mamzy and Suff on camera. Maybe an old photo of the original Takdir. Why your father opened it in 1979. What Whitley Bay was like back then. Why you took it on. Cut between archival shots, the modern restaurant, the kitchen, the regulars. Keep it slow and warm. 45-60 seconds. Text overlay: "Since 1979. Same family. Same seafront." Emotional trending audio underneath.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Heritage content is the most emotionally compelling category in food video. People follow people, not menus. A second-generation handover story is the kind of post that gets shared widely, picked up by local press, and turns viewers into lifelong customers. Once they know your father's story, they are not just booking a meal. They are part of the Takdir story.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"The Takdir banquet menu: everything you get for the price"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Value Reveal</span>
+                        <span class="idea-tag">Group</span>
+                        <span class="idea-tag">Portion</span>
+                    </div>
+                    <p class="idea-description">Overhead shot. Empty table. Plates arrive one after another. Poppadoms and chutneys. Mixed starters. Mains landing. Naan, rice, sides. Camera slowly zooms out as each item lands. Text overlay counts items as they appear. End on the full spread with the sea visible through the window in the background. Trending audio.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Value-reveal content drives massive engagement because viewers tag friends and say "we should do this." For groups planning birthday meals, anniversaries, and weekend nights out on the coast, this format directly drives bookings. The seafront view in the background is what makes it uniquely Takdir.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the content work.</p>
+
+            <div class="enhancement-card">
+                <h4>Modernise the Website to Match the Restaurant</h4>
+                <p>The current takdir.co.uk feels years behind the venue. The restaurant has been doubled in size, modernised, and refurbished. The site has not. A new fast, mobile-first website with embedded menus, real photography of the room and the seafront, the 47-year heritage story front and centre, and clean booking and ordering flows would lift conversion on every social click.</p>
+                <ul class="enhancement-list">
+                    <li>Replace the WordPress site with a modern fast build</li>
+                    <li>Embed the menu directly (not as a PDF) for SEO and mobile UX</li>
+                    <li>Replace placeholder testimonials with real customer photos</li>
+                    <li>Bring the seafront and the family heritage story onto the homepage</li>
+                    <li>Integrate Dish Cult booking and Preoday ordering cleanly</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> When a viral reel sends 100,000 people to the website, the site is the conversion engine. A premium site converts 3-5x more bookings than a dated one. Worth getting right before the content starts pulling.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Launch TikTok and Claim "Indian Whitley Bay" / "Indian Coast"</h4>
+                <p>No Indian restaurant on the Tyneside coast currently dominates TikTok. The window is wide open. Setting up @takdir_whitleybay on TikTok and posting 3-4 videos per week of grill content, dish reveals, the seafront, and the family story would put Takdir in front of tens of thousands of people across the region who eat out every weekend.</p>
+                <ul class="enhancement-list">
+                    <li>Create TikTok account matching the Instagram handle</li>
+                    <li>Post 3-4 short videos per week (food, view, family, value)</li>
+                    <li>Use Whitley Bay, Tynemouth, and Newcastle location tags</li>
+                    <li>Cross-post the strongest TikToks straight to Instagram Reels</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Address the TripAdvisor Review Inconsistency</h4>
+                <p>TripAdvisor reviews are mixed in the 3.5-4 range. Google sits at 4.5. The gap suggests a small subset of guests had inconsistent experiences that hit TripAdvisor specifically. Active review management, responding to negatives quickly with a personal voice, and gently encouraging happy guests to leave a TripAdvisor review would close that gap fast.</p>
+                <div class="highlight-box">
+                    <p><strong>The opportunity:</strong> Lifting the TripAdvisor average from low-4 to mid-4 would bump Takdir significantly higher in the Whitley Bay rankings, which directly drives tourist and day-tripper bookings without spending a penny on ads.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a content and marketing agency based in Newcastle. We produce short-form video content, manage social media accounts, run paid campaigns, build websites, and handle branding. Everything under one roof.</p>
+                <p class="about-fc-text">We work exclusively with hospitality businesses. Restaurants, bars, hotels, and events. We know what works in this space because it is all we do. No stock footage, no generic templates, no recycled ideas. Every piece of content is original and tailored to the venue.</p>
+                <p class="about-fc-text">Our headline result is New Greek, a small independent restaurant in Newcastle that went from zero followers to over 63 million combined views across Instagram and TikTok in 30 days, including a single reel that hit 47 million views. We know what makes hospitality content perform, and we know how to turn great food into a packed room.</p>
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat"><div class="about-fc-stat-val">250M+</div><div class="about-fc-stat-label">Views generated</div></div>
+                    <div class="about-fc-stat"><div class="about-fc-stat-val">20+</div><div class="about-fc-stat-label">Videos per month</div></div>
+                    <div class="about-fc-stat"><div class="about-fc-stat-val">6+</div><div class="about-fc-stat-label">Years in content</div></div>
+                    <div class="about-fc-stat"><div class="about-fc-stat-val">100%</div><div class="about-fc-stat-label">Impressions guarantee</div></div>
+                </div>
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a read through this audit. The short version: Takdir has 47 years of heritage, a seafront setting that is genuinely rare in UK hospitality, a family story that is one of the most powerful brand assets you could ask for, and a recently renovated venue. The opportunity is making the online presence match the reality of the restaurant. 2,838 followers on 3,002 posts is the clearest signal in the audit that the format is the issue, not the effort.</li>
+                    <li>If any of this resonates, we would love to jump on a quick call. No pitch, just a straight conversation about where the biggest wins are for Takdir and Gulshan specifically and what we could do across both venues together.</li>
+                    <li>We can put together a content plan showing exactly what the first month would look like across TikTok, Instagram Reels, and a strategy that leans into the seafront, the heritage, and the second-generation family story all at once.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. With summer on the Whitley Bay coast around the corner and the season about to hit, the next eight weeks are the most important window to turn 47 years of heritage and a seafront setting into a social presence that matches. Takdir is already exceptional. Now it is about making sure everyone in the North East knows it. We would genuinely love to help you get there.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Takdir Whitley Bay</div>
+            <div class="footer-note">This audit was put together using live data from your website, social media accounts, and online listings on 4 May 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
