@@ -584,6 +584,70 @@
     /* Hide the slotted AR button while poster is up - it shows after model loads via .visible class */
     .ar-place-btn:not(.visible) { display: none !important; opacity: 0 !important; pointer-events: none !important; }
 
+    /* Mobile status overlay (Opening AR / fallback message) */
+    .ar-mobile-status {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      background: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+      text-align: center;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .ar-mobile-status .ar-loading-spinner {
+      border-color: rgba(255,255,255,0.18);
+      border-top-color: var(--signal);
+    }
+    .ar-mobile-status-text {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      max-width: 280px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .ar-mobile-status-text strong {
+      color: #fff;
+      font-weight: 700;
+    }
+    .ar-mobile-fallback-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(230, 59, 46, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--signal);
+      margin-bottom: 0.25rem;
+    }
+    .ar-mobile-fallback-icon svg { width: 24px; height: 24px; }
+    .ar-mobile-copy-btn {
+      margin-top: 0.5rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .ar-mobile-copy-btn:hover, .ar-mobile-copy-btn:active {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
     /* Desktop-only message inside poster overlay */
     .ar-poster-msg {
       pointer-events: auto;
@@ -1323,7 +1387,7 @@
             exposure="1.1"
             auto-rotate
             interaction-prompt="none"
-            loading="lazy"
+            loading="eager"
             style="width:100%;height:460px;background:#F5F0E8;"
           >
             <!-- Custom poster overlay with the Load 3D button -->
@@ -1729,7 +1793,7 @@
     });
   </script>
 
-  <!-- 3D model click-to-load handler using model-viewer dismissPoster -->
+  <!-- 3D model click-to-load handler -->
   <script>
     (function() {
       var mv = document.getElementById('ar-demo-model');
@@ -1742,7 +1806,11 @@
       var hint = document.getElementById('ar-drag-hint');
       var arBtn = document.getElementById('ar-place-btn');
       var desktopMsg = document.getElementById('ar-desktop-msg');
-      var autoActivateAR = false;
+
+      // Detect in-app browsers (Instagram, Facebook, etc.) where AR is not supported
+      var ua = navigator.userAgent || '';
+      var isInAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|FB4A|FBIOS|Line|Twitter|TikTok|Snapchat|LinkedInApp|Pinterest/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
 
       var clicked = false;
       var revealed = false;
@@ -1758,10 +1826,6 @@
         }
         if (mv.canActivateAR) {
           if (arBtn) arBtn.classList.add('visible');
-          // If user came from mobile trigger, auto-activate AR now
-          if (autoActivateAR && typeof mv.activateAR === 'function') {
-            try { mv.activateAR(); } catch (err) { console.error('activateAR failed:', err); }
-          }
         } else {
           if (desktopMsg) desktopMsg.classList.add('visible');
         }
@@ -1771,35 +1835,148 @@
         }
       }
 
-      function startLoad(e, opts) {
+      // === DESKTOP PATH: dismiss poster, render 3D in page ===
+      function startDesktopLoad(e) {
         if (clicked) return;
         if (e) { e.preventDefault(); e.stopPropagation(); }
         clicked = true;
-        if (opts && opts.activateAR) autoActivateAR = true;
-        if (typeof mv.dismissPoster === 'function') {
-          mv.dismissPoster();
-        }
+        if (typeof mv.dismissPoster === 'function') mv.dismissPoster();
         if (progressOverlay) progressOverlay.style.display = 'flex';
 
-        // Poll mv state every 250ms - model-visibility event is unreliable on mobile
         pollId = setInterval(function() {
           if (mv.loaded || mv.modelIsVisible) reveal();
         }, 250);
-
-        // Hard timeout: 25s max
         setTimeout(reveal, 25000);
       }
 
-      if (loadBtn) loadBtn.addEventListener('click', function(e) { startLoad(e); });
-      if (mobileTrigger) mobileTrigger.addEventListener('click', function(e) { startLoad(e, { activateAR: true }); });
+      // === MOBILE PATH: never dismiss poster, only launch AR ===
+      function startMobileAR(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
 
-      // Track download progress
+        // In-app browsers can't trigger AR - tell user to open in real browser
+        if (isInAppBrowser) {
+          showInAppFallback();
+          return;
+        }
+
+        // Show "Opening AR..." overlay (non-dismissing - keeps poster visible)
+        showOpeningARState();
+
+        // Wait for model to be loaded, then activate AR
+        function attempt() {
+          if (mv.canActivateAR && (mv.loaded || mv.modelIsVisible)) {
+            try {
+              mv.activateAR();
+              // Hide overlay after a moment - AR will have launched
+              setTimeout(hideOpeningARState, 1500);
+            } catch (err) {
+              console.error('activateAR threw:', err);
+              showInAppFallback();
+            }
+          } else if (mv.loaded && !mv.canActivateAR) {
+            // Model loaded but device can't AR
+            showInAppFallback();
+          } else {
+            // Wait a bit more
+            setTimeout(attempt, 250);
+          }
+        }
+
+        // Kick off model loading (eager loading should already be in progress)
+        // But we need to make sure model-viewer starts loading - touch event activates lazy loaders
+        // Just call attempt - it will poll until loaded
+        attempt();
+
+        // Safety timeout
+        setTimeout(function() {
+          if (!mv.loaded && !mv.canActivateAR) {
+            showInAppFallback('Could not load. Try refreshing the page.');
+          }
+        }, 20000);
+      }
+
+      function showOpeningARState() {
+        var existing = document.getElementById('ar-mobile-status');
+        if (existing) existing.remove();
+        var el = document.createElement('div');
+        el.id = 'ar-mobile-status';
+        el.className = 'ar-mobile-status';
+        el.innerHTML = '<div class="ar-loading-spinner"></div><div class="ar-mobile-status-text">Opening AR...</div>';
+        var poster = document.querySelector('.ar-poster-slot');
+        if (poster) poster.appendChild(el);
+      }
+
+      function hideOpeningARState() {
+        var el = document.getElementById('ar-mobile-status');
+        if (el) el.remove();
+      }
+
+      function showInAppFallback(customMsg) {
+        var existing = document.getElementById('ar-mobile-status');
+        if (existing) existing.remove();
+
+        var msg;
+        if (customMsg) {
+          msg = customMsg;
+        } else if (isInAppBrowser) {
+          msg = 'AR works in <strong>Safari</strong> or <strong>Chrome</strong>. <br>Tap the menu (•••) and choose "Open in Safari" or "Open in browser".';
+        } else if (!isIOS) {
+          msg = 'Open this page in <strong>Chrome</strong> on your Android phone to view in AR.';
+        } else {
+          msg = 'Open this page in <strong>Safari</strong> to view in AR.';
+        }
+
+        var el = document.createElement('div');
+        el.id = 'ar-mobile-status';
+        el.className = 'ar-mobile-status ar-mobile-fallback';
+        el.innerHTML =
+          '<div class="ar-mobile-fallback-icon">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>' +
+            '</svg>' +
+          '</div>' +
+          '<div class="ar-mobile-status-text">' + msg + '</div>' +
+          '<button class="ar-mobile-copy-btn" type="button">Copy link</button>';
+
+        var poster = document.querySelector('.ar-poster-slot');
+        if (poster) poster.appendChild(el);
+
+        var copyBtn = el.querySelector('.ar-mobile-copy-btn');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', function() {
+            var url = window.location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(url).then(function() {
+                copyBtn.textContent = 'Copied!';
+                setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 2000);
+              }).catch(function() { fallbackCopy(url, copyBtn); });
+            } else {
+              fallbackCopy(url, copyBtn);
+            }
+          });
+        }
+      }
+
+      function fallbackCopy(text, btn) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); btn.textContent = 'Copied!'; setTimeout(function(){btn.textContent='Copy link';},2000); } catch(e){}
+        document.body.removeChild(ta);
+      }
+
+      if (loadBtn) loadBtn.addEventListener('click', startDesktopLoad);
+      if (mobileTrigger) mobileTrigger.addEventListener('click', startMobileAR);
+
+      // Track download progress (only relevant for desktop path)
       var hit100At = null;
       mv.addEventListener('progress', function(e) {
         var p = (e.detail && typeof e.detail.totalProgress === 'number') ? e.detail.totalProgress : 0;
         var pct = Math.round(p * 100);
         if (progressEl) progressEl.textContent = pct + '%';
-        // Once download hits 100%, give the parser at most 4s before we force-reveal
         if (p >= 0.99 && !hit100At) {
           hit100At = Date.now();
           setTimeout(reveal, 4000);
