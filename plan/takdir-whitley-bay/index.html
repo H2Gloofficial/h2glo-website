@@ -63,6 +63,24 @@
         .question-list li { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--card-border); font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
         .question-list li:last-child { border-bottom: none; }
         .question-list li::before { content: '?'; display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: rgba(232,85,60,0.12); color: var(--coral); border-radius: 8px; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+        .form-group label .q-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--coral); color: white; border-radius: 6px; font-size: 11px; font-weight: 700; margin-right: 8px; vertical-align: middle; position: relative; top: -1px; }
+        .form-group label .q-hint { display: block; font-size: 12px; font-weight: 400; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+        .form-input, .form-textarea { width: 100%; background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 16px; font-family: inherit; font-size: 14px; color: var(--text); line-height: 1.6; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; }
+        .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(232,85,60,0.12); }
+        .form-textarea { min-height: 90px; resize: vertical; font-family: inherit; }
+        .form-submit { display: inline-flex; align-items: center; gap: 10px; background: var(--coral); color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; padding: 14px 32px; border: none; border-radius: 999px; cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+        .form-submit:hover { background: var(--coral-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,85,60,0.4); }
+        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .form-success { display: none; background: rgba(76,217,125,0.12); border: 1px solid rgba(76,217,125,0.3); border-radius: 14px; padding: 24px 28px; }
+        .form-success.show { display: block; animation: fadeInUp 0.4s ease both; }
+        .form-success h4 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; color: #2da653; margin-bottom: 8px; font-weight: 400; }
+        .form-success p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
+        .form-footer { margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+        .reference-card.client { background: linear-gradient(135deg, rgba(232,85,60,0.14) 0%, rgba(255,255,255,0.98) 65%); border-color: rgba(232,85,60,0.3); position: relative; }
+        .reference-card.client::before { content: 'Our client'; position: absolute; top: 12px; right: 12px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; background: var(--coral); color: white; padding: 3px 8px; border-radius: 6px; box-shadow: 0 2px 6px rgba(232,85,60,0.4); }
+        .reference-card.client .desc strong { color: var(--coral); }
         .reference-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 24px; }
         .reference-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; transition: transform 0.2s; }
         .reference-card:hover { transform: translateY(-2px); }
@@ -231,15 +249,111 @@
             <p class="section-text">To plan the first batch of content properly, we need a few quick answers from you. Reply to these in WhatsApp or email and we will turn them into the first month of content ideas.</p>
 
             <div class="card" style="margin-top: 24px;">
-                <ol class="question-list">
-                    <li>What are your <strong>top 5 best-selling dishes</strong>? The ones that order ticket after order ticket.</li>
-                    <li>What are your <strong>signature or unique dishes</strong> that you do better or differently than anyone else? The ones reviewers always mention.</li>
-                    <li>Do you have any <strong>current offers or specials</strong>? Banquet menus, lunch deals, early-bird, set menus, anniversary deals?</li>
-                    <li>Are there any <strong>seasonal events</strong> coming up we should plan around? Father's Day, Eid, summer holidays, school holidays, anniversary of the restaurant?</li>
-                    <li>Are there any <strong>dishes you would NOT want featured</strong>, or any restrictions we should know about (e.g. halal-only messaging, dietary positioning)?</li>
-                    <li>Anything <strong>specific you want highlighted</strong> that we have not mentioned? Awards, press, regulars, the recent expansion, the heritage from 1979?</li>
-                </ol>
+                <div id="formSuccess" class="form-success">
+                    <h4>Thanks - we have got it.</h4>
+                    <p>Your answers are in. We will use these to plan the first month of content and come back to you with a shoot date and the first content ideas. Speak soon.</p>
+                </div>
+
+                <form id="takdirInfoForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="0e95d39d-7d86-47f4-8af7-94696ecf8324" />
+                    <input type="hidden" name="subject" value="Takdir Whitley Bay - Content Plan Form Submission" />
+                    <input type="hidden" name="from_name" value="Takdir Strategy Form" />
+                    <input type="hidden" name="redirect" value="false" />
+
+                    <div class="form-group">
+                        <label for="contact_name">
+                            <span class="q-num">1</span>Your name
+                        </label>
+                        <input class="form-input" type="text" id="contact_name" name="Contact name" required placeholder="Mamzy / Suff" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="best_sellers">
+                            <span class="q-num">2</span>Top 5 best-selling dishes
+                            <span class="q-hint">The ones that order ticket after order ticket.</span>
+                        </label>
+                        <textarea class="form-textarea" id="best_sellers" name="Best sellers" required placeholder="e.g. Buttered honey chicken, Chicken tikka masala, Lamb biryani..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signatures">
+                            <span class="q-num">3</span>Signature or unique dishes
+                            <span class="q-hint">The ones reviewers always mention or that you do better than anyone else.</span>
+                        </label>
+                        <textarea class="form-textarea" id="signatures" name="Signature dishes" required placeholder="What makes Takdir different on the plate?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="offers">
+                            <span class="q-num">4</span>Current offers or specials
+                            <span class="q-hint">Banquet menus, lunch deals, early-bird, set menus, anniversary deals.</span>
+                        </label>
+                        <textarea class="form-textarea" id="offers" name="Current offers" placeholder="List any active offers or write 'None right now' if there are none."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seasonal">
+                            <span class="q-num">5</span>Seasonal events coming up
+                            <span class="q-hint">Father's Day, Eid, summer holidays, school holidays, restaurant anniversary, etc.</span>
+                        </label>
+                        <textarea class="form-textarea" id="seasonal" name="Seasonal events" placeholder="Anything in the calendar over the next 90 days we should plan around?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restrictions">
+                            <span class="q-num">6</span>Anything we should NOT feature
+                            <span class="q-hint">Restrictions, dishes you would not want highlighted, halal-only messaging, dietary positioning, etc.</span>
+                        </label>
+                        <textarea class="form-textarea" id="restrictions" name="Restrictions" placeholder="Anything off limits or that needs handling carefully?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="highlights">
+                            <span class="q-num">7</span>Anything specific you want highlighted
+                            <span class="q-hint">Awards, press coverage, regulars, the recent expansion, the heritage going back to 1979.</span>
+                        </label>
+                        <textarea class="form-textarea" id="highlights" name="Highlights to push" placeholder="What do you most want people to know about Takdir?"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit" id="submitBtn">
+                        Send answers to Fusion Creative
+                    </button>
+                    <div class="form-footer">Goes straight to Jay at Fusion Creative. We will reply within 24 hours.</div>
+                </form>
             </div>
+
+            <script>
+                (function () {
+                    var form = document.getElementById('takdirInfoForm');
+                    var success = document.getElementById('formSuccess');
+                    var btn = document.getElementById('submitBtn');
+                    if (!form) return;
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        btn.disabled = true;
+                        btn.textContent = 'Sending...';
+                        var data = new FormData(form);
+                        fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+                            .then(function (r) { return r.json(); })
+                            .then(function (json) {
+                                if (json.success) {
+                                    form.style.display = 'none';
+                                    success.classList.add('show');
+                                    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                } else {
+                                    btn.disabled = false;
+                                    btn.textContent = 'Send answers to Fusion Creative';
+                                    alert('Something went wrong. Please try again or email jay@fusioncreative.uk');
+                                }
+                            })
+                            .catch(function () {
+                                btn.disabled = false;
+                                btn.textContent = 'Send answers to Fusion Creative';
+                                alert('Something went wrong. Please try again or email jay@fusioncreative.uk');
+                            });
+                    });
+                })();
+            </script>
         </div>
     </div>
 
@@ -258,13 +372,13 @@
                     <div class="handle">@acaiberry</div>
                     <div class="desc">165k+ followers. Acai bowl content that goes viral consistently. Pure visual entertainment, almost zero "buy now" energy. Great for masterclass-style food shots.</div>
                 </div>
-                <div class="reference-card">
+                <div class="reference-card client">
                     <div class="handle">@newgreek.ncl</div>
-                    <div class="desc">Our flagship case study in Newcastle. Generated 63M+ views in 30 days, single reel hit 47M. Proof that entertainment-led food content can come from a single small restaurant.</div>
+                    <div class="desc"><strong>This is one of our clients.</strong> Greek restaurant in Newcastle. We took them from zero to 63M+ views in 30 days, including a single reel that hit 47M. Living proof of what entertainment-led food content can do from a small independent. This is the standard we will be aiming for with Takdir.</div>
                 </div>
                 <div class="reference-card">
                     <div class="handle">@afrikanakitchen</div>
-                    <div class="desc">110k+ followers. Afrikana Peri &amp; Grill, UK chain. Mix of food close-ups, behind-the-grill, customer reactions, founder content. Excellent template for British-Asian/multi-platform restaurants.</div>
+                    <div class="desc">110k+ followers. Afrikana Peri &amp; Grill, UK chain. Mix of food close-ups, behind-the-grill, customer reactions, founder content. Excellent template for restaurants combining cuisine identity with everyday social moments.</div>
                 </div>
             </div>
 
