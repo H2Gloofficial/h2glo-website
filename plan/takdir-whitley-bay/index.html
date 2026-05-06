@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Strategy - Takdir Whitley Bay | Fusion Creative</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f5f6fa; --bg-alt: #ecedf1; --card: #ffffff; --card-border: rgba(0,0,0,0.08);
+            --coral: #E8553C; --coral-light: #ff7a64; --coral-dark: #c4412b;
+            --text: #1a1d23; --text-secondary: #4a4f5c; --text-muted: #7c8090;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 840px; margin: 0 auto; padding: 0 24px; }
+        .header { padding: 48px 0 40px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .header-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+        .brand { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--coral); }
+        .brand-dot { display: inline-block; width: 6px; height: 6px; background: var(--coral); border-radius: 50%; margin-right: 8px; vertical-align: middle; position: relative; top: -1px; }
+        .header-date { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+        .hero { padding: 64px 0 56px; animation: fadeInUp 0.6s ease both; }
+        .hero-label { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 20px; }
+        .hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(42px, 7vw, 60px); font-weight: 400; line-height: 1.05; letter-spacing: -1px; margin-bottom: 24px; }
+        .hero h1 span { background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear infinite; }
+        .hero-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; line-height: 1.7; font-weight: 400; }
+        .section { padding: 48px 0; animation: fadeInUp 0.6s ease both; }
+        .section-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent); }
+        .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 40px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.04); }
+        .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+        .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; font-weight: 400; letter-spacing: -0.5px; margin-bottom: 24px; line-height: 1.2; }
+        .section-text { color: var(--text-secondary); font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+        .section-text:last-child { margin-bottom: 0; }
+        .intro-card { background: linear-gradient(135deg, rgba(232,85,60,0.12) 0%, rgba(255,255,255,0.98) 60%); border-color: rgba(232,85,60,0.2); }
+        .intro-card .greeting { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; color: var(--text); }
+        .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+        .pillar-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; }
+        .pillar-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--coral); color: white; border-radius: 10px; font-size: 14px; font-weight: 700; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(232,85,60,0.35); }
+        .pillar-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        .pillar-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .setup-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px 28px; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 16px; }
+        .setup-status { flex-shrink: 0; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; min-width: 72px; text-align: center; }
+        .setup-status.action { background: rgba(232,85,60,0.15); color: var(--coral); }
+        .setup-status.ok { background: rgba(52,199,89,0.15); color: #2da653; }
+        .setup-card h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+        .setup-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 20px; }
+        .schedule-day { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px 8px; text-align: center; }
+        .schedule-day .day-name { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+        .schedule-day .day-icon { font-size: 16px; color: var(--coral); font-weight: 700; }
+        .schedule-day.off { opacity: 0.4; }
+        .platform-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+        .platform-pill { background: rgba(232,85,60,0.08); border: 1px solid rgba(232,85,60,0.18); border-radius: 999px; padding: 8px 18px; font-size: 13px; font-weight: 600; color: var(--coral); }
+        .question-list { list-style: none; }
+        .question-list li { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--card-border); font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+        .question-list li:last-child { border-bottom: none; }
+        .question-list li::before { content: '?'; display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: rgba(232,85,60,0.12); color: var(--coral); border-radius: 8px; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+        .reference-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 24px; }
+        .reference-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; transition: transform 0.2s; }
+        .reference-card:hover { transform: translateY(-2px); }
+        .reference-card .handle { font-family: 'DM Serif Display', Georgia, serif; font-size: 18px; color: var(--coral); margin-bottom: 6px; word-break: break-word; }
+        .reference-card .desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+        .highlight-box { background: rgba(232,85,60,0.08); border: 1px solid rgba(232,85,60,0.2); border-radius: 12px; padding: 20px 24px; margin-top: 20px; }
+        .highlight-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0; }
+        .highlight-box strong { color: var(--coral); }
+        .signature { padding: 48px 0; }
+        .signature-name { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; font-weight: 400; margin-bottom: 4px; color: var(--text); }
+        .signature-role { font-size: 14px; color: var(--text-secondary); margin-bottom: 2px; }
+        .signature-link { font-size: 14px; color: var(--coral); text-decoration: none; font-weight: 500; }
+        .signature-link:hover { text-decoration: underline; }
+        .footer { padding: 32px 0; border-top: 1px solid rgba(0,0,0,0.08); text-align: center; background: var(--bg-alt); }
+        .footer-confidential { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+        .footer-note { font-size: 12px; color: var(--text-muted); font-style: italic; }
+        .footer-brand { margin-top: 16px; font-size: 12px; color: var(--text-muted); }
+        .footer-brand span { color: var(--coral); font-weight: 600; }
+        @media (max-width: 640px) {
+            .container { padding: 0 16px; } .card { padding: 28px 22px; } .hero { padding: 40px 0 36px; } .section { padding: 32px 0; }
+            .pillar-grid { grid-template-columns: 1fr; } .reference-grid { grid-template-columns: 1fr; }
+            .schedule-grid { grid-template-columns: repeat(7, 1fr); gap: 4px; } .schedule-day { padding: 10px 4px; }
+            .header-inner { flex-direction: column; gap: 8px; }
+        }
+        @media print {
+            body { background: white; } .card:hover, .reference-card:hover { transform: none; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand"><span class="brand-dot"></span>Fusion Creative</div>
+                <div class="header-date">6 May 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Content Strategy &amp; Plan</div>
+            <h1><span>Takdir Whitley Bay</span></h1>
+            <p class="hero-subtitle">Our plan for the first 90 days | Prepared by Fusion Creative | 6 May 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey Mamzy and Suff,</div>
+                <p class="section-text">Here is the plan we will be running for Takdir. The aim is simple: get the food, the family, and the seafront in front of as many of the right people as possible, build a real audience on TikTok and Instagram, and turn that audience into bookings and covers. Everything below is what we will be doing, what we need from you, and how the cadence works week to week.</p>
+                <p class="section-text">Read through and let us know if there is anything you want to change, add, or push harder on. Once you give us the green light we will get the first shoot booked in.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Step 1 - Setup</div>
+            <div class="section-title">Three Quick Things Before We Start</div>
+            <p class="section-text" style="margin-bottom: 24px;">A few small admin jobs need ticking off so the content has the best foundation to perform.</p>
+
+            <div class="setup-card">
+                <span class="setup-status action">Action</span>
+                <div>
+                    <h4>Launch a TikTok account for Takdir</h4>
+                    <p>You do not have a TikTok presence yet. Indian food is one of the highest-performing categories on TikTok and the under-35 booking crowd discovers restaurants there now. We will set this up under your handle and post the same content as Instagram.</p>
+                </div>
+            </div>
+
+            <div class="setup-card">
+                <span class="setup-status action">Action</span>
+                <div>
+                    <h4>Switch the Instagram account to a Professional / Business account</h4>
+                    <p>Quick free switch in Instagram Settings. Unlocks insights, analytics, action buttons (Reserve, Order, Call), and ad capability. Currently set up as a personal account which is leaving a lot of growth on the table.</p>
+                </div>
+            </div>
+
+            <div class="setup-card">
+                <span class="setup-status ok">Keep</span>
+                <div>
+                    <h4>Website is good as it is for now</h4>
+                    <p>The site functions well and converts traffic. We will leave it as is for the first phase. Down the line we may suggest a few visual tweaks, but no rebuild needed for now. Focus stays on content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Cadence -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Step 2 - Cadence</div>
+            <div class="section-title">Five Posts a Week, Across Three Platforms</div>
+            <p class="section-text">We will be posting <strong>five reels per week</strong> from Monday through to Sunday. Every reel goes out across all three platforms so we maximise reach without doubling production.</p>
+
+            <div class="platform-row">
+                <span class="platform-pill">Instagram Reels</span>
+                <span class="platform-pill">TikTok</span>
+                <span class="platform-pill">Facebook Reels</span>
+            </div>
+
+            <div class="schedule-grid">
+                <div class="schedule-day"><div class="day-name">Mon</div><div class="day-icon">&bull;</div></div>
+                <div class="schedule-day"><div class="day-name">Tue</div><div class="day-icon">&bull;</div></div>
+                <div class="schedule-day off"><div class="day-name">Wed</div><div class="day-icon">-</div></div>
+                <div class="schedule-day"><div class="day-name">Thu</div><div class="day-icon">&bull;</div></div>
+                <div class="schedule-day"><div class="day-name">Fri</div><div class="day-icon">&bull;</div></div>
+                <div class="schedule-day"><div class="day-name">Sat</div><div class="day-icon">&bull;</div></div>
+                <div class="schedule-day off"><div class="day-name">Sun</div><div class="day-icon">-</div></div>
+            </div>
+            <p class="section-text" style="font-size: 13px; color: var(--text-muted); margin-top: 14px;">Days marked with a dot are post days. We will adjust based on what is performing best as we learn what your audience responds to.</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Content Pillars -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Step 3 - Content Pillars</div>
+            <div class="section-title">What We Will Be Filming</div>
+            <p class="section-text">Every reel falls into one of these four pillars. The mix keeps the feed varied and gives the algorithm different reasons to push your content to different audiences.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-num">1</div>
+                    <h4>Best Sellers</h4>
+                    <p>The dishes you sell the most of, filmed properly. People order what they see. We highlight the heroes that already have proof of demand.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-num">2</div>
+                    <h4>The Location</h4>
+                    <p>The seafront, the sea views, the Whitley Bay coast. One of the most photogenic restaurant settings in the North East. This is what makes Takdir share-worthy beyond the food.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-num">3</div>
+                    <h4>Offers and Deals</h4>
+                    <p>Any specials, banquet menus, lunch deals, or seasonal offers. Value-reveal content drives bookings faster than anything else.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-num">4</div>
+                    <h4>Unique / Signature Dishes</h4>
+                    <p>The dishes you do that nobody else does. The buttered honey chicken people review about. Anything regional or off-menu that gives Takdir its own identity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What we need from you -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Step 4 - What We Need From You</div>
+            <div class="section-title">Information to Plan the First Shoots</div>
+            <p class="section-text">To plan the first batch of content properly, we need a few quick answers from you. Reply to these in WhatsApp or email and we will turn them into the first month of content ideas.</p>
+
+            <div class="card" style="margin-top: 24px;">
+                <ol class="question-list">
+                    <li>What are your <strong>top 5 best-selling dishes</strong>? The ones that order ticket after order ticket.</li>
+                    <li>What are your <strong>signature or unique dishes</strong> that you do better or differently than anyone else? The ones reviewers always mention.</li>
+                    <li>Do you have any <strong>current offers or specials</strong>? Banquet menus, lunch deals, early-bird, set menus, anniversary deals?</li>
+                    <li>Are there any <strong>seasonal events</strong> coming up we should plan around? Father's Day, Eid, summer holidays, school holidays, anniversary of the restaurant?</li>
+                    <li>Are there any <strong>dishes you would NOT want featured</strong>, or any restrictions we should know about (e.g. halal-only messaging, dietary positioning)?</li>
+                    <li>Would you and your dad be open to being <strong>on camera occasionally</strong> for the family-story content? People follow people, not menus.</li>
+                    <li>Anything <strong>specific you want highlighted</strong> that we have not mentioned? Awards, press, regulars, the recent expansion, the heritage from 1979?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Entertainment Content -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Step 5 - Entertainment Content</div>
+            <div class="section-title">Why We Do Not Just Sell, We Entertain</div>
+            <p class="section-text">Selling content does not perform. People scroll past adverts. The restaurants going viral right now are the ones that <strong>entertain first and sell second</strong>. The food is still the star, but the reels feel like content people want to watch, not ads they want to skip.</p>
+            <p class="section-text">This is the difference between a "trendy" restaurant and a regular one online. Trendy restaurants are watched. Regular ones are scrolled past. The accounts below are doing this brilliantly and we will be using them as creative reference for Takdir.</p>
+
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <div class="handle">@acaiberry</div>
+                    <div class="desc">165k+ followers. Acai bowl content that goes viral consistently. Pure visual entertainment, almost zero "buy now" energy. Great for masterclass-style food shots.</div>
+                </div>
+                <div class="reference-card">
+                    <div class="handle">@newgreek.ncl</div>
+                    <div class="desc">Our flagship case study in Newcastle. Generated 63M+ views in 30 days, single reel hit 47M. Proof that entertainment-led food content can come from a single small restaurant.</div>
+                </div>
+                <div class="reference-card">
+                    <div class="handle">@afrikanakitchen</div>
+                    <div class="desc">110k+ followers. Afrikana Peri &amp; Grill, UK chain. Mix of food close-ups, behind-the-grill, customer reactions, founder content. Excellent template for British-Asian/multi-platform restaurants.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>The principle:</strong> Push the product in a way that people are entertained. Highlight the food and the restaurant being a trendy place to be. The viral content always has personality, pacing, hooks, and humour. It almost never has a "book now" overlay.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Wrap up -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">In Short</div>
+            <div class="section-title">The First 90 Days</div>
+            <div class="card intro-card">
+                <p class="section-text">Five reels a week, posted Monday to Sunday across Instagram, TikTok, and Facebook. A mix of best sellers, the location, offers, and signature dishes. All filmed in an entertainment-first style that gives people a reason to watch and share, not just scroll past.</p>
+                <p class="section-text">Have a read, send us the answers to the questions above, and let us know if there is anything specific you want us to push. Once we have your green light we will get the first shoot day booked in and the content engine started.</p>
+                <p class="section-text"><strong>Excited to get going with you both.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for Takdir Whitley Bay</div>
+            <div class="footer-note">First 90-day content strategy and content plan, prepared 6 May 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
