@@ -1736,7 +1736,7 @@
         <div class="map-card-head">
             <div>
                 <h3><span class="pin">&#9733;</span> We Serve the North East</h3>
-                <p>Family-run team based near Newcastle. Available across a 50 mile radius.</p>
+                <p>Covering Tyne &amp; Wear, County Durham, and Northumberland.</p>
             </div>
             <span class="map-pill"><span class="dot"></span> Currently Booking Summer 2026</span>
         </div>
@@ -1760,12 +1760,12 @@
         </div>
         <div id="serviceMap" aria-label="H2GLO service area map covering the North East of England"></div>
         <div class="map-card-foot">
+            <span class="chip">Tyne &amp; Wear</span>
+            <span class="chip">County Durham</span>
+            <span class="chip">Northumberland</span>
             <span class="chip">Newcastle &amp; Gateshead</span>
             <span class="chip">Sunderland</span>
-            <span class="chip">Durham</span>
-            <span class="chip">Northumberland</span>
-            <span class="chip">North Shields</span>
-            <span class="chip">South Shields</span>
+            <span class="chip">North &amp; South Shields</span>
         </div>
     </div>
 </section>
@@ -1974,25 +1974,31 @@
             attribution: '&copy; OpenStreetMap &copy; CARTO'
         }).addTo(map);
 
-        // Organic service-area polygon - irregular ~50mi radius around Newcastle
-        // Points walk clockwise starting north; distances vary slightly so it reads as natural, not a perfect circle.
+        // Service area polygon - rough outline of Tyne & Wear, County Durham, Northumberland
+        // Walks clockwise from the Scottish border down the coast and back through the Pennines.
         const serviceArea = [
-            [55.78, -1.55],   // far north (Berwick-ish coast)
-            [55.55, -1.20],   // NE coast
-            [55.30, -1.30],   // Amble/coast
-            [55.08, -1.30],   // Tynemouth/coast
-            [54.86, -1.18],   // Sunderland coast
-            [54.62, -1.05],   // Hartlepool
-            [54.42, -1.10],   // Saltburn/Redcar
-            [54.30, -1.30],   // North York Moors
-            [54.32, -1.85],   // Richmond area
-            [54.50, -2.10],   // Stainmore
-            [54.78, -2.40],   // Alston
-            [55.05, -2.55],   // Haltwhistle
-            [55.30, -2.50],   // Kielder
-            [55.55, -2.30],   // Coldstream
-            [55.75, -2.00],   // Border
-            [55.78, -1.55]    // close back to start
+            [55.81, -2.04],   // Scottish border (north of Berwick)
+            [55.77, -1.99],   // Berwick-upon-Tweed
+            [55.55, -1.62],   // Bamburgh / coast
+            [55.34, -1.57],   // Amble
+            [55.13, -1.50],   // Blyth
+            [55.02, -1.40],   // Whitley Bay
+            [54.95, -1.36],   // Tynemouth
+            [54.90, -1.36],   // South Shields coast
+            [54.78, -1.36],   // Sunderland coast
+            [54.68, -1.20],   // Seaham
+            [54.55, -1.18],   // Hartlepool / north Tees
+            [54.50, -1.30],   // Stockton edge
+            [54.49, -1.55],   // Darlington
+            [54.55, -1.85],   // Barnard Castle
+            [54.65, -2.08],   // Middleton-in-Teesdale
+            [54.85, -2.45],   // Alston (Cumbrian border)
+            [55.02, -2.55],   // South Tynedale
+            [55.18, -2.63],   // Kielder Forest west edge
+            [55.40, -2.55],   // Kielder
+            [55.55, -2.40],   // Otterburn
+            [55.75, -2.30],   // Cheviots
+            [55.81, -2.04]    // back to start
         ];
 
         const greenStroke = '#16a34a';
@@ -2008,7 +2014,7 @@
             dashArray: '6 6',
             lineJoin: 'round',
             smoothFactor: 1.5
-        }).addTo(map).bindTooltip('H2GLO service area · ~50 mile radius', {
+        }).addTo(map).bindTooltip('H2GLO service area · Tyne & Wear, County Durham, Northumberland', {
             permanent: false,
             direction: 'top',
             offset: [0, -10],
@@ -2096,18 +2102,33 @@
                 const miles = distanceMiles(HQ_LAT, HQ_LNG, lat, lng);
                 const milesRounded = Math.round(miles);
                 const town = r.admin_district || r.parish || r.region || 'your area';
+                const county = (r.admin_county || r.admin_district || r.region || '').toLowerCase();
+                const district = (r.admin_district || '').toLowerCase();
                 const formattedPc = (r.postcode || raw).toUpperCase();
                 const waMsg = encodeURIComponent('Hi, I would like a quote. My postcode is ' + formattedPc + '.');
                 const waUrl = 'https://api.whatsapp.com/send/?phone=447368292293&text=' + waMsg;
 
-                // Drop pin + range circle
+                // Coverage = Tyne & Wear, County Durham, Northumberland
+                // Tyne & Wear was abolished as admin county in 1986, so postcodes.io returns the constituent
+                // metropolitan boroughs (Newcastle upon Tyne, Gateshead, Sunderland, North Tyneside, South Tyneside)
+                // as `admin_district` with an empty `admin_county`. Match on either.
+                const tyneWearDistricts = [
+                    'newcastle upon tyne', 'gateshead', 'sunderland',
+                    'north tyneside', 'south tyneside'
+                ];
+                const inTyneAndWear   = tyneWearDistricts.some(d => district.includes(d));
+                const inCountyDurham  = county.includes('durham') || district.includes('county durham') || district === 'durham';
+                const inNorthumberland = county.includes('northumberland') || district.includes('northumberland');
+                const covered = inTyneAndWear || inCountyDurham || inNorthumberland;
+
+                // Drop pin
                 if (userMarker) map.removeLayer(userMarker);
                 if (userCircle) map.removeLayer(userCircle);
 
-                const ringColor = miles <= 30 ? '#16a34a' : (miles <= 50 ? '#f59e0b' : '#ef4444');
+                const ringColor = covered ? '#16a34a' : '#ef4444';
 
                 userCircle = L.circle([lat, lng], {
-                    radius: 1600, // metres, just a soft glow under pin
+                    radius: 1600,
                     color: ringColor,
                     weight: 2,
                     opacity: 0.6,
@@ -2122,27 +2143,24 @@
                     html: '<span style="display:block;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid ' + ringColor + ';box-shadow:0 4px 12px rgba(0,0,0,0.25);"></span>'
                 });
                 userMarker = L.marker([lat, lng], { icon: userIcon }).addTo(map)
-                    .bindPopup('<strong style="color:#0a1628;">' + formattedPc + '</strong><br><span style="color:#5a6478;font-size:.85rem;">' + town + ' · ' + milesRounded + ' mi away</span>');
+                    .bindPopup('<strong style="color:#0a1628;">' + formattedPc + '</strong><br><span style="color:#5a6478;font-size:.85rem;">' + town + ' · ' + milesRounded + ' mi from base</span>');
 
-                // Fit both HQ and user nicely
                 const group = L.latLngBounds([[HQ_LAT, HQ_LNG], [lat, lng]]).pad(0.4);
                 map.fitBounds(group, { padding: [32, 32], maxZoom: 11 });
 
-                // Show result banner
-                if (miles <= 30) {
+                if (covered) {
+                    let area = 'the North East';
+                    if (inTyneAndWear)        area = 'Tyne & Wear';
+                    else if (inCountyDurham)  area = 'County Durham';
+                    else if (inNorthumberland) area = 'Northumberland';
                     showResult('ok',
-                        'Yes — you are fully covered! 🎉',
-                        formattedPc + ' is in ' + town + ', roughly ' + milesRounded + ' miles from our base. No travel charge.',
+                        'Yes — we cover you! 🎉',
+                        formattedPc + ' is in ' + town + ' (' + area + '), roughly ' + milesRounded + ' miles from our base.',
                         waUrl, 'Get your free quote');
-                } else if (miles <= 50) {
-                    showResult('warn',
-                        'Yes — covered, with travel surcharge',
-                        formattedPc + ' is roughly ' + milesRounded + ' miles from us. We can still serve you, but a travel charge applies. Message us for an exact quote.',
-                        waUrl, 'Get a quote on WhatsApp');
                 } else {
                     showResult('bad',
                         'Sorry — outside our service area',
-                        formattedPc + ' sits roughly ' + milesRounded + ' miles from our base, beyond our 50-mile range. For larger jobs we may still travel — drop us a message.',
+                        formattedPc + ' is in ' + town + ', which sits outside Tyne & Wear, County Durham and Northumberland. For larger jobs we may still travel — drop us a message and we will see what we can do.',
                         waUrl, 'Message us anyway');
                 }
             } catch (err) {
