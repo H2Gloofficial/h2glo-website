@@ -506,6 +506,200 @@
           </div>
         </div>
 
+        <!-- YouTube Repurpose Chart Card -->
+        <div class="win-card chart-card reveal-card" style="padding:0;overflow:hidden;">
+          <div style="padding:24px 28px 0;">
+            <div class="chart-header">
+              <span class="chart-label">YouTube channel growth / from zero</span>
+              <span class="chart-badge" style="white-space:nowrap;">&uarr; 159K views in 3 weeks</span>
+            </div>
+            <p style="font-size:12px; color:#888; margin:8px 0 0; line-height:1.5;">Auto-repurposed from Instagram. 29 videos, 20 subscribers, growing daily on autopilot.</p>
+          </div>
+          <div style="position:relative;width:100%;height:280px;cursor:crosshair;-webkit-tap-highlight-color:transparent;" id="ytChartWrap">
+            <canvas id="ytPerfChart" style="width:100%;height:100%;display:block;"></canvas>
+            <div id="ytChartTooltip" style="display:none;position:absolute;pointer-events:none;background:rgba(17,17,17,0.92);border:1px solid rgba(230,59,46,0.3);border-radius:10px;padding:10px 14px;font-family:var(--font-head);z-index:10;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);min-width:130px;">
+              <div id="ytTtDate" style="font-size:11px;color:#888;margin-bottom:4px;"></div>
+              <div id="ytTtVal" style="font-size:18px;font-weight:700;color:#E63B2E;"></div>
+              <div id="ytTtDelta" style="font-size:11px;color:#888;margin-top:2px;"></div>
+            </div>
+            <div id="ytChartLine" style="display:none;position:absolute;top:0;width:1px;height:100%;background:rgba(230,59,46,0.4);pointer-events:none;z-index:5;"></div>
+            <div id="ytChartDot" style="display:none;position:absolute;width:10px;height:10px;border-radius:50%;background:#E63B2E;border:2px solid #fff;box-shadow:0 0 12px rgba(230,59,46,0.5);pointer-events:none;z-index:6;transform:translate(-50%,-50%);"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 28px 16px;font-size:12px;color:#666;">
+            <span>22 Apr</span>
+            <span>12 May</span>
+          </div>
+        </div>
+
+        <script>
+        (function(){
+          var rawData = [
+            {date:'2026-04-22',views:0,videos:0,subs:0},
+            {date:'2026-04-29',views:936,videos:2,subs:0},
+            {date:'2026-05-01',views:3984,videos:5,subs:2},
+            {date:'2026-05-02',views:8301,videos:8,subs:5},
+            {date:'2026-05-03',views:24042,videos:10,subs:6},
+            {date:'2026-05-04',views:47787,videos:12,subs:9},
+            {date:'2026-05-05',views:56880,videos:14,subs:11},
+            {date:'2026-05-06',views:92112,videos:16,subs:12},
+            {date:'2026-05-08',views:101548,videos:21,subs:13},
+            {date:'2026-05-09',views:125356,videos:23,subs:18},
+            {date:'2026-05-10',views:149605,videos:25,subs:17},
+            {date:'2026-05-11',views:152106,videos:27,subs:17},
+            {date:'2026-05-12',views:159229,videos:29,subs:20}
+          ];
+
+          var canvas = document.getElementById('ytPerfChart');
+          var wrap = document.getElementById('ytChartWrap');
+          var tooltip = document.getElementById('ytChartTooltip');
+          var vLine = document.getElementById('ytChartLine');
+          var dot = document.getElementById('ytChartDot');
+          var ttDate = document.getElementById('ytTtDate');
+          var ttVal = document.getElementById('ytTtVal');
+          var ttDelta = document.getElementById('ytTtDelta');
+
+          function fmtNum(n) {
+            if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+            if (n >= 1000) return (n/1000).toFixed(0) + 'K';
+            return n.toString();
+          }
+
+          function fmtDate(d) {
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var parts = d.split('-');
+            return parseInt(parts[2]) + ' ' + months[parseInt(parts[1])-1];
+          }
+
+          var maxV = rawData[rawData.length-1].views;
+          function yScale(v) { return v / maxV; }
+
+          function draw() {
+            var dpr = window.devicePixelRatio || 1;
+            var rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+            var w = rect.width;
+            var h = rect.height;
+            var padL = 28, padR = 28, padT = 30, padB = 24;
+            var cw = w - padL - padR;
+            var ch = h - padT - padB;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Horizontal grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+            ctx.lineWidth = 1;
+            for (var i = 0; i <= 4; i++) {
+              var gy = padT + (ch * i / 4);
+              ctx.beginPath();
+              ctx.moveTo(padL, gy);
+              ctx.lineTo(w - padR, gy);
+              ctx.stroke();
+            }
+
+            // Y-axis labels
+            ctx.font = '10px Inter, system-ui, sans-serif';
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.textAlign = 'right';
+            for (var i = 0; i <= 4; i++) {
+              var val = maxV * (1 - i / 4);
+              ctx.fillText(fmtNum(val), padL - 6, padT + (ch * i / 4) + 3);
+            }
+
+            // Build points
+            var points = [];
+            for (var i = 0; i < rawData.length; i++) {
+              var x = padL + (cw * i / (rawData.length - 1));
+              var y = padT + ch - (ch * yScale(rawData[i].views));
+              points.push({x:x, y:y});
+            }
+
+            // Gradient fill under curve
+            var grad = ctx.createLinearGradient(0, padT, 0, h - padB);
+            grad.addColorStop(0, 'rgba(230,59,46,0.35)');
+            grad.addColorStop(1, 'rgba(230,59,46,0.02)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, h - padB);
+            for (var i = 0; i < points.length; i++) {
+              ctx.lineTo(points[i].x, points[i].y);
+            }
+            ctx.lineTo(points[points.length-1].x, h - padB);
+            ctx.closePath();
+            ctx.fill();
+
+            // Line
+            ctx.strokeStyle = '#E63B2E';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            for (var i = 1; i < points.length; i++) {
+              ctx.lineTo(points[i].x, points[i].y);
+            }
+            ctx.stroke();
+
+            // Dots
+            for (var i = 0; i < points.length; i++) {
+              ctx.beginPath();
+              ctx.arc(points[i].x, points[i].y, 3, 0, Math.PI * 2);
+              ctx.fillStyle = '#E63B2E';
+              ctx.fill();
+            }
+
+            return {points:points, padL:padL, padR:padR, padT:padT, padB:padB, cw:cw, ch:ch, w:w, h:h};
+          }
+
+          var chartState = draw();
+          window.addEventListener('resize', function() { chartState = draw(); });
+
+          function handleMove(clientX, clientY) {
+            var rect = canvas.getBoundingClientRect();
+            var mx = clientX - rect.left;
+            var nearest = 0;
+            var minDist = Infinity;
+            for (var i = 0; i < chartState.points.length; i++) {
+              var d = Math.abs(chartState.points[i].x - mx);
+              if (d < minDist) { minDist = d; nearest = i; }
+            }
+            var pt = chartState.points[nearest];
+            var data = rawData[nearest];
+
+            vLine.style.display = 'block';
+            vLine.style.left = pt.x + 'px';
+            dot.style.display = 'block';
+            dot.style.left = pt.x + 'px';
+            dot.style.top = pt.y + 'px';
+
+            ttDate.textContent = fmtDate(data.date);
+            ttVal.textContent = fmtNum(data.views) + ' views';
+            ttDelta.textContent = data.videos + ' videos / ' + data.subs + ' subs';
+
+            tooltip.style.display = 'block';
+            var ttW = 150;
+            var ttLeft = pt.x - ttW/2;
+            if (ttLeft < 8) ttLeft = 8;
+            if (ttLeft + ttW > rect.width - 8) ttLeft = rect.width - ttW - 8;
+            tooltip.style.left = ttLeft + 'px';
+            tooltip.style.top = (pt.y - 70) + 'px';
+          }
+
+          function handleLeave() {
+            vLine.style.display = 'none';
+            dot.style.display = 'none';
+            tooltip.style.display = 'none';
+          }
+
+          wrap.addEventListener('mousemove', function(e) { handleMove(e.clientX, e.clientY); });
+          wrap.addEventListener('mouseleave', handleLeave);
+          wrap.addEventListener('touchmove', function(e) {
+            if (e.touches[0]) handleMove(e.touches[0].clientX, e.touches[0].clientY);
+          });
+          wrap.addEventListener('touchend', handleLeave);
+        })();
+        </script>
+
         <script>
         (function(){
           // Pre-FC data (before Fusion Creative) + post-FC data
