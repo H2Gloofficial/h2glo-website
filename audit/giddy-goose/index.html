@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Audit - The Giddy Goose | Fusion Creative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --card-border: rgba(0,0,0,0.06);
+            --coral: #E8553C;
+            --coral-light: #ff7a64;
+            --coral-dark: #c4412b;
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232,85,60,0.3); }
+            50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+        }
+
+        .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .header-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero {
+            padding: 64px 0 56px;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--coral), var(--coral-light), var(--coral));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .section {
+            padding: 48px 0;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .card-sm {
+            padding: 28px 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .intro-card .greeting {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .stats-table td {
+            padding: 14px 0;
+        }
+
+        .stats-table td:first-child {
+            color: var(--text-secondary);
+            font-weight: 400;
+            padding-right: 24px;
+            white-space: nowrap;
+        }
+
+        .stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text);
+            text-align: right;
+        }
+
+        .stat-highlight {
+            color: var(--coral) !important;
+            font-weight: 700 !important;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: rgba(232, 85, 60, 0.1);
+            color: var(--coral);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: scaleIn 0.4s ease both;
+        }
+
+        .stat-badge-green {
+            display: inline-block;
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-badge-amber {
+            display: inline-block;
+            background: rgba(255, 159, 10, 0.1);
+            color: #ff9f0a;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .working-item {
+            margin-bottom: 28px;
+        }
+
+        .working-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .working-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .working-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .check-icon {
+            display: inline-block;
+            color: #34c759;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .opportunity-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.35);
+        }
+
+        .opportunity-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .opportunity-heading h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .opportunity-card {
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 60%);
+            border-color: rgba(232, 85, 60, 0.1);
+            border-left: 4px solid var(--coral);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--coral-light));
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+            padding: 24px 16px;
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .case-study-stat:nth-child(1) { animation-delay: 0.1s; }
+        .case-study-stat:nth-child(2) { animation-delay: 0.2s; }
+        .case-study-stat:nth-child(3) { animation-delay: 0.3s; }
+        .case-study-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .case-study-stat .number {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .case-study-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .viral-callout {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+        }
+
+        .viral-callout .big-number {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .viral-callout .context {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .viral-callout .context strong {
+            color: var(--text);
+        }
+
+        .takeaway {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .package-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+        }
+
+        .package-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .package-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .package-item strong {
+            color: var(--text);
+        }
+
+        .strategy-list {
+            list-style: none;
+        }
+
+        .strategy-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+
+        .strategy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-list li::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .video-ideas-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .video-idea-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .video-idea-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--coral);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .idea-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .idea-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .idea-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .idea-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.04);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .idea-why {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-top: 14px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .idea-why strong {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .enhancement-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06);
+        }
+
+        .enhancement-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .enhancement-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .enhancement-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .enhancement-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .enhancement-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .enhancement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            background: rgba(232, 85, 60, 0.05);
+            border: 1px solid rgba(232, 85, 60, 0.12);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-top: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--coral);
+        }
+
+        .next-steps-card {
+            background: linear-gradient(135deg, #fff5f2 0%, #ffffff 80%);
+            border-color: rgba(232, 85, 60, 0.1);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list li::before {
+            content: counter(steps);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: var(--coral);
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(232, 85, 60, 0.3);
+        }
+
+        .about-fc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .about-fc-stat {
+            background: rgba(232, 85, 60, 0.04);
+            border: 1px solid rgba(232, 85, 60, 0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            animation: scaleIn 0.5s ease both;
+        }
+
+        .about-fc-stat:nth-child(1) { animation-delay: 0.1s; }
+        .about-fc-stat:nth-child(2) { animation-delay: 0.2s; }
+        .about-fc-stat:nth-child(3) { animation-delay: 0.3s; }
+        .about-fc-stat:nth-child(4) { animation-delay: 0.4s; }
+
+        .about-fc-stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: -0.5px;
+        }
+
+        .about-fc-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .about-fc-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-fc-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-fc-tag {
+            background: rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .cta-wrap {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--coral);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 85, 60, 0.4);
+            animation: none;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .closing-note {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .signature {
+            padding: 48px 0;
+        }
+
+        .signature-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .signature-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .signature-link {
+            font-size: 14px;
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signature-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+            background: #edeef2;
+        }
+
+        .footer-confidential {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-brand {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-brand span {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff;
+                --card: #f8f8f8;
+                --card-border: #e0e0e0;
+                --text: #111111;
+                --text-secondary: #444444;
+                --text-muted: #888888;
+            }
+
+            body {
+                background: white;
+                color: #111;
+                font-size: 11pt;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 28pt;
+            }
+
+            .hero h1 span {
+                -webkit-text-fill-color: var(--coral);
+                background: none;
+                animation: none;
+            }
+
+            .card, .video-idea-card, .enhancement-card, .case-study-card, .intro-card, .next-steps-card {
+                background: #f8f8f8 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                border-color: #e0e0e0;
+                box-shadow: none !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .section {
+                animation: none !important;
+            }
+
+            .case-study-card::before {
+                background: var(--coral);
+            }
+
+            .video-idea-card::before {
+                background: var(--coral);
+            }
+
+            .case-study-stat {
+                background: rgba(232, 85, 60, 0.06) !important;
+                animation: none !important;
+            }
+
+            .viral-callout {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .highlight-box {
+                background: rgba(232, 85, 60, 0.05) !important;
+            }
+
+            .cta-btn {
+                animation: none !important;
+                box-shadow: none !important;
+            }
+
+            a {
+                color: var(--coral) !important;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .hero {
+                padding: 40px 0 32px;
+                animation: none !important;
+            }
+
+            .footer {
+                background: #f0f0f0 !important;
+            }
+
+            .stat-badge, .about-fc-stat {
+                animation: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 28px 22px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .video-idea-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .video-idea-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .enhancement-card {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.03);
+            }
+
+            .enhancement-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.07), 0 12px 32px rgba(0,0,0,0.05);
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-idea-card {
+                padding: 24px 22px;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .about-fc-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .about-fc-stat-val {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div class="brand">
+                    <span class="brand-dot"></span>Fusion Creative
+                </div>
+                <div class="header-date">31 May 2026</div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-label">Free Social Media Audit</div>
+            <h1><span>The Giddy Goose</span></h1>
+            <p class="hero-subtitle">Prepared by Fusion Creative | 31 May 2026</p>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Intro -->
+    <div class="container">
+        <div class="section">
+            <div class="card intro-card">
+                <div class="greeting">Hey Rhys,</div>
+                <p class="section-text">This is not a sales pitch. We are Fusion Creative, a UK content and marketing agency based in Newcastle. We took a deep look at The Giddy Goose's online presence and put together our honest findings.</p>
+                <p class="section-text">We love what you have built. Taking a wood-fired pizza trailer with five-star Google reviews and turning it into a proper restaurant and wine bar on Newmarket Street in just over a year is seriously impressive. You clearly know how to make great food and build a loyal following. But we found <strong>five areas where there is real room to grow</strong>, and some of them are holding you back from filling tables every single night. It is all in this report.</p>
+                <p class="section-text">Inside you will find a full snapshot of where you are now, what is working well, key opportunities you are leaving on the table, video ideas you can use immediately, and recommendations for quick wins. Even if we never speak, this is yours to keep.</p>
+            </div>
+
+            <!-- Fusion Creative metrics card -->
+            <div class="card" style="margin-top:8px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--coral); margin-bottom:6px;">Client Results</div>
+                <div style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Generated for a single restaurant client within 90 days</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">27M+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Views</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">394K+</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Engagements</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">6,657</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Followers Grown</div>
+                    </div>
+                    <div style="text-align:center; background:rgba(232,85,60,0.05); border:1px solid rgba(232,85,60,0.12); border-radius:12px; padding:16px 8px;">
+                        <div style="font-size:24px; font-weight:800; color:var(--coral); letter-spacing:-0.5px;">22M</div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Single Reel Views</div>
+                    </div>
+                </div>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7;">New Greek, a small independent restaurant in Newcastle with zero social presence before us. One reel hit 22 million views. They went from empty tables to a waiting list. The Giddy Goose has the same potential. Wood-fired pizza is one of the most viral food categories on social media, and you are not even on TikTok yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Snapshot -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Current Snapshot</div>
+            <div class="section-title">Where You Are Right Now</div>
+            <div class="card card-sm">
+                <table class="stats-table">
+                    <tr>
+                        <td>Google Reviews</td>
+                        <td>5.0 / 5 (from trailer days) <span class="stat-badge-green">Excellent</span></td>
+                    </tr>
+                    <tr>
+                        <td>Instagram (@giddygooserestaurant)</td>
+                        <td><span class="stat-badge-amber">Early Stage</span></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Page</td>
+                        <td>Active <span class="stat-badge-amber">Low Engagement</span></td>
+                    </tr>
+                    <tr>
+                        <td>TikTok Account</td>
+                        <td class="stat-highlight">None <span class="stat-badge">Missing</span></td>
+                    </tr>
+                    <tr>
+                        <td>Website (thegiddygoose.co.uk)</td>
+                        <td class="stat-highlight">Incomplete <span class="stat-badge">No Menu</span></td>
+                    </tr>
+                    <tr>
+                        <td>Online Ordering</td>
+                        <td>Just Eat listing <span class="stat-badge-amber">Third-Party Only</span></td>
+                    </tr>
+                    <tr>
+                        <td>Paid Ads Running</td>
+                        <td class="stat-highlight" style="color: var(--text-muted);">None visible</td>
+                    </tr>
+                    <tr>
+                        <td>Bottomless Brunch</td>
+                        <td>Offered <span class="stat-badge-green">Great Hook</span></td>
+                    </tr>
+                    <tr>
+                        <td>Second Location</td>
+                        <td>Blackhall Mill (Fri-Sat) <span class="stat-badge-green">Expanding</span></td>
+                    </tr>
+                    <tr>
+                        <td>Booking System</td>
+                        <td class="stat-highlight">None visible <span class="stat-badge">Friction</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- What Is Working -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">What Is Already Working Well</div>
+            <div class="section-title">Credit Where It Is Due</div>
+            <div class="card">
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You have already proven the concept</h4>
+                    <p>Going from a pizza trailer to a permanent restaurant with five-star Google reviews is not easy. You have already done the hardest part, which is proving that people love your food. That trailer built a loyal customer base before you even had a front door. That is a foundation most new restaurants would kill for.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> Wood-fired pizza is incredibly visual content</h4>
+                    <p>Flames, dough stretching, toppings being loaded, pizzas spinning in the oven, that perfect char on the crust. Wood-fired pizza is one of the single most engaging food categories on social media. The process is mesmerising. People watch pizza oven videos the same way they watch campfires. You have a content machine sitting in your kitchen and nobody has turned the camera on yet.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The bottomless brunch is a viral format</h4>
+                    <p>Unlimited pizza, prosecco, pints, and house wine for 90 minutes. That is not just a good deal, that is a piece of content that practically writes itself. "Bottomless brunch" is one of the most searched and shared restaurant formats on TikTok and Instagram. You already have the product. It just needs to be filmed and posted.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> You are already expanding</h4>
+                    <p>Running a second location at Riverview Bakery in Blackhall Mill on weekends shows ambition and demand. People want your food in more than one place. That kind of growth story, from trailer to restaurant to two locations, is the kind of narrative that builds a brand people root for.</p>
+                </div>
+                <div class="working-item">
+                    <h4><span class="check-icon">&#10003;</span> The name is memorable and fun</h4>
+                    <p>"The Giddy Goose" is a brilliant restaurant name. It is playful, memorable, and completely different from every other pizza place in the area. It gives you personality before anyone has even tasted the food. That kind of branding advantage is rare and it makes every piece of content instantly more shareable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Where The Opportunity Is -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Where The Opportunity Is</div>
+            <div class="section-title">Five Things Holding You Back</div>
+            <p class="section-text" style="margin-bottom: 32px;">The food is great, the concept is proven, and the brand has real personality. The challenge right now is that your digital presence is not keeping pace with your ambition. Here is where the biggest gaps are.</p>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">1</span>
+                    <h3>Your Website Has No Menu</h3>
+                </div>
+                <p class="section-text">Your website at thegiddygoose.co.uk is live but the menu section says "Coming Soon." For a restaurant, the menu page is the single most visited page after the homepage. When someone hears about The Giddy Goose and Googles you, the first thing they want to see is what you serve and what it costs. If they cannot find that in 10 seconds, they leave and try somewhere else.</p>
+                <p class="section-text">Right now, a potential customer who finds your website has to either call you, check Just Eat, or give up. Every extra step loses people. A complete website with your full menu, prices, photos of the food, your bottomless brunch details, and a way to book or order should be the absolute foundation everything else builds on.</p>
+                <p class="section-text">The website also does not mention your second location at Blackhall Mill, your opening hours are tucked away, and there is no online booking system visible. These are all friction points that cost you customers every single day.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">2</span>
+                    <h3>No TikTok Presence</h3>
+                </div>
+                <p class="section-text">TikTok is the most powerful free marketing tool available to restaurants right now. It is not even close. And wood-fired pizza is one of the platform's top-performing food categories. Videos of dough being stretched, flames licking the base of a pizza, toppings bubbling, that perfect leopard-spotted crust coming out of the oven. These videos routinely get hundreds of thousands of views with zero ad spend.</p>
+                <p class="section-text">You are in Consett. There is essentially zero competition from other local restaurants on TikTok. The first pizza place in the area to properly nail TikTok content will own the local food conversation. That should be you. Right now, potential customers in Consett, Stanley, and the surrounding villages are scrolling TikTok every evening deciding where to eat, and The Giddy Goose is not appearing in their feed.</p>
+                <p class="section-text">One well-shot 30-second video of a pizza going into your wood-fired oven could reach 50,000 to 100,000 people in County Durham without spending a single penny. That is not a guess. That is what we see happen repeatedly for restaurant clients.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">3</span>
+                    <h3>Instagram Is Not Working Hard Enough</h3>
+                </div>
+                <p class="section-text">You have an Instagram account at @giddygooserestaurant, which is good. But Instagram in 2026 rewards one thing above all else: Reels. Short-form video content. Static food photos do not get pushed to new audiences the way they used to. The algorithm has fundamentally changed.</p>
+                <p class="section-text">For a restaurant like yours, Instagram should be generating a steady stream of new local followers who then convert into customers. That means posting Reels at least 4 to 5 times per week, using location tags, local hashtags, and trending audio. Your content should be making people in Consett and the surrounding area hungry and then giving them an immediate way to book or order.</p>
+                <p class="section-text">The content is already happening in your kitchen every single day. Pizzas being made, burgers being stacked, wine being poured, a busy Friday night service. It just needs to be captured, edited into short engaging clips, and posted consistently.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">4</span>
+                    <h3>The Bottomless Brunch Is Not Being Marketed</h3>
+                </div>
+                <p class="section-text">"Bottomless brunch" is one of the most searched terms for eating out across the UK. People actively look for it. They search "bottomless brunch near me" on Google, they search it on TikTok, they ask friends for recommendations. You have a genuinely strong offer: unlimited pizza, prosecco, pints, and house wine for 90 minutes with a complimentary first drink. That is better than what most places in Newcastle charge twice as much for.</p>
+                <p class="section-text">But if nobody knows about it beyond your existing followers, it is not driving new customers through the door. This offer needs its own dedicated content series, its own highlight on Instagram, its own section on the website, and ideally its own landing page that ranks when someone searches "bottomless brunch Consett" or "bottomless brunch County Durham."</p>
+                <p class="section-text">One TikTok video showing a group of friends arriving, unlimited pizzas hitting the table, prosecco flowing, everyone having a brilliant time, could drive bookings for months.</p>
+            </div>
+
+            <div class="card opportunity-card">
+                <div class="opportunity-heading">
+                    <span class="opportunity-num">5</span>
+                    <h3>No Online Booking System</h3>
+                </div>
+                <p class="section-text">There is no visible way to book a table online. In 2026, a significant percentage of restaurant bookings happen outside of business hours. Someone is on their phone at 11pm deciding where to eat tomorrow night. If they cannot tap a button and book right then, they move on to somewhere they can. You lose that customer without ever knowing they were interested.</p>
+                <p class="section-text">A simple online booking widget on your website and linked from your Instagram bio removes all friction. It also gives you data on how many covers to expect, reduces no-shows when you send confirmation messages, and makes your operation look professional and established. It does not need to be expensive. Tools like ResDiary, DesignMyNight, or even a simple form that sends you a notification would transform your booking flow overnight.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- The Opportunity -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">The Opportunity</div>
+            <div class="section-title">From Trailer to Brand</div>
+            <div class="card case-study-card">
+                <p class="section-text">Your story is remarkable. A wood-fired pizza trailer with five-star reviews that grew into a restaurant and wine bar, and is now running a second location on weekends. That is not just a restaurant. That is a brand being built in real time. But right now, only the people who already know you can see that story. Everyone else just sees another pizza place on Newmarket Street.</p>
+
+                <div class="case-study-grid">
+                    <div class="case-study-stat">
+                        <div class="number">5.0</div>
+                        <div class="label">Google Rating</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">2</div>
+                        <div class="label">Locations</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">0</div>
+                        <div class="label">TikTok Posts</div>
+                    </div>
+                    <div class="case-study-stat">
+                        <div class="number">14mo</div>
+                        <div class="label">Since Opening</div>
+                    </div>
+                </div>
+
+                <div class="viral-callout">
+                    <div class="big-number">22 million views. One reel. One restaurant.</div>
+                    <div class="context"><strong>That was New Greek, a small independent restaurant in Newcastle, before we started working with them.</strong> They had zero social presence. We created short-form video content and one reel hit 22 million views. They went from quiet evenings to fully booked with a waiting list. The Giddy Goose has the same ingredients: incredible food, an authentic story, a growing loyal base, and a visual product that was made for social media. Wood-fired pizza content outperforms almost every other food category. You just need someone to press record.</div>
+                </div>
+
+                <p class="takeaway">You do not need to change anything about the food or the experience. You need to make sure that everyone within 15 miles of Consett knows The Giddy Goose exists and can see exactly what they are missing.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- How We Would Help -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">How We Would Help</div>
+            <div class="section-title">What We Would Do for You</div>
+
+            <div class="card">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content and Growth Package</h3>
+                <div class="package-grid">
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Short-form video production</strong> creating high-retention Reels and TikToks from your wood-fired oven, kitchen action, plating, busy service, and the bottomless brunch experience</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>TikTok account setup and growth</strong> with a dedicated posting cadence, trending audio, and pizza-specific formats that are proven to drive local discovery and bookings</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Instagram Reels strategy</strong> transforming your feed into a consistent stream of engaging content that reaches new local audiences every single day</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Website completion</strong> adding your full menu, booking system, bottomless brunch page, both locations, and professional food photography to create a site that actually converts visitors into customers</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Paid social campaigns</strong> targeting hungry people within a 10-mile radius of Consett and Blackhall Mill to drive bookings, delivery orders, and bottomless brunch reservations</p>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-bullet"></div>
+                        <p><strong>Review generation strategy</strong> with QR codes and follow-up prompts to build your Google review count at the new location and establish trust with people discovering you for the first time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Content Approach</h3>
+                <ul class="strategy-list">
+                    <li>Wood-fired oven content: flames, dough going in, pizza spinning, that perfect char bubbling, the pull shot when it comes out</li>
+                    <li>The origin story: from trailer to restaurant, the five-star reviews, the journey, why you do what you do</li>
+                    <li>Bottomless brunch series: groups arriving, unlimited pizza hitting the table, prosecco flowing, the atmosphere, the chaos, the fun</li>
+                    <li>Burger builds: stacking layers, cheese melting, the first bite, close-up hero shots</li>
+                    <li>Busy service footage: a packed Giddy Goose on a Friday night builds social proof and FOMO instantly</li>
+                    <li>Behind-the-scenes: morning dough prep, wood delivery, oven firing up, the ritual of getting ready for service</li>
+                    <li>Both locations: showing the restaurant and the Blackhall Mill setup gives variety and shows growth</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Video Ideas -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Ready-Made Content</div>
+            <div class="section-title">5 Video Ideas You Could Film Today</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are formats that are working right now for restaurants on TikTok and Instagram. All of them play to The Giddy Goose's strengths as a wood-fired pizza restaurant with a brilliant story and an even better product.</p>
+
+            <div class="video-ideas-grid">
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 01</div>
+                    <div class="idea-title">"From a trailer to a restaurant in 12 months"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Origin Story</span>
+                        <span class="idea-tag">Brand Building</span>
+                        <span class="idea-tag">Emotional</span>
+                    </div>
+                    <p class="idea-description">Show old footage or photos of the trailer. The five-star reviews coming in. The decision to go permanent. Walking into the empty unit on Newmarket Street. First service. Packed Friday night. The second location opening. A 60-second story arc that makes people root for you.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> People love underdog stories. "Small business grows" content consistently outperforms polished corporate content on TikTok. It builds emotional connection, makes people want to support you, and gets shared because people tag friends saying "we need to go here." This single video could define your brand for the next year.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 02</div>
+                    <div class="idea-title">"Bottomless pizza and prosecco for 90 minutes. Here is what happened."</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Experience</span>
+                        <span class="idea-tag">Social Proof</span>
+                        <span class="idea-tag">Viral Format</span>
+                    </div>
+                    <p class="idea-description">Film a group arriving for bottomless brunch. Time-lapse of pizzas coming to the table. Prosecco being poured. Everyone laughing and eating. Show how many pizzas the table got through. End with "Book yours. Link in bio." Fast cuts, upbeat audio, pure energy.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> "Bottomless" content is one of the most shared restaurant formats because it triggers curiosity and disbelief. People want to know if it is actually worth it, so they watch the whole video. Then they tag their friends. Then they book. This format drives direct revenue every time it is posted.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 03</div>
+                    <div class="idea-title">"POV: You are watching your pizza get made in a wood-fired oven"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">ASMR</span>
+                        <span class="idea-tag">Process</span>
+                        <span class="idea-tag">Satisfying</span>
+                    </div>
+                    <p class="idea-description">Close-up of dough being stretched by hand. Sauce being ladled. Toppings going on. The pizza sliding into the oven on the peel. Flames wrapping around the base. Cheese bubbling. That leopard-spotted crust. Pulling it out. Slicing it. Steam rising. No voiceover. Just the sounds and a chill track.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> Wood-fired pizza process videos are mesmerising. They sit at the intersection of ASMR, food content, and satisfying videos, which are three of the biggest content categories on the platform. These videos get watched multiple times because they are genuinely relaxing. High watch time means the algorithm pushes them to more people. Simple as that.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 04</div>
+                    <div class="idea-title">"Rating our entire menu from 1 to 10 (owner edition)"</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Personality</span>
+                        <span class="idea-tag">Menu Showcase</span>
+                        <span class="idea-tag">Engagement</span>
+                    </div>
+                    <p class="idea-description">You sit in front of the camera and rate every item on your own menu. Be honest. "This one is a 7, solid but not my favourite. This one is a 10, if you do not order this you are mad." Show each dish as you talk about it. Keep it casual, keep it real.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> This format drives massive engagement because people disagree in the comments. "How is that only a 7?!" Comments and debates boost the video to new audiences. It also shows every single thing on your menu in one piece of content, and it lets your personality come through. People do not just eat at restaurants. They eat at restaurants run by people they like.</div>
+                </div>
+
+                <div class="video-idea-card">
+                    <div class="idea-number">Idea 05</div>
+                    <div class="idea-title">"We run two restaurants from one kitchen. Here is how."</div>
+                    <div class="idea-meta">
+                        <span class="idea-tag">Behind The Scenes</span>
+                        <span class="idea-tag">Growth Story</span>
+                        <span class="idea-tag">Day In The Life</span>
+                    </div>
+                    <p class="idea-description">Show the logistics of running Consett and Blackhall Mill. Morning prep for both locations. Loading up for the second site. Setting up at Riverview Bakery. Serving customers in two different places on the same night. The hustle. The chaos. The satisfaction when both locations are packed.</p>
+                    <div class="idea-why"><strong>Why it works:</strong> "Day in the life" and "small business hustle" content is hugely popular because it is aspirational and relatable at the same time. People respect the work. They root for the growth. And it positions The Giddy Goose as a brand that is going somewhere, not just another local pizza shop. That perception drives loyalty and word-of-mouth.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Digital Enhancements -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Digital Enhancements</div>
+            <div class="section-title">Beyond Social Media</div>
+            <p class="section-text" style="margin-bottom: 32px;">These are strategic changes that would make a real difference alongside the social media work.</p>
+
+            <div class="enhancement-card">
+                <h4>Complete the Website</h4>
+                <p>Your website is live but it is missing the most important thing a restaurant website needs: the menu. Someone who finds thegiddygoose.co.uk right now sees that you exist but cannot see what you serve, what it costs, or how to book. That is a dead end.</p>
+                <ul class="enhancement-list">
+                    <li>Full menu with prices, descriptions, and photos of hero dishes</li>
+                    <li>Bottomless brunch page with details, pricing, and a booking button</li>
+                    <li>Both locations clearly listed with addresses, hours, and maps</li>
+                    <li>Online booking integration so people can reserve a table at any time</li>
+                    <li>Direct ordering for delivery and collection rather than sending people to Just Eat (where you lose commission)</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Quick win:</strong> Even just adding your menu as a PDF or simple page would immediately reduce the number of people who land on your site and leave without taking action. Every day without a menu page is lost revenue.</p>
+                </div>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Own Your Delivery Channel</h4>
+                <p>Right now, delivery orders go through Just Eat. That means you are paying commission on every order and you do not own the customer relationship. Just Eat keeps the customer data, not you. If you added direct ordering to your own website, you keep 100% of the revenue and you build a customer list you can market to again and again.</p>
+                <p>A simple ordering page on thegiddygoose.co.uk with a delivery radius around Consett would pay for itself within the first week. Promote it on social media and gradually shift customers away from the third-party platforms.</p>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Google Business Profile for the Restaurant</h4>
+                <p>Your five-star reviews were built on the trailer. The restaurant at 26 Newmarket Street needs its own established Google Business Profile with regular photo uploads, responses to every review, weekly posts about specials and events, and accurate hours for both locations.</p>
+                <ul class="enhancement-list">
+                    <li>Upload professional food photos weekly to keep the listing fresh</li>
+                    <li>Respond to every single review, positive and negative</li>
+                    <li>Post weekly updates about specials, events, and the bottomless brunch</li>
+                    <li>Ensure both locations have accurate, verified listings</li>
+                </ul>
+            </div>
+
+            <div class="enhancement-card">
+                <h4>Bottomless Brunch Landing Page</h4>
+                <p>Create a dedicated page specifically for your bottomless brunch offer. Optimise it for search terms like "bottomless brunch Consett," "bottomless brunch County Durham," and "bottomless brunch near me." Include pricing, what is included, photos of the experience, and a direct booking button. This single page could rank on Google and drive bookings from people who have never heard of The Giddy Goose but are actively searching for exactly what you offer.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- About Fusion Creative -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Who We Are</div>
+            <div class="section-title">About Fusion Creative</div>
+            <div class="card intro-card">
+                <p class="about-fc-text">Fusion Creative is a UK content and marketing agency that produces short-form video content, manages social media, builds websites, runs paid ad campaigns, and handles branding. Everything under one roof.</p>
+                <p class="about-fc-text">We are based in Newcastle and work with businesses across the North East and beyond. Our approach is simple: create content that people actually want to watch, post it consistently, and let the results speak for themselves. No stock footage, no generic templates, no recycled ideas.</p>
+                <p class="about-fc-text">We have generated over 27 million views for a single restaurant client in under 90 days, including a single reel that hit 22 million views. We understand what makes restaurant content perform, and we know how to turn great food into a packed dining room.</p>
+
+                <div class="about-fc-grid">
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">27M+</div>
+                        <div class="about-fc-stat-label">Views generated</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">20+</div>
+                        <div class="about-fc-stat-label">Videos per month</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">6+</div>
+                        <div class="about-fc-stat-label">Years in content</div>
+                    </div>
+                    <div class="about-fc-stat">
+                        <div class="about-fc-stat-val">100%</div>
+                        <div class="about-fc-stat-label">Impressions guarantee</div>
+                    </div>
+                </div>
+
+                <div class="about-fc-services">
+                    <span class="about-fc-tag">Short-Form Video</span>
+                    <span class="about-fc-tag">TikTok Management</span>
+                    <span class="about-fc-tag">Instagram Reels</span>
+                    <span class="about-fc-tag">Paid Ads</span>
+                    <span class="about-fc-tag">Website Design</span>
+                    <span class="about-fc-tag">Branding</span>
+                    <span class="about-fc-tag">SEO</span>
+                    <span class="about-fc-tag">Social Media Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Next Steps -->
+    <div class="container">
+        <div class="section">
+            <div class="section-label">Next Steps</div>
+            <div class="section-title">What Next</div>
+            <div class="card next-steps-card">
+                <ol class="steps-list">
+                    <li>Have a look through this audit. The key takeaway is simple: the food, the story, and the brand are already there. The digital presence just needs to catch up with how good the restaurant actually is.</li>
+                    <li>If any of this resonates, jump on a quick call with us. No pitch, just a conversation about where the biggest wins are for The Giddy Goose specifically.</li>
+                    <li>We can put together a specific content plan and show you exactly what the first month would look like across TikTok, Instagram, your website, and paid social.</li>
+                </ol>
+                <p class="closing-note">No pressure at all. But you have built something genuinely great here. The growth from trailer to restaurant to two locations proves that. The only thing missing is making sure everyone in Consett, Stanley, Durham, and the wider North East knows about it. The food does not need to get better. It just needs to be seen by more people. We would love to help make that happen.</p>
+                <div class="cta-wrap">
+                    <a href="https://cal.com/jason-williams-fwj7sj/30min" target="_blank" class="cta-btn">Schedule a Call</a>
+                    <div class="cta-sub">30 minutes. No obligation. Pick a time that suits you.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- Signature -->
+    <div class="container">
+        <div class="signature">
+            <div class="signature-name">Jay Williams</div>
+            <div class="signature-role">Founder, Fusion Creative</div>
+            <a href="https://fusioncreative.uk" target="_blank" class="signature-link">fusioncreative.uk</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="footer">
+            <div class="footer-confidential">Confidential - Prepared for The Giddy Goose</div>
+            <div class="footer-note">This audit was put together using live data from your Instagram, Facebook, Google, website, and Facebook Ad Library on 31 May 2026.</div>
+            <div class="footer-brand"><span>Fusion Creative</span></div>
+        </footer>
+    </div>
+
+</body>
+</html>
