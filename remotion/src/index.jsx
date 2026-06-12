@@ -8,6 +8,7 @@ import { ARMenuPromo } from './ARMenuPromo';
 import { NewGreekCaseStudyAd } from './NewGreekCaseStudyAd';
 import { ARMenuAd } from './ARMenuAd';
 import { ARMenuCarouselSlide1, ARMenuCarouselSlide2, ARMenuCarouselSlide3, ARMenuCarouselSlide4, ARMenuCarouselSlide5 } from './ARMenuCarousel';
+import { NewGreekBakeryMenu } from './NewGreekBakeryMenu';
 
 function Root() {
   return (
@@ -112,6 +113,14 @@ function Root() {
         fps={30}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id="NewGreekBakeryMenu"
+        component={NewGreekBakeryMenu}
+        durationInFrames={810}
+        fps={30}
+        width={1080}
+        height={1920}
       />
     </>
   );
