@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /proposals/
+Disallow: /plan/
+Disallow: /ar-menu/
+Disallow: /remotion/
+Disallow: /scripts/
+Disallow: /node_modules/
+Disallow: /hero-cards-preview
+Disallow: /pricing-preview
+
+Sitemap: https://fusioncreative.uk/sitemap.xml

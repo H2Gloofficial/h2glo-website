@@ -1,48 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
   <url>
     <loc>https://fusioncreative.uk/</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://fusioncreative.uk/about/</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://fusioncreative.uk/why-us</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://fusioncreative.uk/dashboard/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://fusioncreative.uk/contact</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://fusioncreative.uk/blog</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/privacy</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/terms</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
     <loc>https://fusioncreative.uk/blog/how-to-market-restaurant-tiktok-2026</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/short-form-video-restaurants-newcastle</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/newcastle-restaurant-2-million-views-case-study</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/tiktok-content-ideas-restaurants-newcastle</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/why-hiring-content-agency-beats-in-house</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/three-high-production-formats-every-restaurant-needs</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/restaurant-social-media-questions-answered</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/ai-advice-post-consistently-what-it-actually-means</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fusioncreative.uk/blog/viral-content-without-data-is-useless</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fusioncreative.uk/blog/stop-trying-to-look-professional</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fusioncreative.uk/blog/30-million-views-90-days-new-greek</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fusioncreative.uk/blog/why-iphone-content-beats-high-production</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Showcase / Demo Sites -->
+  <url>
+    <loc>https://fusioncreative.uk/h2glo/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
