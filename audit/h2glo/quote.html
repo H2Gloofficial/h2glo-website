@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Free Quote | H2Glo Professional Exterior Cleaning</title>
+    <meta name="description" content="Request a free, no-obligation quote for professional driveway, patio, fascia and block paving cleaning across the North East.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel placeholder -->
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #1E6BB8;
+            --blue-dark: #165a9a;
+            --white: #ffffff;
+            --off-white: #f8fafb;
+            --text-dark: #1a1a2e;
+            --text-mid: #4a5568;
+            --text-light: #718096;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--off-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 520px;
+            padding: 2rem 1.25rem 3rem;
+        }
+
+        /* Header */
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .logo h1 span { color: var(--text-dark); }
+
+        .logo p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Hero text */
+        .hero-text {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text p {
+            font-size: 0.95rem;
+            color: var(--text-mid);
+            line-height: 1.5;
+        }
+
+        /* Trust badges */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 1.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-mid);
+        }
+
+        .badge svg {
+            color: var(--blue);
+            flex-shrink: 0;
+        }
+
+        /* Form card */
+        .form-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .form-group textarea {
+            height: 90px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background: var(--blue-dark);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.75rem;
+        }
+
+        .form-error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            margin-bottom: 1rem;
+            font-size: 0.82rem;
+            color: #dc2626;
+            display: none;
+        }
+
+        /* Success state */
+        .form-success {
+            text-align: center;
+            padding: 1.5rem 0.5rem;
+            display: none;
+        }
+
+        .form-success .success-icon {
+            width: 56px;
+            height: 56px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .form-success h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-success p {
+            font-size: 0.9rem;
+            color: var(--text-mid);
+            line-height: 1.5;
+        }
+
+        .form-success .call-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1.25rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+
+        .footer a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="logo">
+        <h1>H2<span>Glo</span></h1>
+        <p>Professional Exterior Cleaning</p>
+    </div>
+
+    <div class="hero-text">
+        <h2>Get Your Free Quote in 24 Hours</h2>
+        <p>Fill in the form below and we will get back to you with a no-obligation quote for your property.</p>
+    </div>
+
+    <div class="badges">
+        <div class="badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Fully Insured
+        </div>
+        <div class="badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Family Run
+        </div>
+        <div class="badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Free Quotes
+        </div>
+    </div>
+
+    <div class="form-card">
+        <div id="formError" class="form-error"></div>
+        <form id="leadForm">
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" placeholder="John Smith" required autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" placeholder="07xxx xxx xxx" required autocomplete="tel">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="service">Service Required *</label>
+                <select id="service" name="service" required>
+                    <option value="">Select a service</option>
+                    <option value="Driveway Cleaning">Driveway Cleaning</option>
+                    <option value="Patio Cleaning">Patio Cleaning</option>
+                    <option value="Fascia & Soffit Cleaning">Fascia & Soffit Cleaning</option>
+                    <option value="Block Paving">Block Paving</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date</label>
+                    <input type="date" id="preferredDate" name="preferred_date">
+                </div>
+                <div class="form-group">
+                    <label for="preferredTime">Preferred Time</label>
+                    <select id="preferredTime" name="preferred_time">
+                        <option value="">Any time</option>
+                        <option value="Morning (8am-12pm)">Morning</option>
+                        <option value="Afternoon (12pm-4pm)">Afternoon</option>
+                        <option value="Evening (4pm-6pm)">Evening</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Tell us about the job</label>
+                <textarea id="message" name="message" placeholder="Approximate size, condition, anything we should know..."></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">Get My Free Quote</button>
+        </form>
+        <p class="form-note">No spam. No obligation. We will reply within 24 hours.</p>
+
+        <div id="formSuccess" class="form-success">
+            <div class="success-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Quote Request Received</h3>
+            <p>Thanks! We will get back to you within 24 hours with your free quote. If it is urgent, give us a call.</p>
+            <a href="tel:07465621099" class="call-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Call 07465 621 099
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>H2Glo Professional Exterior Cleaning | North East England</p>
+        <p style="margin-top:0.3rem;">Website by <a href="https://fusioncreative.uk" target="_blank">Fusion Creative</a></p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+    const SUPABASE_URL = 'https://hjmmefphhckinejctqhs.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhqbW1lZnBoaGNraW5lamN0cWhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2MDY4NTksImV4cCI6MjA4OTE4Mjg1OX0.6jd5neNNxiiq8Avs2mdAB5o3T05iVCBbHeVq4DnDzH0';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const leadForm = document.getElementById('leadForm');
+    const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
+    const submitBtn = document.getElementById('submitBtn');
+    const formNote = document.querySelector('.form-note');
+
+    // Set min date to today
+    document.getElementById('preferredDate').min = new Date().toISOString().split('T')[0];
+
+    leadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formError.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const data = {
+            name: document.getElementById('name').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            email: document.getElementById('email').value.trim() || null,
+            service: document.getElementById('service').value,
+            preferred_date: document.getElementById('preferredDate').value || null,
+            preferred_time: document.getElementById('preferredTime').value || null,
+            message: document.getElementById('message').value.trim() || null
+        };
+
+        const { error } = await supabase.from('h2glo_leads').insert([data]);
+
+        if (error) {
+            formError.textContent = 'Something went wrong. Please call us on 07465 621 099 instead.';
+            formError.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Get My Free Quote';
+            return;
+        }
+
+        // Send WhatsApp notification (fire and forget)
+        fetch(SUPABASE_URL + '/functions/v1/h2glo-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).catch(() => {});
+
+        leadForm.style.display = 'none';
+        formNote.style.display = 'none';
+        formSuccess.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
