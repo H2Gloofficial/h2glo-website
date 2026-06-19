@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor SOP | Fusion Creative</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0e0e0f;--surface:#18181b;--surface2:#202024;--border:rgba(255,255,255,0.09);
+    --text:#f4f4f5;--dim:#a1a1aa;--mute:#71717a;--coral:#E8553C;--coral-soft:rgba(232,85,60,0.12);
+    --green:#34d399;--amber:#fbbf24;--rad:14px;
+  }
+  body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px;margin:0 auto;padding:0 22px}
+  a{color:var(--coral);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .topbar{border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:0;background:rgba(14,14,15,0.85);backdrop-filter:blur(10px);z-index:10}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:800;letter-spacing:0.5px;font-size:15px}
+  .brand span{color:var(--coral)}
+  .badge-private{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(251,191,36,0.35);background:rgba(251,191,36,0.08);padding:4px 10px;border-radius:99px}
+  .hero{padding:56px 0 28px}
+  .hero .eyebrow{color:var(--coral);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:14px}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.1rem,6vw,3.2rem);line-height:1.05;font-weight:400}
+  .hero p{color:var(--dim);font-size:1.05rem;margin-top:14px;max-width:620px}
+  .divider{height:1px;background:var(--border);margin:8px 0}
+  section{padding:34px 0;border-top:1px solid var(--border)}
+  .kicker{color:var(--coral);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px}
+  h2{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px}
+  h3{font-size:1.05rem;font-weight:700;margin:18px 0 6px}
+  p.lead{color:var(--dim);margin-bottom:14px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);padding:20px 22px;margin:14px 0}
+  .card.soft{background:var(--coral-soft);border-color:rgba(232,85,60,0.25)}
+  ul.list{list-style:none;margin:6px 0}
+  ul.list li{position:relative;padding:7px 0 7px 26px;color:var(--text);border-bottom:1px solid var(--border)}
+  ul.list li:last-child{border-bottom:none}
+  ul.list li::before{content:"";position:absolute;left:4px;top:15px;width:7px;height:7px;border-radius:2px;background:var(--coral)}
+  .muted{color:var(--dim)}
+  .golden li::before{background:var(--green)}
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:8px 0}
+  .spec{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .spec .k{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mute)}
+  .spec .v{font-size:1.15rem;font-weight:800;margin-top:4px}
+  .spec .v small{font-weight:500;color:var(--dim);font-size:.8rem}
+  table.shadow{width:100%;border-collapse:collapse;margin-top:8px;font-size:.95rem}
+  table.shadow td{padding:9px 4px;border-bottom:1px solid var(--border)}
+  table.shadow td:first-child{color:var(--dim)}
+  table.shadow td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+  .num{display:inline-flex;width:26px;height:26px;flex:none;background:var(--coral);color:#fff;border-radius:7px;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin-right:10px}
+  .op{display:flex;align-items:flex-start;margin:16px 0}
+  .op h3{margin:0 0 4px}
+  .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:14px}
+  .vid{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .vid .frame{position:relative;width:100%;aspect-ratio:9/16;background:#000}
+  .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid .cap{padding:10px 12px;font-size:.85rem;font-weight:600}
+  /* safe zone diagram */
+  .sz-wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin-top:10px}
+  .phone{position:relative;width:240px;flex:none;aspect-ratio:9/16;background:#0a0a0b;border:1px solid var(--border);border-radius:20px;overflow:hidden;font-size:9px}
+  .phone .z{position:absolute;background:rgba(232,85,60,0.20);color:#f6b6a6;display:flex;align-items:center;justify-content:center;text-align:center;padding:2px;font-weight:600;letter-spacing:.03em}
+  .z-top{top:0;left:0;right:0;height:9%}
+  .z-bottom{bottom:0;left:0;right:0;height:20%}
+  .z-right{right:0;top:40%;bottom:20%;width:22%;writing-mode:vertical-rl}
+  .z-edge{top:0;bottom:0;width:5%;background:rgba(232,85,60,0.28);writing-mode:vertical-rl;font-size:7px;color:#f6b6a6;display:flex;align-items:center;justify-content:center}
+  .z-edge.l{left:0}.z-edge.r{right:0}
+  .safe{position:absolute;top:11%;left:8%;right:25%;bottom:21%;border:2px dashed var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--green);font-weight:700;font-size:10px;padding:4px}
+  .sz-key{flex:1;min-width:220px}
+  .footer{padding:40px 0 60px;color:var(--mute);font-size:.85rem;text-align:center;border-top:1px solid var(--border)}
+  .checkbox-list li{padding-left:30px}
+  .checkbox-list li::before{content:"";width:13px;height:13px;border-radius:3px;border:1.5px solid var(--green);background:transparent;left:4px;top:11px}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">FUSION <span>CREATIVE</span></div>
+  <div class="badge-private">Private &middot; Internal &middot; Do not share publicly</div>
+</div></div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Editor Standard Operating Procedure</div>
+    <h1>How we edit at Fusion Creative</h1>
+    <p>Everything you need to edit our videos to standard. Read this fully before your first edit, and keep it open while you work. The single most important rule is at the top of the next section.</p>
+  </div>
+
+  <section style="border-top:none;padding-top:6px">
+    <div class="card soft">
+      <div class="kicker" style="color:var(--coral)">The golden rules</div>
+      <ul class="list golden">
+        <li><strong>Every brief comes with a reference video. Match its pacing, energy and style.</strong> When in doubt, copy the reference.</li>
+        <li>Edit and export in <strong>4K 60fps, 9:16, maximum quality</strong>. One export, used for both Reels and TikTok.</li>
+        <li>All text and captions in <strong>SF Pro Text Bold</strong> with the exact shadow below, kept inside the <strong>safe zone</strong>.</li>
+        <li>Use sound to make it <strong>funnier and more entertaining</strong>, never just for the sake of it.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">01</div>
+    <h2>Before you start, every video</h2>
+    <ul class="list">
+      <li><strong>Watch the reference video first, all the way through.</strong> It defines the pacing, cut rhythm, energy and overall feel. Your edit should feel like it belongs next to it. Do not start cutting until you have watched it.</li>
+      <li><strong>Know the content type.</strong> Funny / skit content is comedy-led with snappy cuts and sound. Promotional / serious content is cleaner and message-led, still dynamic but more polished.</li>
+      <li><strong>Read the brief notes</strong> for anything specific to that video.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">02</div>
+    <h2>Technical specs &middot; non-negotiable</h2>
+    <p class="lead">All footage is filmed in 4K 60. Everything stays at that quality through to export.</p>
+    <div class="spec-grid">
+      <div class="spec"><div class="k">Resolution</div><div class="v">4K <small>2160 x 3840</small></div></div>
+      <div class="spec"><div class="k">Frame rate</div><div class="v">60 fps</div></div>
+      <div class="spec"><div class="k">Aspect ratio</div><div class="v">9:16 <small>vertical, always</small></div></div>
+      <div class="spec"><div class="k">Quality</div><div class="v">Maximum <small>render + export</small></div></div>
+      <div class="spec"><div class="k">Exports</div><div class="v">One <small>Reels + TikTok</small></div></div>
+      <div class="spec"><div class="k">Format</div><div class="v">.mp4 <small>H.264 high bitrate</small></div></div>
+    </div>
+    <ul class="list">
+      <li>Set your sequence to 4K 60 and never downscale. Max render quality on, max bitrate on export.</li>
+      <li>One single file is delivered and used on both platforms, so it must respect the combined safe zone.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">03</div>
+    <h2>Safe zone</h2>
+    <p class="lead">Overlay <a href="https://drive.google.com/file/d/15SvPS1CEBS2OWuKP1HTLPGKrijY8GJ0x/view" target="_blank">Instagram Safe Zones.png</a> (in the Drive folder) on your timeline. Because it is one export for both Reels and TikTok, design to the tightest combined safe area. Keep all text and key action inside the green zone.</p>
+    <div class="sz-wrap">
+      <div class="phone">
+        <div class="z z-top">Top bar / For You</div>
+        <div class="z z-right">Like &middot; Comment &middot; Share</div>
+        <div class="z z-bottom">Username &middot; caption &middot; audio</div>
+        <div class="z-edge l">Cropped</div>
+        <div class="z-edge r">Cropped</div>
+        <div class="safe">SAFE ZONE<br>text &amp; key action here</div>
+      </div>
+      <div class="sz-key">
+        <h3 style="margin-top:0">Keep clear of</h3>
+        <ul class="list">
+          <li><strong>Top bar</strong> &middot; the clock and "For You" area</li>
+          <li><strong>Right rail</strong> &middot; like, comment and share buttons</li>
+          <li><strong>Bottom</strong> &middot; username, caption and audio strip</li>
+          <li><strong>Left and right edges</strong> &middot; cropped on some phones</li>
+        </ul>
+        <p class="muted" style="font-size:.9rem">Subjects can fill the frame, but anything that <em>must</em> be seen (faces in key moments, captions, prices, logos, CTAs) stays inside the green box.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">04</div>
+    <h2>Text &amp; captions</h2>
+    <ul class="list">
+      <li><strong>Font: SF Pro Text Bold</strong> (install <a href="https://drive.google.com/file/d/1Kj3Bzok4ZAX0c87i0SIUCOcLmNCRYd-J/view" target="_blank">SF-Pro-Text-Bold.otf</a> from the Drive folder). Use it for every piece of on-screen text and for captions.</li>
+      <li><strong>Caption everything that is said.</strong> When someone talks, it gets captioned, timed tightly to the audio and paced like the reference. Keep lines short and readable.</li>
+      <li>Place text inside the safe zone, never under the right-side buttons or the bottom caption bar.</li>
+    </ul>
+    <div class="card">
+      <h3 style="margin-top:0">Text shadow, match exactly</h3>
+      <table class="shadow">
+        <tr><td>Colour</td><td>Black</td></tr>
+        <tr><td>Opacity</td><td>100</td></tr>
+        <tr><td>Angle</td><td>135&deg;</td></tr>
+        <tr><td>Distance</td><td>3.0</td></tr>
+        <tr><td>Blur</td><td>20.0</td></tr>
+        <tr><td>Size / Spread</td><td>250</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">05</div>
+    <h2>Sound &amp; audio</h2>
+    <ul class="list">
+      <li><strong>Funny content:</strong> use funny audios and sound effects to amplify the comedy. Pull viral sounds from the <a href="https://www.myinstants.com/en/index/gb/" target="_blank">SAT viral sounds board on Myinstants</a> where they fit.</li>
+      <li><strong>Do not overdo it.</strong> Only add a sound when it genuinely makes the moment funnier or more entertaining. If in doubt, leave it out.</li>
+      <li><strong>Promotional content:</strong> clean, fitting music and minimal effects, matched to the tone.</li>
+      <li><strong>Levels:</strong> dialogue clear and up front, music and effects sitting under it. No clipping or distortion.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">06</div>
+    <h2>Annotations &amp; on-screen animation</h2>
+    <p class="lead">Used well, these lift retention and land the jokes. Used too much, they get noisy. Study the reference videos for how heavy to go, and copy that level.</p>
+    <ul class="list">
+      <li><strong>Punch-ins / zooms</strong> on reactions, punchlines and key moments to add energy.</li>
+      <li><strong>Animated captions</strong> that pop in with the speech, word by word or line by line, matched to the pace.</li>
+      <li><strong>Emphasis</strong> on key words, scale up, change colour, or sync a sound effect to them.</li>
+      <li><strong>Callouts</strong> like arrows, circles and highlights to point at exactly what matters.</li>
+      <li><strong>Cutaways and b-roll</strong> to illustrate what is being said and keep it visual.</li>
+      <li><strong>Speed ramps</strong> for comedic timing, snap into the punchline, hold on the reaction.</li>
+    </ul>
+    <div class="card soft"><p style="margin:0"><strong>Rule of thumb:</strong> every effect should earn its place by making the video clearer, funnier or more engaging. If it does not, cut it.</p></div>
+  </section>
+
+  <section>
+    <div class="kicker">07</div>
+    <h2>Pacing &amp; style</h2>
+    <ul class="list">
+      <li><strong>Match the reference pacing and cut rhythm.</strong> This is the most important creative rule.</li>
+      <li><strong>Hook in the first 1 to 2 seconds.</strong> Open on the most interesting frame or line.</li>
+      <li><strong>Funny:</strong> comedic timing, hold on reactions, punch in on the beat, no dead air.</li>
+      <li><strong>Promotional:</strong> cleaner and clearer, still energetic, message comes through.</li>
+      <li>Cut tight. If a moment is not adding energy, information or comedy, trim it.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">08</div>
+    <h2>Reference &amp; example edits</h2>
+    <p class="lead">These are finished Fusion edits. They are the standard. Watch how the captions, sound, pacing and annotations are used, and match that style. Full files are in the <a href="https://drive.google.com/drive/folders/1LzDm9cWRcZBVmb6G3FJTUGjiEbu1qHmC" target="_blank">Video examples folder</a>.</p>
+    <div class="videos">
+      <div class="vid"><div class="frame"><iframe src="https://drive.google.com/file/d/1cWeh82BX0Ei90asEs9A5IwRgRfrIvaDj/preview" allow="autoplay" allowfullscreen></iframe></div><div class="cap">Who's in England's Squad</div></div>
+      <div class="vid"><div class="frame"><iframe src="https://drive.google.com/file/d/18IhygLxTkXmV1ElDuR4rmgv5n7IJSOH1/preview" allow="autoplay" allowfullscreen></iframe></div><div class="cap">Masala vs Mossalla</div></div>
+      <div class="vid"><div class="frame"><iframe src="https://drive.google.com/file/d/1xTL601J32LBmXSmHj_QMXHjfLnTtCrLW/preview" allow="autoplay" allowfullscreen></iframe></div><div class="cap">Aayan Lighthouse</div></div>
+      <div class="vid"><div class="frame"><iframe src="https://drive.google.com/file/d/13eDoKB7mAZjl6vzrNwsiAT9T1HCIq-qt/preview" allow="autoplay" allowfullscreen></iframe></div><div class="cap">Mild to Hot, 3 Dishes</div></div>
+      <div class="vid"><div class="frame"><iframe src="https://drive.google.com/file/d/1cyyfi5zSoiS7aMRyQxSfWXUQtsqeLPNw/preview" allow="autoplay" allowfullscreen></iframe></div><div class="cap">6 Bites, Onion Bhaji</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">09</div>
+    <h2>Delivery</h2>
+    <ul class="list">
+      <li>Export to spec: 4K 60, 9:16, maximum quality, one .mp4 file.</li>
+      <li>Name the file <code style="color:var(--coral)">ClientName_VideoTitle_v1.mp4</code> (use v2, v3 for revisions).</li>
+      <li>Upload to the shared delivery folder and notify on the agreed channel.</li>
+      <li>Revisions: read the notes carefully, change only what is asked, re-export and re-upload as the next version.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">10</div>
+    <h2>Final checklist, before you submit</h2>
+    <div class="card">
+      <ul class="list checkbox-list">
+        <li>4K, 60fps, 9:16, maximum quality</li>
+        <li>One export, works for both Reels and TikTok</li>
+        <li>Everything important inside the safe zone</li>
+        <li>All text in SF Pro Text Bold with the correct shadow</li>
+        <li>Every line of speech captioned and tightly timed</li>
+        <li>Sounds make it funnier or better, never distracting</li>
+        <li>Pacing, energy and style match the reference</li>
+        <li>Hook lands in the first 1 to 2 seconds</li>
+        <li>File named correctly and uploaded to the right folder</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Assets</div>
+    <h2>Everything you need</h2>
+    <ul class="list">
+      <li><a href="https://drive.google.com/drive/folders/1Tz9ea4giv2BtBpcgXX1TfnjDOlWikX6F" target="_blank">Main editor folder</a> &middot; font, safe-zone template and examples</li>
+      <li><a href="https://drive.google.com/file/d/1Kj3Bzok4ZAX0c87i0SIUCOcLmNCRYd-J/view" target="_blank">SF Pro Text Bold font</a> (SF-Pro-Text-Bold.otf)</li>
+      <li><a href="https://drive.google.com/file/d/15SvPS1CEBS2OWuKP1HTLPGKrijY8GJ0x/view" target="_blank">Safe-zone overlay template</a> (Instagram Safe Zones.png)</li>
+      <li><a href="https://drive.google.com/drive/folders/1LzDm9cWRcZBVmb6G3FJTUGjiEbu1qHmC" target="_blank">Reference / example videos</a></li>
+      <li><a href="https://www.myinstants.com/en/index/gb/" target="_blank">SAT viral sounds (Myinstants)</a></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="footer">
+  Confidential &middot; Internal editor document for Fusion Creative. Please do not share this link publicly.
+</div>
+
+</body>
+</html>
