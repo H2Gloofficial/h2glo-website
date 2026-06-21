@@ -36,8 +36,10 @@
   .sp-hero { position: relative; overflow: hidden; }
   /* Soft colour blobs so the frosted-glass elements have something to read against */
   .sp-hero::before, .sp-hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(90px); z-index: 0; pointer-events: none; }
-  .sp-hero::before { width: 520px; height: 520px; background: rgba(230,59,46,.20); top: -150px; left: -110px; }
-  .sp-hero::after { width: 360px; height: 360px; background: rgba(255,150,90,.18); bottom: -120px; left: 26%; }
+  .sp-hero::before { width: 520px; height: 520px; background: rgba(230,59,46,.20); top: -150px; left: -110px; animation: spDrift1 16s ease-in-out infinite alternate; }
+  .sp-hero::after { width: 360px; height: 360px; background: rgba(255,150,90,.18); bottom: -120px; left: 26%; animation: spDrift2 20s ease-in-out infinite alternate; }
+  @keyframes spDrift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(50px, 40px) scale(1.12); } }
+  @keyframes spDrift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-40px, -26px) scale(1.1); } }
 
   .sp-inner { position: relative; z-index: 10; max-width: 72rem; margin: 0 auto; padding: 112px 24px 90px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
   .sp-copy { max-width: 34rem; position: relative; z-index: 10; }
@@ -54,6 +56,20 @@
 
   .sp-hero h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2.05rem, 5.6vw, 4.2rem); line-height: 1.05; letter-spacing: -.02em; margin: 26px 0 0; text-wrap: balance; }
   .sp-hero h1 em { color: var(--signal); font-style: normal; }
+
+  /* Rotating word cycler (mirrors the homepage hero) */
+  .sp-cycler { display: inline-grid; grid-template-columns: 1fr; align-items: baseline; vertical-align: baseline; }
+  .sp-cword { grid-area: 1 / 1; opacity: 0; transform: translateY(0.2em); transition: opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.34,1.56,.64,1); font-style: italic; font-weight: 400; color: var(--signal); white-space: nowrap; }
+  .sp-cword.active { opacity: 1; transform: translateY(0); z-index: 2; }
+  .sp-cword.out { opacity: 0; transform: translateY(-0.2em); z-index: 1; }
+
+  /* Live, glowing case-studies badge */
+  .sp-badge.live { border-color: rgba(230,59,46,.45); animation: spLiveGlow 2.6s ease-in-out infinite; }
+  .sp-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--signal); flex: none; animation: spLiveDot 1.8s ease-out infinite; }
+  .sp-badge .txt b { color: var(--signal); font-weight: 700; }
+  @keyframes spLiveGlow { 0%,100% { box-shadow: 0 6px 20px rgba(0,0,0,.06), 0 0 0 0 rgba(230,59,46,0); } 50% { box-shadow: 0 6px 20px rgba(0,0,0,.06), 0 0 24px 2px rgba(230,59,46,.42); } }
+  @keyframes spLiveDot { 0% { box-shadow: 0 0 0 0 rgba(230,59,46,.55); } 70% { box-shadow: 0 0 0 9px rgba(230,59,46,0); } 100% { box-shadow: 0 0 0 0 rgba(230,59,46,0); } }
+  @media (prefers-reduced-motion: reduce) { .sp-badge.live, .sp-badge .dot, .sp-form button, .sp-hero::before, .sp-hero::after { animation: none !important; } .sp-cword { transition: none; } }
   .sp-lead { font-size: 1.1rem; color: #4a4a47; line-height: 1.7; margin: 22px 0 0; }
 
   /* Glass form */
@@ -65,8 +81,9 @@
   .sp-form svg.mail { width: 18px; height: 18px; color: var(--mid); flex: none; }
   .sp-form input { flex: 1; border: 0; outline: none; background: transparent; font-family: var(--font-head); font-size: .98rem; height: 44px; color: var(--black); min-width: 0; }
   .sp-form input::placeholder { color: #8a8a86; }
-  .sp-form button { background: var(--signal); color: #fff; border: 0; font-family: var(--font-head); font-weight: 600; font-size: .92rem; padding: 0 18px; height: 44px; border-radius: 9px; cursor: pointer; white-space: nowrap; transition: transform .15s ease; }
-  .sp-form button:hover { transform: translateY(-1px); }
+  .sp-form button { flex: none; background: var(--signal); color: #fff; border: 0; font-family: var(--font-head); font-weight: 600; font-size: .92rem; padding: 0 18px; height: 44px; border-radius: 9px; cursor: pointer; white-space: nowrap; transition: transform .15s ease, box-shadow .3s ease; box-shadow: 0 6px 18px rgba(230,59,46,.3); animation: spBtnGlow 2.8s ease-in-out infinite; }
+  .sp-form button:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(230,59,46,.6); }
+  @keyframes spBtnGlow { 0%,100% { box-shadow: 0 6px 18px rgba(230,59,46,.28); } 50% { box-shadow: 0 8px 30px rgba(230,59,46,.55); } }
   .sp-note { font-family: var(--font-mono); font-size: .72rem; color: var(--mid); margin: 0 0 26px; }
 
   .sp-bullets { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
@@ -107,13 +124,15 @@
   <main class="sp-hero">
     <div class="sp-inner">
       <div class="sp-copy">
-        <a href="/case-studies" class="sp-badge">
-          <span class="new">New</span>
-          <span class="txt">Client case studies are live</span>
+        <a href="/case-studies" class="sp-badge live">
+          <span class="dot"></span>
+          <span class="txt">Client case studies are <b>live</b></span>
           <span class="arr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
 
-        <h1>Everything your brand needs to <em>grow online.</em></h1>
+        <h1>We make your <span class="sp-cycler" aria-label="business">
+          <span class="sp-cword active">Brand</span><span class="sp-cword">Business</span><span class="sp-cword">Restaurant</span><span class="sp-cword">Cafe</span><span class="sp-cword">Takeaway</span><span class="sp-cword">Gym</span><span class="sp-cword">Salon</span><span class="sp-cword">Bar</span><span class="sp-cword">Store</span>
+        </span><br>grow online.</h1>
         <p class="sp-lead">Short-form video, websites, branding, SEO, and paid ads. One team, one monthly price, and real results you can watch happen.</p>
 
         <form class="sp-form" onsubmit="window.location.href='/contact'; return false;">
@@ -152,6 +171,18 @@
     document.getElementById('wall').innerHTML = TILES.map(function (t) {
       return '<div class="sp-tile"><img src="' + t.src + '" loading="lazy" alt="Client video"><span class="sp-vbadge">' + EYE + t.f + '</span></div>';
     }).join('');
+
+    // Rotating word cycler (mirrors the homepage hero)
+    var cw = document.querySelectorAll('.sp-cword');
+    var ci = 0;
+    if (cw.length > 1) setInterval(function () {
+      var cur = cw[ci];
+      cur.classList.remove('active');
+      cur.classList.add('out');
+      setTimeout(function () { cur.classList.remove('out'); }, 600);
+      ci = (ci + 1) % cw.length;
+      cw[ci].classList.add('active');
+    }, 2400);
   </script>
 </body>
 </html>
