@@ -39,19 +39,18 @@
   @keyframes spDrift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-34px, -22px) scale(1.1); } }
 
   /* Full-height video wall on the right, ordered top-performing -> down */
-  .sp-wall { position: absolute; top: 0; bottom: 0; right: 0; left: 33%; display: flex; gap: 14px; padding: 14px 14px 14px 0; z-index: 1; }
-  .sp-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; will-change: transform; }
-  .sp-col.c1 { animation: spColA 12s ease-in-out infinite alternate; }
-  .sp-col.c2 { transform: translateY(26px); animation: spColB 14s ease-in-out infinite alternate; }
-  .sp-col.c3 { animation: spColC 13s ease-in-out infinite alternate; }
-  @keyframes spColA { from { transform: translateY(0); } to { transform: translateY(-20px); } }
-  @keyframes spColB { from { transform: translateY(26px); } to { transform: translateY(8px); } }
-  @keyframes spColC { from { transform: translateY(-10px); } to { transform: translateY(-30px); } }
+  .sp-wall { position: absolute; top: 0; bottom: 0; right: 0; left: 33%; display: flex; gap: 14px; padding: 0 14px; z-index: 1; }
+  .sp-col { flex: 1; min-width: 0; overflow: hidden; }
+  .sp-track { will-change: transform; }
+  .sp-track.up { animation: spScrollUp 55s linear infinite; }
+  .sp-track.down { animation: spScrollDown 62s linear infinite; }
+  .sp-col:hover .sp-track { animation-play-state: paused; }
+  @keyframes spScrollUp { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  @keyframes spScrollDown { from { transform: translateY(-50%); } to { transform: translateY(0); } }
 
-  .sp-tile { position: relative; flex: 1; min-height: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 38px rgba(0,0,0,.18); opacity: 0; animation: spTileIn .7s ease forwards; transition: transform .35s ease, box-shadow .35s ease; }
-  .sp-tile:hover { transform: scale(1.035); box-shadow: 0 24px 50px rgba(230,59,46,.22); z-index: 4; }
-  .sp-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  @keyframes spTileIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .sp-tile { position: relative; display: block; margin-bottom: 14px; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 38px rgba(0,0,0,.18); transition: transform .35s ease, box-shadow .35s ease; }
+  .sp-tile:hover { transform: scale(1.03); box-shadow: 0 24px 50px rgba(230,59,46,.22); z-index: 4; }
+  .sp-tile img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
   .sp-vbadge { position: absolute; left: 8px; bottom: 8px; display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-family: var(--font-mono); font-size: .64rem; font-weight: 700; padding: 4px 9px 4px 7px; border-radius: 99px; border: 1px solid rgba(255,255,255,.18); }
   .sp-vbadge svg { width: 11px; height: 11px; color: #ff7a5c; flex: none; }
 
@@ -98,8 +97,7 @@
   .sp-bullets li::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--signal); flex: none; -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/12px no-repeat; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/12px no-repeat; }
 
   @media (prefers-reduced-motion: reduce) {
-    .sp-badge.live, .sp-badge .dot, .sp-form button, .sp-hero::before, .sp-hero::after, .sp-col, .sp-tile { animation: none !important; }
-    .sp-tile { opacity: 1; }
+    .sp-badge.live, .sp-badge .dot, .sp-form button, .sp-hero::before, .sp-hero::after, .sp-track { animation: none !important; }
     .sp-cword { transition: none; }
   }
 
@@ -112,9 +110,8 @@
     .sp-lead { margin-left: auto; margin-right: auto; }
     .sp-bullets { justify-content: center; }
     .sp-fade { display: none; }
-    .sp-wall { position: static; left: auto; right: auto; flex-direction: row; padding: 0 16px 50px; gap: 9px; }
-    .sp-col { gap: 9px; transform: none !important; animation: none !important; }
-    .sp-col .sp-tile { aspect-ratio: 3 / 4; flex: none; }
+    .sp-wall { position: static; left: auto; right: auto; height: 76vh; padding: 0 16px 40px; gap: 9px; }
+    .sp-tile { margin-bottom: 9px; }
   }
 </style>
 </head>
@@ -166,26 +163,46 @@
 
   <script>
     var TILES = [
-      { src: '/assets/showcase/wall-1.jpg', v: 69702430, f: '69.7M' },
-      { src: '/assets/showcase/wall-4.jpg', v: 1833266,  f: '1.8M' },
-      { src: '/assets/showcase/wall-9.jpg', v: 1136284,  f: '1.1M' },
-      { src: '/assets/showcase/wall-2.jpg', v: 866000,   f: '866K' },
-      { src: '/assets/showcase/wall-5.jpg', v: 825000,   f: '825K' },
-      { src: '/assets/showcase/wall-3.jpg', v: 579000,   f: '579K' },
-      { src: '/assets/showcase/wall-6.jpg', v: 254000,   f: '254K' },
-      { src: '/assets/showcase/wall-7.jpg', v: 160454,   f: '160K' },
-      { src: '/assets/showcase/wall-8.jpg', v: 117234,   f: '117K' }
+      { src: '/assets/showcase/sc-01.jpg', v: 69702430, f: '69.7M' },
+      { src: '/assets/showcase/sc-02.jpg', v: 7053986, f: '7.1M' },
+      { src: '/assets/showcase/sc-03.jpg', v: 1833266, f: '1.8M' },
+      { src: '/assets/showcase/sc-04.jpg', v: 1136284, f: '1.1M' },
+      { src: '/assets/showcase/sc-05.jpg', v: 865754, f: '866K' },
+      { src: '/assets/showcase/sc-06.jpg', v: 856186, f: '856K' },
+      { src: '/assets/showcase/sc-07.jpg', v: 824659, f: '825K' },
+      { src: '/assets/showcase/sc-08.jpg', v: 578995, f: '579K' },
+      { src: '/assets/showcase/sc-09.jpg', v: 366007, f: '366K' },
+      { src: '/assets/showcase/sc-10.jpg', v: 254239, f: '254K' },
+      { src: '/assets/showcase/sc-11.jpg', v: 217477, f: '217K' },
+      { src: '/assets/showcase/sc-12.jpg', v: 178970, f: '179K' },
+      { src: '/assets/showcase/sc-13.jpg', v: 166421, f: '166K' },
+      { src: '/assets/showcase/sc-14.jpg', v: 160454, f: '160K' },
+      { src: '/assets/showcase/sc-15.jpg', v: 155283, f: '155K' },
+      { src: '/assets/showcase/sc-16.jpg', v: 117234, f: '117K' },
+      { src: '/assets/showcase/sc-17.jpg', v: 83797, f: '84K' },
+      { src: '/assets/showcase/sc-18.jpg', v: 83585, f: '84K' },
+      { src: '/assets/showcase/sc-19.jpg', v: 81489, f: '81K' },
+      { src: '/assets/showcase/sc-20.jpg', v: 73185, f: '73K' },
+      { src: '/assets/showcase/sc-21.jpg', v: 65033, f: '65K' },
+      { src: '/assets/showcase/sc-22.jpg', v: 63710, f: '64K' },
+      { src: '/assets/showcase/sc-23.jpg', v: 60539, f: '61K' },
+      { src: '/assets/showcase/sc-24.jpg', v: 58073, f: '58K' },
+      { src: '/assets/showcase/sc-25.jpg', v: 57301, f: '57K' },
+      { src: '/assets/showcase/sc-26.jpg', v: 53934, f: '54K' },
+      { src: '/assets/showcase/sc-27.jpg', v: 50160, f: '50K' }
     ];
     var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg>';
     // top-performing first; distribute column-major so the top row is the 3 best
     var sorted = TILES.slice().sort(function (a, b) { return b.v - a.v; });
     var cols = [[], [], []];
-    sorted.forEach(function (t, i) { cols[i % 3].push(t); });
-    var tile = function (t, d) {
-      return '<div class="sp-tile" style="animation-delay:' + d + 'ms"><img src="' + t.src + '" loading="lazy" alt="Client video"><span class="sp-vbadge">' + EYE + t.f + '</span></div>';
+    sorted.forEach(function (t, i) { cols[i % 3].push(t); }); // column-major: tops are the 3 best, descending down
+    var dir = ['down', 'up', 'down']; // left scrolls down, middle up, right down
+    var tileHtml = function (t) {
+      return '<div class="sp-tile"><img src="' + t.src + '" alt="Client video"><span class="sp-vbadge">' + EYE + t.f + '</span></div>';
     };
     document.getElementById('wall').innerHTML = cols.map(function (col, ci) {
-      return '<div class="sp-col c' + (ci + 1) + '">' + col.map(function (t, ri) { return tile(t, (ri * 3 + ci) * 80); }).join('') + '</div>';
+      var set = col.map(tileHtml).join('');
+      return '<div class="sp-col"><div class="sp-track ' + dir[ci] + '">' + set + set + '</div></div>'; // duplicated for a seamless loop
     }).join('');
 
     // Rotating word cycler (mirrors the homepage hero)
