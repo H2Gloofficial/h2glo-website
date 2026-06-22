@@ -249,6 +249,17 @@
               </div>
             </div>
 
+            <div class="form-row">
+              <div class="form-group">
+                <label for="social_handle">Instagram / TikTok handle *</label>
+                <input type="text" id="social_handle" name="social_handle" required placeholder="@yourbusiness (or type 'none')" />
+              </div>
+              <div class="form-group">
+                <label for="website">Website *</label>
+                <input type="text" id="website" name="website" required placeholder="yoursite.com (or type 'none')" />
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="budget">Monthly Budget</label>
               <select id="budget" name="budget">
@@ -310,6 +321,8 @@
             var contactBusiness = (document.getElementById('restaurant') || {}).value || '';
             var contactBudget = (document.getElementById('budget') || {}).value || '';
             var contactMessage = (document.getElementById('message') || {}).value || '';
+            var contactSocial = (document.getElementById('social_handle') || {}).value || '';
+            var contactWebsite = (document.getElementById('website') || {}).value || '';
             fetch('https://newgreek.fusioncreative.uk/api/audit-lead/', {
               method: 'POST',
               headers: {'Content-Type': 'application/json'},
@@ -321,6 +334,8 @@
                 business_type: 'Contact form enquiry',
                 goal: contactBudget ? 'Budget: ' + contactBudget : 'Not specified',
                 social_status: 'N/A - contact form',
+                social_handle: contactSocial || null,
+                website: contactWebsite || null,
                 notes: 'Source: Contact Page Form\nBudget: ' + (contactBudget || 'Not specified') + '\nMessage: ' + contactMessage
               })
             }).catch(function(){});
