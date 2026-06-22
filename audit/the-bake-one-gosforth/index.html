@@ -41,6 +41,13 @@
             50% { box-shadow: 0 0 40px rgba(232,85,60,0.5); }
         }
 
+        @keyframes pulseGlowGreen {
+            0%, 100% { box-shadow: 0 0 20px rgba(37,211,102,0.35); }
+            50% { box-shadow: 0 0 40px rgba(37,211,102,0.55); }
+        }
+        .cta-btn[href*="wa.me"] { background: #25D366; animation: pulseGlowGreen 3s ease-in-out infinite; }
+        .cta-btn[href*="wa.me"]:hover { background: #1da851; box-shadow: 0 8px 30px rgba(37,211,102,0.45); }
+
         @keyframes scaleIn {
             from { opacity: 0; transform: scale(0.85); }
             to { opacity: 1; transform: scale(1); }
