@@ -948,6 +948,83 @@
             font-size: 1rem;
         }
 
+        /* ── Booking Calendar ── */
+        .booking-section { margin-top: 24px; }
+        .booking-section > label {
+            font-size: 0.8rem; font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase; letter-spacing: 1px;
+            display: block; margin-bottom: 10px;
+        }
+        .cal-wrap {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 18px 16px;
+        }
+        .cal-nav {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .cal-nav-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; border-radius: 8px; width: 32px; height: 32px;
+            cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .cal-nav-btn:hover { background: rgba(255,255,255,0.2); }
+        .cal-month-label { font-weight: 600; color: #fff; font-size: 0.95rem; }
+        .cal-grid {
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+            margin-bottom: 16px;
+        }
+        .cal-day-header {
+            text-align: center; font-size: 0.68rem; font-weight: 600;
+            color: rgba(255,255,255,0.45); padding: 4px 0; text-transform: uppercase;
+        }
+        .cal-day {
+            aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; font-size: 0.85rem; cursor: pointer;
+            color: rgba(255,255,255,0.9); background: transparent;
+            border: 1px solid transparent; transition: all 0.15s; font-weight: 500;
+        }
+        .cal-day:hover:not(.cal-day--disabled):not(.cal-day--empty) { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+        .cal-day--today { border-color: rgba(255,255,255,0.25); }
+        .cal-day--selected { background: var(--blue) !important; border-color: var(--blue) !important; color: #fff !important; font-weight: 700; }
+        .cal-day--disabled { color: rgba(255,255,255,0.2); cursor: not-allowed; }
+        .cal-day--empty { cursor: default; }
+        .cal-day--has-slots::after {
+            content: ''; display: block; width: 4px; height: 4px;
+            border-radius: 50%; background: var(--green);
+            position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+        }
+        .cal-day { position: relative; }
+        .cal-slots-wrap { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px; }
+        .cal-slots-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 10px; font-weight: 500; }
+        .cal-slots-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .cal-slot {
+            padding: 8px 14px; border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; transition: all 0.15s;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        .cal-slot:hover { background: rgba(255,255,255,0.2); }
+        .cal-slot--selected { background: var(--blue) !important; border-color: var(--blue) !important; }
+        .cal-slot--unavailable { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.25); cursor: not-allowed; text-decoration: line-through; }
+        .cal-loading { color: rgba(255,255,255,0.5); font-size: 0.88rem; padding: 10px 0; }
+        .cal-next-available {
+            background: rgba(59,158,255,0.12); border: 1px solid rgba(59,158,255,0.3);
+            border-radius: 10px; padding: 10px 14px; font-size: 0.88rem; color: rgba(255,255,255,0.8);
+            margin-top: 8px;
+        }
+        .cal-next-available a { color: var(--blue); cursor: pointer; font-weight: 600; text-decoration: underline; }
+        .booking-confirmed {
+            background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 12px; padding: 12px 16px; margin-top: 12px;
+            font-size: 0.9rem; color: rgba(255,255,255,0.9); display: none;
+        }
+        .booking-confirmed strong { color: var(--green); }
+
         /* ── Map (service area) ── */
         .map-section {
             position: relative;
@@ -1740,8 +1817,39 @@
                     <textarea id="message" name="message" required placeholder="Tell us what you need cleaning and any details about your property..."></textarea>
                 </div>
             </div>
+            <!-- Site Visit Booking Calendar -->
+            <div class="booking-section form-group full">
+                <label>Book a Site Visit *</label>
+                <div class="cal-wrap">
+                    <div class="cal-nav">
+                        <button type="button" class="cal-nav-btn" id="calPrev">&#8592;</button>
+                        <span class="cal-month-label" id="calMonthLabel"></span>
+                        <button type="button" class="cal-nav-btn" id="calNext">&#8594;</button>
+                    </div>
+                    <div class="cal-grid" id="calGrid">
+                        <div class="cal-day-header">Mon</div>
+                        <div class="cal-day-header">Tue</div>
+                        <div class="cal-day-header">Wed</div>
+                        <div class="cal-day-header">Thu</div>
+                        <div class="cal-day-header">Fri</div>
+                        <div class="cal-day-header">Sat</div>
+                        <div class="cal-day-header">Sun</div>
+                    </div>
+                    <div class="cal-slots-wrap" id="calSlotsWrap" style="display:none">
+                        <div class="cal-slots-label" id="calSlotsLabel">Available times (5pm – 7:30pm)</div>
+                        <div class="cal-slots-grid" id="calSlotsGrid"></div>
+                        <div class="cal-next-available" id="calNextAvail" style="display:none"></div>
+                    </div>
+                </div>
+                <div class="booking-confirmed" id="bookingConfirmed">
+                    ✓ Site visit booked for <strong id="bookingConfirmedText"></strong>
+                </div>
+                <input type="hidden" id="preferred_date" name="preferred_date">
+                <input type="hidden" id="preferred_time" name="preferred_time">
+            </div>
+
             <div class="form-submit">
-                <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Request Site Visit</button>
             </div>
         </form>
     </div>
@@ -1928,30 +2036,199 @@
     });
 
     // ── Form Submit ──
-    function handleSubmit(e) {
+    /* ── Booking Calendar ── */
+    const PLATFORM = 'https://h2glo-platform.vercel.app';
+    const SLOT_LABELS = { '17:00':'5:00 PM','17:30':'5:30 PM','18:00':'6:00 PM','18:30':'6:30 PM','19:00':'7:00 PM','19:30':'7:30 PM' };
+    let calYear, calMonth, calSelectedDate = null, calSelectedTime = null, slotCache = {};
+
+    function calInit() {
+        const now = new Date();
+        calYear = now.getFullYear();
+        calMonth = now.getMonth();
+        renderCal();
+        document.getElementById('calPrev').addEventListener('click', () => { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); });
+        document.getElementById('calNext').addEventListener('click', () => { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); });
+    }
+
+    function renderCal() {
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        document.getElementById('calMonthLabel').textContent = months[calMonth] + ' ' + calYear;
+        const grid = document.getElementById('calGrid');
+        // Remove previous day cells (keep 7 headers)
+        while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+        const today = new Date(); today.setHours(0,0,0,0);
+        const minDate = new Date(today); minDate.setDate(today.getDate() + 1); // earliest = tomorrow
+        const maxDate = new Date(today); maxDate.setDate(today.getDate() + 60);
+
+        const firstDay = new Date(calYear, calMonth, 1);
+        // Monday=0 offset
+        let startOffset = firstDay.getDay() - 1; if (startOffset < 0) startOffset = 6;
+        const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+        for (let i = 0; i < startOffset; i++) {
+            const empty = document.createElement('div');
+            empty.className = 'cal-day cal-day--empty';
+            grid.appendChild(empty);
+        }
+        for (let d = 1; d <= daysInMonth; d++) {
+            const date = new Date(calYear, calMonth, d);
+            const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+            const cell = document.createElement('div');
+            cell.className = 'cal-day';
+            cell.textContent = d;
+            const isDisabled = date < minDate || date > maxDate;
+            if (isDisabled) { cell.classList.add('cal-day--disabled'); }
+            else {
+                if (date.toDateString() === today.toDateString()) cell.classList.add('cal-day--today');
+                if (dateStr === calSelectedDate) cell.classList.add('cal-day--selected');
+                cell.addEventListener('click', () => selectDate(dateStr));
+            }
+            grid.appendChild(cell);
+        }
+    }
+
+    async function selectDate(dateStr) {
+        calSelectedDate = dateStr;
+        calSelectedTime = null;
+        document.getElementById('preferred_date').value = '';
+        document.getElementById('preferred_time').value = '';
+        document.getElementById('bookingConfirmed').style.display = 'none';
+        renderCal();
+
+        const postcode = document.getElementById('postcode').value.trim();
+        if (!postcode) { showSlots(dateStr, null, 'Enter your postcode above first'); return; }
+
+        showSlots(dateStr, null, null, true);
+
+        const cacheKey = dateStr + '|' + postcode;
+        if (slotCache[cacheKey]) { showSlots(dateStr, slotCache[cacheKey]); return; }
+
+        try {
+            const res = await fetch(`${PLATFORM}/api/availability?date=${dateStr}&postcode=${encodeURIComponent(postcode)}`);
+            const data = await res.json();
+            slotCache[cacheKey] = data;
+            showSlots(dateStr, data);
+        } catch { showSlots(dateStr, null, 'Could not load slots — please try again'); }
+    }
+
+    function showSlots(dateStr, data, errMsg, loading) {
+        const wrap = document.getElementById('calSlotsWrap');
+        const grid = document.getElementById('calSlotsGrid');
+        const nextAvail = document.getElementById('calNextAvail');
+        const label = document.getElementById('calSlotsLabel');
+        wrap.style.display = '';
+        grid.innerHTML = '';
+        nextAvail.style.display = 'none';
+
+        const friendly = new Date(dateStr + 'T12:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' });
+
+        if (loading) { grid.innerHTML = `<span class="cal-loading">Checking availability…</span>`; label.textContent = friendly; return; }
+        if (errMsg) { grid.innerHTML = `<span class="cal-loading">${errMsg}</span>`; return; }
+
+        label.textContent = `Available times — ${friendly}`;
+
+        if (!data || !data.slots || data.slots.length === 0) {
+            grid.innerHTML = `<span class="cal-loading">No slots available on this date</span>`;
+            if (data && data.nextAvailable) {
+                const nextFriendly = new Date(data.nextAvailable + 'T12:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' });
+                nextAvail.style.display = '';
+                nextAvail.innerHTML = `Next available: <a onclick="jumpToDate('${data.nextAvailable}')">${nextFriendly}</a>`;
+            }
+            return;
+        }
+
+        Object.keys(SLOT_LABELS).forEach(time => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'cal-slot';
+            btn.textContent = SLOT_LABELS[time];
+            const avail = data.slots.includes(time);
+            if (!avail) { btn.classList.add('cal-slot--unavailable'); btn.disabled = true; }
+            else {
+                if (time === calSelectedTime) btn.classList.add('cal-slot--selected');
+                btn.addEventListener('click', () => selectSlot(dateStr, time, friendly, btn));
+            }
+            grid.appendChild(btn);
+        });
+    }
+
+    function selectSlot(dateStr, time, friendly, btn) {
+        calSelectedTime = time;
+        document.querySelectorAll('.cal-slot').forEach(b => b.classList.remove('cal-slot--selected'));
+        btn.classList.add('cal-slot--selected');
+        document.getElementById('preferred_date').value = dateStr;
+        document.getElementById('preferred_time').value = time;
+        const confirmed = document.getElementById('bookingConfirmed');
+        document.getElementById('bookingConfirmedText').textContent = `${friendly} at ${SLOT_LABELS[time]}`;
+        confirmed.style.display = '';
+        confirmed.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function jumpToDate(dateStr) {
+        const d = new Date(dateStr + 'T12:00:00');
+        calYear = d.getFullYear(); calMonth = d.getMonth();
+        renderCal();
+        selectDate(dateStr);
+    }
+
+    document.addEventListener('DOMContentLoaded', calInit);
+
+    /* ── Form Submit ── */
+    async function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
-        const btn = form.querySelector('button[type="submit"]');
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-        // Build WhatsApp message as fallback
-        const name = form.name.value;
-        const phone = form.phone.value;
-        const postcode = form.postcode.value;
-        const town = form.town.value;
-        const message = form.message.value;
-        const text = encodeURIComponent(
-            `Hi, I'd like a quote please.\n\nName: ${name}\nPhone: ${phone}\nPostcode: ${postcode}\nTown: ${town}\n\n${message}`
-        );
-        setTimeout(() => {
-            btn.textContent = 'Sent! Redirecting to WhatsApp...';
-            setTimeout(() => {
-                window.open(`https://api.whatsapp.com/send/?phone=447368292293&text=${text}`, '_blank');
-                btn.textContent = 'Submit Enquiry';
-                btn.disabled = false;
+        const btn = document.getElementById('submitBtn');
+
+        const preferred_date = document.getElementById('preferred_date').value;
+        const preferred_time = document.getElementById('preferred_time').value;
+        if (!preferred_date || !preferred_time) {
+            alert('Please select a site visit date and time slot.');
+            return;
+        }
+
+        btn.textContent = 'Booking…'; btn.disabled = true;
+
+        const payload = {
+            name: form.name.value.trim(),
+            phone: form.phone.value.trim(),
+            email: form.email.value.trim() || null,
+            address: null,
+            postcode: form.postcode.value.trim(),
+            town: form.town.value.trim(),
+            service: form.message.value.trim(),
+            message: `Site visit requested for ${preferred_date} at ${SLOT_LABELS[preferred_time] || preferred_time}`,
+            preferred_date,
+            preferred_time,
+            source: 'website_form',
+            consent: true,
+        };
+
+        try {
+            const res = await fetch(`${PLATFORM}/api/webhooks/web-lead`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+            if (data.ok) {
+                btn.textContent = '✓ Booked!';
                 form.reset();
-            }, 1000);
-        }, 800);
+                calSelectedDate = null; calSelectedTime = null; slotCache = {};
+                document.getElementById('calSlotsWrap').style.display = 'none';
+                document.getElementById('bookingConfirmed').style.display = 'none';
+                renderCal();
+                // Scroll to confirmation
+                btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => { btn.textContent = 'Request Site Visit'; btn.disabled = false; }, 4000);
+            } else {
+                throw new Error(data.error || 'Unknown error');
+            }
+        } catch (err) {
+            console.error(err);
+            btn.textContent = 'Request Site Visit'; btn.disabled = false;
+            alert('Something went wrong. Please try WhatsApp or call us directly.');
+        }
     }
 
     // ── Smooth parallax on hero background ──
