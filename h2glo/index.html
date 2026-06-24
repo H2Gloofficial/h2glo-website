@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY_PLACEHOLDER&libraries=places&callback=initGooglePlaces" async defer></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <style>
         /* ── Brand tokens ── */
@@ -952,6 +953,13 @@
         .form-group textarea { resize: vertical; min-height: 100px; }
         #houseNumber { width: 90px !important; flex-shrink: 0; }
         .field-error { font-size: 0.76rem; color: #f87171; margin-top: 4px; display: block; min-height: 1em; }
+        .pac-container { border-radius: 12px; border: 2px solid rgba(255,255,255,0.2); background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.25); font-family: 'Inter', sans-serif; margin-top: 4px; overflow: hidden; }
+        .pac-item { padding: 10px 16px; cursor: pointer; font-size: 0.9rem; color: #0a1628; border-top: 1px solid #f0f0f0; }
+        .pac-item:first-child { border-top: none; }
+        .pac-item:hover, .pac-item-selected { background: #f0f7ff; }
+        .pac-item-query { font-weight: 600; color: #0a1628; }
+        .pac-matched { font-weight: 700; }
+        .pac-icon { display: none; }
         #houseNumber:focus { border-color:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.15); }
         input.f-valid, textarea.f-valid { border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.15) !important; }
         input.f-invalid, textarea.f-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.15) !important; }
@@ -1825,17 +1833,7 @@
                 </div>
                 <div class="form-group full">
                     <label for="address">Street Address *</label>
-                    <input type="text" id="address" name="address" placeholder="e.g. 14 Maple Street" autocomplete="address-line1">
-                    <div id="streetSuggestWrap" style="display:none;margin-top:8px">
-                        <p id="addressLoading" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:none;margin:0">Finding your street…</p>
-                        <div id="streetSuggestInner" style="display:none">
-                            <div style="display:flex;gap:8px;align-items:center">
-                                <input type="text" id="houseNumber" placeholder="House / flat no." autocomplete="address-line1">
-                                <span id="streetLabel" style="flex:1;background:rgba(255,255,255,0.92);border:2px solid rgba(255,255,255,0.4);border-radius:12px;padding:14px 18px;color:#0a1628;font-size:0.95rem;font-family:'Inter',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></span>
-                            </div>
-                            <p style="font-size:0.75rem;color:rgba(255,255,255,0.35);margin:5px 0 0">Enter your house or flat number — street detected from postcode</p>
-                        </div>
-                    </div>
+                    <input type="text" id="address" name="address" placeholder="Start typing your address…" autocomplete="off">
                     <span class="field-error" id="addressErr"></span>
                 </div>
                 <div class="form-group">
@@ -2168,57 +2166,76 @@
         mark('message','messageErr', true);
     }
 
-    /* ── Address Picker ── */
-    var detectedStreet = '';
+    /* ── Google Places Address Autocomplete ── */
+    var placesAutocomplete = null;
+    var placesLatLng = null;
 
-    function buildAddressPicker(lat, lng) {
-        var suggestWrap = document.getElementById('streetSuggestWrap');
-        var inner       = document.getElementById('streetSuggestInner');
-        var loading     = document.getElementById('addressLoading');
-
-        detectedStreet = '';
-        suggestWrap.style.display = '';
-        loading.style.display = '';
-        inner.style.display = 'none';
-        document.getElementById('houseNumber').value = '';
-
-        fetch('/api/streets?lat=' + lat + '&lng=' + lng)
-        .then(function(r){ return r.json(); })
-        .then(function(data){
-            loading.style.display = 'none';
-            if (!data.street) { suggestWrap.style.display = 'none'; return; }
-            detectedStreet = data.street;
-            document.getElementById('streetLabel').textContent = data.street;
-            inner.style.display = '';
-            document.getElementById('houseNumber').focus();
-        })
-        .catch(function(){ loading.style.display = 'none'; suggestWrap.style.display = 'none'; });
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
-        document.getElementById('houseNumber').addEventListener('input', combineAddress);
-        document.getElementById('houseNumber').addEventListener('blur', combineAddress);
-
-        document.getElementById('postcode').addEventListener('input', function(){
-            if (!this.value.trim()) {
-                detectedStreet = '';
-                document.getElementById('streetSuggestWrap').style.display = 'none';
-                document.getElementById('address').value = '';
-                mark('address','addressErr', null);
-            }
+    function initPlacesAutocomplete() {
+        if (!window.google || !window.google.maps || !window.google.maps.places) return;
+        var input = document.getElementById('address');
+        placesAutocomplete = new google.maps.places.Autocomplete(input, {
+            componentRestrictions: { country: 'gb' },
+            types: ['address'],
+            fields: ['address_components', 'formatted_address', 'geometry']
         });
 
-        document.getElementById('address').addEventListener('input', function(){
-            if (!detectedStreet) chkAddress();
+        // If postcode already validated, bias to that area
+        if (placesLatLng) {
+            placesAutocomplete.setBounds(new google.maps.Circle({
+                center: placesLatLng, radius: 500
+            }).getBounds());
+        }
+
+        placesAutocomplete.addListener('place_changed', function () {
+            var place = placesAutocomplete.getPlace();
+            if (!place.address_components) return;
+
+            var streetNum = '', route = '', town = '', postcode = '';
+            place.address_components.forEach(function (c) {
+                if (c.types.includes('street_number')) streetNum = c.long_name;
+                if (c.types.includes('route'))         route     = c.long_name;
+                if (c.types.includes('postal_town'))   town      = c.long_name;
+                if (c.types.includes('postal_code'))   postcode  = c.long_name;
+            });
+
+            var fullAddress = [streetNum, route].filter(Boolean).join(' ');
+            input.value = fullAddress || place.formatted_address;
+
+            // Auto-fill town if empty
+            var townEl = document.getElementById('town');
+            if (town && !townEl.value.trim()) { townEl.value = town; chkTown(); }
+
+            // Auto-fill postcode if empty
+            var pcEl = document.getElementById('postcode');
+            if (postcode && !pcEl.value.trim()) { pcEl.value = postcode; }
+
+            chkAddress();
+        });
+    }
+
+    // Called when postcode validates — sets the location bias for suggestions
+    function setPlacesBias(lat, lng) {
+        placesLatLng = { lat: lat, lng: lng };
+        if (placesAutocomplete) {
+            placesAutocomplete.setBounds(new google.maps.Circle({
+                center: placesLatLng, radius: 500
+            }).getBounds());
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('address').addEventListener('input', chkAddress);
+        document.getElementById('postcode').addEventListener('input', function () {
+            if (!this.value.trim()) {
+                placesLatLng = null;
+                document.getElementById('address').value = '';
+                mark('address', 'addressErr', null);
+            }
         });
     });
 
-    function combineAddress() {
-        if (!detectedStreet) return;
-        var num = document.getElementById('houseNumber').value.trim();
-        document.getElementById('address').value = num ? num + ' ' + detectedStreet : detectedStreet;
-        chkAddress();
-    }
+    // Google calls this once the Places library is ready
+    window.initGooglePlaces = initPlacesAutocomplete;
 
     /* ── Postcode (async, calls postcodes.io) ── */
     function chkPostcode() {
@@ -2236,7 +2253,7 @@
                 var town = document.getElementById('town');
                 if (!town.value.trim()) { town.value = data.result.admin_district || ''; chkTown(); }
                 slotCache = {};
-                buildAddressPicker(data.result.latitude, data.result.longitude);
+                setPlacesBias(data.result.latitude, data.result.longitude);
             } else {
                 mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
                 document.getElementById('streetSuggestWrap').style.display = 'none';
