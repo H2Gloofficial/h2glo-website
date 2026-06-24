@@ -2054,146 +2054,144 @@
 
     // ── Form Submit ──
     /* ── Field Validation ── */
-    function setValid(id, errId) {
-        const el = document.getElementById(id);
-        el.closest('.form-group').classList.remove('field-invalid');
-        el.closest('.form-group').classList.add('field-valid');
-        const err = document.getElementById(errId);
-        if (err) { err.textContent = ''; }
-    }
-    function setInvalid(id, errId, msg) {
-        const el = document.getElementById(id);
-        el.closest('.form-group').classList.remove('field-valid');
-        el.closest('.form-group').classList.add('field-invalid');
-        const err = document.getElementById(errId);
-        if (err) { err.textContent = msg; }
-        return false;
-    }
-    function clearState(id) {
-        const el = document.getElementById(id);
-        el.closest('.form-group').classList.remove('field-valid','field-invalid');
+    /* ══════════════════════════════════════════
+       VALIDATION — state-driven, button locked
+       ══════════════════════════════════════════ */
+
+    // One truth: each field is valid (true), invalid (false), or untouched (null)
+    var fieldState = { name: null, phone: null, email: null, postcode: null, address: null, town: null, message: null };
+
+    function mark(id, errId, valid, msg) {
+        var el = document.getElementById(id);
+        var grp = el ? el.closest('.form-group') : null;
+        if (!grp) return;
+        grp.classList.toggle('field-valid',   valid === true);
+        grp.classList.toggle('field-invalid',  valid === false);
+        var err = document.getElementById(errId);
+        if (err) err.textContent = valid === false ? (msg || '') : '';
+        fieldState[id] = valid;
+        updateSubmitBtn();
     }
 
-    function validateName(show) {
-        const v = document.getElementById('name').value.trim();
-        if (!v) return show ? setInvalid('name','nameErr','Please enter your full name') : false;
-        if (/\d/.test(v)) return setInvalid('name','nameErr','Name should not contain numbers');
-        if (!/^[a-zA-ZÀ-ÿ\s\-'.]+$/.test(v)) return setInvalid('name','nameErr','Name contains invalid characters');
-        if (v.length < 2) return setInvalid('name','nameErr','Name is too short');
-        if (v.split(/\s+/).filter(Boolean).length < 2) return setInvalid('name','nameErr','Please enter your first and last name');
-        setValid('name','nameErr'); return true;
+    function updateSubmitBtn() {
+        var btn = document.getElementById('submitBtn');
+        if (!btn) return;
+        var allOk = Object.values(fieldState).every(function(v) { return v === true; });
+        btn.disabled = !allOk;
+        btn.style.opacity = allOk ? '' : '0.45';
+        btn.style.cursor  = allOk ? '' : 'not-allowed';
     }
 
-    function validatePhone(show) {
-        const raw = document.getElementById('phone').value.trim();
-        if (!raw) return show ? setInvalid('phone','phoneErr','Please enter your phone number') : false;
-        const digits = raw.replace(/[\s\-().+]/g,'');
-        const ukMobile = /^(07\d{9}|447\d{9})$/;
-        const ukLandline = /^(0[1-9]\d{8,9}|44[1-9]\d{8,9})$/;
-        if (!ukMobile.test(digits) && !ukLandline.test(digits)) return setInvalid('phone','phoneErr','Enter a valid UK phone number (e.g. 07xxx xxxxxx)');
-        setValid('phone','phoneErr'); return true;
+    function chkName() {
+        var v = document.getElementById('name').value.trim();
+        if (!v) return mark('name','nameErr', false, 'Please enter your full name');
+        if (/\d/.test(v)) return mark('name','nameErr', false, 'Name should not contain numbers');
+        if (!/^[a-zA-ZÀ-ÿ\s\-'.]+$/.test(v)) return mark('name','nameErr', false, 'Name contains invalid characters');
+        if (v.split(/\s+/).filter(Boolean).length < 2) return mark('name','nameErr', false, 'Please enter your first and last name');
+        mark('name','nameErr', true);
     }
 
-    function validateEmail(show) {
-        const v = document.getElementById('email').value.trim();
-        if (!v) { clearState('email'); return true; } // optional
-        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-        if (!ok) return setInvalid('email','emailErr','Enter a valid email address (e.g. you@email.com)');
-        setValid('email','emailErr'); return true;
+    function chkPhone() {
+        var raw = document.getElementById('phone').value.trim();
+        if (!raw) return mark('phone','phoneErr', false, 'Please enter your phone number');
+        var d = raw.replace(/[\s\-().+]/g,'');
+        if (!/^(07\d{9}|447\d{9}|0[1-9]\d{8,9}|44[1-9]\d{8,9})$/.test(d))
+            return mark('phone','phoneErr', false, 'Enter a valid UK number e.g. 07700 900000');
+        mark('phone','phoneErr', true);
     }
 
-    function validateAddress(show) {
-        const v = document.getElementById('address').value.trim();
-        if (!v) return show ? setInvalid('address','addressErr','Please enter your street address') : false;
-        if (v.length < 5) return setInvalid('address','addressErr','Address is too short — include your house number and street');
-        if (!/\d/.test(v)) return setInvalid('address','addressErr','Include your house or building number (e.g. 14 Maple Street)');
-        if (!/[a-zA-Z]{2}/.test(v)) return setInvalid('address','addressErr','Include the street name');
-        setValid('address','addressErr'); return true;
+    function chkEmail() {
+        var v = document.getElementById('email').value.trim();
+        if (!v) { mark('email','emailErr', true); return; } // optional
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
+            return mark('email','emailErr', false, 'Enter a valid email e.g. you@email.com');
+        mark('email','emailErr', true);
     }
 
-    function validateTown(show) {
-        const v = document.getElementById('town').value.trim();
-        if (!v) return show ? setInvalid('town','townErr','Please enter your town or area') : false;
-        if (/\d/.test(v)) return setInvalid('town','townErr','Town should not contain numbers');
-        if (v.length < 2) return setInvalid('town','townErr','Town name is too short');
-        setValid('town','townErr'); return true;
+    function chkAddress() {
+        var v = document.getElementById('address').value.trim();
+        if (!v) return mark('address','addressErr', false, 'Please enter your street address');
+        if (v.length < 5) return mark('address','addressErr', false, 'Include your house number and street name');
+        if (!/\d/.test(v)) return mark('address','addressErr', false, 'Include your house or building number');
+        if (!/[a-zA-Z]{2}/.test(v)) return mark('address','addressErr', false, 'Include the street name');
+        mark('address','addressErr', true);
     }
 
-    function validateMessage(show) {
-        const v = document.getElementById('message').value.trim();
-        if (!v) return show ? setInvalid('message','messageErr','Please describe what you need cleaning') : false;
-        if (v.length < 20) return setInvalid('message','messageErr',`A bit more detail please (${v.length}/20 characters)`);
-        if (/^(.)\1+$/.test(v.replace(/\s/g,''))) return setInvalid('message','messageErr','Please describe the job properly');
-        setValid('message','messageErr'); return true;
+    function chkTown() {
+        var v = document.getElementById('town').value.trim();
+        if (!v) return mark('town','townErr', false, 'Please enter your town or area');
+        if (/\d/.test(v)) return mark('town','townErr', false, 'Town should not contain numbers');
+        if (v.length < 2) return mark('town','townErr', false, 'Town name is too short');
+        mark('town','townErr', true);
     }
 
-    function attachValidation() {
-        const fields = [
-            { id:'name',    validate: validateName,    events:['blur','input'] },
-            { id:'phone',   validate: validatePhone,   events:['blur','input'] },
-            { id:'email',   validate: validateEmail,   events:['blur','input'] },
-            { id:'address', validate: validateAddress, events:['blur','input'] },
-            { id:'town',    validate: validateTown,    events:['blur','input'] },
-            { id:'message', validate: validateMessage, events:['blur','input'] },
-        ];
-        fields.forEach(({ id, validate, events }) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-            el.addEventListener('blur', () => validate(true));
-            el.addEventListener('input', () => {
-                // Only show live feedback once the user has already seen an error
-                if (el.closest('.form-group').classList.contains('field-invalid')) validate(true);
-                else clearState(id);
-            });
-        });
+    function chkMessage() {
+        var v = document.getElementById('message').value.trim();
+        if (!v) return mark('message','messageErr', false, 'Please describe what you need cleaning');
+        if (v.length < 20) return mark('message','messageErr', false, 'A bit more detail please (' + v.length + '/20 characters)');
+        if (/^(.)\1*$/.test(v.replace(/\s/g,''))) return mark('message','messageErr', false, 'Please describe the job properly');
+        mark('message','messageErr', true);
     }
 
-    /* ── Postcode Validation ── */
-    let postcodeValid = false;
-
-    async function validatePostcode(raw) {
-        const input = document.getElementById('postcode');
-        const status = document.getElementById('postcodeStatus');
-        const clean = raw.replace(/\s+/g,'').toUpperCase();
-        if (clean.length < 5) {
-            postcodeValid = false; status.textContent = ''; clearState('postcode'); return;
-        }
+    /* ── Postcode (async, calls postcodes.io) ── */
+    function chkPostcode() {
+        var input  = document.getElementById('postcode');
+        var status = document.getElementById('postcodeStatus');
+        var raw    = input.value.trim();
+        if (!raw) { mark('postcode','postcodeMsg', false, 'Please enter your postcode'); status.textContent=''; return; }
+        var clean  = raw.replace(/\s+/g,'').toUpperCase();
+        if (clean.length < 5) { mark('postcode','postcodeMsg', false, 'Postcode too short'); status.textContent=''; return; }
         status.textContent = '⏳';
-        try {
-            const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(clean)}`);
-            const data = await res.json();
+        fetch('https://api.postcodes.io/postcodes/' + encodeURIComponent(clean))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+            status.textContent = '';
             if (data.status === 200) {
-                postcodeValid = true;
-                status.textContent = '';
-                setValid('postcode', 'postcodeMsg');
-                const town = document.getElementById('town');
-                if (!town.value.trim()) {
-                    town.value = data.result.admin_district || data.result.parish || '';
-                    if (town.value) setValid('town', 'townErr');
-                }
-                input.value = data.result.postcode;
+                input.value = data.result.postcode; // neat format
+                mark('postcode','postcodeMsg', true);
+                var town = document.getElementById('town');
+                if (!town.value.trim()) { town.value = data.result.admin_district || ''; chkTown(); }
                 slotCache = {};
             } else {
-                postcodeValid = false;
-                status.textContent = '';
-                setInvalid('postcode', 'postcodeMsg', 'Postcode not found — please double-check');
+                mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
             }
-        } catch {
-            postcodeValid = false; status.textContent = ''; clearState('postcode');
-        }
+        })
+        .catch(function(){ status.textContent=''; mark('postcode','postcodeMsg', false, 'Could not verify postcode — try again'); });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        attachValidation();
-        const pc = document.getElementById('postcode');
-        pc.addEventListener('blur', () => { if (pc.value.trim()) validatePostcode(pc.value.trim()); });
-        pc.addEventListener('input', () => {
-            postcodeValid = false;
-            document.getElementById('postcodeStatus').textContent = '';
-            document.getElementById('postcodeMsg').textContent = '';
-            clearState('postcode');
+    function initValidation() {
+        // Each field: validate live on every keystroke, also on blur
+        var fields = [
+            { id:'name',    fn: chkName    },
+            { id:'phone',   fn: chkPhone   },
+            { id:'email',   fn: chkEmail   },
+            { id:'address', fn: chkAddress },
+            { id:'town',    fn: chkTown    },
+            { id:'message', fn: chkMessage },
+        ];
+        fields.forEach(function(f) {
+            var el = document.getElementById(f.id);
+            if (!el) return;
+            el.addEventListener('input', f.fn);
+            el.addEventListener('blur',  f.fn);
+            el.addEventListener('change',f.fn);
         });
-    });
+
+        // Postcode: validate on blur only (network call)
+        var pc = document.getElementById('postcode');
+        pc.addEventListener('blur', chkPostcode);
+        pc.addEventListener('input', function(){
+            fieldState.postcode = null;
+            document.getElementById('postcodeStatus').textContent = '';
+            mark('postcode','postcodeMsg', null);
+            updateSubmitBtn();
+        });
+
+        // Start with button disabled
+        updateSubmitBtn();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() { initValidation(); calInit(); });
 
     /* ── Booking Calendar ── */
     const PLATFORM = 'https://h2glo-platform.vercel.app';
@@ -2331,39 +2329,25 @@
         selectDate(dateStr);
     }
 
-    document.addEventListener('DOMContentLoaded', calInit);
+    // calInit is called from initValidation's DOMContentLoaded above
 
     /* ── Form Submit ── */
     function handleSubmit(e) {
         e.preventDefault();
-        const btn = document.getElementById('submitBtn');
+        var btn = document.getElementById('submitBtn');
 
-        // Read values by ID — never via form.fieldName (form.name is a reserved IDL attribute)
-        const nameVal    = document.getElementById('name').value.trim();
-        const phoneVal   = document.getElementById('phone').value.trim();
-        const emailVal   = document.getElementById('email').value.trim();
-        const postcodeVal= document.getElementById('postcode').value.trim();
-        const addressVal = document.getElementById('address').value.trim();
-        const townVal    = document.getElementById('town').value.trim();
-        const messageVal = document.getElementById('message').value.trim();
+        // Button is already disabled unless all fieldState values are true —
+        // this is a last-resort safety check only
+        var allValid = Object.values(fieldState).every(function(v){ return v === true; });
+        if (!allValid) return;
 
-        // Run all validations — always call all so every field shows its error
-        const nameOk    = validateName(true);
-        const phoneOk   = validatePhone(true);
-        const emailOk   = validateEmail(true);
-        const addressOk = validateAddress(true);
-        const townOk    = validateTown(true);
-        const msgOk     = validateMessage(true);
-
-        if (!postcodeValid) {
-            setInvalid('postcode', 'postcodeMsg', 'Please enter a valid UK postcode');
-        }
-
-        if (!nameOk || !phoneOk || !emailOk || !addressOk || !townOk || !msgOk || !postcodeValid) {
-            const firstErr = document.querySelector('.field-invalid input, .field-invalid textarea');
-            if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
+        var nameVal     = document.getElementById('name').value.trim();
+        var phoneVal    = document.getElementById('phone').value.trim();
+        var emailVal    = document.getElementById('email').value.trim();
+        var postcodeVal = document.getElementById('postcode').value.trim();
+        var addressVal  = document.getElementById('address').value.trim();
+        var townVal     = document.getElementById('town').value.trim();
+        var messageVal  = document.getElementById('message').value.trim();
 
         const preferred_date = document.getElementById('preferred_date').value;
         const preferred_time = document.getElementById('preferred_time').value;
