@@ -2178,7 +2178,7 @@
                 input.value = data.result.postcode;
                 mark('postcode','postcodeMsg', true);
                 var town = document.getElementById('town');
-                if (!town.value.trim()) { town.value = data.result.admin_district || ''; chkTown(); }
+                if (!town.value.trim()) { town.value = data.result.admin_ward || data.result.admin_district || ''; chkTown(); }
                 slotCache = {};
             } else {
                 mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
