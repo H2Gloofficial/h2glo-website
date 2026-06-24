@@ -937,6 +937,9 @@
         }
         .form-group textarea { resize: vertical; min-height: 100px; }
         .form-group select option { background: #fff; color: var(--ink); }
+        .field-error { font-size: 0.76rem; color: #f87171; margin-top: 4px; display: block; min-height: 1em; }
+        .field-valid input, .field-valid textarea { border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.12) !important; }
+        .field-invalid input, .field-invalid textarea { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important; }
         .form-submit {
             margin-top: 20px;
             text-align: center;
@@ -1783,31 +1786,35 @@
         </div>
         <div class="cta-response"><span class="dot"></span> Average response time: under 2 hours</div>
 
-        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
             <div class="form-grid">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="Your name">
+                    <input type="text" id="name" name="name" placeholder="e.g. John Smith" autocomplete="name">
+                    <span class="field-error" id="nameErr"></span>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="07xxx xxx xxx">
+                    <input type="tel" id="phone" name="phone" placeholder="07xxx xxx xxx" autocomplete="tel">
+                    <span class="field-error" id="phoneErr"></span>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="you@email.com">
+                    <label for="email">Email <span style="opacity:.5;font-weight:400;text-transform:none;font-size:.75rem">(optional)</span></label>
+                    <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
+                    <span class="field-error" id="emailErr"></span>
                 </div>
                 <div class="form-group">
                     <label for="postcode">Postcode *</label>
                     <div style="position:relative">
-                        <input type="text" id="postcode" name="postcode" required placeholder="NE1 1AA" autocomplete="postal-code" style="width:100%;box-sizing:border-box;padding-right:40px">
+                        <input type="text" id="postcode" name="postcode" placeholder="NE1 1AA" autocomplete="postal-code" style="width:100%;box-sizing:border-box;padding-right:40px">
                         <span id="postcodeStatus" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none"></span>
                     </div>
-                    <span id="postcodeMsg" style="font-size:0.78rem;margin-top:4px;display:none;color:#f87171"></span>
+                    <span class="field-error" id="postcodeMsg"></span>
                 </div>
                 <div class="form-group full">
                     <label for="address">Street Address *</label>
-                    <input type="text" id="address" name="address" required placeholder="e.g. 14 Maple Street">
+                    <input type="text" id="address" name="address" placeholder="e.g. 14 Maple Street" autocomplete="address-line1">
+                    <span class="field-error" id="addressErr"></span>
                 </div>
                 <div class="form-group">
                     <label for="contact-pref">Preferred Contact</label>
@@ -1817,12 +1824,14 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="town">Town *</label>
-                    <input type="text" id="town" name="town" required placeholder="e.g. Newcastle">
+                    <label for="town">Town / Area *</label>
+                    <input type="text" id="town" name="town" placeholder="e.g. Newcastle" autocomplete="address-level2">
+                    <span class="field-error" id="townErr"></span>
                 </div>
                 <div class="form-group full">
-                    <label for="message">Describe the Job *</label>
-                    <textarea id="message" name="message" required placeholder="Tell us what you need cleaning and any details about your property..."></textarea>
+                    <label for="message">Describe the Job * <span style="opacity:.5;font-weight:400;text-transform:none;font-size:.75rem">(min 20 characters)</span></label>
+                    <textarea id="message" name="message" placeholder="Tell us what needs cleaning — e.g. block paving driveway, rear patio slabs, fascias..."></textarea>
+                    <span class="field-error" id="messageErr"></span>
                 </div>
             </div>
             <!-- Site Visit Booking Calendar -->
@@ -2044,47 +2053,146 @@
     });
 
     // ── Form Submit ──
+    /* ── Field Validation ── */
+    function setValid(id, errId) {
+        const el = document.getElementById(id);
+        el.closest('.form-group').classList.remove('field-invalid');
+        el.closest('.form-group').classList.add('field-valid');
+        const err = document.getElementById(errId);
+        if (err) { err.textContent = ''; }
+    }
+    function setInvalid(id, errId, msg) {
+        const el = document.getElementById(id);
+        el.closest('.form-group').classList.remove('field-valid');
+        el.closest('.form-group').classList.add('field-invalid');
+        const err = document.getElementById(errId);
+        if (err) { err.textContent = msg; }
+        return false;
+    }
+    function clearState(id) {
+        const el = document.getElementById(id);
+        el.closest('.form-group').classList.remove('field-valid','field-invalid');
+    }
+
+    function validateName(show) {
+        const v = document.getElementById('name').value.trim();
+        if (!v) return show ? setInvalid('name','nameErr','Please enter your full name') : false;
+        if (/\d/.test(v)) return setInvalid('name','nameErr','Name should not contain numbers');
+        if (!/^[a-zA-ZÀ-ÿ\s\-'.]+$/.test(v)) return setInvalid('name','nameErr','Name contains invalid characters');
+        if (v.length < 2) return setInvalid('name','nameErr','Name is too short');
+        if (v.split(/\s+/).filter(Boolean).length < 2) return setInvalid('name','nameErr','Please enter your first and last name');
+        setValid('name','nameErr'); return true;
+    }
+
+    function validatePhone(show) {
+        const raw = document.getElementById('phone').value.trim();
+        if (!raw) return show ? setInvalid('phone','phoneErr','Please enter your phone number') : false;
+        const digits = raw.replace(/[\s\-().+]/g,'');
+        const ukMobile = /^(07\d{9}|447\d{9})$/;
+        const ukLandline = /^(0[1-9]\d{8,9}|44[1-9]\d{8,9})$/;
+        if (!ukMobile.test(digits) && !ukLandline.test(digits)) return setInvalid('phone','phoneErr','Enter a valid UK phone number (e.g. 07xxx xxxxxx)');
+        setValid('phone','phoneErr'); return true;
+    }
+
+    function validateEmail(show) {
+        const v = document.getElementById('email').value.trim();
+        if (!v) { clearState('email'); return true; } // optional
+        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+        if (!ok) return setInvalid('email','emailErr','Enter a valid email address (e.g. you@email.com)');
+        setValid('email','emailErr'); return true;
+    }
+
+    function validateAddress(show) {
+        const v = document.getElementById('address').value.trim();
+        if (!v) return show ? setInvalid('address','addressErr','Please enter your street address') : false;
+        if (v.length < 5) return setInvalid('address','addressErr','Address is too short — include your house number and street');
+        if (!/\d/.test(v)) return setInvalid('address','addressErr','Include your house or building number (e.g. 14 Maple Street)');
+        if (!/[a-zA-Z]{2}/.test(v)) return setInvalid('address','addressErr','Include the street name');
+        setValid('address','addressErr'); return true;
+    }
+
+    function validateTown(show) {
+        const v = document.getElementById('town').value.trim();
+        if (!v) return show ? setInvalid('town','townErr','Please enter your town or area') : false;
+        if (/\d/.test(v)) return setInvalid('town','townErr','Town should not contain numbers');
+        if (v.length < 2) return setInvalid('town','townErr','Town name is too short');
+        setValid('town','townErr'); return true;
+    }
+
+    function validateMessage(show) {
+        const v = document.getElementById('message').value.trim();
+        if (!v) return show ? setInvalid('message','messageErr','Please describe what you need cleaning') : false;
+        if (v.length < 20) return setInvalid('message','messageErr',`A bit more detail please (${v.length}/20 characters)`);
+        if (/^(.)\1+$/.test(v.replace(/\s/g,''))) return setInvalid('message','messageErr','Please describe the job properly');
+        setValid('message','messageErr'); return true;
+    }
+
+    function attachValidation() {
+        const fields = [
+            { id:'name',    validate: validateName,    events:['blur','input'] },
+            { id:'phone',   validate: validatePhone,   events:['blur','input'] },
+            { id:'email',   validate: validateEmail,   events:['blur','input'] },
+            { id:'address', validate: validateAddress, events:['blur','input'] },
+            { id:'town',    validate: validateTown,    events:['blur','input'] },
+            { id:'message', validate: validateMessage, events:['blur','input'] },
+        ];
+        fields.forEach(({ id, validate, events }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('blur', () => validate(true));
+            el.addEventListener('input', () => {
+                // Only show live feedback once the user has already seen an error
+                if (el.closest('.form-group').classList.contains('field-invalid')) validate(true);
+                else clearState(id);
+            });
+        });
+    }
+
     /* ── Postcode Validation ── */
     let postcodeValid = false;
 
     async function validatePostcode(raw) {
         const input = document.getElementById('postcode');
         const status = document.getElementById('postcodeStatus');
-        const msg = document.getElementById('postcodeMsg');
         const clean = raw.replace(/\s+/g,'').toUpperCase();
         if (clean.length < 5) {
-            postcodeValid = false; status.textContent = ''; msg.style.display = 'none';
-            input.style.borderColor = ''; return;
+            postcodeValid = false; status.textContent = ''; clearState('postcode'); return;
         }
-        status.textContent = '⏳'; msg.style.display = 'none';
+        status.textContent = '⏳';
         try {
             const res = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(clean)}`);
             const data = await res.json();
             if (data.status === 200) {
                 postcodeValid = true;
-                status.textContent = '✅';
-                input.style.borderColor = '#22c55e';
-                msg.style.display = 'none';
+                status.textContent = '';
+                setValid('postcode', 'postcodeMsg');
                 const town = document.getElementById('town');
-                if (!town.value.trim()) town.value = data.result.admin_district || data.result.parish || '';
+                if (!town.value.trim()) {
+                    town.value = data.result.admin_district || data.result.parish || '';
+                    if (town.value) setValid('town', 'townErr');
+                }
                 input.value = data.result.postcode;
                 slotCache = {};
             } else {
                 postcodeValid = false;
-                status.textContent = '❌';
-                input.style.borderColor = '#ef4444';
-                msg.textContent = 'Postcode not found — please double-check';
-                msg.style.display = 'block';
+                status.textContent = '';
+                setInvalid('postcode', 'postcodeMsg', 'Postcode not found — please double-check');
             }
         } catch {
-            postcodeValid = false; status.textContent = ''; msg.style.display = 'none';
+            postcodeValid = false; status.textContent = ''; clearState('postcode');
         }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        attachValidation();
         const pc = document.getElementById('postcode');
         pc.addEventListener('blur', () => { if (pc.value.trim()) validatePostcode(pc.value.trim()); });
-        pc.addEventListener('input', () => { postcodeValid = false; document.getElementById('postcodeStatus').textContent = ''; });
+        pc.addEventListener('input', () => {
+            postcodeValid = false;
+            document.getElementById('postcodeStatus').textContent = '';
+            document.getElementById('postcodeMsg').textContent = '';
+            clearState('postcode');
+        });
     });
 
     /* ── Booking Calendar ── */
@@ -2231,16 +2339,30 @@
         const form = e.target;
         const btn = document.getElementById('submitBtn');
 
+        // Run all field validations
+        const nameOk    = validateName(true);
+        const phoneOk   = validatePhone(true);
+        const emailOk   = validateEmail(true);
+        const addressOk = validateAddress(true);
+        const townOk    = validateTown(true);
+        const msgOk     = validateMessage(true);
+
         if (!postcodeValid) {
+            setInvalid('postcode', 'postcodeMsg', 'Please enter a valid UK postcode');
             document.getElementById('postcode').focus();
-            document.getElementById('postcodeMsg').textContent = 'Please enter a valid postcode before continuing';
-            document.getElementById('postcodeMsg').style.display = 'block';
+        }
+
+        if (!nameOk || !phoneOk || !emailOk || !addressOk || !townOk || !msgOk || !postcodeValid) {
+            // Scroll to first error
+            const firstErr = document.querySelector('.field-invalid input, .field-invalid textarea');
+            if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
 
         const preferred_date = document.getElementById('preferred_date').value;
         const preferred_time = document.getElementById('preferred_time').value;
         if (!preferred_date || !preferred_time) {
+            document.querySelector('.booking-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
             alert('Please select a site visit date and time slot.');
             return;
         }
