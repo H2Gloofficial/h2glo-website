@@ -2147,7 +2147,7 @@
     /* ── Address Picker ── */
     var manualMode = false;
 
-    function buildAddressPicker(postcode) {
+    function buildAddressPicker(lat, lng) {
         var group   = document.getElementById('addressPickerGroup');
         var picker  = document.getElementById('streetPicker');
         var loading = document.getElementById('addressLoading');
@@ -2156,19 +2156,22 @@
         loading.style.display = '';
         picker.style.display = 'none';
         hwrap.style.display = 'none';
+        document.getElementById('streetPickerWrap').style.display = '';
+        document.getElementById('address').style.display = 'none';
         picker.innerHTML = '<option value="">— Select your street —</option>';
 
-        var clean = postcode.replace(/\s+/g,'');
-        fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=50&countrycodes=gb&postalcode=' + encodeURIComponent(clean), {
-            headers: { 'Accept-Language': 'en', 'User-Agent': 'H2GLO-LeadForm/1.0' }
+        var query = '[out:json][timeout:10];way[highway][name](around:300,' + lat + ',' + lng + ');out tags;';
+        fetch('https://overpass-api.de/api/interpreter', {
+            method: 'POST',
+            body: query
         })
         .then(function(r){ return r.json(); })
-        .then(function(results){
+        .then(function(data){
             loading.style.display = 'none';
             var streets = {};
-            results.forEach(function(r){
-                var road = (r.address && (r.address.road || r.address.pedestrian || r.address.footway || r.address.path)) || null;
-                if (road && !streets[road]) streets[road] = true;
+            (data.elements || []).forEach(function(el){
+                var name = el.tags && el.tags.name;
+                if (name) streets[name] = true;
             });
             var streetList = Object.keys(streets).sort();
             if (streetList.length === 0) { showManual(); return; }
@@ -2239,7 +2242,7 @@
                 var town = document.getElementById('town');
                 if (!town.value.trim()) { town.value = data.result.admin_district || ''; chkTown(); }
                 slotCache = {};
-                if (!manualMode) buildAddressPicker(data.result.postcode);
+                if (!manualMode) buildAddressPicker(data.result.latitude, data.result.longitude);
             } else {
                 mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
                 document.getElementById('addressPickerGroup').style.display = 'none';
@@ -2423,6 +2426,8 @@
 
         // Button is already disabled unless all fieldState values are true —
         // this is a last-resort safety check only
+        // Re-run all checks synchronously before submitting
+        chkName(); chkPhone(); chkEmail(); chkAddress(); chkTown(); chkMessage();
         var allValid = Object.values(fieldState).every(function(v){ return v === true; });
         if (!allValid) return;
 
