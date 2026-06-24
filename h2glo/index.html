@@ -2179,7 +2179,7 @@
                 mark('postcode','postcodeMsg', true);
                 slotCache = {};
                 var townEl = document.getElementById('town');
-                if (!townEl.value.trim()) {
+                {
                     var lat = data.result.latitude, lng = data.result.longitude;
                     var fallback = data.result.admin_ward || data.result.admin_district || '';
                     fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lng + '&zoom=13&addressdetails=1', { headers: { 'User-Agent': 'H2GLO/1.0' } })
@@ -2225,6 +2225,9 @@
         pc.addEventListener('input', function(){
             fieldState.postcode = null;
             mark('postcode','postcodeMsg', null);
+            // Clear town so it refreshes when new postcode validates
+            document.getElementById('town').value = '';
+            mark('town','townErr', null);
             updateSubmitBtn();
         });
 
