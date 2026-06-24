@@ -14,16 +14,23 @@ function get(url) {
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  const lat = parseFloat(req.query.lat);
-  const lng = parseFloat(req.query.lng);
-  if (!lat || !lng) return res.status(400).json({ error: 'Missing lat/lng' });
+  const postcode = (req.query.postcode || '').replace(/\s+/g, '').toUpperCase();
+  if (!postcode) return res.status(400).json({ error: 'Missing postcode' });
+
+  const apiKey = process.env.GETADDRESS_API_KEY;
+  if (!apiKey) return res.status(503).json({ error: 'Address lookup not configured' });
 
   try {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=17&addressdetails=1`;
+    const url = `https://api.getaddress.io/find/${encodeURIComponent(postcode)}?api-key=${apiKey}&expand=true`;
     const r = await get(url);
+    if (r.status === 404) return res.json({ addresses: [] });
+    if (r.status !== 200) return res.status(502).json({ error: 'Lookup failed' });
     const d = JSON.parse(r.body);
-    const street = d.address && (d.address.road || d.address.pedestrian || d.address.footway || d.address.path || null);
-    return res.json({ street: street || null });
+    const addresses = (d.addresses || []).map(function(a) {
+      return [a.building_number, a.sub_building_number, a.sub_building_name, a.building_name, a.thoroughfare]
+        .map(s => (s || '').trim()).filter(Boolean).join(' ');
+    }).filter(Boolean).sort();
+    return res.json({ addresses });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
