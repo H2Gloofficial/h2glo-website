@@ -919,28 +919,39 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .form-group input, .form-group textarea, .form-group select {
+        .form-group input, .form-group textarea, .form-group select,
+        #streetPicker, #houseNumber {
             background: rgba(255, 255, 255, 0.92);
-            border: 1px solid rgba(255, 255, 255, 0.50);
+            border: 2px solid rgba(255, 255, 255, 0.40);
             border-radius: 12px;
             padding: 14px 18px;
             color: var(--ink);
             font-size: 0.95rem;
             font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: border-color 0.25s, box-shadow 0.25s;
             outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .form-group input::placeholder, .form-group textarea::placeholder { color: var(--ink-muted); }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus,
+        #streetPicker:focus, #houseNumber:focus {
             border-color: var(--green);
             box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
         }
+        .form-group select, #streetPicker {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230a1628' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+        .form-group select option, #streetPicker option { background: #fff; color: var(--ink); }
         .form-group textarea { resize: vertical; min-height: 100px; }
-        .form-group select option { background: #fff; color: var(--ink); }
+        #houseNumber { width: 140px; flex-shrink: 0; }
         .field-error { font-size: 0.76rem; color: #f87171; margin-top: 4px; display: block; min-height: 1em; }
-        #streetPicker { width:100%;box-sizing:border-box;background:rgba(255,255,255,0.92);border:1px solid rgba(255,255,255,0.5);border-radius:12px;padding:14px 18px;color:#0a1628;font-size:0.95rem;font-family:'Inter',sans-serif;outline:none;cursor:pointer; }
-        #streetPicker:focus { border-color:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.15); }
-        #houseNumber { background:rgba(255,255,255,0.92);border:1px solid rgba(255,255,255,0.5);border-radius:12px;padding:14px 18px;color:#0a1628;font-size:0.95rem;font-family:'Inter',sans-serif;outline:none; }
         #houseNumber:focus { border-color:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.15); }
         input.f-valid, textarea.f-valid { border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.15) !important; }
         input.f-invalid, textarea.f-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.15) !important; }
@@ -2112,12 +2123,26 @@
         mark('phone','phoneErr', true);
     }
 
-    function chkEmail() {
+    var emailCheckTimer = null;
+    function chkEmail(onBlur) {
         var v = document.getElementById('email').value.trim();
         if (!v) return mark('email','emailErr', false, 'Please enter your email address');
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
-            return mark('email','emailErr', false, 'Enter a valid email e.g. you@email.com');
-        mark('email','emailErr', true);
+            return mark('email','emailErr', false, 'Enter a valid email — e.g. you@example.com');
+        // Only do the live DNS check on blur or after 1.5s of no typing
+        if (!onBlur) return; // format OK, wait for blur before API check
+        mark('email','emailErr', null);
+        document.getElementById('emailErr').textContent = 'Checking email…';
+        fetch('/api/validate-email?email=' + encodeURIComponent(v))
+            .then(function(r){ return r.json(); })
+            .then(function(d){
+                if (d.valid) mark('email','emailErr', true);
+                else mark('email','emailErr', false, d.reason || 'Please enter a valid email address');
+            })
+            .catch(function(){
+                // fallback — accept format-valid email if API is down
+                mark('email','emailErr', true);
+            });
     }
 
     function chkAddress() {
@@ -2246,7 +2271,6 @@
         var fields = [
             { id:'name',    fn: chkName    },
             { id:'phone',   fn: chkPhone   },
-            { id:'email',   fn: chkEmail   },
             { id:'address', fn: chkAddress },
             { id:'town',    fn: chkTown    },
             { id:'message', fn: chkMessage },
@@ -2258,6 +2282,11 @@
             el.addEventListener('blur',   f.fn);
             el.addEventListener('change', f.fn);
         });
+
+        // Email: format check on input, full API check on blur
+        var emailEl = document.getElementById('email');
+        emailEl.addEventListener('input',  function(){ chkEmail(false); });
+        emailEl.addEventListener('blur',   function(){ chkEmail(true); });
 
         var pc = document.getElementById('postcode');
         pc.addEventListener('blur', chkPostcode);
@@ -2417,8 +2446,8 @@
 
         // Button is already disabled unless all fieldState values are true —
         // this is a last-resort safety check only
-        // Re-run all checks synchronously before submitting
-        chkName(); chkPhone(); chkEmail(); chkAddress(); chkTown(); chkMessage();
+        // Re-run all checks before submitting
+        chkName(); chkPhone(); chkEmail(true); chkAddress(); chkTown(); chkMessage();
         var allValid = Object.values(fieldState).every(function(v){ return v === true; });
         if (!allValid) return;
 
