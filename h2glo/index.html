@@ -938,8 +938,8 @@
         .form-group textarea { resize: vertical; min-height: 100px; }
         .form-group select option { background: #fff; color: var(--ink); }
         .field-error { font-size: 0.76rem; color: #f87171; margin-top: 4px; display: block; min-height: 1em; }
-        .field-valid input, .field-valid textarea { border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.12) !important; }
-        .field-invalid input, .field-invalid textarea { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important; }
+        input.f-valid, textarea.f-valid { border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.15) !important; }
+        input.f-invalid, textarea.f-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.15) !important; }
         .form-submit {
             margin-top: 20px;
             text-align: center;
@@ -1799,7 +1799,7 @@
                     <span class="field-error" id="phoneErr"></span>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email <span style="opacity:.5;font-weight:400;text-transform:none;font-size:.75rem">(optional)</span></label>
+                    <label for="email">Email *</label>
                     <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
                     <span class="field-error" id="emailErr"></span>
                 </div>
@@ -2060,10 +2060,10 @@
 
     function mark(id, errId, valid, msg) {
         var el = document.getElementById(id);
-        var grp = el ? el.closest('.form-group') : null;
-        if (!grp) return;
-        grp.classList.toggle('field-valid',   valid === true);
-        grp.classList.toggle('field-invalid',  valid === false);
+        if (!el) return;
+        el.classList.toggle('f-valid',   valid === true);
+        el.classList.toggle('f-invalid', valid === false);
+        if (valid !== true && valid !== false) { el.classList.remove('f-valid','f-invalid'); }
         var err = document.getElementById(errId);
         if (err) err.textContent = valid === false ? (msg || '') : '';
         fieldState[id] = valid;
@@ -2099,7 +2099,7 @@
 
     function chkEmail() {
         var v = document.getElementById('email').value.trim();
-        if (!v) { mark('email','emailErr', true); return; } // optional
+        if (!v) return mark('email','emailErr', false, 'Please enter your email address');
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
             return mark('email','emailErr', false, 'Enter a valid email e.g. you@email.com');
         mark('email','emailErr', true);
@@ -2108,9 +2108,8 @@
     function chkAddress() {
         var v = document.getElementById('address').value.trim();
         if (!v) return mark('address','addressErr', false, 'Please enter your street address');
-        if (v.length < 5) return mark('address','addressErr', false, 'Include your house number and street name');
-        if (!/\d/.test(v)) return mark('address','addressErr', false, 'Include your house or building number');
-        if (!/[a-zA-Z]{2}/.test(v)) return mark('address','addressErr', false, 'Include the street name');
+        if (v.length < 5) return mark('address','addressErr', false, 'Address is too short — include street name');
+        if (!/[a-zA-Z]{2,}/.test(v)) return mark('address','addressErr', false, 'Include the street name');
         mark('address','addressErr', true);
     }
 
