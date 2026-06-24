@@ -2160,21 +2160,11 @@
         document.getElementById('address').style.display = 'none';
         picker.innerHTML = '<option value="">— Select your street —</option>';
 
-        var query = '[out:json][timeout:10];way[highway][name](around:300,' + lat + ',' + lng + ');out tags;';
-        fetch('https://overpass-api.de/api/interpreter', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'data=' + encodeURIComponent(query)
-        })
+        fetch('/api/streets?lat=' + lat + '&lng=' + lng)
         .then(function(r){ return r.json(); })
         .then(function(data){
             loading.style.display = 'none';
-            var streets = {};
-            (data.elements || []).forEach(function(el){
-                var name = el.tags && el.tags.name;
-                if (name) streets[name] = true;
-            });
-            var streetList = Object.keys(streets).sort();
+            var streetList = (data.streets || []);
             if (streetList.length === 0) { showManual(); return; }
             streetList.forEach(function(s){
                 var opt = document.createElement('option');
