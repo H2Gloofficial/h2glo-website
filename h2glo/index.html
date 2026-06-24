@@ -1805,10 +1805,7 @@
                 </div>
                 <div class="form-group">
                     <label for="postcode">Postcode *</label>
-                    <div style="position:relative">
-                        <input type="text" id="postcode" name="postcode" placeholder="NE1 1AA" autocomplete="postal-code" style="width:100%;box-sizing:border-box;padding-right:40px">
-                        <span id="postcodeStatus" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none"></span>
-                    </div>
+                    <input type="text" id="postcode" name="postcode" placeholder="NE1 1AA" autocomplete="postal-code">
                     <span class="field-error" id="postcodeMsg"></span>
                 </div>
                 <div class="form-group full">
@@ -2135,19 +2132,16 @@
 
     /* ── Postcode (async, calls postcodes.io) ── */
     function chkPostcode() {
-        var input  = document.getElementById('postcode');
-        var status = document.getElementById('postcodeStatus');
-        var raw    = input.value.trim();
-        if (!raw) { mark('postcode','postcodeMsg', false, 'Please enter your postcode'); status.textContent=''; return; }
-        var clean  = raw.replace(/\s+/g,'').toUpperCase();
-        if (clean.length < 5) { mark('postcode','postcodeMsg', false, 'Postcode too short'); status.textContent=''; return; }
-        status.textContent = '⏳';
+        var input = document.getElementById('postcode');
+        var raw   = input.value.trim();
+        if (!raw) return mark('postcode','postcodeMsg', false, 'Please enter your postcode');
+        var clean = raw.replace(/\s+/g,'').toUpperCase();
+        if (clean.length < 5) return mark('postcode','postcodeMsg', false, 'Postcode too short');
         fetch('https://api.postcodes.io/postcodes/' + encodeURIComponent(clean))
         .then(function(r){ return r.json(); })
         .then(function(data){
-            status.textContent = '';
             if (data.status === 200) {
-                input.value = data.result.postcode; // neat format
+                input.value = data.result.postcode;
                 mark('postcode','postcodeMsg', true);
                 var town = document.getElementById('town');
                 if (!town.value.trim()) { town.value = data.result.admin_district || ''; chkTown(); }
@@ -2156,11 +2150,10 @@
                 mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
             }
         })
-        .catch(function(){ status.textContent=''; mark('postcode','postcodeMsg', false, 'Could not verify postcode — try again'); });
+        .catch(function(){ mark('postcode','postcodeMsg', false, 'Could not verify postcode — try again'); });
     }
 
     function initValidation() {
-        // Each field: validate live on every keystroke, also on blur
         var fields = [
             { id:'name',    fn: chkName    },
             { id:'phone',   fn: chkPhone   },
@@ -2172,22 +2165,19 @@
         fields.forEach(function(f) {
             var el = document.getElementById(f.id);
             if (!el) return;
-            el.addEventListener('input', f.fn);
-            el.addEventListener('blur',  f.fn);
-            el.addEventListener('change',f.fn);
+            el.addEventListener('input',  f.fn);
+            el.addEventListener('blur',   f.fn);
+            el.addEventListener('change', f.fn);
         });
 
-        // Postcode: validate on blur only (network call)
         var pc = document.getElementById('postcode');
         pc.addEventListener('blur', chkPostcode);
         pc.addEventListener('input', function(){
             fieldState.postcode = null;
-            document.getElementById('postcodeStatus').textContent = '';
             mark('postcode','postcodeMsg', null);
             updateSubmitBtn();
         });
 
-        // Start with button disabled
         updateSubmitBtn();
     }
 
@@ -2384,8 +2374,7 @@
             if (data.ok) {
                 btn.textContent = '✓ Booked!';
                 document.getElementById('contactForm').reset();
-                postcodeValid = false;
-                document.getElementById('postcodeStatus').textContent = '';
+                Object.keys(fieldState).forEach(function(k){ fieldState[k] = null; });
                 document.querySelectorAll('.form-group').forEach(function(g) { g.classList.remove('field-valid','field-invalid'); });
                 calSelectedDate = null; calSelectedTime = null; slotCache = {};
                 document.getElementById('calSlotsWrap').style.display = 'none';
