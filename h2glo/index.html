@@ -2163,7 +2163,8 @@
         var query = '[out:json][timeout:10];way[highway][name](around:300,' + lat + ',' + lng + ');out tags;';
         fetch('https://overpass-api.de/api/interpreter', {
             method: 'POST',
-            body: query
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'data=' + encodeURIComponent(query)
         })
         .then(function(r){ return r.json(); })
         .then(function(data){
