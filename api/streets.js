@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
   const lng = parseFloat(req.query.lng);
   if (!lat || !lng) return res.status(400).json({ error: 'Missing lat/lng' });
 
-  const query = `[out:json][timeout:10];way[highway][name](around:300,${lat},${lng});out tags;`;
+  const query = `[out:json][timeout:10];way[highway][name](around:80,${lat},${lng});out tags;`;
   const body = 'data=' + encodeURIComponent(query);
 
   try {

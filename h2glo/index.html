@@ -950,7 +950,7 @@
         }
         .form-group select option, #streetPicker option { background: #fff; color: var(--ink); }
         .form-group textarea { resize: vertical; min-height: 100px; }
-        #houseNumber { width: 140px; flex-shrink: 0; }
+        #houseNumber { width: 90px !important; flex-shrink: 0; }
         .field-error { font-size: 0.76rem; color: #f87171; margin-top: 4px; display: block; min-height: 1em; }
         #houseNumber:focus { border-color:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.15); }
         input.f-valid, textarea.f-valid { border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.15) !important; }
@@ -1823,20 +1823,23 @@
                     <input type="text" id="postcode" name="postcode" placeholder="NE1 1AA" autocomplete="postal-code">
                     <span class="field-error" id="postcodeMsg"></span>
                 </div>
-                <div class="form-group full" id="addressPickerGroup" style="display:none">
-                    <label>Street Address *</label>
-                    <div id="streetPickerWrap">
-                        <select id="streetPicker" style="margin-bottom:8px">
-                            <option value="">— Select your street —</option>
-                        </select>
-                        <div id="houseNumberWrap" style="display:none;display:flex;gap:8px;align-items:center">
-                            <input type="text" id="houseNumber" placeholder="House / flat no." style="width:140px;flex-shrink:0" autocomplete="address-line1">
-                            <span style="color:rgba(255,255,255,0.5);font-size:0.9rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="streetPreview"></span>
+                <div class="form-group full">
+                    <label for="address">Street Address *</label>
+                    <input type="text" id="address" name="address" placeholder="e.g. 14 Maple Street" autocomplete="address-line1">
+                    <div id="streetSuggestWrap" style="display:none;margin-top:6px">
+                        <p id="addressLoading" style="font-size:0.82rem;color:rgba(255,255,255,0.5);display:none;margin:0 0 6px">Finding your street…</p>
+                        <div id="streetSuggestInner" style="display:none">
+                            <div style="display:flex;gap:8px;align-items:flex-start">
+                                <div style="flex:1">
+                                    <select id="streetPicker">
+                                        <option value="">— Select your street —</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="houseNumber" placeholder="No." autocomplete="address-line1">
+                            </div>
+                            <p style="font-size:0.75rem;color:rgba(255,255,255,0.35);margin:5px 0 0">House/flat number + pick your street, or type above</p>
                         </div>
                     </div>
-                    <p id="addressLoading" style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:6px;display:none">Finding streets…</p>
-                    <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:6px">Can't find your street? <a id="manualToggle" href="#" style="color:rgba(255,255,255,0.55);text-decoration:underline">Enter manually</a></p>
-                    <input type="text" id="address" name="address" placeholder="e.g. 14 Maple Street" autocomplete="address-line1" style="display:none;margin-top:8px">
                     <span class="field-error" id="addressErr"></span>
                 </div>
                 <div class="form-group">
@@ -2170,75 +2173,62 @@
     }
 
     /* ── Address Picker ── */
-    var manualMode = false;
-
     function buildAddressPicker(lat, lng) {
-        var group   = document.getElementById('addressPickerGroup');
-        var picker  = document.getElementById('streetPicker');
-        var loading = document.getElementById('addressLoading');
-        var hwrap   = document.getElementById('houseNumberWrap');
-        group.style.display = '';
+        var suggestWrap = document.getElementById('streetSuggestWrap');
+        var inner       = document.getElementById('streetSuggestInner');
+        var loading     = document.getElementById('addressLoading');
+        var picker      = document.getElementById('streetPicker');
+
+        suggestWrap.style.display = '';
         loading.style.display = '';
-        picker.style.display = 'none';
-        hwrap.style.display = 'none';
-        document.getElementById('streetPickerWrap').style.display = '';
-        document.getElementById('address').style.display = 'none';
+        inner.style.display = 'none';
         picker.innerHTML = '<option value="">— Select your street —</option>';
+        document.getElementById('houseNumber').value = '';
 
         fetch('/api/streets?lat=' + lat + '&lng=' + lng)
         .then(function(r){ return r.json(); })
         .then(function(data){
             loading.style.display = 'none';
-            var streetList = (data.streets || []);
-            if (streetList.length === 0) { showManual(); return; }
+            var streetList = data.streets || [];
+            if (streetList.length === 0) { suggestWrap.style.display = 'none'; return; }
             streetList.forEach(function(s){
                 var opt = document.createElement('option');
                 opt.value = s; opt.textContent = s;
                 picker.appendChild(opt);
             });
-            picker.style.display = '';
+            inner.style.display = '';
         })
-        .catch(function(){ loading.style.display='none'; showManual(); });
-    }
-
-    function showManual() {
-        manualMode = true;
-        document.getElementById('streetPickerWrap').style.display = 'none';
-        var inp = document.getElementById('address');
-        inp.style.display = '';
-        inp.focus();
-        document.getElementById('addressPickerGroup').style.display = '';
+        .catch(function(){ loading.style.display = 'none'; });
     }
 
     document.addEventListener('DOMContentLoaded', function(){
         document.getElementById('streetPicker').addEventListener('change', function(){
-            var street = this.value;
-            if (!street) { document.getElementById('houseNumberWrap').style.display='none'; mark('address','addressErr',null); return; }
-            document.getElementById('streetPreview').textContent = street;
-            document.getElementById('houseNumberWrap').style.display='flex';
-            document.getElementById('houseNumber').focus();
             combineAddress();
+            if (this.value) document.getElementById('houseNumber').focus();
         });
         document.getElementById('houseNumber').addEventListener('input', combineAddress);
         document.getElementById('houseNumber').addEventListener('blur', combineAddress);
-        document.getElementById('manualToggle').addEventListener('click', function(e){ e.preventDefault(); showManual(); });
 
-        // Reset address picker when postcode is cleared/changed
         document.getElementById('postcode').addEventListener('input', function(){
             if (!this.value.trim()) {
-                manualMode = false;
-                document.getElementById('addressPickerGroup').style.display = 'none';
-                document.getElementById('address').value = '';
-                mark('address','addressErr', null);
+                document.getElementById('streetSuggestWrap').style.display = 'none';
             }
+        });
+
+        // Typing in address directly clears the picker selection
+        document.getElementById('address').addEventListener('input', function(){
+            document.getElementById('streetPicker').value = '';
+            document.getElementById('houseNumber').value = '';
+            chkAddress();
         });
     });
 
     function combineAddress() {
         var num    = document.getElementById('houseNumber').value.trim();
         var street = document.getElementById('streetPicker').value;
-        var combined = num ? num + ' ' + street : street;
-        document.getElementById('address').value = combined;
+        if (street) {
+            document.getElementById('address').value = num ? num + ' ' + street : street;
+        }
         chkAddress();
     }
 
@@ -2258,10 +2248,10 @@
                 var town = document.getElementById('town');
                 if (!town.value.trim()) { town.value = data.result.admin_district || ''; chkTown(); }
                 slotCache = {};
-                if (!manualMode) buildAddressPicker(data.result.latitude, data.result.longitude);
+                buildAddressPicker(data.result.latitude, data.result.longitude);
             } else {
                 mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
-                document.getElementById('addressPickerGroup').style.display = 'none';
+                document.getElementById('streetSuggestWrap').style.display = 'none';
             }
         })
         .catch(function(){ mark('postcode','postcodeMsg', false, 'Could not verify postcode — try again'); });
