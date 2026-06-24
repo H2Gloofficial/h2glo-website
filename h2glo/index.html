@@ -2334,12 +2334,20 @@
     document.addEventListener('DOMContentLoaded', calInit);
 
     /* ── Form Submit ── */
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-        const form = e.target;
         const btn = document.getElementById('submitBtn');
 
-        // Run all field validations
+        // Read values by ID — never via form.fieldName (form.name is a reserved IDL attribute)
+        const nameVal    = document.getElementById('name').value.trim();
+        const phoneVal   = document.getElementById('phone').value.trim();
+        const emailVal   = document.getElementById('email').value.trim();
+        const postcodeVal= document.getElementById('postcode').value.trim();
+        const addressVal = document.getElementById('address').value.trim();
+        const townVal    = document.getElementById('town').value.trim();
+        const messageVal = document.getElementById('message').value.trim();
+
+        // Run all validations — always call all so every field shows its error
         const nameOk    = validateName(true);
         const phoneOk   = validatePhone(true);
         const emailOk   = validateEmail(true);
@@ -2349,11 +2357,9 @@
 
         if (!postcodeValid) {
             setInvalid('postcode', 'postcodeMsg', 'Please enter a valid UK postcode');
-            document.getElementById('postcode').focus();
         }
 
         if (!nameOk || !phoneOk || !emailOk || !addressOk || !townOk || !msgOk || !postcodeValid) {
-            // Scroll to first error
             const firstErr = document.querySelector('.field-invalid input, .field-invalid textarea');
             if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
@@ -2370,13 +2376,13 @@
         btn.textContent = 'Booking…'; btn.disabled = true;
 
         const payload = {
-            name: form.name.value.trim(),
-            phone: form.phone.value.trim(),
-            email: form.email.value.trim() || null,
-            address: form.address.value.trim() || null,
-            postcode: form.postcode.value.trim(),
-            town: form.town.value.trim(),
-            service: form.message.value.trim(),
+            name: nameVal,
+            phone: phoneVal,
+            email: emailVal || null,
+            address: addressVal || null,
+            postcode: postcodeVal,
+            town: townVal,
+            service: messageVal,
             message: `Site visit requested for ${preferred_date} at ${SLOT_LABELS[preferred_time] || preferred_time}`,
             preferred_date,
             preferred_time,
@@ -2384,31 +2390,36 @@
             consent: true,
         };
 
-        try {
-            const res = await fetch(`${PLATFORM}/api/webhooks/web-lead`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
-            const data = await res.json();
+        fetch(`${PLATFORM}/api/webhooks/web-lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
             if (data.ok) {
                 btn.textContent = '✓ Booked!';
-                form.reset();
+                document.getElementById('contactForm').reset();
+                postcodeValid = false;
+                document.getElementById('postcodeStatus').textContent = '';
+                document.querySelectorAll('.form-group').forEach(function(g) { g.classList.remove('field-valid','field-invalid'); });
                 calSelectedDate = null; calSelectedTime = null; slotCache = {};
                 document.getElementById('calSlotsWrap').style.display = 'none';
                 document.getElementById('bookingConfirmed').style.display = 'none';
+                document.querySelectorAll('.field-error').forEach(function(el) { el.textContent = ''; });
                 renderCal();
-                // Scroll to confirmation
                 btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                setTimeout(() => { btn.textContent = 'Request Site Visit'; btn.disabled = false; }, 4000);
+                setTimeout(function() { btn.textContent = 'Request Site Visit'; btn.disabled = false; }, 4000);
             } else {
-                throw new Error(data.error || 'Unknown error');
+                btn.textContent = 'Request Site Visit'; btn.disabled = false;
+                alert('Submission failed: ' + (data.error || 'Unknown error'));
             }
-        } catch (err) {
+        })
+        .catch(function(err) {
             console.error(err);
             btn.textContent = 'Request Site Visit'; btn.disabled = false;
             alert('Something went wrong. Please try WhatsApp or call us directly.');
-        }
+        });
     }
 
     // ── Smooth parallax on hero background ──
