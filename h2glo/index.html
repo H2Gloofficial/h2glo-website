@@ -2177,9 +2177,20 @@
             if (data.status === 200) {
                 input.value = data.result.postcode;
                 mark('postcode','postcodeMsg', true);
-                var town = document.getElementById('town');
-                if (!town.value.trim()) { town.value = data.result.admin_ward || data.result.admin_district || ''; chkTown(); }
                 slotCache = {};
+                var townEl = document.getElementById('town');
+                if (!townEl.value.trim()) {
+                    var lat = data.result.latitude, lng = data.result.longitude;
+                    var fallback = data.result.admin_ward || data.result.admin_district || '';
+                    fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lng + '&zoom=13&addressdetails=1', { headers: { 'User-Agent': 'H2GLO/1.0' } })
+                    .then(function(r){ return r.json(); })
+                    .then(function(geo){
+                        var a = geo.address || {};
+                        var place = a.village || a.town || a.city_district || a.suburb || fallback;
+                        if (place) { townEl.value = place; chkTown(); }
+                    })
+                    .catch(function(){ if (fallback) { townEl.value = fallback; chkTown(); } });
+                }
             } else {
                 mark('postcode','postcodeMsg', false, 'Postcode not found — please double-check');
                 document.getElementById('streetSuggestWrap').style.display = 'none';
