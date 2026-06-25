@@ -2061,7 +2061,6 @@
 
     // ── Gallery Scroll ──
     const galleryScroll = document.getElementById('galleryScroll');
-    // Start on second item so first image peeks from the left
     window.addEventListener('load', () => {
         const firstItem = galleryScroll.querySelector('.gallery-item');
         if (firstItem) galleryScroll.scrollLeft = firstItem.offsetWidth + 20;
@@ -2072,6 +2071,19 @@
     document.getElementById('galleryNext').addEventListener('click', () => {
         galleryScroll.scrollBy({ left: 340, behavior: 'smooth' });
     });
+    // Auto-slide every 3 seconds, pauses when user touches/interacts
+    let autoSlide = setInterval(() => {
+        const items = galleryScroll.querySelectorAll('.gallery-item');
+        const itemW = items[0].offsetWidth + 20;
+        const maxScroll = galleryScroll.scrollWidth - galleryScroll.clientWidth;
+        if (galleryScroll.scrollLeft >= maxScroll - 10) {
+            galleryScroll.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            galleryScroll.scrollBy({ left: itemW, behavior: 'smooth' });
+        }
+    }, 3000);
+    galleryScroll.addEventListener('touchstart', () => clearInterval(autoSlide), { passive: true });
+    galleryScroll.addEventListener('mousedown', () => clearInterval(autoSlide));
 
     // ── FAQ Toggle ──
     function toggleFaq(btn) {
