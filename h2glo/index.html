@@ -2061,6 +2061,11 @@
 
     // ── Gallery Scroll ──
     const galleryScroll = document.getElementById('galleryScroll');
+    // Start on second item so first image peeks from the left
+    window.addEventListener('load', () => {
+        const firstItem = galleryScroll.querySelector('.gallery-item');
+        if (firstItem) galleryScroll.scrollLeft = firstItem.offsetWidth + 20;
+    });
     document.getElementById('galleryPrev').addEventListener('click', () => {
         galleryScroll.scrollBy({ left: -340, behavior: 'smooth' });
     });
