@@ -68,7 +68,10 @@
         .section-title {
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
-            color: var(--ink);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 16px;
         }
         .section-title em {
@@ -432,7 +435,7 @@
             margin-bottom: 64px;
         }
         .services-header .section-subtitle { margin: 0 auto; color: rgba(255,255,255,0.75); }
-        .services-header .section-title { color: #fff; }
+        .services-header .section-title { background: linear-gradient(135deg, #7dd3fc 0%, #93c5fd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .services-header .section-label { color: rgba(255,255,255,0.6); }
         .services-header .section-label::before { background: rgba(255,255,255,0.4); }
         .services-header a { color: #22c55e !important; }
