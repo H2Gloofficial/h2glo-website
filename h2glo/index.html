@@ -1521,7 +1521,7 @@
         <img src="logo-watermark.png" alt="" aria-hidden="true" style="width:100%;height:auto;opacity:0.07;">
     </div>
     <div class="container hero-content">
-        <div class="hero-badge"><span class="dot"></span> Now Booking Summer 2026</div>
+        <div class="hero-badge"><span class="dot"></span> Now Booking <span id="bookingSeason"></span></div>
         <h1>Your Local Exterior <span class="highlight">Cleaning Specialists.</span></h1>
         <p style="font-size:1.05rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#22c55e;margin-bottom:0.75rem;text-shadow:0 0 20px rgba(34,197,94,0.4);animation:fadeInUp 0.8s ease 0.3s both;">Clean it, Seal it, Love it Again</p>
         <p class="hero-sub">Family-run. Professional results. We specialise in restoring and reviving properties across the North East, delivering expert results with the care and attention your home deserves.</p>
@@ -1930,7 +1930,7 @@
                 <h3><span class="pin">&#9733;</span> We Serve the North East</h3>
                 <p>Covering Tyne &amp; Wear, County Durham, and Northumberland.</p>
             </div>
-            <span class="map-pill"><span class="dot"></span> Currently Booking Summer 2026</span>
+            <span class="map-pill"><span class="dot"></span> Currently Booking <span id="bookingSeason2"></span></span>
         </div>
         <div class="pc-check">
             <h4>Check if we cover you <span class="accent">— instant answer</span></h4>
@@ -2102,6 +2102,23 @@
     }, { passive: true });
     galleryScroll.addEventListener('mousedown', () => clearInterval(autoSlide));
     galleryScroll.addEventListener('mouseup', () => { autoSlide = startAutoSlide(); });
+
+    // ── Booking Season ──
+    (function() {
+        var m = new Date().getMonth(); // 0-11
+        var y = new Date().getFullYear();
+        var season;
+        if (m >= 2 && m <= 4) season = 'Spring';
+        else if (m >= 5 && m <= 7) season = 'Summer';
+        else if (m >= 8 && m <= 10) season = 'Autumn';
+        else season = 'Winter';
+        // Show next season if we're in the last month of current season
+        var label = season + ' ' + y;
+        var s1 = document.getElementById('bookingSeason');
+        var s2 = document.getElementById('bookingSeason2');
+        if (s1) s1.textContent = label;
+        if (s2) s2.textContent = label;
+    })();
 
     // ── FAQ Toggle ──
     function toggleFaq(btn) {
