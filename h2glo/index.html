@@ -820,6 +820,14 @@
             line-height: 1.7;
         }
 
+        /* ── Services List ── */
+        .services-list-section { padding: 100px 0; background: #f8faff; }
+        .services-list-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+        .services-checklist { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; text-align: left; }
+        .services-checklist li { font-size: 1rem; font-weight: 600; color: var(--ink); }
+        .services-checklist li::first-letter { color: #22c55e; }
+        @media (max-width: 600px) { .services-checklist { grid-template-columns: 1fr; } }
+
         /* ── Quote / CTA ── */
         #quote { scroll-margin-top: 0px; }
         #service-area { scroll-margin-top: 0px; }
@@ -1661,6 +1669,33 @@
     <div class="gallery-nav">
         <button id="galleryPrev" aria-label="Previous">&#8592;</button>
         <button id="galleryNext" aria-label="Next">&#8594;</button>
+    </div>
+</section>
+
+<!-- Services List -->
+<section class="services-list-section" id="services-list">
+    <div class="container">
+        <div class="services-list-inner reveal">
+            <div class="services-list-text">
+                <p class="section-label">What We Offer</p>
+                <h2 class="section-title">A Wide Range of Services,<br>Tailored to Your Property</h2>
+                <p class="section-subtitle" style="margin:0 0 2rem;">Every property is different, so we always assess what's needed before recommending the right approach. Whether it's a single job or a full property refresh, we'll put together a package that works for you.</p>
+                <ul class="services-checklist">
+                    <li>&#10003; Roof Cleaning &amp; Treatments</li>
+                    <li>&#10003; Block Paving Cleaning &amp; Re-sanding</li>
+                    <li>&#10003; Patio Cleaning</li>
+                    <li>&#10003; Paving Re-Pointing</li>
+                    <li>&#10003; Decking Cleaning</li>
+                    <li>&#10003; Gutter Cleaning</li>
+                    <li>&#10003; Cladding Cleaning</li>
+                    <li>&#10003; Tarmac Restoration</li>
+                    <li>&#10003; High Level Access Cleaning</li>
+                    <li>&#10003; Fascia &amp; Soffit Cleaning</li>
+                    <li>&#10003; Wall Cleaning</li>
+                </ul>
+                <a href="#quote" class="btn btn-primary" style="margin-top:2rem;display:inline-block;">Get a Free Quote</a>
+            </div>
+        </div>
     </div>
 </section>
 
