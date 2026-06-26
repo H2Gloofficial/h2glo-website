@@ -422,12 +422,20 @@
         }
 
         /* ── Services ── */
-        .services { padding: 120px 0; }
+        .services {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0B5688 0%, #134e7a 50%, #15803d 130%);
+            position: relative;
+        }
         .services-header {
             text-align: center;
             margin-bottom: 64px;
         }
-        .services-header .section-subtitle { margin: 0 auto; }
+        .services-header .section-subtitle { margin: 0 auto; color: rgba(255,255,255,0.75); }
+        .services-header .section-title { color: #fff; }
+        .services-header .section-label { color: rgba(255,255,255,0.6); }
+        .services-header .section-label::before { background: rgba(255,255,255,0.4); }
+        .services-header a { color: #22c55e !important; }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
