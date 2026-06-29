@@ -679,11 +679,59 @@
             font-size: 0.9rem;
             color: var(--ink-soft);
             line-height: 1.65;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             display: -webkit-box;
-            -webkit-line-clamp: 7;
+            -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+        .review-read-more {
+            font-size: 0.8rem;
+            color: #22c55e;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 12px;
+            display: none;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .review-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .review-modal-overlay.open { display: flex; }
+        .review-modal {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+        }
+        .review-modal .review-stars { font-size: 1.1rem; color: #fbbf24; margin-bottom: 12px; }
+        .review-modal .review-modal-text { font-size: 1rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 20px; }
+        .review-modal .review-modal-author { font-weight: 700; color: var(--ink); }
+        .review-modal .review-modal-date { font-size: 0.8rem; color: var(--ink-muted); }
+        .review-modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--line);
+            border: none;
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
         }
         .review-author {
             display: flex;
@@ -1814,6 +1862,17 @@
         </div>
     </div>
     <p class="reviews-hint">Tap any card to read in full. View more on our <a href="https://www.google.com/search?q=H2Glo+Professional+Exterior+Cleaning&ludocid=13279850653304524326#lrd=0x43b91b07358bfbb3:0xb84b81cf3c748e26,1" style="color:#3b9eff;">Google profile</a>.</p>
+
+<!-- Review Modal -->
+<div class="review-modal-overlay" id="reviewModal">
+    <div class="review-modal">
+        <button class="review-modal-close" id="reviewModalClose">&times;</button>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-modal-text" id="reviewModalText"></p>
+        <div class="review-modal-author" id="reviewModalAuthor"></div>
+        <div class="review-modal-date" id="reviewModalDate"></div>
+    </div>
+</div>
 </section>
 
 <!-- FAQ -->
@@ -2164,6 +2223,63 @@
         var s2 = document.getElementById('bookingSeason2');
         if (s1) s1.textContent = label;
         if (s2) s2.textContent = label;
+    })();
+
+    // ── Review Modal ──
+    (function() {
+        var modal = document.getElementById('reviewModal');
+        var modalText = document.getElementById('reviewModalText');
+        var modalAuthor = document.getElementById('reviewModalAuthor');
+        var modalDate = document.getElementById('reviewModalDate');
+
+        function openModal(text, author, date) {
+            modalText.textContent = text;
+            modalAuthor.textContent = author;
+            modalDate.textContent = date;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        document.getElementById('reviewModalClose').addEventListener('click', function() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.querySelectorAll('.review-card').forEach(function(card) {
+            var textEl = card.querySelector('.review-text');
+            var author = card.querySelector('.review-author-name').textContent;
+            var date = card.querySelector('.review-author-role').textContent;
+            var fullText = textEl.textContent;
+
+            // Show read more button if text is clamped
+            var btn = document.createElement('button');
+            btn.className = 'review-read-more';
+            btn.textContent = 'Read more';
+            textEl.after(btn);
+
+            function checkClamp() {
+                if (textEl.scrollHeight > textEl.clientHeight + 2) {
+                    btn.style.display = 'block';
+                }
+            }
+            setTimeout(checkClamp, 100);
+
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openModal(fullText, author, date);
+            });
+
+            card.addEventListener('click', function() {
+                openModal(fullText, author, date);
+            });
+            card.style.cursor = 'pointer';
+        });
     })();
 
     // ── FAQ Toggle ──
