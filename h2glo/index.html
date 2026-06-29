@@ -1413,27 +1413,35 @@
 
         /* ── Responsive ── */
         @media (max-width: 1200px) {
-            /* Floating field needs ≥1200px to look right; stack on smaller screens */
+            /* Floating field needs ≥1200px to look right; swipe carousel on smaller screens */
             .reviews-field {
                 height: auto !important;
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 18px;
-                padding: 0 20px;
-                max-width: 720px;
+                flex-direction: row !important;
+                align-items: stretch;
+                gap: 16px;
+                padding: 0 10vw 20px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                max-width: none;
             }
+            .reviews-field::-webkit-scrollbar { display: none; }
             .review-card {
                 position: relative !important;
-                width: 100% !important;
-                max-width: 420px !important;
+                width: 80vw !important;
+                max-width: 340px !important;
+                min-width: 260px !important;
+                flex-shrink: 0 !important;
                 top: auto !important;
                 left: auto !important;
                 transform: rotate(0) !important;
                 animation: none !important;
+                scroll-snap-align: center;
             }
-            .review-card:nth-child(odd) { transform: rotate(-1.5deg) !important; }
-            .review-card:nth-child(even) { transform: rotate(1.5deg) !important; }
+            .review-card:nth-child(odd) { transform: rotate(0) !important; }
+            .review-card:nth-child(even) { transform: rotate(0) !important; }
             .review-card:hover { transform: translateY(-4px) !important; }
             .reviews-hint { display: block; }
         }
