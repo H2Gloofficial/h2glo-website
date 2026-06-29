@@ -800,24 +800,28 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #6b7280;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ink-muted);
             margin-bottom: 16px;
-            animation: swipe-fade 3s ease forwards;
+        }
+        .swipe-hint::before {
+            content: "";
+            width: 18px;
+            height: 2px;
+            background: var(--green);
+            border-radius: 2px;
         }
         .swipe-hint .swipe-icon {
-            font-size: 1.2rem;
+            display: inline-block;
             animation: swipe-slide 1.2s ease-in-out infinite;
         }
         @keyframes swipe-slide {
             0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-        }
-        @keyframes swipe-fade {
-            0% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { opacity: 0; pointer-events: none; }
+            50% { transform: translateX(7px); }
         }
         @media (max-width: 1200px) {
             .swipe-hint { display: flex; }
