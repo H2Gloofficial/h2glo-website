@@ -1138,7 +1138,7 @@
             transition: background 0.2s;
         }
         .cal-nav-btn:hover { background: rgba(255,255,255,0.2); }
-        .cal-month-label { font-weight: 600; color: #fff; font-size: 0.95rem; }
+        .cal-month-label { font-weight: 600; color: #fff; font-size: 0.85rem; text-align: center; }
         .cal-grid {
             display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
             margin-bottom: 16px;
@@ -2596,41 +2596,57 @@
     /* ── Booking Calendar ── */
     const PLATFORM = 'https://h2glo-platform.vercel.app';
     const SLOT_LABELS = { '17:00':'5:00 PM','17:30':'5:30 PM','18:00':'6:00 PM','18:30':'6:30 PM','19:00':'7:00 PM','19:30':'7:30 PM' };
-    let calYear, calMonth, calSelectedDate = null, calSelectedTime = null, slotCache = {};
+    let calWeekStart, calSelectedDate = null, calSelectedTime = null, slotCache = {};
+
+    function getMonday(d) {
+        const date = new Date(d);
+        const day = date.getDay();
+        const diff = (day === 0) ? -6 : 1 - day;
+        date.setDate(date.getDate() + diff);
+        date.setHours(0,0,0,0);
+        return date;
+    }
 
     function calInit() {
         const now = new Date();
-        calYear = now.getFullYear();
-        calMonth = now.getMonth();
+        now.setHours(0,0,0,0);
+        // Start on the week containing tomorrow
+        const tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
+        calWeekStart = getMonday(tomorrow);
         renderCal();
-        document.getElementById('calPrev').addEventListener('click', () => { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); });
-        document.getElementById('calNext').addEventListener('click', () => { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); });
+        document.getElementById('calPrev').addEventListener('click', () => {
+            const prev = new Date(calWeekStart); prev.setDate(prev.getDate() - 7);
+            const now = new Date(); now.setHours(0,0,0,0);
+            const tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
+            if (prev <= getMonday(tomorrow)) return; // don't go before current week
+            calWeekStart = prev; renderCal();
+        });
+        document.getElementById('calNext').addEventListener('click', () => {
+            calWeekStart = new Date(calWeekStart); calWeekStart.setDate(calWeekStart.getDate() + 7); renderCal();
+        });
     }
 
     function renderCal() {
-        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        document.getElementById('calMonthLabel').textContent = months[calMonth] + ' ' + calYear;
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const weekEnd = new Date(calWeekStart); weekEnd.setDate(calWeekStart.getDate() + 6);
+        const label = calWeekStart.getMonth() === weekEnd.getMonth()
+            ? `${calWeekStart.getDate()} – ${weekEnd.getDate()} ${months[weekEnd.getMonth()]} ${weekEnd.getFullYear()}`
+            : `${calWeekStart.getDate()} ${months[calWeekStart.getMonth()]} – ${weekEnd.getDate()} ${months[weekEnd.getMonth()]} ${weekEnd.getFullYear()}`;
+        document.getElementById('calMonthLabel').textContent = label;
+
         const grid = document.getElementById('calGrid');
-        // Remove previous day cells (keep 7 headers)
         while (grid.children.length > 7) grid.removeChild(grid.lastChild);
 
         const today = new Date(); today.setHours(0,0,0,0);
-        const minDate = new Date(today); minDate.setDate(today.getDate() + 1); // earliest = tomorrow
+        const minDate = new Date(today); minDate.setDate(today.getDate() + 1);
         const maxDate = new Date(today); maxDate.setDate(today.getDate() + 60);
 
-        const firstDay = new Date(calYear, calMonth, 1);
-        // Monday=0 offset
-        let startOffset = firstDay.getDay() - 1; if (startOffset < 0) startOffset = 6;
-        const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-
-        for (let i = 0; i < startOffset; i++) {
-            const empty = document.createElement('div');
-            empty.className = 'cal-day cal-day--empty';
-            grid.appendChild(empty);
-        }
-        for (let d = 1; d <= daysInMonth; d++) {
-            const date = new Date(calYear, calMonth, d);
-            const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(calWeekStart); date.setDate(calWeekStart.getDate() + i);
+            const d = date.getDate();
+            const m = String(date.getMonth() + 1).padStart(2,'0');
+            const y = date.getFullYear();
+            const dateStr = `${y}-${m}-${String(d).padStart(2,'0')}`;
             const cell = document.createElement('div');
             cell.className = 'cal-day';
             cell.textContent = d;
@@ -2724,7 +2740,7 @@
 
     function jumpToDate(dateStr) {
         const d = new Date(dateStr + 'T12:00:00');
-        calYear = d.getFullYear(); calMonth = d.getMonth();
+        calWeekStart = getMonday(d);
         renderCal();
         selectDate(dateStr);
     }
