@@ -795,6 +795,33 @@
             color: #6b7280;
             margin-top: 24px;
         }
+        .swipe-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 16px;
+            animation: swipe-fade 3s ease forwards;
+        }
+        .swipe-hint .swipe-icon {
+            font-size: 1.2rem;
+            animation: swipe-slide 1.2s ease-in-out infinite;
+        }
+        @keyframes swipe-slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        @keyframes swipe-fade {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
+        }
+        @media (max-width: 1200px) {
+            .swipe-hint { display: flex; }
+        }
 
         /* ── FAQ ── */
         .faq {
@@ -1781,6 +1808,7 @@
             </div>
         </div>
     </div>
+    <div class="swipe-hint"><span class="swipe-icon">👆</span> Swipe to read reviews</div>
     <div class="reviews-field seven-card" id="reviewsField">
         <!-- Row 1 -->
         <div class="review-card float-anim reveal-scale" style="left: 30px; top: 20px; transform: rotate(-4deg); z-index: 3; --float-duration: 8s; --float-delay: 0s;">
