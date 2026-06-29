@@ -1484,6 +1484,13 @@
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
         }
         @media (max-width: 768px) {
+            .service-card p {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            .service-card-overlay {
+                background: linear-gradient(to top, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.25) 60%, transparent 100%);
+            }
             .container { padding: 0 20px; }
 
             .nav-links { display: none; }
