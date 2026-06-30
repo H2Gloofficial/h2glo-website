@@ -2094,7 +2094,7 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" placeholder="e.g. John Smith" autocomplete="name" oninput="this.value=this.value.replace(/\b\w/g,function(c){return c.toUpperCase();})">
+                    <input type="text" id="name" name="name" placeholder="e.g. John Smith" autocomplete="name" autocapitalize="words" onblur="this.value=this.value.replace(/\b\w/g,function(c){return c.toUpperCase();})">
                     <span class="field-error" id="nameErr"></span>
                 </div>
                 <div class="form-group">
@@ -2114,7 +2114,7 @@
                 </div>
                 <div class="form-group full">
                     <label for="address">House / Flat Number & Street *</label>
-                    <input type="text" id="address" name="address" placeholder="e.g. 14 Maple Street or Flat 2B" autocomplete="address-line1" oninput="this.value=this.value.replace(/\b\w/g,function(c){return c.toUpperCase();})">
+                    <input type="text" id="address" name="address" placeholder="e.g. 14 Maple Street or Flat 2B" autocomplete="address-line1" autocapitalize="words" onblur="this.value=this.value.replace(/\b\w/g,function(c){return c.toUpperCase();})">
                     <span class="field-error" id="addressErr"></span>
                 </div>
                 <div class="form-group">
