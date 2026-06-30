@@ -2784,9 +2784,12 @@
         var btn = document.getElementById('submitBtn');
 
         // Button is already disabled unless all fieldState values are true —
-        // this is a last-resort safety check only
-        // Re-run all checks before submitting
-        chkName(); chkPhone(); chkEmail(true); chkAddress(); chkTown(); chkMessage();
+        // this is a last-resort safety check only.
+        // Re-run synchronous checks before submitting. chkEmail(true) is NOT
+        // re-run here: it resets fieldState.email to null while its async DNS
+        // check is in flight, which would fail the allValid check below even
+        // though the email was already validated on blur.
+        chkName(); chkPhone(); chkAddress(); chkTown(); chkMessage();
         var allValid = Object.values(fieldState).every(function(v){ return v === true; });
         if (!allValid) return;
 
