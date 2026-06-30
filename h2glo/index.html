@@ -2493,7 +2493,7 @@
         var raw = document.getElementById('phone').value.trim();
         if (!raw) return mark('phone','phoneErr', false, 'Please enter your phone number');
         var d = raw.replace(/[\s\-().+]/g,'');
-        if (!/^(07\d{9}|447\d{9}|0[1-9]\d{8,9}|44[1-9]\d{8,9})$/.test(d))
+        if (!/^(07\d{9}|447\d{9}|0[1-9]\d{9}|44[1-9]\d{9})$/.test(d))
             return mark('phone','phoneErr', false, 'Enter a valid UK number e.g. 07700 900000');
         mark('phone','phoneErr', true);
     }
