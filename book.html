@@ -38,16 +38,16 @@
 
   /* ── Header ── */
   .header {
-    background: rgba(10,22,40,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--dark-line);
-    padding: 16px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #e4eaf2;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 12px rgba(11,86,136,0.07);
   }
   .header-logo img { height: 56px; width: auto; display: block; }
   .header-contact {
@@ -56,16 +56,20 @@
     align-items: center;
   }
   .header-contact a {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--blue);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
+    gap: 7px;
+    background: #f0f7ff;
+    border: 1.5px solid #c2daf5;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: background 0.2s, color 0.2s;
   }
-  .header-contact a:hover { color: #fff; }
+  .header-contact a:hover { background: var(--blue); color: #fff; }
 
   /* ── Hero strip ── */
   .hero-strip {
@@ -525,11 +529,7 @@
   <div class="header-contact">
     <a href="https://api.whatsapp.com/send/?phone=447368292293&text=Hi%2C%20I%27d%20like%20a%20quote%20please" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.553 4.12 1.52 5.86L0 24l6.335-1.652A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.97 0-3.84-.528-5.47-1.507l-.393-.233-3.756.98.998-3.648-.257-.407A9.717 9.717 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/></svg>
-      WhatsApp
-    </a>
-    <a href="tel:+447368292293">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      07368 292293
+      Contact Us Now
     </a>
   </div>
 </header>
@@ -601,12 +601,12 @@
       <h2>Your Details</h2>
       <p>All fields marked * are required. We'll never share your info with third parties.</p>
 
-      <form id="bookForm" novalidate autocomplete="on">
+      <form id="bookForm" novalidate autocomplete="on" style="margin-top: 28px;">
         <div class="form-grid">
 
           <div class="form-group">
             <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" placeholder="e.g. John Smith" autocomplete="name" autocapitalize="words">
+            <input type="text" id="name" name="name" placeholder="e.g. John Smith" autocomplete="name" autocapitalize="words" style="padding: 15px 14px; font-size: 1rem;">
             <span class="field-error" id="nameErr"></span>
           </div>
 
