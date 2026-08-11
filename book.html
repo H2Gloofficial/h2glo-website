@@ -1078,6 +1078,9 @@
     fs.slot = null; updateBtn();
     renderCal();
 
+    var phone = document.getElementById('phone').value.trim();
+    if (!phone || !fs.phone) { showSlots(dateStr, null, 'Please enter a valid phone number above before booking a slot'); return; }
+
     var postcode = document.getElementById('postcode').value.trim();
     if (!postcode || !fs.postcode) { showSlots(dateStr, null, 'Please enter and confirm your postcode above first'); return; }
 
