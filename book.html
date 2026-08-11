@@ -946,6 +946,8 @@
           input.value = data.result.postcode;
           mark('postcode','postcodeErr', true);
           slotCache = {};
+          // If user already selected a date while postcode was still validating, reload slots now
+          if (calSelectedDate) { selectDate(calSelectedDate); }
           // Auto-fill town from postcode if empty
           var townEl = document.getElementById('town');
           var fallback = data.result.admin_ward || data.result.admin_district || '';
