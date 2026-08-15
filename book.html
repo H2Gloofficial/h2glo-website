@@ -1186,7 +1186,7 @@
       message:        'Site visit requested for ' + pd + ' at ' + (SLOT_LABELS[pt] || pt),
       preferred_date: pd,
       preferred_time: pt,
-      source:         'facebook_ad',
+      source:         (new URLSearchParams(window.location.search).get('source')) || 'website_form',
       consent:        true,
     };
 
